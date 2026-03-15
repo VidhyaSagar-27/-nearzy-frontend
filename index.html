@@ -1063,23 +1063,6 @@ footer{background:#282c3f;color:#93959f;padding:40px 20px 20px;margin-top:40px}
       <button class="deal-cta" onclick="scrollToShops()"><i class="fa-solid fa-arrow-right"></i> See Deals</button>
     </div>
 
-    <!-- SHOP CATEGORIES -->
-    <div class="sec-head"><div class="sec-title">Shop by Category</div></div>
-    <div class="shop-cats" id="shopCatsGrid">
-      <div class="shop-cat" onclick="filterCat('restaurant')"><div class="shop-cat-icon" style="background:#fff3e0"><i class="fa-solid fa-utensils" style="color:#fc8019;font-size:26px"></i></div><div class="shop-cat-name">Restaurants</div></div>
-      <div class="shop-cat" onclick="filterCat('grocery')"><div class="shop-cat-icon" style="background:#e6f7ee"><i class="fa-solid fa-bag-shopping" style="color:#0c9e52;font-size:26px"></i></div><div class="shop-cat-name">Grocery</div></div>
-      <div class="shop-cat" onclick="filterCat('bakery')"><div class="shop-cat-icon" style="background:#fce4ec"><i class="fa-solid fa-bread-slice" style="color:#e23744;font-size:26px"></i></div><div class="shop-cat-name">Bakery</div></div>
-      <div class="shop-cat" onclick="filterCat('flowers')"><div class="shop-cat-icon" style="background:#f3e5f5"><i class="fa-solid fa-fan" style="color:#7c3aed;font-size:26px"></i></div><div class="shop-cat-name">Flowers</div></div>
-      <div class="shop-cat" onclick="filterCat('pharmacy')"><div class="shop-cat-icon" style="background:#e3f2fd"><i class="fa-solid fa-prescription-bottle-medical" style="color:#1a73e8;font-size:26px"></i></div><div class="shop-cat-name">Pharmacy</div></div>
-      <div class="shop-cat" onclick="filterCat('clothing')"><div class="shop-cat-icon" style="background:#fff8e1"><i class="fa-solid fa-shirt" style="color:#f57f17;font-size:26px"></i></div><div class="shop-cat-name">Clothing</div></div>
-      <div class="shop-cat" onclick="filterCat('electronics')"><div class="shop-cat-icon" style="background:#e8f5e9"><i class="fa-solid fa-laptop" style="color:#2e7d32;font-size:26px"></i></div><div class="shop-cat-name">Electronics</div></div>
-      <div class="shop-cat" onclick="filterCat('fruits')"><div class="shop-cat-icon" style="background:#fff3e0"><i class="fa-solid fa-apple-whole" style="color:#e65100;font-size:26px"></i></div><div class="shop-cat-name">Fruits &amp; Veg</div></div>
-      <div class="shop-cat" onclick="filterCat('sweets')"><div class="shop-cat-icon" style="background:#fce4ec"><i class="fa-solid fa-candy-cane" style="color:#c2185b;font-size:26px"></i></div><div class="shop-cat-name">Sweets</div></div>
-      <div class="shop-cat" onclick="filterCat('meat')"><div class="shop-cat-icon" style="background:#fff3e0"><i class="fa-solid fa-drumstick-bite" style="color:#bf360c;font-size:26px"></i></div><div class="shop-cat-name">Meat &amp; Fish</div></div>
-      <div class="shop-cat" onclick="filterCat('salon')"><div class="shop-cat-icon" style="background:#f3e5f5"><i class="fa-solid fa-scissors" style="color:#6a1b9a;font-size:26px"></i></div><div class="shop-cat-name">Salon</div></div>
-      <div class="shop-cat" onclick="filterCat('general')"><div class="shop-cat-icon" style="background:#e3f2fd"><i class="fa-solid fa-store" style="color:#1565c0;font-size:26px"></i></div><div class="shop-cat-name">General</div></div>
-    </div>
-
     <!-- OFFER BANNERS -->
     <div class="offer-row">
       <div class="offer-card oc1" onclick="filterCat('restaurant')">
@@ -1170,7 +1153,7 @@ footer{background:#282c3f;color:#93959f;padding:40px 20px 20px;margin-top:40px}
       <div class="footer-col">
         <h4>Support</h4>
         <p><i class="fa-solid fa-phone"></i> 1800-NEARZY</p>
-        <p><i class="fa-solid fa-envelope"></i> support@nearzy.in</p>
+        <p><i class="fa-solid fa-envelope"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f88b8d8888978a8cb8969d998a8281d69196">[email&#160;protected]</a></p>
         <p><i class="fa-solid fa-clock"></i> 24/7 Support</p>
       </div>
     </div>
@@ -1364,9 +1347,9 @@ footer{background:#282c3f;color:#93959f;padding:40px 20px 20px;margin-top:40px}
 
 <div id="toast"></div>
 
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
-const API = "https://nearzy-backend.onrender.com/api";
+const API = "https://florapedia-backend-1.onrender.com/api";
 const RAZORPAY_KEY = "rzp_live_SQ2a0BIeQiJQly";
 
 /* ===== STATE ===== */
@@ -1425,8 +1408,9 @@ function showPage(page) {
   if (page === "checkout") renderCheckoutPage();
   if (page === "account") renderAccountPage();
   if (page === "wishlist") renderWishlistPage();
-  if (page === "seller") renderSellerDashboard();
-  if (page === "delivery") renderDeliveryDashboard();
+  if (page === "seller") { renderSellerDashboard(); startSellerAutoRefresh(); }
+  else { stopSellerAutoRefresh(); }
+  if (page === "delivery") { renderDeliveryDashboard(); startDeliveryAutoRefresh(); }
   if (page === "admin") renderAdminDashboard();
 }
 
@@ -2066,31 +2050,195 @@ async function finalizeOrder(deliveryAddress, method, paymentResponse) {
       if (res.ok) {
         savedOrder = data.order;
         if (method === "ONLINE" && paymentResponse) {
-          await fetch(`${API}/payment/verify`, { method: "POST", headers: { "Content-Type": "application/json", "Authorization": "Bearer " + S.token }, body: JSON.stringify({ ...paymentResponse, orderId: savedOrder._id }) });
+          const verifyRes = await fetch(`${API}/payment/verify`, { method: "POST", headers: { "Content-Type": "application/json", "Authorization": "Bearer " + S.token }, body: JSON.stringify({ ...paymentResponse, orderId: savedOrder._id }) });
+          const verifyData = await verifyRes.json();
+          if (!verifyRes.ok) throw new Error(verifyData.message || "Payment verification failed");
         }
-      }
+      } else { throw new Error(data.message || "Failed to place order"); }
     }
     S.cart = []; saveSession(); updateHeader();
     const orderNum = savedOrder?.orderNumber || "NRZ" + Date.now().toString().slice(-6);
+    const orderId = savedOrder?._id;
+    // Start customer order tracking
+    if (orderId) startCustomerOrderTracking(orderId, orderNum);
     document.getElementById("checkoutContent").innerHTML = `
     <div class="order-success">
       <div class="success-ring"><i class="fa-solid fa-check"></i></div>
       <h2>Order Placed Successfully!</h2>
-      <p>Your order has been placed and the shop is being notified.</p>
+      <p>Your order has been placed. You will be notified when the shop accepts it.</p>
       <div class="order-num">${orderNum}</div>
-      <div class="order-track-steps">
+      <div class="order-track-steps" id="trackSteps_${orderId}">
         <div class="ots"><div class="ots-circle done"><i class="fa-solid fa-check"></i></div><div class="ots-label">Placed</div></div>
-        <div class="ots"><div class="ots-circle active"><i class="fa-solid fa-store"></i></div><div class="ots-label">Accepted</div></div>
-        <div class="ots"><div class="ots-circle"><i class="fa-solid fa-fire"></i></div><div class="ots-label">Preparing</div></div>
-        <div class="ots"><div class="ots-circle"><i class="fa-solid fa-motorcycle"></i></div><div class="ots-label">On the way</div></div>
-        <div class="ots"><div class="ots-circle"><i class="fa-solid fa-house"></i></div><div class="ots-label">Delivered</div></div>
+        <div class="ots"><div class="ots-circle" id="step-confirmed"><i class="fa-solid fa-store"></i></div><div class="ots-label">Accepted</div></div>
+        <div class="ots"><div class="ots-circle" id="step-preparing"><i class="fa-solid fa-fire"></i></div><div class="ots-label">Preparing</div></div>
+        <div class="ots"><div class="ots-circle" id="step-picked"><i class="fa-solid fa-motorcycle"></i></div><div class="ots-label">On the way</div></div>
+        <div class="ots"><div class="ots-circle" id="step-delivered"><i class="fa-solid fa-house"></i></div><div class="ots-label">Delivered</div></div>
+      </div>
+      <div id="orderStatusMsg" style="font-size:13px;color:var(--ink3);margin:10px 0;font-weight:600">
+        <i class="fa-solid fa-clock" style="color:var(--brand)"></i> Waiting for shop to accept your order...
       </div>
       <div class="success-actions">
-        <button class="btn-suc-pri" onclick="showPage('account')"><i class="fa-solid fa-box"></i> Track Order</button>
+        <button class="btn-suc-pri" onclick="showPage('account')"><i class="fa-solid fa-box"></i> My Orders</button>
         <button class="btn-suc-sec" onclick="showPage('home')"><i class="fa-solid fa-house"></i> Continue Shopping</button>
       </div>
     </div>`;
   } catch (err) { toast(err.message || "Failed to place order", "error"); }
+}
+
+/* ===== CUSTOMER ORDER TRACKING ===== */
+let customerTrackInterval = null;
+let lastOrderStatus = "placed";
+
+function startCustomerOrderTracking(orderId, orderNum) {
+  if (customerTrackInterval) clearInterval(customerTrackInterval);
+  lastOrderStatus = "placed";
+  customerTrackInterval = setInterval(async () => {
+    try {
+      const res = await fetch(`${API}/orders/${orderId}`, { headers: { "Authorization": "Bearer " + S.token } });
+      if (!res.ok) return;
+      const order = await res.json();
+      const status = order.orderStatus;
+      if (status === lastOrderStatus) return;
+      lastOrderStatus = status;
+      // Update tracking steps UI
+      updateTrackingUI(status);
+      // Show customer notification popup
+      showCustomerNotification(status, orderNum);
+      // Play sound
+      playOrderSound();
+      // Stop tracking if delivered or cancelled
+      if (status === "delivered" || status === "cancelled") {
+        clearInterval(customerTrackInterval);
+        customerTrackInterval = null;
+      }
+    } catch (e) {}
+  }, 15000); // Check every 15 seconds
+}
+
+function updateTrackingUI(status) {
+  const steps = { confirmed: 1, preparing: 2, ready: 2, picked: 3, delivered: 4 };
+  const stepIds = ["step-confirmed", "step-preparing", "step-picked", "step-delivered"];
+  const currentStep = steps[status] || 0;
+  stepIds.forEach((id, i) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (i < currentStep) { el.className = "ots-circle done"; }
+    else if (i === currentStep) { el.className = "ots-circle active"; }
+    else { el.className = "ots-circle"; }
+  });
+  const msgs = {
+    confirmed: `<i class="fa-solid fa-check-circle" style="color:var(--green)"></i> Your order has been accepted by the shop!`,
+    preparing: `<i class="fa-solid fa-fire" style="color:var(--brand)"></i> The shop is preparing your order...`,
+    ready: `<i class="fa-solid fa-check-double" style="color:var(--blue)"></i> Order is ready! Waiting for delivery partner...`,
+    picked: `<i class="fa-solid fa-motorcycle" style="color:var(--brand)"></i> Your order is on the way!`,
+    delivered: `<i class="fa-solid fa-house" style="color:var(--green)"></i> Order delivered! Enjoy your order 🎉`,
+    cancelled: `<i class="fa-solid fa-circle-xmark" style="color:var(--red)"></i> Your order was cancelled.`
+  };
+  const msgEl = document.getElementById("orderStatusMsg");
+  if (msgEl && msgs[status]) msgEl.innerHTML = msgs[status];
+}
+
+function showCustomerNotification(status, orderNum) {
+  const msgs = {
+    confirmed: { title: "Order Accepted! ✅", msg: "Your order has been accepted by the shop", color: "var(--green)" },
+    preparing: { title: "Being Prepared 🔥", msg: "The shop is now preparing your order", color: "var(--brand)" },
+    ready: { title: "Order Ready! 📦", msg: "Your order is packed and ready for pickup", color: "var(--blue)" },
+    picked: { title: "On the Way! 🛵", msg: "Your delivery partner is heading to you", color: "var(--brand)" },
+    delivered: { title: "Delivered! 🎉", msg: "Your order has been delivered. Enjoy!", color: "var(--green)" },
+    cancelled: { title: "Order Cancelled ❌", msg: "Your order was cancelled", color: "var(--red)" }
+  };
+  const m = msgs[status];
+  if (!m) return;
+  const existing = document.getElementById("customerAlert");
+  if (existing) existing.remove();
+  const alert = document.createElement("div");
+  alert.id = "customerAlert";
+  alert.innerHTML = `
+    <div style="position:fixed;top:80px;right:20px;z-index:9999;background:#fff;border-radius:12px;
+      box-shadow:0 8px 32px rgba(0,0,0,0.2);padding:16px 20px;
+      border-left:4px solid ${m.color};min-width:290px;animation:slideUp .3s ease-out">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="width:42px;height:42px;border-radius:50%;background:${m.color}22;
+          display:flex;align-items:center;justify-content:center;flex-shrink:0">
+          <i class="fa-solid fa-bell" style="color:${m.color};font-size:18px"></i>
+        </div>
+        <div style="flex:1">
+          <div style="font-weight:800;font-size:14px;color:var(--ink)">${m.title}</div>
+          <div style="font-size:12px;color:var(--ink3);margin-top:2px">${m.msg}</div>
+          <div style="font-size:11px;color:var(--ink3);margin-top:1px">Order #${orderNum}</div>
+        </div>
+        <button onclick="document.getElementById('customerAlert').remove()"
+          style="width:26px;height:26px;border-radius:50%;background:var(--bg);border:none;cursor:pointer;
+          display:flex;align-items:center;justify-content:center;flex-shrink:0">
+          <i class="fa-solid fa-xmark" style="font-size:11px;color:var(--ink3)"></i>
+        </button>
+      </div>
+    </div>`;
+  document.body.appendChild(alert);
+  setTimeout(() => { const a = document.getElementById("customerAlert"); if (a) a.remove(); }, 8000);
+}
+
+/* ===== DELIVERY NOTIFICATIONS ===== */
+let deliveryRefreshInterval = null;
+let lastAvailableCount = 0;
+
+function startDeliveryAutoRefresh() {
+  stopDeliveryAutoRefresh();
+  deliveryRefreshInterval = setInterval(async () => {
+    if (!S.token || S.role !== "delivery") { stopDeliveryAutoRefresh(); return; }
+    const activePage = document.querySelector(".page.active");
+    if (activePage?.id !== "page-delivery") return;
+    try {
+      const res = await fetch(`${API}/orders/delivery-orders`, { headers: { "Authorization": "Bearer " + S.token } });
+      if (!res.ok) return;
+      const data = await res.json();
+      const newAvailable = (data.available || []).length;
+      if (newAvailable > lastAvailableCount) {
+        playOrderSound();
+        showDeliveryAlert(newAvailable);
+      }
+      lastAvailableCount = newAvailable;
+      updateDeliveryBadge(newAvailable);
+    } catch (e) {}
+  }, 30000);
+}
+
+function stopDeliveryAutoRefresh() {
+  if (deliveryRefreshInterval) { clearInterval(deliveryRefreshInterval); deliveryRefreshInterval = null; }
+}
+
+function updateDeliveryBadge(count) {
+  const badge = document.getElementById("deliveryAvailableBadge");
+  if (badge) { badge.textContent = count; badge.style.display = count > 0 ? "inline-flex" : "none"; }
+}
+
+function showDeliveryAlert(count) {
+  const existing = document.getElementById("deliveryAlert");
+  if (existing) existing.remove();
+  const alert = document.createElement("div");
+  alert.id = "deliveryAlert";
+  alert.innerHTML = `
+    <div style="position:fixed;top:80px;right:20px;z-index:9999;background:#fff;border-radius:12px;
+      box-shadow:0 8px 32px rgba(0,0,0,0.2);padding:16px 20px;
+      border-left:4px solid var(--brand);min-width:290px;animation:slideUp .3s ease-out">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="width:42px;height:42px;border-radius:50%;background:var(--brand-light);
+          display:flex;align-items:center;justify-content:center;flex-shrink:0">
+          <i class="fa-solid fa-motorcycle" style="color:var(--brand);font-size:20px"></i>
+        </div>
+        <div style="flex:1">
+          <div style="font-weight:800;font-size:14px;color:var(--ink)">New Delivery Available!</div>
+          <div style="font-size:12px;color:var(--ink3);margin-top:2px">${count} order${count > 1 ? "s" : ""} waiting for pickup</div>
+        </div>
+        <button onclick="document.getElementById('deliveryAlert').remove()"
+          style="width:26px;height:26px;border-radius:50%;background:var(--bg);border:none;cursor:pointer;
+          display:flex;align-items:center;justify-content:center">
+          <i class="fa-solid fa-xmark" style="font-size:11px;color:var(--ink3)"></i>
+        </button>
+      </div>
+    </div>`;
+  document.body.appendChild(alert);
+  setTimeout(() => { const a = document.getElementById("deliveryAlert"); if (a) a.remove(); }, 8000);
 }
 
 /* ===== WISHLIST ===== */
@@ -2311,6 +2459,7 @@ async function renderSellerDashboard() {
     if (or.ok) shopOrders = await or.json();
   } catch (e) {}
   const pendingOrders = shopOrders.filter(o => o.orderStatus === "placed").length;
+  lastOrderCount = pendingOrders;
   const totalRevenue = shopOrders.filter(o => o.orderStatus === "delivered").reduce((s, o) => s + (o.subtotal || 0), 0);
   document.getElementById("sellerContent").innerHTML = `
   <div class="seller-layout">
@@ -2321,7 +2470,7 @@ async function renderSellerDashboard() {
       </div>
       <div style="padding:8px 0">
         <div class="snav-item active" onclick="switchSellerTab('overview',this)"><i class="fa-solid fa-chart-line"></i> Overview</div>
-        <div class="snav-item" onclick="switchSellerTab('orders',this)"><i class="fa-solid fa-receipt"></i> Orders ${pendingOrders > 0 ? `<span style="margin-left:auto;background:var(--red);color:#fff;border-radius:99px;padding:1px 7px;font-size:10px;font-weight:800">${pendingOrders}</span>` : ""}</div>
+        <div class="snav-item" onclick="switchSellerTab('orders',this)"><i class="fa-solid fa-receipt"></i> Orders ${pendingOrders > 0 ? `<span id="sellerOrderBadge" style="margin-left:auto;background:var(--red);color:#fff;border-radius:99px;padding:1px 7px;font-size:10px;font-weight:800">${pendingOrders}</span>` : `<span id="sellerOrderBadge" style="display:none;margin-left:auto;background:var(--red);color:#fff;border-radius:99px;padding:1px 7px;font-size:10px;font-weight:800">0</span>`}</div>
         <div class="snav-item" onclick="switchSellerTab('products',this)"><i class="fa-solid fa-box"></i> My Products</div>
         <div class="snav-item" onclick="switchSellerTab('store',this)"><i class="fa-solid fa-store"></i> My Store</div>
         <div class="snav-item logout" onclick="doLogout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</div>
@@ -2469,7 +2618,139 @@ async function updateOrderStatus(orderId, status) {
   } catch (e) { toast("Failed to update", "error"); }
 }
 
-/* ===== PRODUCT MODAL ===== */
+/* ===== SELLER ORDER NOTIFICATIONS ===== */
+
+// Sound notification using Web Audio API
+function playOrderSound() {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const o1 = ctx.createOscillator();
+    const o2 = ctx.createOscillator();
+    const gain = ctx.createGain();
+    o1.connect(gain); o2.connect(gain); gain.connect(ctx.destination);
+    o1.frequency.value = 880; o2.frequency.value = 660;
+    o1.type = "sine"; o2.type = "sine";
+    gain.gain.setValueAtTime(0.3, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.8);
+    o1.start(ctx.currentTime); o1.stop(ctx.currentTime + 0.4);
+    o2.start(ctx.currentTime + 0.4); o2.stop(ctx.currentTime + 0.8);
+  } catch (e) {}
+}
+
+// Auto refresh seller orders every 30 seconds
+let sellerRefreshInterval = null;
+let lastOrderCount = 0;
+
+function startSellerAutoRefresh() {
+  stopSellerAutoRefresh();
+  sellerRefreshInterval = setInterval(async () => {
+    if (!S.token || S.role !== "seller") { stopSellerAutoRefresh(); return; }
+    // Only refresh if seller dashboard is active
+    const activePage = document.querySelector(".page.active");
+    if (activePage?.id !== "page-seller") return;
+    try {
+      const res = await fetch(`${API}/orders/shop-orders`, { headers: { "Authorization": "Bearer " + S.token } });
+      if (!res.ok) return;
+      const orders = await res.json();
+      const newPending = orders.filter(o => o.orderStatus === "placed").length;
+      // If new orders came in — play sound and show notification
+      if (newPending > lastOrderCount && lastOrderCount >= 0) {
+        playOrderSound();
+        showOrderAlert(newPending);
+      }
+      lastOrderCount = newPending;
+      // Update badge in nav
+      updateSellerOrderBadge(newPending);
+      // Refresh orders tab if it's active
+      const ordersTab = document.getElementById("stab-orders");
+      if (ordersTab?.classList.contains("active")) {
+        renderOrdersTab(orders);
+      }
+    } catch (e) {}
+  }, 30000);
+}
+
+function stopSellerAutoRefresh() {
+  if (sellerRefreshInterval) { clearInterval(sellerRefreshInterval); sellerRefreshInterval = null; }
+}
+
+function updateSellerOrderBadge(count) {
+  const badge = document.getElementById("sellerOrderBadge");
+  if (badge) {
+    badge.textContent = count;
+    badge.style.display = count > 0 ? "inline-flex" : "none";
+  }
+}
+
+function showOrderAlert(count) {
+  // Show floating alert
+  const existing = document.getElementById("orderAlert");
+  if (existing) existing.remove();
+  const alert = document.createElement("div");
+  alert.id = "orderAlert";
+  alert.innerHTML = `
+    <div style="position:fixed;top:80px;right:20px;z-index:9999;background:#fff;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,0.2);padding:16px 20px;border-left:4px solid var(--brand);min-width:280px;animation:slideUp .3s ease-out">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="width:40px;height:40px;border-radius:50%;background:var(--brand-light);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+          <i class="fa-solid fa-bell" style="color:var(--brand);font-size:18px"></i>
+        </div>
+        <div>
+          <div style="font-weight:800;font-size:14px;color:var(--ink)">New Order!</div>
+          <div style="font-size:12px;color:var(--ink3);margin-top:2px">You have ${count} pending order${count > 1 ? "s" : ""} waiting</div>
+        </div>
+        <button onclick="document.getElementById('orderAlert').remove();switchSellerTab('orders')" style="margin-left:auto;padding:6px 12px;background:var(--brand);color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer">View</button>
+      </div>
+    </div>`;
+  document.body.appendChild(alert);
+  setTimeout(() => { alert.remove(); }, 8000);
+}
+
+function renderOrdersTab(orders) {
+  const tab = document.getElementById("stab-orders");
+  if (!tab) return;
+  const pendingOrders = orders.filter(o => o.orderStatus === "placed").length;
+  tab.innerHTML = `
+    <div class="sbox">
+      <div class="sbox-head">
+        <div class="sbox-title"><i class="fa-solid fa-receipt"></i> Incoming Orders</div>
+        <div style="display:flex;align-items:center;gap:8px">
+          ${pendingOrders > 0 ? `<span style="background:var(--red);color:#fff;padding:3px 10px;border-radius:99px;font-size:11px;font-weight:800">${pendingOrders} Pending</span>` : ""}
+          <button onclick="renderSellerDashboard()" style="padding:6px 12px;background:var(--bg);border:1px solid var(--ink4);border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:4px"><i class="fa-solid fa-rotate-right"></i> Refresh</button>
+        </div>
+      </div>
+      <div style="padding:16px">
+        ${orders.length === 0
+          ? `<div style="text-align:center;padding:30px;color:var(--ink3)"><i class="fa-solid fa-receipt" style="font-size:40px;display:block;margin-bottom:12px"></i><p>No orders yet</p></div>`
+          : orders.slice(0, 20).map(o => `
+          <div class="om-card" style="border-left-color:${o.orderStatus === "placed" ? "var(--brand)" : o.orderStatus === "delivered" ? "var(--green)" : o.orderStatus === "cancelled" ? "var(--red)" : "var(--blue)"}">
+            <div class="om-card-head">
+              <div class="om-card-id">#${o.orderNumber || o._id?.slice(-8)}</div>
+              <span class="oca-status s-${(o.orderStatus || "placed").toLowerCase()}">${o.orderStatus || "placed"}</span>
+              <div class="om-card-time">${new Date(o.createdAt).toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit" })} &bull; ${new Date(o.createdAt).toLocaleDateString("en-IN", { day: "numeric", month: "short" })}</div>
+            </div>
+            <div class="om-card-body">
+              <div style="flex:1">
+                <div class="om-card-items">${(o.items || []).map(i => i.name + " x" + i.quantity).join(", ")}</div>
+                <div class="om-card-customer"><i class="fa-solid fa-user" style="font-size:10px"></i> ${o.customer?.name || "Customer"} &bull; <i class="fa-solid fa-phone" style="font-size:10px"></i> ${o.customer?.phone || ""}</div>
+                <div style="font-size:12px;color:var(--ink3);margin-top:3px">
+                  <i class="fa-solid fa-location-dot" style="font-size:10px"></i> ${o.deliveryAddress?.address || ""}, ${o.deliveryAddress?.city || ""}
+                </div>
+                <div style="font-size:13px;font-weight:800;color:var(--ink);margin-top:4px">&#8377;${o.totalAmount} &bull; <span style="font-size:11px;font-weight:600;color:var(--ink3)">${o.paymentMethod}</span></div>
+              </div>
+              <div class="om-card-actions">
+                ${o.orderStatus === "placed" ? `
+                  <button class="btn-accept" onclick="updateOrderStatus('${o._id}','confirmed')"><i class="fa-solid fa-check"></i> Accept</button>
+                  <button class="btn-reject" onclick="updateOrderStatus('${o._id}','cancelled')"><i class="fa-solid fa-xmark"></i> Reject</button>` : ""}
+                ${o.orderStatus === "confirmed" ? `<button class="btn-ready" onclick="updateOrderStatus('${o._id}','preparing')"><i class="fa-solid fa-fire"></i> Preparing</button>` : ""}
+                ${o.orderStatus === "preparing" ? `<button class="btn-ready" onclick="updateOrderStatus('${o._id}','ready')"><i class="fa-solid fa-check-double"></i> Mark Ready</button>` : ""}
+                ${o.orderStatus === "delivered" ? `<span style="color:var(--green);font-weight:700;font-size:12px"><i class="fa-solid fa-circle-check"></i> Delivered</span>` : ""}
+                ${o.orderStatus === "cancelled" ? `<span style="color:var(--red);font-weight:700;font-size:12px"><i class="fa-solid fa-circle-xmark"></i> Cancelled</span>` : ""}
+              </div>
+            </div>
+          </div>`).join("")}
+      </div>
+    </div>`;
+}
 let uploadedImages = [];
 function openAddProductModal() {
   document.getElementById("productModalTitle").textContent = "Add New Product";
@@ -2568,6 +2849,7 @@ async function renderDeliveryDashboard() {
     if (or.ok) orders = await or.json();
   } catch (e) {}
   const isOnline = profile?.isAvailable || false;
+  lastAvailableCount = orders.available.length;
   document.getElementById("deliveryContent").innerHTML = `
   <div class="del-toggle">
     <div>
@@ -2581,29 +2863,52 @@ async function renderDeliveryDashboard() {
     <div class="stat-card green"><div class="stat-icon"><i class="fa-solid fa-indian-rupee-sign"></i></div><div class="stat-label">Total Earnings</div><div class="stat-value">&#8377;${earnings?.totalEarnings || 0}</div></div>
     <div class="stat-card blue"><div class="stat-icon"><i class="fa-solid fa-star"></i></div><div class="stat-label">Rating</div><div class="stat-value">${(profile?.rating || 0).toFixed(1)}</div></div>
   </div>
-  ${orders.available.length > 0 ? `
   <div class="sbox" style="margin-bottom:16px">
-    <div class="sbox-head"><div class="sbox-title"><i class="fa-solid fa-bell" style="color:var(--brand)"></i> Available Orders</div></div>
-    <div style="padding:16px">${orders.available.map(o => `
-    <div class="del-order-card">
-      <div class="del-order-shop"><i class="fa-solid fa-store" style="color:var(--brand);margin-right:6px"></i>${o.shop?.name || "Shop"}</div>
-      <div class="del-order-addr"><i class="fa-solid fa-location-dot"></i>${o.deliveryAddress?.address || ""}, ${o.deliveryAddress?.city || ""}</div>
-      <div class="del-order-meta"><span><i class="fa-solid fa-indian-rupee-sign"></i> &#8377;${o.totalAmount}</span><span><i class="fa-solid fa-box"></i> ${o.items?.length || 0} items</span><span><i class="fa-solid fa-money-bill"></i> ${o.paymentMethod}</span></div>
-      <div class="del-order-actions">
-        <button class="btn-accept" onclick="acceptDeliveryOrder('${o._id}')"><i class="fa-solid fa-check"></i> Accept</button>
-        <button style="padding:8px 16px;background:var(--bg);color:var(--ink2);border-radius:var(--r-sm);font-size:12px;font-weight:700;border:1px solid var(--ink4);cursor:pointer">Skip</button>
+    <div class="sbox-head">
+      <div class="sbox-title">
+        <i class="fa-solid fa-bell" style="color:var(--brand)"></i> Available Orders
+        <span id="deliveryAvailableBadge" style="${orders.available.length > 0 ? "display:inline-flex" : "display:none"};margin-left:8px;background:var(--red);color:#fff;border-radius:99px;padding:1px 8px;font-size:11px;font-weight:800">${orders.available.length}</span>
       </div>
-    </div>`).join("")}</div>
-  </div>` : ""}
+      <button onclick="renderDeliveryDashboard()" style="padding:6px 12px;background:var(--bg);border:1px solid var(--ink4);border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:4px"><i class="fa-solid fa-rotate-right"></i> Refresh</button>
+    </div>
+    <div style="padding:16px">
+      ${orders.available.length === 0
+        ? `<div style="text-align:center;padding:20px;color:var(--ink3)"><i class="fa-solid fa-clock" style="font-size:32px;display:block;margin-bottom:10px"></i><p>No orders available right now</p><p style="font-size:11px;margin-top:4px">Auto refreshes every 30 seconds</p></div>`
+        : orders.available.map(o => `
+        <div class="del-order-card">
+          <div class="del-order-shop"><i class="fa-solid fa-store" style="color:var(--brand);margin-right:6px"></i>${o.shop?.name || "Shop"}</div>
+          <div class="del-order-addr"><i class="fa-solid fa-location-dot"></i> ${o.deliveryAddress?.address || ""}, ${o.deliveryAddress?.city || ""}</div>
+          <div class="del-order-meta">
+            <span><i class="fa-solid fa-indian-rupee-sign"></i> &#8377;${o.totalAmount}</span>
+            <span><i class="fa-solid fa-box"></i> ${o.items?.length || 0} items</span>
+            <span><i class="fa-solid fa-money-bill"></i> ${o.paymentMethod}</span>
+          </div>
+          <div style="font-size:12px;color:var(--ink3);margin-bottom:10px"><i class="fa-solid fa-user"></i> ${o.customer?.name || ""} &bull; <i class="fa-solid fa-phone"></i> ${o.customer?.phone || ""}</div>
+          <div class="del-order-actions">
+            <button class="btn-accept" onclick="acceptDeliveryOrder('${o._id}')"><i class="fa-solid fa-check"></i> Accept Order</button>
+            <button style="padding:8px 16px;background:var(--bg);color:var(--ink2);border-radius:var(--r-sm);font-size:12px;font-weight:700;border:1px solid var(--ink4);cursor:pointer"><i class="fa-solid fa-forward"></i> Skip</button>
+          </div>
+        </div>`).join("")}
+    </div>
+  </div>
   <div class="sbox">
     <div class="sbox-head"><div class="sbox-title"><i class="fa-solid fa-receipt"></i> My Deliveries</div></div>
-    <div style="padding:16px">${orders.myOrders.length === 0 ? `<div style="text-align:center;padding:30px;color:var(--ink3)"><i class="fa-solid fa-motorcycle" style="font-size:40px;display:block;margin-bottom:12px"></i><p>No deliveries yet</p></div>` : orders.myOrders.slice(0, 10).map(o => `
-    <div class="del-order-card" style="border-left-color:${o.orderStatus === 'delivered' ? 'var(--green)' : 'var(--brand)'}">
-      <div class="del-order-shop">${o.shop?.name || "Shop"}</div>
-      <div class="del-order-addr"><i class="fa-solid fa-location-dot"></i>${o.deliveryAddress?.address || ""}</div>
-      <div class="del-order-meta"><span>&#8377;${o.totalAmount}</span><span class="oca-status s-${o.orderStatus?.toLowerCase()}">${o.orderStatus}</span></div>
-      ${o.orderStatus === "picked" ? `<button class="btn-accept" onclick="markDelivered('${o._id}')"><i class="fa-solid fa-check"></i> Mark Delivered</button>` : ""}
-    </div>`).join("")}
+    <div style="padding:16px">
+      ${orders.myOrders.length === 0
+        ? `<div style="text-align:center;padding:30px;color:var(--ink3)"><i class="fa-solid fa-motorcycle" style="font-size:40px;display:block;margin-bottom:12px"></i><p>No deliveries yet</p></div>`
+        : orders.myOrders.slice(0, 10).map(o => `
+        <div class="del-order-card" style="border-left-color:${o.orderStatus === "delivered" ? "var(--green)" : "var(--brand)"}">
+          <div class="del-order-shop">${o.shop?.name || "Shop"}</div>
+          <div class="del-order-addr"><i class="fa-solid fa-location-dot"></i> ${o.deliveryAddress?.address || ""}, ${o.deliveryAddress?.city || ""}</div>
+          <div style="font-size:12px;color:var(--ink3);margin-bottom:6px"><i class="fa-solid fa-user"></i> ${o.customer?.name || ""} &bull; <i class="fa-solid fa-phone"></i> ${o.customer?.phone || ""}</div>
+          <div class="del-order-meta">
+            <span style="font-weight:800">&#8377;${o.totalAmount}</span>
+            <span class="oca-status s-${o.orderStatus?.toLowerCase()}">${o.orderStatus}</span>
+            <span style="font-size:11px;color:var(--ink3)">${new Date(o.createdAt).toLocaleDateString("en-IN", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" })}</span>
+          </div>
+          ${o.orderStatus === "picked" ? `<button class="btn-accept" style="margin-top:8px" onclick="markDelivered('${o._id}')"><i class="fa-solid fa-check"></i> Mark Delivered</button>` : ""}
+          ${o.orderStatus === "delivered" ? `<div style="color:var(--green);font-weight:700;font-size:12px;margin-top:6px"><i class="fa-solid fa-circle-check"></i> Delivered &bull; +&#8377;50 earned</div>` : ""}
+        </div>`).join("")}
     </div>
   </div>`;
 }
@@ -2773,7 +3078,6 @@ function toast(msg, type = "") {
 document.getElementById("authModal").addEventListener("click", e => { if (e.target === e.currentTarget) closeAuthModal(); });
 document.getElementById("productModal").addEventListener("click", e => { if (e.target === e.currentTarget) closeProductModal(); });
 
-// Add pagesWrap div dynamically for PDP
 const pw = document.createElement("div");
 pw.id = "pagesWrap";
 document.body.appendChild(pw);
