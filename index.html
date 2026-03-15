@@ -1987,6 +1987,7 @@ function selectPayment(type) {
   S.selectedPayment = type;
   document.querySelectorAll(".pay-opt").forEach(p => p.classList.remove("selected"));
   document.getElementById("pay-" + type)?.classList.add("selected");
+  console.log("Payment selected:", type);
 }
 
 async function placeOrder() {
@@ -1996,9 +1997,11 @@ async function placeOrder() {
   const city = document.getElementById("ck_city")?.value.trim();
   const pincode = document.getElementById("ck_pincode")?.value.trim();
   if (!name || !phone || !address || !city || !pincode) { toast("Please fill all delivery details", "error"); return; }
+  if (!phone.match(/^[0-9]{10}$/)) { toast("Enter a valid 10-digit phone number", "error"); return; }
   const t = cartTotals();
   const deliveryAddress = { name, phone, address, city, pincode };
-  if (S.selectedPayment === "COD") {
+  const method = S.selectedPayment || "COD";
+  if (method === "COD") {
     await finalizeOrder(deliveryAddress, "COD", null);
   } else {
     await launchRazorpay(deliveryAddress, t.total);
@@ -2034,6 +2037,8 @@ async function launchRazorpay(deliveryAddress, amount) {
 }
 
 async function finalizeOrder(deliveryAddress, method, paymentResponse) {
+  const placeBtn = document.querySelector(".btn-place");
+  if (placeBtn) { placeBtn.disabled = true; placeBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Placing Order...`; }
   const t = cartTotals();
   const shopId = S.cart[0]?.shopId || "";
   const orderData = {
@@ -2043,23 +2048,19 @@ async function finalizeOrder(deliveryAddress, method, paymentResponse) {
     paymentMethod: method, deliveryAddress
   };
   try {
-    let savedOrder = null;
-    if (S.token) {
-      const res = await fetch(`${API}/orders`, { method: "POST", headers: { "Content-Type": "application/json", "Authorization": "Bearer " + S.token }, body: JSON.stringify(orderData) });
-      const data = await res.json();
-      if (res.ok) {
-        savedOrder = data.order;
-        if (method === "ONLINE" && paymentResponse) {
-          const verifyRes = await fetch(`${API}/payment/verify`, { method: "POST", headers: { "Content-Type": "application/json", "Authorization": "Bearer " + S.token }, body: JSON.stringify({ ...paymentResponse, orderId: savedOrder._id }) });
-          const verifyData = await verifyRes.json();
-          if (!verifyRes.ok) throw new Error(verifyData.message || "Payment verification failed");
-        }
-      } else { throw new Error(data.message || "Failed to place order"); }
+    if (!S.token) { toast("Please login to place order", "error"); openAuthModal(); return; }
+    const res = await fetch(`${API}/orders`, { method: "POST", headers: { "Content-Type": "application/json", "Authorization": "Bearer " + S.token }, body: JSON.stringify(orderData) });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.message || "Failed to place order");
+    const savedOrder = data.order;
+    if (method === "ONLINE" && paymentResponse) {
+      const verifyRes = await fetch(`${API}/payment/verify`, { method: "POST", headers: { "Content-Type": "application/json", "Authorization": "Bearer " + S.token }, body: JSON.stringify({ ...paymentResponse, orderId: savedOrder._id }) });
+      const verifyData = await verifyRes.json();
+      if (!verifyRes.ok) throw new Error(verifyData.message || "Payment verification failed");
     }
     S.cart = []; saveSession(); updateHeader();
     const orderNum = savedOrder?.orderNumber || "NRZ" + Date.now().toString().slice(-6);
     const orderId = savedOrder?._id;
-    // Start customer order tracking
     if (orderId) startCustomerOrderTracking(orderId, orderNum);
     document.getElementById("checkoutContent").innerHTML = `
     <div class="order-success">
@@ -2067,6 +2068,10 @@ async function finalizeOrder(deliveryAddress, method, paymentResponse) {
       <h2>Order Placed Successfully!</h2>
       <p>Your order has been placed. You will be notified when the shop accepts it.</p>
       <div class="order-num">${orderNum}</div>
+      <div style="background:var(--brand-light);border-radius:var(--r-sm);padding:12px 16px;margin:12px 0;font-size:13px;color:var(--ink2);display:flex;align-items:center;gap:8px">
+        <i class="fa-solid fa-${method === "COD" ? "money-bill-wave" : "credit-card"}" style="color:var(--brand)"></i>
+        Payment: <strong>${method === "COD" ? "Cash on Delivery" : "Online - Paid"}</strong>
+      </div>
       <div class="order-track-steps" id="trackSteps_${orderId}">
         <div class="ots"><div class="ots-circle done"><i class="fa-solid fa-check"></i></div><div class="ots-label">Placed</div></div>
         <div class="ots"><div class="ots-circle" id="step-confirmed"><i class="fa-solid fa-store"></i></div><div class="ots-label">Accepted</div></div>
@@ -2082,7 +2087,10 @@ async function finalizeOrder(deliveryAddress, method, paymentResponse) {
         <button class="btn-suc-sec" onclick="showPage('home')"><i class="fa-solid fa-house"></i> Continue Shopping</button>
       </div>
     </div>`;
-  } catch (err) { toast(err.message || "Failed to place order", "error"); }
+  } catch (err) {
+    toast(err.message || "Failed to place order", "error");
+    if (placeBtn) { placeBtn.disabled = false; placeBtn.innerHTML = `<i class="fa-solid fa-check"></i> Place Order &#8377;${cartTotals().total}`; }
+  }
 }
 
 /* ===== CUSTOMER ORDER TRACKING ===== */
