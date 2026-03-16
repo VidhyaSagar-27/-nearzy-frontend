@@ -1345,7 +1345,40 @@ footer{background:#282c3f;color:#93959f;padding:40px 20px 20px;margin-top:40px}
   </div>
 </div>
 
+<!-- BOTTOM NAV (Mobile) -->
+<div id="bottomNav" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #f0f0f0;z-index:700;padding:6px 0 8px;box-shadow:0 -4px 12px rgba(0,0,0,0.08)">
+  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:0">
+    <div class="bnav-item active" id="bn-home" onclick="showPage('home');setBnav('home')">
+      <i class="fa-solid fa-house"></i><span>Home</span>
+    </div>
+    <div class="bnav-item" id="bn-search" onclick="document.getElementById('searchInput').focus();showPage('home');setBnav('search')">
+      <i class="fa-solid fa-magnifying-glass"></i><span>Search</span>
+    </div>
+    <div class="bnav-item" id="bn-cart" onclick="showPage('cart');setBnav('cart')" style="position:relative">
+      <i class="fa-solid fa-cart-shopping"></i>
+      <span>Cart</span>
+      <span id="bnCartBadge" style="display:none;position:absolute;top:4px;right:18px;min-width:16px;height:16px;border-radius:99px;background:var(--brand);color:#fff;font-size:9px;font-weight:800;display:none;align-items:center;justify-content:center;padding:0 3px"></span>
+    </div>
+    <div class="bnav-item" id="bn-wishlist" onclick="showPage('wishlist');setBnav('wishlist')">
+      <i class="fa-regular fa-heart"></i><span>Wishlist</span>
+    </div>
+    <div class="bnav-item" id="bn-account" onclick="handleAccountNav();setBnav('account')">
+      <i class="fa-regular fa-user"></i><span>Account</span>
+    </div>
+  </div>
+</div>
+
 <div id="toast"></div>
+
+<style>
+.bnav-item{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 4px;cursor:pointer;font-size:10px;font-weight:600;color:var(--ink3);transition:all .2s;position:relative}
+.bnav-item:hover,.bnav-item.active{color:var(--brand)}
+.bnav-item i{font-size:20px}
+@media(max-width:768px){
+  #bottomNav{display:block !important}
+  body{padding-bottom:70px}
+}
+</style>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
@@ -1404,14 +1437,27 @@ function showPage(page) {
   if (el) { el.classList.add("active"); window.scrollTo(0, 0); }
   const catStrip = document.getElementById("catStrip");
   catStrip.style.display = ["home", "shop"].includes(page) ? "block" : "none";
+  if (page !== "seller") stopSellerAutoRefresh();
+  if (page !== "delivery") stopDeliveryAutoRefresh();
   if (page === "cart") renderCartPage();
   if (page === "checkout") renderCheckoutPage();
   if (page === "account") renderAccountPage();
   if (page === "wishlist") renderWishlistPage();
-  if (page === "seller") { renderSellerDashboard(); startSellerAutoRefresh(); }
-  else { stopSellerAutoRefresh(); }
-  if (page === "delivery") { renderDeliveryDashboard(); startDeliveryAutoRefresh(); }
-  if (page === "admin") renderAdminDashboard();
+  if (page === "seller") {
+    if (!S.user || S.user.role !== "seller") {
+      document.getElementById("sellerContent").innerHTML = `<div class="empty-box"><i class="fa-solid fa-store-slash"></i><h3>Seller Access Only</h3><p>Please login as a shop owner</p><button class="btn-empty" onclick="openAuthModal()">Login as Seller</button></div>`;
+    } else { renderSellerDashboard(); startSellerAutoRefresh(); }
+  }
+  if (page === "delivery") {
+    if (!S.user || S.user.role !== "delivery") {
+      document.getElementById("deliveryContent").innerHTML = `<div class="empty-box"><i class="fa-solid fa-motorcycle"></i><h3>Delivery Partner Only</h3><p>Please login as a delivery partner</p><button class="btn-empty" onclick="openAuthModal()">Login</button></div>`;
+    } else { renderDeliveryDashboard(); startDeliveryAutoRefresh(); }
+  }
+  if (page === "admin") {
+    if (!S.user || !["admin","superadmin"].includes(S.user.role)) {
+      document.getElementById("adminContent").innerHTML = `<div class="empty-box"><i class="fa-solid fa-lock"></i><h3>Admin Access Only</h3><button class="btn-empty" onclick="openAuthModal()">Login as Admin</button></div>`;
+    } else { renderAdminDashboard(); }
+  }
 }
 
 /* ===== LOAD DATA ===== */
@@ -2859,39 +2905,66 @@ async function renderDeliveryDashboard() {
   const isOnline = profile?.isAvailable || false;
   lastAvailableCount = orders.available.length;
   document.getElementById("deliveryContent").innerHTML = `
+  <!-- DELIVERY HEADER -->
+  <div style="background:linear-gradient(135deg,#1a1a2e,#16213e);border-radius:var(--r);padding:20px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between">
+    <div>
+      <div style="font-family:'Sora',sans-serif;font-size:18px;font-weight:800;color:#fff;display:flex;align-items:center;gap:8px">
+        <i class="fa-solid fa-motorcycle" style="color:var(--brand)"></i> Delivery Dashboard
+      </div>
+      <div style="font-size:12px;color:rgba(255,255,255,0.6);margin-top:3px">${S.user?.name} &bull; ${S.user?.phone || ""}</div>
+    </div>
+    <button onclick="doLogout()" style="padding:8px 16px;background:rgba(255,255,255,0.1);color:#fff;border:1px solid rgba(255,255,255,0.2);border-radius:var(--r-sm);font-size:12px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px">
+      <i class="fa-solid fa-right-from-bracket"></i> Logout
+    </button>
+  </div>
+
+  <!-- ONLINE/OFFLINE TOGGLE -->
   <div class="del-toggle">
     <div>
-      <div class="del-toggle-label"><i class="fa-solid fa-motorcycle" style="color:var(--brand);margin-right:8px"></i> Delivery Status</div>
-      <div class="del-toggle-sub">${isOnline ? "You are online and receiving orders" : "You are offline. Go online to receive orders."}</div>
+      <div class="del-toggle-label"><i class="fa-solid fa-circle" style="color:${isOnline ? "var(--green)" : "var(--ink4)"};font-size:10px;margin-right:6px"></i> ${isOnline ? "You are Online" : "You are Offline"}</div>
+      <div class="del-toggle-sub">${isOnline ? "You are receiving delivery orders" : "Go online to start receiving orders"}</div>
     </div>
     <button class="toggle-switch ${isOnline ? "on" : ""}" id="onlineToggle" onclick="toggleDeliveryStatus(this)"></button>
   </div>
+
+  <!-- STATS -->
   <div class="del-stats">
     <div class="stat-card"><div class="stat-icon"><i class="fa-solid fa-box"></i></div><div class="stat-label">Total Deliveries</div><div class="stat-value">${earnings?.totalDeliveries || 0}</div></div>
     <div class="stat-card green"><div class="stat-icon"><i class="fa-solid fa-indian-rupee-sign"></i></div><div class="stat-label">Total Earnings</div><div class="stat-value">&#8377;${earnings?.totalEarnings || 0}</div></div>
     <div class="stat-card blue"><div class="stat-icon"><i class="fa-solid fa-star"></i></div><div class="stat-label">Rating</div><div class="stat-value">${(profile?.rating || 0).toFixed(1)}</div></div>
   </div>
+
+  <!-- AVAILABLE ORDERS -->
   <div class="sbox" style="margin-bottom:16px">
     <div class="sbox-head">
       <div class="sbox-title">
         <i class="fa-solid fa-bell" style="color:var(--brand)"></i> Available Orders
         <span id="deliveryAvailableBadge" style="${orders.available.length > 0 ? "display:inline-flex" : "display:none"};margin-left:8px;background:var(--red);color:#fff;border-radius:99px;padding:1px 8px;font-size:11px;font-weight:800">${orders.available.length}</span>
       </div>
-      <button onclick="renderDeliveryDashboard()" style="padding:6px 12px;background:var(--bg);border:1px solid var(--ink4);border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:4px"><i class="fa-solid fa-rotate-right"></i> Refresh</button>
+      <button onclick="renderDeliveryDashboard()" style="padding:6px 12px;background:var(--bg);border:1px solid var(--ink4);border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:4px">
+        <i class="fa-solid fa-rotate-right"></i> Refresh
+      </button>
     </div>
     <div style="padding:16px">
       ${orders.available.length === 0
-        ? `<div style="text-align:center;padding:20px;color:var(--ink3)"><i class="fa-solid fa-clock" style="font-size:32px;display:block;margin-bottom:10px"></i><p>No orders available right now</p><p style="font-size:11px;margin-top:4px">Auto refreshes every 30 seconds</p></div>`
+        ? `<div style="text-align:center;padding:24px;color:var(--ink3)">
+            <i class="fa-solid fa-clock" style="font-size:36px;display:block;margin-bottom:10px;color:var(--ink4)"></i>
+            <p style="font-weight:600">No orders available right now</p>
+            <p style="font-size:11px;margin-top:4px">Auto refreshes every 30 seconds</p>
+          </div>`
         : orders.available.map(o => `
         <div class="del-order-card">
-          <div class="del-order-shop"><i class="fa-solid fa-store" style="color:var(--brand);margin-right:6px"></i>${o.shop?.name || "Shop"}</div>
-          <div class="del-order-addr"><i class="fa-solid fa-location-dot"></i> ${o.deliveryAddress?.address || ""}, ${o.deliveryAddress?.city || ""}</div>
-          <div class="del-order-meta">
-            <span><i class="fa-solid fa-indian-rupee-sign"></i> &#8377;${o.totalAmount}</span>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+            <div class="del-order-shop"><i class="fa-solid fa-store" style="color:var(--brand);margin-right:6px"></i>${o.shop?.name || "Shop"}</div>
+            <span style="background:var(--brand-light);color:var(--brand);padding:3px 8px;border-radius:99px;font-size:11px;font-weight:700">&#8377;${o.totalAmount}</span>
+          </div>
+          <div class="del-order-addr"><i class="fa-solid fa-location-dot" style="color:var(--red)"></i> ${o.deliveryAddress?.address || ""}, ${o.deliveryAddress?.city || ""}</div>
+          <div class="del-order-meta" style="margin:8px 0">
             <span><i class="fa-solid fa-box"></i> ${o.items?.length || 0} items</span>
             <span><i class="fa-solid fa-money-bill"></i> ${o.paymentMethod}</span>
+            <span><i class="fa-solid fa-user"></i> ${o.customer?.name || ""}</span>
+            <span><i class="fa-solid fa-phone"></i> ${o.customer?.phone || ""}</span>
           </div>
-          <div style="font-size:12px;color:var(--ink3);margin-bottom:10px"><i class="fa-solid fa-user"></i> ${o.customer?.name || ""} &bull; <i class="fa-solid fa-phone"></i> ${o.customer?.phone || ""}</div>
           <div class="del-order-actions">
             <button class="btn-accept" onclick="acceptDeliveryOrder('${o._id}')"><i class="fa-solid fa-check"></i> Accept Order</button>
             <button style="padding:8px 16px;background:var(--bg);color:var(--ink2);border-radius:var(--r-sm);font-size:12px;font-weight:700;border:1px solid var(--ink4);cursor:pointer"><i class="fa-solid fa-forward"></i> Skip</button>
@@ -2899,23 +2972,37 @@ async function renderDeliveryDashboard() {
         </div>`).join("")}
     </div>
   </div>
+
+  <!-- MY DELIVERIES -->
   <div class="sbox">
     <div class="sbox-head"><div class="sbox-title"><i class="fa-solid fa-receipt"></i> My Deliveries</div></div>
     <div style="padding:16px">
       ${orders.myOrders.length === 0
-        ? `<div style="text-align:center;padding:30px;color:var(--ink3)"><i class="fa-solid fa-motorcycle" style="font-size:40px;display:block;margin-bottom:12px"></i><p>No deliveries yet</p></div>`
-        : orders.myOrders.slice(0, 10).map(o => `
-        <div class="del-order-card" style="border-left-color:${o.orderStatus === "delivered" ? "var(--green)" : "var(--brand)"}">
-          <div class="del-order-shop">${o.shop?.name || "Shop"}</div>
-          <div class="del-order-addr"><i class="fa-solid fa-location-dot"></i> ${o.deliveryAddress?.address || ""}, ${o.deliveryAddress?.city || ""}</div>
-          <div style="font-size:12px;color:var(--ink3);margin-bottom:6px"><i class="fa-solid fa-user"></i> ${o.customer?.name || ""} &bull; <i class="fa-solid fa-phone"></i> ${o.customer?.phone || ""}</div>
-          <div class="del-order-meta">
-            <span style="font-weight:800">&#8377;${o.totalAmount}</span>
+        ? `<div style="text-align:center;padding:30px;color:var(--ink3)">
+            <i class="fa-solid fa-motorcycle" style="font-size:40px;display:block;margin-bottom:12px;color:var(--ink4)"></i>
+            <p>No deliveries yet. Accept an order to start!</p>
+          </div>`
+        : orders.myOrders.slice(0, 20).map(o => `
+        <div class="del-order-card" style="border-left-color:${o.orderStatus === "delivered" ? "var(--green)" : o.orderStatus === "picked" ? "var(--brand)" : "var(--blue)"}">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+            <div style="font-weight:700;font-size:14px">${o.shop?.name || "Shop"}</div>
             <span class="oca-status s-${o.orderStatus?.toLowerCase()}">${o.orderStatus}</span>
+          </div>
+          <div class="del-order-addr"><i class="fa-solid fa-location-dot" style="color:var(--red)"></i> ${o.deliveryAddress?.address || ""}, ${o.deliveryAddress?.city || ""}</div>
+          <div class="del-order-meta" style="margin:6px 0">
+            <span style="font-weight:800">&#8377;${o.totalAmount}</span>
+            <span><i class="fa-solid fa-user"></i> ${o.customer?.name || ""}</span>
+            <span><i class="fa-solid fa-phone"></i> ${o.customer?.phone || ""}</span>
             <span style="font-size:11px;color:var(--ink3)">${new Date(o.createdAt).toLocaleDateString("en-IN", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" })}</span>
           </div>
-          ${o.orderStatus === "picked" ? `<button class="btn-accept" style="margin-top:8px" onclick="markDelivered('${o._id}')"><i class="fa-solid fa-check"></i> Mark Delivered</button>` : ""}
-          ${o.orderStatus === "delivered" ? `<div style="color:var(--green);font-weight:700;font-size:12px;margin-top:6px"><i class="fa-solid fa-circle-check"></i> Delivered &bull; +&#8377;50 earned</div>` : ""}
+          ${o.orderStatus === "picked" ? `
+          <button class="btn-accept" style="margin-top:8px" onclick="markDelivered('${o._id}')">
+            <i class="fa-solid fa-check"></i> Mark as Delivered
+          </button>` : ""}
+          ${o.orderStatus === "delivered" ? `
+          <div style="color:var(--green);font-weight:700;font-size:12px;margin-top:6px;display:flex;align-items:center;gap:5px">
+            <i class="fa-solid fa-circle-check"></i> Delivered successfully &bull; +&#8377;50 earned
+          </div>` : ""}
         </div>`).join("")}
     </div>
   </div>`;
@@ -3075,6 +3162,18 @@ async function activateUser(id) {
 }
 
 /* ===== HELPERS ===== */
+function setBnav(page) {
+  document.querySelectorAll(".bnav-item").forEach(b => b.classList.remove("active"));
+  const el = document.getElementById("bn-" + page);
+  if (el) el.classList.add("active");
+}
+function handleAccountNav() {
+  if (!S.user) { openAuthModal(); return; }
+  if (S.role === "seller") showPage("seller");
+  else if (S.role === "delivery") showPage("delivery");
+  else if (S.role === "admin" || S.role === "superadmin") showPage("admin");
+  else showPage("account");
+}
 function capitalize(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1).replace(/_/g, " ") : ""; }
 function toast(msg, type = "") {
   const el = document.getElementById("toast");
