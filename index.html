@@ -853,85 +853,6 @@ a{text-decoration:none;color:inherit}
 #toast.error{background:var(--red)}
 #toast.info{background:var(--blue)}
 
-/* ===== SEARCH AUTOCOMPLETE ===== */
-.search-dropdown{
-  position:absolute;top:calc(100% + 6px);left:0;right:0;
-  background:var(--white);border-radius:var(--r-sm);
-  box-shadow:0 8px 32px rgba(40,44,63,.15);
-  border:1.5px solid var(--ink4);
-  z-index:900;overflow:hidden;display:none;
-}
-.search-dropdown.open{display:block}
-.sdrop-section{padding:6px 0}
-.sdrop-label{font-size:10px;font-weight:800;color:var(--ink3);text-transform:uppercase;letter-spacing:.08em;padding:6px 14px 4px}
-.sdrop-item{display:flex;align-items:center;gap:10px;padding:9px 14px;cursor:pointer;transition:background .15s}
-.sdrop-item:hover{background:var(--brand-light)}
-.sdrop-item i{font-size:14px;color:var(--ink3);width:18px;text-align:center}
-.sdrop-item .si-text{flex:1}
-.sdrop-item .si-name{font-size:13px;font-weight:600;color:var(--ink)}
-.sdrop-item .si-sub{font-size:11px;color:var(--ink3)}
-.sdrop-item .si-go{font-size:11px;color:var(--brand);font-weight:700}
-.sdrop-divider{height:1px;background:#f0f0f0;margin:4px 0}
-.sdrop-empty{padding:16px 14px;font-size:13px;color:var(--ink3);text-align:center}
-
-/* ===== REVIEWS ===== */
-.reviews-section{background:var(--white);border-radius:var(--r);box-shadow:var(--card-shadow);overflow:hidden;margin-top:16px}
-.reviews-head{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid #f0f0f0}
-.reviews-title{font-family:'Sora',sans-serif;font-size:15px;font-weight:700;display:flex;align-items:center;gap:8px}
-.rating-summary{display:flex;align-items:center;gap:20px;padding:16px 20px;border-bottom:1px solid #f0f0f0}
-.rating-big{text-align:center;min-width:80px}
-.rating-big .rb-num{font-family:'Sora',sans-serif;font-size:42px;font-weight:800;color:var(--ink);line-height:1}
-.rating-big .rb-stars{display:flex;gap:2px;justify-content:center;margin:4px 0}
-.rating-big .rb-stars i{color:#f8c200;font-size:13px}
-.rating-big .rb-count{font-size:11px;color:var(--ink3)}
-.rating-bars{flex:1}
-.rbar-row{display:flex;align-items:center;gap:8px;margin-bottom:5px}
-.rbar-label{font-size:11px;font-weight:700;color:var(--ink2);width:12px}
-.rbar-track{flex:1;height:6px;background:#f0f0f0;border-radius:99px;overflow:hidden}
-.rbar-fill{height:100%;background:#f8c200;border-radius:99px;transition:width .4s ease}
-.rbar-count{font-size:11px;color:var(--ink3);width:24px;text-align:right}
-.review-write{padding:16px 20px;border-bottom:1px solid #f0f0f0;display:none}
-.review-write.open{display:block}
-.star-picker{display:flex;gap:6px;margin-bottom:12px}
-.star-picker i{font-size:24px;color:var(--ink4);cursor:pointer;transition:color .15s}
-.star-picker i.lit{color:#f8c200}
-.review-list{padding:0 20px}
-.review-item{padding:16px 0;border-bottom:1px solid #f0f0f0;animation:fadeIn .3s ease}
-.review-item:last-child{border-bottom:none}
-@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.rev-header{display:flex;align-items:center;gap:10px;margin-bottom:8px}
-.rev-av{width:36px;height:36px;border-radius:50%;background:var(--brand-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;font-weight:800;color:var(--brand)}
-.rev-name{font-size:13px;font-weight:700;color:var(--ink)}
-.rev-date{font-size:11px;color:var(--ink3);margin-top:1px}
-.rev-stars{display:flex;gap:2px;margin-left:auto}
-.rev-stars i{font-size:11px;color:#f8c200}
-.rev-text{font-size:13px;color:var(--ink2);line-height:1.7}
-.rev-helpful{font-size:11px;color:var(--ink3);margin-top:8px;display:flex;align-items:center;gap:12px}
-.rev-helpful button{background:none;border:1px solid var(--ink4);border-radius:99px;padding:3px 10px;font-size:10px;font-weight:700;color:var(--ink3);cursor:pointer;transition:all .2s}
-.rev-helpful button:hover{border-color:var(--brand);color:var(--brand)}
-.btn-write-review{padding:8px 16px;background:var(--brand);color:#fff;border-radius:var(--r-sm);font-size:12px;font-weight:700;border:none;cursor:pointer;display:flex;align-items:center;gap:6px;transition:background .2s}
-.btn-write-review:hover{background:var(--brand-dark)}
-.load-more-reviews{display:flex;justify-content:center;padding:16px}
-.btn-load-more{padding:9px 24px;border:1.5px solid var(--ink4);border-radius:var(--r-sm);background:var(--white);font-size:13px;font-weight:700;color:var(--ink2);cursor:pointer;transition:all .2s}
-.btn-load-more:hover{border-color:var(--brand);color:var(--brand)}
-
-/* ===== MOBILE UX IMPROVEMENTS ===== */
-@media(max-width:768px){
-  .search-dropdown{position:fixed;top:64px;left:0;right:0;border-radius:0;border-left:none;border-right:none;border-top:none;max-height:60vh;overflow-y:auto}
-  .deal-timer{display:none}
-  .shop-detail-banner{height:140px !important}
-  .seller-layout{grid-template-columns:1fr !important}
-  .seller-sidebar{position:static !important}
-  .snav-item{padding:14px 18px}
-  .stats-row{grid-template-columns:1fr 1fr}
-  .rating-summary{flex-direction:column;align-items:flex-start;gap:12px}
-  .rating-big{display:flex;align-items:center;gap:14px}
-  .rating-big .rb-num{font-size:32px}
-}
-@media(max-width:480px){
-  .reviews-head{flex-direction:column;align-items:flex-start;gap:10px}
-}
-
 /* ===== EMPTY STATE ===== */
 .empty-box{text-align:center;padding:60px 20px;background:var(--white);border-radius:var(--r);box-shadow:var(--card-shadow)}
 .empty-box i{font-size:52px;color:var(--ink4);margin-bottom:16px;display:block}
@@ -940,52 +861,7 @@ a{text-decoration:none;color:inherit}
 .btn-empty{padding:11px 28px;border-radius:var(--r-sm);background:var(--brand);color:#fff;font-weight:700;font-size:13px;border:none;cursor:pointer;transition:background .2s}
 .btn-empty:hover{background:var(--brand-dark)}
 
-/* ===== FLOATING CART BAR (MOBILE) ===== */
-.float-cart-bar{
-  display:none;
-  position:fixed;bottom:70px;left:12px;right:12px;
-  background:var(--brand);color:#fff;
-  border-radius:var(--r-sm);padding:13px 18px;
-  box-shadow:0 8px 24px rgba(252,128,25,.35);
-  z-index:690;
-  align-items:center;justify-content:space-between;
-  cursor:pointer;transition:all .3s;
-  animation:slideUp .3s ease-out;
-}
-.float-cart-bar:hover{background:var(--brand-dark)}
-.fcb-left{font-size:13px;font-weight:700;display:flex;align-items:center;gap:8px}
-.fcb-right{font-size:14px;font-weight:800;display:flex;align-items:center;gap:6px}
-@media(max-width:768px){
-  .float-cart-bar.visible{display:flex}
-}
-
-/* ===== PRODUCT GRID MOBILE ===== */
-@media(max-width:480px){
-  .prod-card{border-radius:var(--r-sm)}
-  .prod-img{border-radius:var(--r-sm) var(--r-sm) 0 0}
-  .prod-body{padding:10px}
-  .prod-name{font-size:13px}
-  .prod-now{font-size:16px}
-}
-
-/* ===== SHOP DETAIL MOBILE ===== */
-@media(max-width:768px){
-  .shop-layout{grid-template-columns:1fr !important}
-  .shop-sidebar{display:none}
-  .shop-detail-info{flex-direction:column;align-items:flex-start}
-  .shop-detail-logo{width:54px;height:54px}
-  .shop-detail-name{font-size:20px}
-}
-
-/* ===== PDP MOBILE ===== */
-@media(max-width:768px){
-  #page-pdp-temp .container > div[style*="grid-template-columns"]{
-    grid-template-columns:1fr !important;
-    min-height:unset !important;
-  }
-}
-
-/* ===== FOOTER MOBILE ===== */
+/* ===== FOOTER ===== */
 footer{background:#282c3f;color:#93959f;padding:40px 20px 20px;margin-top:40px}
 .footer-inner{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1.5fr repeat(3,1fr);gap:32px;margin-bottom:32px}
 .footer-brand .fb-name{font-family:'Sora',sans-serif;font-size:28px;font-weight:800;color:var(--brand);margin-bottom:6px}
@@ -1064,9 +940,8 @@ footer{background:#282c3f;color:#93959f;padding:40px 20px 20px;margin-top:40px}
       <i class="fa-solid fa-chevron-down" style="font-size:10px;margin-left:2px;color:var(--ink3)"></i>
     </div>
     <div class="search-wrap">
-      <input type="text" id="searchInput" placeholder="Search shops, products, restaurants..." autocomplete="off">
+      <input type="text" id="searchInput" placeholder="Search shops, products, restaurants...">
       <i class="fa-solid fa-magnifying-glass search-ico" onclick="doSearch()"></i>
-      <div class="search-dropdown" id="searchDropdown"></div>
     </div>
     <div class="header-right">
       <div class="h-btn" onclick="showPage('wishlist')">
@@ -1470,12 +1345,6 @@ footer{background:#282c3f;color:#93959f;padding:40px 20px 20px;margin-top:40px}
   </div>
 </div>
 
-<!-- FLOATING CART BAR (MOBILE) -->
-<div class="float-cart-bar" id="floatCartBar" onclick="showPage('cart');setBnav('cart')">
-  <div class="fcb-left"><i class="fa-solid fa-cart-shopping"></i> <span id="fcbCount">0 items</span></div>
-  <div class="fcb-right"><span id="fcbTotal">&#8377;0</span> <i class="fa-solid fa-arrow-right"></i></div>
-</div>
-
 <!-- BOTTOM NAV (Mobile) -->
 <div id="bottomNav" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #f0f0f0;z-index:700;padding:6px 0 8px;box-shadow:0 -4px 12px rgba(0,0,0,0.08)">
   <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:0">
@@ -1488,7 +1357,7 @@ footer{background:#282c3f;color:#93959f;padding:40px 20px 20px;margin-top:40px}
     <div class="bnav-item" id="bn-cart" onclick="showPage('cart');setBnav('cart')" style="position:relative">
       <i class="fa-solid fa-cart-shopping"></i>
       <span>Cart</span>
-      <span id="bnCartBadge" style="display:none;position:absolute;top:4px;right:18px;min-width:16px;height:16px;border-radius:99px;background:var(--brand);color:#fff;font-size:9px;font-weight:800;align-items:center;justify-content:center;padding:0 3px"></span>
+      <span id="bnCartBadge" style="display:none;position:absolute;top:4px;right:18px;min-width:16px;height:16px;border-radius:99px;background:var(--brand);color:#fff;font-size:9px;font-weight:800;display:none;align-items:center;justify-content:center;padding:0 3px"></span>
     </div>
     <div class="bnav-item" id="bn-wishlist" onclick="showPage('wishlist');setBnav('wishlist')">
       <i class="fa-regular fa-heart"></i><span>Wishlist</span>
@@ -1516,14 +1385,12 @@ footer{background:#282c3f;color:#93959f;padding:40px 20px 20px;margin-top:40px}
 const API = "https://nearzy-backend.onrender.com/api";
 const RAZORPAY_KEY = "rzp_live_SQ2a0BIeQiJQly";
 
-// Suppress external script errors (Cloudflare, Razorpay internals, etc.) from leaking as toasts
-window.addEventListener("error", function(e) {
-  const external = ["cdn-cgi", "checkout.razorpay", "cloudflare", "email-decode"];
-  if (e.filename && external.some(s => e.filename.includes(s))) { e.preventDefault(); return false; }
-});
+// Suppress errors from external scripts (Cloudflare, Razorpay internals)
 window.addEventListener("unhandledrejection", function(e) {
-  const msg = e.reason?.message || "";
-  if (msg === "next is not a function" || msg.includes("razorpay")) { e.preventDefault(); return false; }
+  const msg = (e.reason?.message || "").toLowerCase();
+  if (msg === "next is not a function" || msg.includes("razorpay") || msg.includes("cdn-cgi")) {
+    e.preventDefault();
+  }
 });
 
 /* ===== STATE ===== */
@@ -1574,15 +1441,10 @@ function saveSession() {
 /* ===== PAGE NAV ===== */
 function showPage(page) {
   document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
-  // Clean up any temp product detail pages
-  document.getElementById("page-pdp-temp")?.remove();
   const el = document.getElementById("page-" + page);
   if (el) { el.classList.add("active"); window.scrollTo(0, 0); }
   const catStrip = document.getElementById("catStrip");
   catStrip.style.display = ["home", "shop"].includes(page) ? "block" : "none";
-  // Hide float cart bar on cart/checkout
-  const fcb = document.getElementById("floatCartBar");
-  if (fcb) fcb.style.display = ["cart","checkout"].includes(page) ? "none" : "";
   if (page !== "seller") stopSellerAutoRefresh();
   if (page !== "delivery") stopDeliveryAutoRefresh();
   if (page === "cart") renderCartPage();
@@ -1620,7 +1482,13 @@ async function loadProducts() {
     const res = await fetch(`${API}/products?limit=100`);
     if (!res.ok) throw new Error();
     const data = await res.json();
-    S.products = data.map(p => ({ ...p, id: p._id || p.id, image: (Array.isArray(p.images) && p.images[0]) ? p.images[0] : "" }));
+    S.products = data.map(p => ({
+      ...p,
+      id: p._id || p.id,
+      image: (Array.isArray(p.images) && p.images[0]) ? p.images[0] : "",
+      // Normalize shopId to a string at load time so cart never gets an object
+      shopId: p.shop?._id?.toString() || p.shop?.id?.toString() || (typeof p.shop === "string" ? p.shop : "") || ""
+    }));
   } catch (e) { S.products = []; }
 }
 
@@ -1927,20 +1795,16 @@ function openProduct(id) {
       </div>
     </div>
   </div>
-  ${related.length > 0 ? `<div style="background:var(--white);border-radius:var(--r);padding:20px;box-shadow:var(--card-shadow);margin-bottom:16px"><div class="sec-head" style="margin-bottom:14px"><div class="sec-title">More from this shop</div></div><div class="product-grid">${related.map(r => productCardHTML(r)).join("")}</div></div>` : ""}
-  ${renderReviewsSection(id, "product")}`;
-  // Load reviews async
-  setTimeout(() => loadReviews(id, "product"), 100);
+  ${related.length > 0 ? `<div style="background:var(--white);border-radius:var(--r);padding:20px;box-shadow:var(--card-shadow)"><div class="sec-head" style="margin-bottom:14px"><div class="sec-title">More from this shop</div></div><div class="product-grid">${related.map(r => productCardHTML(r)).join("")}</div></div>` : ""}`;
   const prevPage = S.currentShop ? "shop" : "home";
+  const container = document.createElement("div");
   document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
-  // Remove any previous temp PDP page
-  document.getElementById("page-pdp-temp")?.remove();
   const fakePage = document.createElement("div");
   fakePage.id = "page-pdp-temp";
   fakePage.className = "page active";
   fakePage.innerHTML = `<div class="container"><div style="font-size:12px;color:var(--ink3);margin-bottom:14px;cursor:pointer;font-weight:600;display:flex;align-items:center;gap:5px" onclick="showPage('${prevPage}')"><i class="fa-solid fa-arrow-left"></i> Back</div></div>`;
   fakePage.querySelector(".container").appendChild(pdpEl);
-  document.body.appendChild(fakePage);
+  document.getElementById("pagesWrap")?.appendChild(fakePage) || document.body.appendChild(fakePage);
   document.getElementById("catStrip").style.display = "none";
   window.scrollTo(0, 0);
 }
@@ -1969,77 +1833,7 @@ function doSearch() {
   showPage("home");
   setTimeout(() => document.getElementById("shopsSection").scrollIntoView({ behavior: "smooth" }), 100);
 }
-document.getElementById("searchInput").addEventListener("keydown", e => { if (e.key === "Enter") { doSearch(); closeSearchDropdown(); } if (e.key === "Escape") closeSearchDropdown(); });
-document.getElementById("searchInput").addEventListener("input", e => { renderSearchDropdown(e.target.value.trim()); });
-document.getElementById("searchInput").addEventListener("focus", e => { if (e.target.value.trim()) renderSearchDropdown(e.target.value.trim()); else renderSearchDropdownDefault(); });
-document.addEventListener("click", e => { if (!e.target.closest(".search-wrap")) closeSearchDropdown(); });
-
-function closeSearchDropdown() {
-  document.getElementById("searchDropdown").classList.remove("open");
-}
-
-function renderSearchDropdownDefault() {
-  const dd = document.getElementById("searchDropdown");
-  const cats = ["restaurant","grocery","bakery","pharmacy","flowers","electronics","clothing"];
-  const catLabels = { restaurant:"Restaurants", grocery:"Grocery", bakery:"Bakery", pharmacy:"Pharmacy", flowers:"Flowers", electronics:"Electronics", clothing:"Clothing" };
-  const catIcons = { restaurant:"fa-utensils", grocery:"fa-bag-shopping", bakery:"fa-bread-slice", pharmacy:"fa-prescription-bottle-medical", flowers:"fa-fan", electronics:"fa-laptop", clothing:"fa-shirt" };
-  dd.innerHTML = `
-    <div class="sdrop-section">
-      <div class="sdrop-label">Browse Categories</div>
-      ${cats.map(c => `<div class="sdrop-item" onclick="filterCat('${c}');closeSearchDropdown()">
-        <i class="fa-solid ${catIcons[c]}"></i>
-        <div class="si-text"><div class="si-name">${catLabels[c]}</div></div>
-        <span class="si-go"><i class="fa-solid fa-arrow-right"></i></span>
-      </div>`).join("")}
-    </div>`;
-  dd.classList.add("open");
-}
-
-function renderSearchDropdown(q) {
-  const dd = document.getElementById("searchDropdown");
-  if (!q) { closeSearchDropdown(); return; }
-  const ql = q.toLowerCase();
-  const matchedShops = S.shops.filter(s => (s.name||"").toLowerCase().includes(ql) || (s.category||"").toLowerCase().includes(ql)).slice(0,4);
-  const matchedProducts = S.products.filter(p => (p.name||"").toLowerCase().includes(ql) || (p.category||"").toLowerCase().includes(ql)).slice(0,4);
-  if (matchedShops.length === 0 && matchedProducts.length === 0) {
-    dd.innerHTML = `<div class="sdrop-empty"><i class="fa-solid fa-magnifying-glass" style="display:block;margin-bottom:6px;font-size:20px;color:var(--ink4)"></i>No results for "<strong>${q}</strong>"</div>`;
-    dd.classList.add("open"); return;
-  }
-  let html = "";
-  if (matchedShops.length > 0) {
-    html += `<div class="sdrop-section"><div class="sdrop-label">Shops</div>`;
-    html += matchedShops.map(s => `<div class="sdrop-item" onclick="openShop('${s._id||s.id}');closeSearchDropdown()">
-      <i class="fa-solid fa-store"></i>
-      <div class="si-text"><div class="si-name">${highlight(s.name,q)}</div><div class="si-sub">${capitalize(s.category||"Store")} &bull; ${s.address?.city||s.city||""}</div></div>
-      <span class="si-go">Visit</span>
-    </div>`).join("");
-    html += "</div>";
-  }
-  if (matchedProducts.length > 0) {
-    if (matchedShops.length > 0) html += `<div class="sdrop-divider"></div>`;
-    html += `<div class="sdrop-section"><div class="sdrop-label">Products</div>`;
-    html += matchedProducts.map(p => {
-      const pid = p.id||p._id;
-      const img = p.image||p.images?.[0]||"";
-      return `<div class="sdrop-item" onclick="openProduct('${pid}');closeSearchDropdown()">
-        ${img ? `<img src="${img}" style="width:32px;height:32px;border-radius:6px;object-fit:cover;flex-shrink:0" onerror="this.style.display='none'">` : `<i class="fa-solid fa-box"></i>`}
-        <div class="si-text"><div class="si-name">${highlight(p.name,q)}</div><div class="si-sub">&#8377;${p.price} &bull; ${p.shop?.name||""}</div></div>
-        <span class="si-go">&#8377;${p.price}</span>
-      </div>`;
-    }).join("");
-    html += "</div>";
-  }
-  html += `<div class="sdrop-divider"></div><div class="sdrop-section"><div class="sdrop-item" onclick="doSearch();closeSearchDropdown()"><i class="fa-solid fa-magnifying-glass"></i><div class="si-text"><div class="si-name">Search all results for "<strong>${q}</strong>"</div></div><span class="si-go"><i class="fa-solid fa-arrow-right"></i></span></div></div>`;
-  dd.innerHTML = html;
-  dd.classList.add("open");
-}
-
-function highlight(text, q) {
-  if (!q) return text;
-  const idx = text.toLowerCase().indexOf(q.toLowerCase());
-  if (idx === -1) return text;
-  return text.slice(0,idx) + `<mark style="background:#fff3e8;color:var(--brand);border-radius:2px;padding:0 1px">${text.slice(idx,idx+q.length)}</mark>` + text.slice(idx+q.length);
-}
+document.getElementById("searchInput").addEventListener("keydown", e => { if (e.key === "Enter") doSearch(); });
 function setShopSort(v, el) {
   S.filters.sort = v;
   document.querySelectorAll(".fsb-chip").forEach(c => c.classList.remove("active"));
@@ -2091,7 +1885,12 @@ function addToCart(productId, qty) {
   if (!p) { toast("Product not found", "error"); return; }
   const ex = S.cart.find(c => c.productId === productId);
   if (ex) ex.qty += qty;
-  else S.cart.push({ productId, qty, name: p.name, price: p.price, image: p.image || "", unit: p.unit || "", shopId: p.shop?._id || p.shop || "", shopName: p.shop?.name || "" });
+  else {
+    // Always extract shopId as a plain string — never store a populated object
+    const shopId = (p.shop?._id || p.shop?.id || (typeof p.shop === "string" ? p.shop : "") || "").toString();
+    const shopName = p.shop?.name || "";
+    S.cart.push({ productId, qty, name: p.name, price: p.price, image: p.image || "", unit: p.unit || "", shopId, shopName });
+  }
   saveSession(); updateHeader(); renderProducts();
   toast(`Added to cart`, "success");
 }
@@ -2263,9 +2062,6 @@ async function placeOrder() {
   const pincode = document.getElementById("ck_pincode")?.value.trim();
   if (!name || !phone || !address || !city || !pincode) { toast("Please fill all delivery details", "error"); return; }
   if (!phone.match(/^[0-9]{10}$/)) { toast("Enter a valid 10-digit phone number", "error"); return; }
-  if (!pincode.match(/^[0-9]{6}$/)) { toast("Enter a valid 6-digit pincode", "error"); return; }
-  const shopId = S.cart[0]?.shopId;
-  if (!shopId) { toast("Could not identify the shop. Please remove items and add again.", "error"); return; }
   const t = cartTotals();
   const deliveryAddress = { name, phone, address, city, pincode };
   const method = S.selectedPayment || "COD";
@@ -2277,10 +2073,6 @@ async function placeOrder() {
 }
 
 async function launchRazorpay(deliveryAddress, amount) {
-  if (typeof Razorpay === "undefined") {
-    toast("Payment gateway not loaded. Please refresh and try again.", "error");
-    return;
-  }
   try {
     const res = await fetch(`${API}/payment/create-order`, {
       method: "POST",
@@ -2288,8 +2080,7 @@ async function launchRazorpay(deliveryAddress, amount) {
       body: JSON.stringify({ amount, notes: { name: S.user?.name } })
     });
     const data = await res.json();
-    if (!res.ok) throw new Error(data.message || "Could not create payment order");
-    if (!data.order || !data.order.id) throw new Error("Invalid payment order received");
+    if (!res.ok) throw new Error(data.message);
     const options = {
       key: RAZORPAY_KEY,
       amount: data.order.amount,
@@ -2297,33 +2088,38 @@ async function launchRazorpay(deliveryAddress, amount) {
       name: "Nearzy",
       description: "Order Payment",
       order_id: data.order.id,
-      prefill: { name: S.user?.name || "", email: S.user?.email || "", contact: S.user?.phone || "" },
+      prefill: { name: S.user?.name, email: S.user?.email, contact: S.user?.phone },
       theme: { color: "#fc8019" },
       handler: async function (response) {
         await finalizeOrder(deliveryAddress, "ONLINE", response);
       },
-      modal: {
-        ondismiss: function () { toast("Payment cancelled", "error"); },
-        escape: true,
-        animation: true
-      }
+      modal: { ondismiss: function () { toast("Payment cancelled", "error"); } }
     };
     const rzp = new Razorpay(options);
-    rzp.on("payment.failed", function(resp) {
-      toast(resp.error?.description || "Payment failed. Please try again.", "error");
-    });
     rzp.open();
-  } catch (err) { toast(err.message || "Payment failed. Please try again.", "error"); }
+  } catch (err) { toast(err.message || "Payment failed", "error"); }
 }
 
 async function finalizeOrder(deliveryAddress, method, paymentResponse) {
   const placeBtn = document.querySelector(".btn-place");
   if (placeBtn) { placeBtn.disabled = true; placeBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Placing Order...`; }
   const t = cartTotals();
-  const shopId = S.cart[0]?.shopId || "";
+  // Ensure shopId is always a plain string — a populated object causes a backend 500
+  const rawShopId = S.cart[0]?.shopId;
+  const shopId = rawShopId && typeof rawShopId === "object"
+    ? (rawShopId._id || rawShopId.id || "").toString()
+    : (rawShopId || "").toString();
   const orderData = {
     shopId,
-    items: S.cart.map(i => ({ product: i.productId, name: i.name, price: i.price, quantity: i.qty, image: i.image })),
+    items: S.cart.map(i => ({
+      product: i.productId && typeof i.productId === "object"
+        ? (i.productId._id || i.productId.id || "").toString()
+        : (i.productId || "").toString(),
+      name: i.name,
+      price: i.price,
+      quantity: i.qty,
+      image: i.image || ""
+    })),
     subtotal: t.subtotal, deliveryFee: t.deliveryFee, tax: t.tax, totalAmount: t.total,
     paymentMethod: method, deliveryAddress
   };
@@ -2335,16 +2131,15 @@ async function finalizeOrder(deliveryAddress, method, paymentResponse) {
       body: JSON.stringify(orderData)
     });
     let data;
-    try { data = await res.json(); } catch(e) { throw new Error("Server returned an unexpected response. Please try again."); }
-    if (!res.ok) throw new Error(data?.message || data?.error || `Order failed (${res.status})`);
-    // Handle both { order: {...} } and flat response shapes
+    try { data = await res.json(); } catch(e) { throw new Error("Server error. Please try again."); }
+    if (!res.ok) {
+      const msg = data?.message || data?.error || data?.errors?.[0]?.message || `Order failed (${res.status})`;
+      throw new Error(msg);
+    }
+    // Handle both { order: {...} } and flat response shapes from backend
     const savedOrder = data.order || data;
     if (method === "ONLINE" && paymentResponse) {
-      const verifyRes = await fetch(`${API}/payment/verify`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "Authorization": "Bearer " + S.token },
-        body: JSON.stringify({ ...paymentResponse, orderId: savedOrder._id })
-      });
+      const verifyRes = await fetch(`${API}/payment/verify`, { method: "POST", headers: { "Content-Type": "application/json", "Authorization": "Bearer " + S.token }, body: JSON.stringify({ ...paymentResponse, orderId: savedOrder._id }) });
       const verifyData = await verifyRes.json();
       if (!verifyRes.ok) throw new Error(verifyData.message || "Payment verification failed");
     }
@@ -2378,8 +2173,7 @@ async function finalizeOrder(deliveryAddress, method, paymentResponse) {
       </div>
     </div>`;
   } catch (err) {
-    const msg = (err.message || "Failed to place order").replace(/^Error:\s*/i, "");
-    toast(msg, "error");
+    toast(err.message || "Failed to place order", "error");
     if (placeBtn) { placeBtn.disabled = false; placeBtn.innerHTML = `<i class="fa-solid fa-check"></i> Place Order &#8377;${cartTotals().total}`; }
   }
 }
@@ -2626,17 +2420,6 @@ function updateHeader() {
   const wb = document.getElementById("wishBadge");
   cb.textContent = cc; cb.classList.toggle("hidden", cc === 0);
   wb.textContent = wc; wb.classList.toggle("hidden", wc === 0);
-  // Bottom nav cart badge
-  const bnb = document.getElementById("bnCartBadge");
-  if (bnb) { bnb.textContent = cc; bnb.style.display = cc > 0 ? "flex" : "none"; }
-  // Floating cart bar (mobile)
-  const fcb = document.getElementById("floatCartBar");
-  if (fcb) {
-    const total = S.cart.reduce((s, i) => s + i.price * i.qty, 0);
-    document.getElementById("fcbCount").textContent = cc + " item" + (cc !== 1 ? "s" : "");
-    document.getElementById("fcbTotal").innerHTML = "&#8377;" + total;
-    fcb.classList.toggle("visible", cc > 0);
-  }
   const authLabel = document.getElementById("authLabel");
   const authBtn = document.getElementById("authBtn");
   if (S.user) {
@@ -3417,171 +3200,6 @@ async function activateUser(id) {
   } catch (e) { toast("Failed", "error"); }
 }
 
-/* ===== REVIEWS SYSTEM ===== */
-let _reviewRating = 0;
-
-function renderReviewsSection(targetId, targetType) {
-  // Returns HTML for a reviews section - fetches and displays reviews
-  return `<div class="reviews-section" id="reviewsSection_${targetId}">
-    <div class="reviews-head">
-      <div class="reviews-title"><i class="fa-solid fa-star" style="color:#f8c200"></i> Ratings & Reviews</div>
-      ${S.user ? `<button class="btn-write-review" onclick="toggleWriteReview('${targetId}','${targetType}')"><i class="fa-solid fa-pen"></i> Write a Review</button>` : `<button class="btn-write-review" onclick="openAuthModal()"><i class="fa-solid fa-pen"></i> Login to Review</button>`}
-    </div>
-    <div id="reviewsBody_${targetId}">
-      <div style="padding:30px;text-align:center;color:var(--ink3)"><i class="fa-solid fa-spinner fa-spin" style="font-size:20px;display:block;margin-bottom:8px"></i>Loading reviews...</div>
-    </div>
-  </div>`;
-}
-
-async function loadReviews(targetId, targetType) {
-  try {
-    const res = await fetch(`${API}/reviews/${targetType}/${targetId}`);
-    const data = res.ok ? await res.json() : { reviews: [], avgRating: 0, totalCount: 0, distribution: {} };
-    renderReviewsBody(targetId, data);
-  } catch(e) {
-    // Render mock reviews for demo if API not available
-    const mockReviews = generateMockReviews(targetId);
-    renderReviewsBody(targetId, mockReviews);
-  }
-}
-
-function generateMockReviews(id) {
-  const names = ["Priya S.", "Rahul M.", "Anita K.", "Karthik R.", "Deepa V.", "Sanjay P.", "Meera L."];
-  const comments = [
-    "Excellent quality! Delivered faster than expected. Will definitely order again.",
-    "Good product, packaging was neat. Slight delay in delivery but overall satisfied.",
-    "Amazing freshness! Best quality I've received from any local shop.",
-    "Value for money. Exactly as described. Recommended!",
-    "Quick delivery and fresh products. My go-to shop now!"
-  ];
-  const ratings = [5,5,4,5,4,3,5];
-  const seed = id.charCodeAt(0) % 5;
-  const reviews = Array.from({length: 4+seed%3}, (_,i) => ({
-    _id: id+i,
-    user: { name: names[(i+seed)%names.length] },
-    rating: ratings[(i+seed)%ratings.length],
-    comment: comments[(i+seed)%comments.length],
-    createdAt: new Date(Date.now() - (i*3+seed)*86400000*7).toISOString(),
-    helpful: Math.floor(Math.random()*12)
-  }));
-  const avg = reviews.reduce((s,r)=>s+r.rating,0)/reviews.length;
-  const dist = {5:0,4:0,3:0,2:0,1:0};
-  reviews.forEach(r => dist[r.rating] = (dist[r.rating]||0)+1);
-  return { reviews, avgRating: avg, totalCount: reviews.length, distribution: dist };
-}
-
-function renderReviewsBody(targetId, data) {
-  const el = document.getElementById("reviewsBody_" + targetId);
-  if (!el) return;
-  const { reviews = [], avgRating = 0, totalCount = 0, distribution = {} } = data;
-  const stars = n => Array.from({length:5},(_,i)=>`<i class="fa-${i<Math.round(n)?"solid":"regular"} fa-star"></i>`).join("");
-  const totalDist = Object.values(distribution).reduce((a,b)=>a+b,0)||1;
-  el.innerHTML = `
-    <div class="rating-summary">
-      <div class="rating-big">
-        <div class="rb-num">${avgRating.toFixed(1)}</div>
-        <div class="rb-stars">${stars(avgRating)}</div>
-        <div class="rb-count">${totalCount} review${totalCount!==1?"s":""}</div>
-      </div>
-      <div class="rating-bars">
-        ${[5,4,3,2,1].map(n => `<div class="rbar-row">
-          <span class="rbar-label">${n}</span>
-          <div class="rbar-track"><div class="rbar-fill" style="width:${Math.round(((distribution[n]||0)/totalDist)*100)}%"></div></div>
-          <span class="rbar-count">${distribution[n]||0}</span>
-        </div>`).join("")}
-      </div>
-    </div>
-    <div class="review-write" id="writeReview_${targetId}">
-      <div style="font-size:13px;font-weight:700;margin-bottom:10px;color:var(--ink)">Your Rating</div>
-      <div class="star-picker" id="starPicker_${targetId}">
-        ${[1,2,3,4,5].map(n=>`<i class="fa-solid fa-star" data-val="${n}" onclick="setReviewRating('${targetId}',${n})"></i>`).join("")}
-      </div>
-      <textarea class="finput" id="reviewText_${targetId}" rows="3" placeholder="Share your experience..." style="margin-bottom:10px;resize:none"></textarea>
-      <button class="btn-write-review" onclick="submitReview('${targetId}','${targetId}')"><i class="fa-solid fa-paper-plane"></i> Submit Review</button>
-    </div>
-    <div class="review-list" id="reviewList_${targetId}">
-      ${reviews.length === 0 ? `<div style="padding:30px;text-align:center;color:var(--ink3)"><i class="fa-regular fa-star" style="font-size:36px;display:block;margin-bottom:10px"></i><p>No reviews yet. Be the first to review!</p></div>` :
-        reviews.slice(0,5).map(r => reviewItemHTML(r)).join("")}
-    </div>
-    ${reviews.length > 5 ? `<div class="load-more-reviews"><button class="btn-load-more" onclick="showAllReviews('${targetId}', ${JSON.stringify(reviews).replace(/'/g,"&#39;")})"><i class="fa-solid fa-chevron-down"></i> Load more reviews</button></div>` : ""}`;
-}
-
-function reviewItemHTML(r) {
-  const stars = n => Array.from({length:5},(_,i)=>`<i class="fa-${i<n?"solid":"regular"} fa-star"></i>`).join("");
-  const initials = (r.user?.name||"U").split(" ").map(w=>w[0]).join("").slice(0,2).toUpperCase();
-  const date = new Date(r.createdAt).toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"});
-  return `<div class="review-item">
-    <div class="rev-header">
-      <div class="rev-av">${initials}</div>
-      <div>
-        <div class="rev-name">${r.user?.name||"Customer"}</div>
-        <div class="rev-date">${date}</div>
-      </div>
-      <div class="rev-stars">${stars(r.rating)}</div>
-    </div>
-    <div class="rev-text">${r.comment||""}</div>
-    <div class="rev-helpful">
-      <span>${r.helpful||0} found this helpful</span>
-      <button onclick="markHelpful(this,${r.helpful||0})"><i class="fa-regular fa-thumbs-up"></i> Helpful</button>
-    </div>
-  </div>`;
-}
-
-function showAllReviews(targetId, reviews) {
-  const el = document.getElementById("reviewList_" + targetId);
-  if (el) el.innerHTML = reviews.map(r => reviewItemHTML(r)).join("");
-  const btn = el?.nextElementSibling;
-  if (btn) btn.remove();
-}
-
-function toggleWriteReview(targetId, targetType) {
-  const el = document.getElementById("writeReview_" + targetId);
-  if (el) el.classList.toggle("open");
-}
-
-function setReviewRating(targetId, val) {
-  _reviewRating = val;
-  const picker = document.getElementById("starPicker_" + targetId);
-  if (!picker) return;
-  picker.querySelectorAll("i").forEach((star, i) => {
-    star.classList.toggle("lit", i < val);
-  });
-}
-
-async function submitReview(targetId, targetType) {
-  if (!S.token) { toast("Please login to review", "error"); return; }
-  if (!_reviewRating) { toast("Please select a star rating", "error"); return; }
-  const text = document.getElementById("reviewText_" + targetId)?.value.trim();
-  if (!text) { toast("Please write a review", "error"); return; }
-  try {
-    const res = await fetch(`${API}/reviews`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "Authorization": "Bearer " + S.token },
-      body: JSON.stringify({ targetId, targetType, rating: _reviewRating, comment: text })
-    });
-    toast("Review submitted! Thank you.", "success");
-    toggleWriteReview(targetId, targetType);
-    _reviewRating = 0;
-    loadReviews(targetId, targetType);
-  } catch(e) {
-    // Optimistically add review locally
-    toast("Review submitted! Thank you.", "success");
-    toggleWriteReview(targetId, targetType);
-    const el = document.getElementById("reviewList_" + targetId);
-    if (el) {
-      const newReview = { _id: Date.now(), user: { name: S.user?.name||"You" }, rating: _reviewRating, comment: text, createdAt: new Date().toISOString(), helpful: 0 };
-      el.insertAdjacentHTML("afterbegin", reviewItemHTML(newReview));
-    }
-    _reviewRating = 0;
-  }
-}
-
-function markHelpful(btn, prev) {
-  btn.disabled = true;
-  btn.innerHTML = `<i class="fa-solid fa-thumbs-up" style="color:var(--brand)"></i> Helpful`;
-  btn.previousElementSibling.textContent = `${prev+1} found this helpful`;
-}
-
 /* ===== HELPERS ===== */
 function setBnav(page) {
   document.querySelectorAll(".bnav-item").forEach(b => b.classList.remove("active"));
@@ -3605,6 +3223,10 @@ function toast(msg, type = "") {
 }
 document.getElementById("authModal").addEventListener("click", e => { if (e.target === e.currentTarget) closeAuthModal(); });
 document.getElementById("productModal").addEventListener("click", e => { if (e.target === e.currentTarget) closeProductModal(); });
+
+const pw = document.createElement("div");
+pw.id = "pagesWrap";
+document.body.appendChild(pw);
 </script>
 </body>
 </html>
