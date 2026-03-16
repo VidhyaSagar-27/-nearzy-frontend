@@ -4,6 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nearzy — Everything Near You, Delivered Fast</title>
+<meta name="description" content="Order from any shop in your city — restaurants, grocery, pharmacy, flowers and more, delivered fast.">
+<meta name="theme-color" content="#fc8019">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Nearzy">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="https://placehold.co/192x192/fc8019/fff?text=N">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;0,14..32,900;1,14..32,400&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -29,6 +37,57 @@
   --r-sm:8px;
   --r-xs:4px;
 }
+body.dark-mode{
+  --ink:#e8eaf0;
+  --ink2:#b0b3c0;
+  --ink3:#6b6e7e;
+  --ink4:#3a3d4a;
+  --bg:#111318;
+  --white:#1e2028;
+  --brand-light:#2a1f0e;
+  --green-light:#0e2018;
+  --card-shadow:0 2px 16px rgba(0,0,0,0.4);
+  --card-shadow-hover:0 8px 32px rgba(0,0,0,0.6);
+}
+body.dark-mode .header{ background:var(--white); border-bottom-color:var(--ink4); }
+body.dark-mode .cat-strip{ background:var(--white); border-bottom-color:var(--ink4); }
+body.dark-mode .cat-item:hover{ background:#252830; }
+body.dark-mode .search-wrap input{ background:var(--bg); color:var(--ink); border-color:var(--ink4); }
+body.dark-mode .h-btn{ background:var(--white); border-color:var(--ink4); color:var(--ink); }
+body.dark-mode .modal-box{ background:var(--white); }
+body.dark-mode .modal-head{ border-bottom-color:var(--ink4); }
+body.dark-mode .finput{ background:var(--bg); color:var(--ink); border-color:var(--ink4); }
+body.dark-mode .fselect{ background:var(--bg); color:var(--ink); border-color:var(--ink4); }
+body.dark-mode .shop-card{ background:var(--white); border-color:var(--ink4); }
+body.dark-mode .prod-card{ background:var(--white); }
+body.dark-mode .sbox{ background:var(--white); }
+body.dark-mode .sbox-head{ border-bottom-color:var(--ink4); }
+body.dark-mode .acc-box{ background:var(--white); }
+body.dark-mode .acc-sidebar{ background:var(--white); }
+body.dark-mode .seller-sidebar{ background:var(--white); }
+body.dark-mode .stat-card{ background:var(--white); }
+body.dark-mode .order-card-acc{ background:var(--white); }
+body.dark-mode .oca-head{ background:var(--bg); border-bottom-color:var(--ink4); }
+body.dark-mode .cart-item{ background:var(--white); border-bottom-color:var(--ink4); }
+body.dark-mode .cart-head{ background:var(--white); border-bottom-color:var(--ink4); }
+body.dark-mode .cart-summary{ background:var(--white); }
+body.dark-mode .ck-box{ background:var(--white); }
+body.dark-mode .pay-opt{ background:var(--white); border-color:var(--ink4); }
+body.dark-mode .order-mini{ background:var(--white); }
+body.dark-mode footer{ background:#0a0c10; }
+body.dark-mode .load-logo{ color:var(--brand); }
+body.dark-mode #loadingScreen{ background:var(--bg); }
+body.dark-mode .search-dropdown{ background:var(--white); border-color:var(--ink4); }
+body.dark-mode .sdrop-item:hover{ background:var(--brand-light); }
+body.dark-mode .del-toggle{ background:var(--white); }
+body.dark-mode .del-order-card{ background:var(--white); }
+body.dark-mode .om-card{ background:var(--white); }
+body.dark-mode .om-card-head{ background:var(--bg); }
+body.dark-mode .filter-sort-bar{ background:var(--white); }
+body.dark-mode .fsb-chip{ background:var(--bg); border-color:var(--ink4); color:var(--ink2); }
+body.dark-mode .fsb-chip.active{ background:var(--brand-light); border-color:var(--brand); color:var(--brand); }
+body.dark-mode .deal-timer{ background:var(--white); }
+body.dark-mode .hero-wrap .shop-card-banner-fallback{ opacity:.8; }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;font-size:14px;line-height:1.5;min-height:100vh}
@@ -944,6 +1003,13 @@ footer{background:#282c3f;color:#93959f;padding:40px 20px 20px;margin-top:40px}
       <i class="fa-solid fa-magnifying-glass search-ico" onclick="doSearch()"></i>
     </div>
     <div class="header-right">
+      <div class="h-btn" id="darkBtn" onclick="toggleDarkMode()" title="Toggle Dark Mode">
+        <i class="fa-solid fa-moon" id="darkIcon"></i>
+      </div>
+      <div class="h-btn" id="langBtn" onclick="openLangPicker()" title="Change Language">
+        <i class="fa-solid fa-globe"></i>
+        <span class="hlabel" id="langLabel">EN</span>
+      </div>
       <div class="h-btn" onclick="showPage('wishlist')">
         <i class="fa-regular fa-heart"></i>
         <span class="hlabel">Wishlist</span>
@@ -1097,9 +1163,10 @@ footer{background:#282c3f;color:#93959f;padding:40px 20px 20px;margin-top:40px}
         <span class="fsb-label">Sort:</span>
         <button class="fsb-chip active" onclick="setShopSort('rating',this)">Top Rated</button>
         <button class="fsb-chip" onclick="setShopSort('newest',this)">Newest</button>
-        <button class="fsb-chip" onclick="setShopSort('delivery',this)">Fastest Delivery</button>
+        <button class="fsb-chip" onclick="setShopSort('delivery',this)">Fastest</button>
         <span class="fsb-label" style="margin-left:8px">Filter:</span>
         <button class="fsb-chip" id="openOnly" onclick="toggleOpenOnly(this)">Open Now</button>
+        <button class="fsb-chip" id="nearbyBtn" onclick="toggleNearbyFilter(this)" style="display:flex;align-items:center;gap:4px"><i class="fa-solid fa-location-crosshairs" style="font-size:11px"></i> Nearby</button>
         <span class="fsb-count" id="shopCount"></span>
       </div>
       <div class="shops-grid" id="shopsGrid"></div>
@@ -1113,15 +1180,74 @@ footer{background:#282c3f;color:#93959f;padding:40px 20px 20px;margin-top:40px}
 
     <!-- ALL PRODUCTS -->
     <div id="productsSection" style="margin-top:28px">
-      <div class="sec-head" style="margin-bottom:14px">
+      <div class="sec-head" style="margin-bottom:10px">
         <div class="sec-title">Featured Products</div>
-        <div class="sec-viewall" onclick="filterCat('all')">View All <i class="fa-solid fa-arrow-right"></i></div>
+        <div class="sec-viewall" onclick="showAllProducts()">View All <i class="fa-solid fa-arrow-right"></i></div>
+      </div>
+      <!-- Product search & filters -->
+      <div style="background:var(--white);border-radius:var(--r-sm);padding:12px 14px;margin-bottom:14px;box-shadow:var(--card-shadow)">
+        <div style="display:flex;gap:8px;margin-bottom:10px">
+          <div style="flex:1;position:relative">
+            <input id="productSearchInput" placeholder="Search products..." style="width:100%;padding:9px 36px 9px 12px;border:1.5px solid var(--ink4);border-radius:var(--r-sm);font-size:13px;font-family:inherit;color:var(--ink);background:var(--bg);outline:none;transition:border-color .2s" oninput="filterProducts()" onfocus="this.style.borderColor='var(--brand)'" onblur="this.style.borderColor='var(--ink4)'">
+            <i class="fa-solid fa-magnifying-glass" style="position:absolute;right:11px;top:50%;transform:translateY(-50%);color:var(--ink3);font-size:13px"></i>
+          </div>
+          <button onclick="toggleProductFilters()" id="prodFilterBtn" style="padding:9px 14px;border:1.5px solid var(--ink4);border-radius:var(--r-sm);background:var(--bg);font-size:12px;font-weight:700;color:var(--ink2);cursor:pointer;display:flex;align-items:center;gap:5px;white-space:nowrap">
+            <i class="fa-solid fa-sliders"></i> Filters
+          </button>
+        </div>
+        <!-- Filter panel (hidden by default) -->
+        <div id="productFilterPanel" style="display:none;border-top:1px solid #f0f0f0;padding-top:10px">
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px">
+            <div>
+              <label style="font-size:11px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:5px">Category</label>
+              <select id="prodCatFilter" onchange="filterProducts()" style="width:100%;padding:7px 10px;border:1.5px solid var(--ink4);border-radius:var(--r-sm);font-size:12px;font-family:inherit;color:var(--ink);background:var(--bg);outline:none">
+                <option value="">All Categories</option>
+                <option>Food</option><option>Beverages</option><option>Grocery</option>
+                <option>Bakery</option><option>Fruits</option><option>Vegetables</option>
+                <option>Medicines</option><option>Clothing</option><option>Electronics</option>
+                <option>Sweets</option><option>Dairy</option><option>Meat</option>
+                <option>Personal Care</option><option>Household</option>
+              </select>
+            </div>
+            <div>
+              <label style="font-size:11px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:5px">Sort By</label>
+              <select id="prodSortFilter" onchange="filterProducts()" style="width:100%;padding:7px 10px;border:1.5px solid var(--ink4);border-radius:var(--r-sm);font-size:12px;font-family:inherit;color:var(--ink);background:var(--bg);outline:none">
+                <option value="relevance">Relevance</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="rating">Top Rated</option>
+                <option value="newest">Newest</option>
+              </select>
+            </div>
+            <div>
+              <label style="font-size:11px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:5px">Min Rating</label>
+              <select id="prodRatingFilter" onchange="filterProducts()" style="width:100%;padding:7px 10px;border:1.5px solid var(--ink4);border-radius:var(--r-sm);font-size:12px;font-family:inherit;color:var(--ink);background:var(--bg);outline:none">
+                <option value="0">Any Rating</option>
+                <option value="4.5">⭐ 4.5+</option>
+                <option value="4">⭐ 4.0+</option>
+                <option value="3">⭐ 3.0+</option>
+              </select>
+            </div>
+            <div>
+              <label style="font-size:11px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:5px">Max Price (₹)</label>
+              <input id="prodPriceFilter" type="number" placeholder="Any" min="0" oninput="filterProducts()" style="width:100%;padding:7px 10px;border:1.5px solid var(--ink4);border-radius:var(--r-sm);font-size:12px;font-family:inherit;color:var(--ink);background:var(--bg);outline:none">
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:10px">
+            <span id="prodFilterCount" style="font-size:12px;color:var(--ink3)"></span>
+            <button onclick="resetProductFilters()" style="padding:5px 12px;background:var(--bg);border:1px solid var(--ink4);border-radius:99px;font-size:11px;font-weight:700;color:var(--ink3);cursor:pointer">Clear Filters</button>
+          </div>
+        </div>
       </div>
       <div class="product-grid" id="productGrid"></div>
       <div class="empty-box hidden" id="productsEmpty">
         <i class="fa-solid fa-box-open"></i>
-        <h3>No Products Yet</h3>
-        <p>Sellers have not added products yet. Check back soon.</p>
+        <h3>No Products Found</h3>
+        <p>Try adjusting your filters or search term.</p>
+        <button class="btn-empty" onclick="resetProductFilters()">Clear Filters</button>
+      </div>
+      <div id="prodLoadMore" style="display:none;text-align:center;margin-top:16px">
+        <button onclick="loadMoreProducts()" style="padding:10px 28px;border:1.5px solid var(--ink4);border-radius:var(--r-sm);background:var(--white);font-size:13px;font-weight:700;color:var(--ink2);cursor:pointer">Load More Products</button>
       </div>
     </div>
 
@@ -1220,9 +1346,80 @@ footer{background:#282c3f;color:#93959f;padding:40px 20px 20px;margin-top:40px}
   <div class="container"><div id="deliveryContent"></div></div>
 </div>
 
+<!-- ORDER TRACKING PAGE -->
+<div id="page-tracking" class="page">
+  <div class="container">
+    <div style="font-size:12px;color:var(--ink3);margin-bottom:14px;cursor:pointer;font-weight:600;display:flex;align-items:center;gap:5px" onclick="showPage('account')">
+      <i class="fa-solid fa-arrow-left"></i> Back to Orders
+    </div>
+    <div id="trackingContent"></div>
+  </div>
+</div>
+
 <!-- ADMIN DASHBOARD -->
 <div id="page-admin" class="page">
   <div class="container"><div id="adminContent"></div></div>
+</div>
+
+<!-- LANGUAGE PICKER MODAL -->
+<div class="modal-overlay" id="langModal">
+  <div class="modal-box" style="max-width:340px">
+    <div class="modal-head">
+      <div class="modal-title"><i class="fa-solid fa-globe"></i> Choose Language</div>
+      <button class="modal-close" onclick="closeLangPicker()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="modal-body" style="padding:16px">
+      ${[
+        ["en","English","English","🇮🇳"],
+        ["te","తెలుగు","Telugu","🏛️"],
+        ["hi","हिन्दी","Hindi","🇮🇳"],
+      ].map(([code,native,english,flag])=>`
+        <div id="lang-${code}" onclick="setLanguage('${code}')" style="display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:var(--r-sm);cursor:pointer;margin-bottom:8px;border:2px solid var(--ink4);transition:all .2s"
+          onmouseover="this.style.borderColor='var(--brand)'" onmouseout="if(document.getElementById('nz_lang')!='${code}')this.style.borderColor='var(--ink4)'">
+          <span style="font-size:24px">${flag}</span>
+          <div style="flex:1">
+            <div style="font-size:15px;font-weight:800;color:var(--ink)">${native}</div>
+            <div style="font-size:12px;color:var(--ink3)">${english}</div>
+          </div>
+          <i class="fa-solid fa-circle-check" id="langcheck-${code}" style="color:var(--brand);font-size:18px;display:none"></i>
+        </div>`).join("")}
+    </div>
+  </div>
+</div>
+
+<!-- ADDRESS MODAL -->
+<div class="modal-overlay" id="addressModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <div class="modal-title"><i class="fa-solid fa-location-dot"></i> <span id="addressModalTitle">Add New Address</span></div>
+      <button class="modal-close" onclick="closeAddressModal()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="editAddressId">
+      <div class="fgroup" style="margin-bottom:13px">
+        <label class="flabel">Address Label</label>
+        <div style="display:flex;gap:8px">
+          <button id="lbl-Home" onclick="selectAddressLabel('Home')" style="flex:1;padding:9px;border-radius:var(--r-sm);border:2px solid var(--brand);background:var(--brand-light);color:var(--brand);font-weight:700;font-size:13px;cursor:pointer"><i class="fa-solid fa-house"></i> Home</button>
+          <button id="lbl-Work" onclick="selectAddressLabel('Work')" style="flex:1;padding:9px;border-radius:var(--r-sm);border:2px solid var(--ink4);background:#fff;color:var(--ink2);font-weight:700;font-size:13px;cursor:pointer"><i class="fa-solid fa-briefcase"></i> Work</button>
+          <button id="lbl-Other" onclick="selectAddressLabel('Other')" style="flex:1;padding:9px;border-radius:var(--r-sm);border:2px solid var(--ink4);background:#fff;color:var(--ink2);font-weight:700;font-size:13px;cursor:pointer"><i class="fa-solid fa-location-dot"></i> Other</button>
+        </div>
+        <input type="hidden" id="addrLabel" value="Home">
+      </div>
+      <div class="fgrid" style="margin-bottom:13px">
+        <div class="fgroup"><label class="flabel">Full Name *</label><input class="finput" id="addrName" placeholder="Recipient name"></div>
+        <div class="fgroup"><label class="flabel">Phone *</label><input class="finput" id="addrPhone" placeholder="10-digit mobile" type="tel"></div>
+      </div>
+      <div class="fgroup" style="margin-bottom:13px">
+        <label class="flabel">Full Address *</label>
+        <textarea class="finput" id="addrStreet" rows="2" placeholder="House/Flat no., Street, Area, Landmark..."></textarea>
+      </div>
+      <div class="fgrid" style="margin-bottom:13px">
+        <div class="fgroup"><label class="flabel">City *</label><input class="finput" id="addrCity" placeholder="City"></div>
+        <div class="fgroup"><label class="flabel">Pincode *</label><input class="finput" id="addrPincode" placeholder="6-digit pincode" type="tel" maxlength="6"></div>
+      </div>
+      <button class="btn-submit" onclick="saveAddress()"><i class="fa-solid fa-floppy-disk"></i> Save Address</button>
+    </div>
+  </div>
 </div>
 
 <!-- AUTH MODAL -->
@@ -1401,11 +1598,16 @@ const S = {
   currentShop: null,
   uploadedImages: [],
   selectedRole: "customer",
-  selectedPayment: "COD"
+  selectedPayment: "COD",
+  loyaltyPoints: 0,
+  chatMessages: [],
+  chatOrderId: null
 };
 
 /* ===== INIT ===== */
 window.addEventListener("DOMContentLoaded", async () => {
+  initDarkMode();
+  checkReferral();
   restoreSession();
   initHero();
   startTimer();
@@ -1414,6 +1616,7 @@ window.addEventListener("DOMContentLoaded", async () => {
   renderShops();
   renderProducts();
   updateHeader();
+  applyLanguage();
   setTimeout(() => {
     document.getElementById("loadingScreen").classList.add("hidden");
   }, 1500);
@@ -1426,10 +1629,14 @@ function restoreSession() {
   try {
     const u = localStorage.getItem("nz_user"), t = localStorage.getItem("nz_token");
     const c = localStorage.getItem("nz_cart"), w = localStorage.getItem("nz_wish");
+    const a = localStorage.getItem("nz_addresses"), lp = localStorage.getItem("nz_points");
     if (u && t) { S.user = JSON.parse(u); S.token = t; S.role = S.user.role || "customer"; }
     if (c) S.cart = JSON.parse(c);
     if (w) S.wishlist = JSON.parse(w);
-  } catch (e) {}
+    if (a) S.savedAddresses = JSON.parse(a);
+    else S.savedAddresses = [];
+    S.loyaltyPoints = lp ? parseInt(lp) : 0;
+  } catch (e) { S.savedAddresses = []; S.loyaltyPoints = 0; }
 }
 function saveSession() {
   if (S.user) localStorage.setItem("nz_user", JSON.stringify(S.user));
@@ -1511,6 +1718,22 @@ function getFilteredShops() {
   if (S.filters.category !== "all") shops = shops.filter(s => s.category === S.filters.category);
   if (S.filters.openOnly) shops = shops.filter(s => s.isOpen);
   if (S.filters.search) { const q = S.filters.search.toLowerCase(); shops = shops.filter(s => (s.name || "").toLowerCase().includes(q) || (s.category || "").toLowerCase().includes(q)); }
+  // GPS nearby filter
+  if (S.nearbyOnly && S.userLat && S.userLng) {
+    shops = shops.filter(s => {
+      const lat = s.address?.lat || s.lat;
+      const lng = s.address?.lng || s.lng;
+      if (!lat || !lng) return true; // include shops without coordinates
+      return getDistanceKm(S.userLat, S.userLng, lat, lng) <= S.nearbyRadius;
+    });
+    // Sort by distance when nearby filter active
+    shops.sort((a, b) => {
+      const dA = getDistanceKm(S.userLat, S.userLng, a.address?.lat||a.lat, a.address?.lng||a.lng);
+      const dB = getDistanceKm(S.userLat, S.userLng, b.address?.lat||b.lat, b.address?.lng||b.lng);
+      return dA - dB;
+    });
+    return shops;
+  }
   switch (S.filters.sort) {
     case "rating": shops.sort((a, b) => (b.rating || 0) - (a.rating || 0)); break;
     case "newest": shops.sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0)); break;
@@ -1553,6 +1776,7 @@ function shopCardHTML(s) {
         <span><i class="fa-regular fa-clock"></i> ${s.deliveryTime || 30} mins</span>
         <span><i class="fa-solid fa-motorcycle"></i> ${s.deliveryFee === 0 ? "Free delivery" : "&#8377;" + (s.deliveryFee || 49) + " delivery"}</span>
         ${s.minOrder ? `<span><i class="fa-solid fa-indian-rupee-sign"></i> Min &#8377;${s.minOrder}</span>` : ""}
+        ${S.nearbyOnly && S.userLat ? (() => { const d = getDistanceKm(S.userLat, S.userLng, s.address?.lat||s.lat, s.address?.lng||s.lng); return d < 50 ? `<span style="color:var(--green);font-weight:700"><i class="fa-solid fa-location-dot"></i> ${d.toFixed(1)}km away</span>` : ""; })() : ""}
       </div>
     </div>
   </div>`;
@@ -1907,19 +2131,7 @@ function removeFromCart(productId) {
   S.cart = S.cart.filter(c => c.productId !== productId);
   saveSession(); updateHeader(); renderCartPage();
 }
-function clearCart() { S.cart = []; saveSession(); updateHeader(); renderCartPage(); }
-
-function cartTotals() {
-  const subtotal = S.cart.reduce((s, i) => s + i.price * i.qty, 0);
-  const deliveryFee = subtotal > 299 ? 0 : subtotal === 0 ? 0 : 49;
-  const tax = Math.round(subtotal * 0.05);
-  const savings = S.cart.reduce((s, i) => {
-    const p = S.products.find(x => x.id === i.productId || x._id === i.productId);
-    const old = p?.originalPrice && p.originalPrice > p.price ? p.originalPrice : Math.round(i.price * 1.25);
-    return s + (old - i.price) * i.qty;
-  }, 0);
-  return { subtotal, deliveryFee, tax, savings, total: subtotal + deliveryFee + tax };
-}
+function clearCart() { S.cart = []; S.appliedPromo = null; saveSession(); updateHeader(); renderCartPage(); }
 
 function renderCartPage() {
   const el = document.getElementById("cartContent");
@@ -1960,13 +2172,17 @@ function renderCartPage() {
     <div class="cart-summary">
       <div class="cs-title">Bill Details</div>
       <div class="promo-inp">
-        <input type="text" placeholder="Enter promo code" id="promoInput">
-        <button class="btn-promo" onclick="applyPromo()">Apply</button>
+        <input type="text" placeholder="Enter promo code" id="promoInput" value="${S.appliedPromo ? S.appliedPromo.code : ""}">
+        ${S.appliedPromo
+          ? `<button class="btn-promo" onclick="removePromo()" style="background:var(--red)">Remove</button>`
+          : `<button class="btn-promo" onclick="applyPromo()">Apply</button>`}
       </div>
+      ${S.appliedPromo ? `<div style="background:var(--green-light);border-radius:var(--r-sm);padding:8px 12px;margin-bottom:10px;font-size:12px;font-weight:700;color:var(--green);display:flex;align-items:center;gap:6px"><i class="fa-solid fa-tag"></i> "${S.appliedPromo.code}" applied — ${S.appliedPromo.desc}</div>` : ""}
       <div class="cs-row"><span>Item Total</span><span>&#8377;${t.subtotal}</span></div>
       <div class="cs-row"><span>Delivery Fee</span><span>${t.deliveryFee === 0 ? '<span style="color:var(--green);font-weight:700">FREE</span>' : '&#8377;' + t.deliveryFee}</span></div>
       <div class="cs-row"><span>Taxes &amp; Charges</span><span>&#8377;${t.tax}</span></div>
-      ${t.savings > 0 ? `<div class="cs-savings"><i class="fa-solid fa-tag"></i> You are saving &#8377;${t.savings} on this order!</div>` : ""}
+      ${t.promoDiscount > 0 ? `<div class="cs-row" style="color:var(--green)"><span><i class="fa-solid fa-tag"></i> Promo Discount</span><span>- &#8377;${t.promoDiscount}</span></div>` : ""}
+      ${t.savings > 0 ? `<div class="cs-savings"><i class="fa-solid fa-tag"></i> You are saving &#8377;${t.savings + t.promoDiscount} on this order!</div>` : ""}
       <div class="cs-row cs-total"><span>To Pay</span><span>&#8377;${t.total}</span></div>
       <button class="btn-checkout" onclick="goCheckout()"><i class="fa-solid fa-arrow-right"></i> Proceed to Checkout</button>
       <div class="trust-row">
@@ -1983,11 +2199,185 @@ function goCheckout() {
   if (S.cart.length === 0) { toast("Cart is empty", "error"); return; }
   showPage("checkout");
 }
+/* ===== PROMO CODES (real system) ===== */
+const PROMO_CODES = {
+  "NEARZY10": { type: "percent", value: 10, min: 100, desc: "10% off" },
+  "WELCOME":  { type: "flat",    value: 50, min: 100, desc: "₹50 off" },
+  "FIRST50":  { type: "flat",    value: 50, min: 150, desc: "₹50 off your first order" },
+  "SAVE20":   { type: "percent", value: 20, min: 200, desc: "20% off (max ₹100)" },
+  "FREESHIP": { type: "ship",    value: 0,  min: 0,   desc: "Free delivery" },
+};
+S.appliedPromo = null;
+
 function applyPromo() {
   const code = document.getElementById("promoInput")?.value.trim().toUpperCase();
-  if (code === "NEARZY10") toast("10% discount applied!", "success");
-  else if (code === "WELCOME") toast("&#8377;50 off applied!", "success");
-  else toast("Invalid promo code", "error");
+  const t = cartTotals();
+  const promo = PROMO_CODES[code];
+  if (!promo) { toast("Invalid promo code", "error"); return; }
+  if (t.subtotal < promo.min) { toast(`Minimum order ₹${promo.min} required for this code`, "error"); return; }
+  S.appliedPromo = { code, ...promo };
+  toast(`${promo.desc} applied!`, "success");
+  renderCartPage();
+}
+
+function removePromo() {
+  S.appliedPromo = null;
+  toast("Promo code removed");
+  renderCartPage();
+}
+
+function cartTotals() {
+  const subtotal = S.cart.reduce((s, i) => s + i.price * i.qty, 0);
+  const deliveryFee = subtotal > 299 ? 0 : subtotal === 0 ? 0 : 49;
+  const tax = Math.round(subtotal * 0.05);
+  let promoDiscount = 0;
+  if (S.appliedPromo) {
+    if (S.appliedPromo.type === "percent") promoDiscount = Math.min(Math.round(subtotal * S.appliedPromo.value / 100), 100);
+    else if (S.appliedPromo.type === "flat") promoDiscount = S.appliedPromo.value;
+    else if (S.appliedPromo.type === "ship") promoDiscount = deliveryFee;
+  }
+  const savings = S.cart.reduce((s, i) => {
+    const p = S.products.find(x => x.id === i.productId || x._id === i.productId);
+    const old = p?.originalPrice && p.originalPrice > p.price ? p.originalPrice : Math.round(i.price * 1.25);
+    return s + (old - i.price) * i.qty;
+  }, 0);
+  return { subtotal, deliveryFee: S.appliedPromo?.type === "ship" ? 0 : deliveryFee, tax, promoDiscount, savings, total: Math.max(0, subtotal + (S.appliedPromo?.type === "ship" ? 0 : deliveryFee) + tax - promoDiscount) };
+}
+
+/* ===== SAVED ADDRESSES ===== */
+function openAddAddressModal(addressId) {
+  document.getElementById("editAddressId").value = addressId || "";
+  document.getElementById("addressModalTitle").textContent = addressId ? "Edit Address" : "Add New Address";
+  if (!addressId) {
+    ["addrName","addrPhone","addrStreet","addrCity","addrPincode"].forEach(id => { const el = document.getElementById(id); if (el) el.value = ""; });
+    selectAddressLabel("Home");
+  } else {
+    const addr = (S.savedAddresses || []).find(a => a._id === addressId || a.id === addressId);
+    if (addr) {
+      document.getElementById("addrName").value = addr.name || "";
+      document.getElementById("addrPhone").value = addr.phone || "";
+      document.getElementById("addrStreet").value = addr.address || addr.street || "";
+      document.getElementById("addrCity").value = addr.city || "";
+      document.getElementById("addrPincode").value = addr.pincode || "";
+      selectAddressLabel(addr.label || "Home");
+    }
+  }
+  document.getElementById("addressModal").classList.add("open");
+}
+
+function closeAddressModal() {
+  document.getElementById("addressModal").classList.remove("open");
+}
+
+function selectAddressLabel(label) {
+  document.getElementById("addrLabel").value = label;
+  ["Home","Work","Other"].forEach(l => {
+    const btn = document.getElementById("lbl-" + l);
+    if (!btn) return;
+    if (l === label) { btn.style.borderColor = "var(--brand)"; btn.style.background = "var(--brand-light)"; btn.style.color = "var(--brand)"; }
+    else { btn.style.borderColor = "var(--ink4)"; btn.style.background = "#fff"; btn.style.color = "var(--ink2)"; }
+  });
+}
+
+async function saveAddress() {
+  const id = document.getElementById("editAddressId").value;
+  const body = {
+    label: document.getElementById("addrLabel").value,
+    name: document.getElementById("addrName").value.trim(),
+    phone: document.getElementById("addrPhone").value.trim(),
+    address: document.getElementById("addrStreet").value.trim(),
+    city: document.getElementById("addrCity").value.trim(),
+    pincode: document.getElementById("addrPincode").value.trim(),
+  };
+  if (!body.name || !body.phone || !body.address || !body.city || !body.pincode) { toast("Please fill all fields", "error"); return; }
+  // Save locally in state (and localStorage) — works without a backend address API
+  if (!S.savedAddresses) S.savedAddresses = [];
+  if (id) {
+    const idx = S.savedAddresses.findIndex(a => (a._id || a.id) === id);
+    if (idx >= 0) S.savedAddresses[idx] = { ...S.savedAddresses[idx], ...body };
+  } else {
+    S.savedAddresses.push({ ...body, _id: "addr_" + Date.now() });
+  }
+  localStorage.setItem("nz_addresses", JSON.stringify(S.savedAddresses));
+  toast(id ? "Address updated!" : "Address saved!", "success");
+  closeAddressModal();
+  renderAddressList();
+}
+
+function deleteAddress(id) {
+  S.savedAddresses = (S.savedAddresses || []).filter(a => (a._id || a.id) !== id);
+  localStorage.setItem("nz_addresses", JSON.stringify(S.savedAddresses));
+  toast("Address removed");
+  renderAddressList();
+}
+
+function renderAddressList() {
+  const el = document.getElementById("addressListEl");
+  if (!el) return;
+  const addrs = S.savedAddresses || [];
+  if (addrs.length === 0) {
+    el.innerHTML = `<div style="text-align:center;padding:30px;color:var(--ink3)"><i class="fa-solid fa-location-dot" style="font-size:36px;display:block;margin-bottom:10px;color:var(--ink4)"></i><p>No saved addresses yet</p></div>`;
+    return;
+  }
+  const icons = { Home: "fa-house", Work: "fa-briefcase", Other: "fa-location-dot" };
+  el.innerHTML = addrs.map(a => `
+    <div style="border:1px solid #f0f0f0;border-radius:var(--r-sm);padding:14px 16px;margin-bottom:10px;display:flex;align-items:flex-start;gap:12px">
+      <div style="width:38px;height:38px;border-radius:50%;background:var(--brand-light);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <i class="fa-solid ${icons[a.label] || "fa-location-dot"}" style="color:var(--brand);font-size:15px"></i>
+      </div>
+      <div style="flex:1">
+        <div style="font-size:13px;font-weight:800;color:var(--ink);display:flex;align-items:center;gap:7px">
+          ${a.label || "Home"}
+          <span style="font-size:10px;background:var(--brand-light);color:var(--brand);padding:2px 7px;border-radius:99px;font-weight:700">${a.name}</span>
+        </div>
+        <div style="font-size:12px;color:var(--ink2);margin-top:3px">${a.address}, ${a.city} — ${a.pincode}</div>
+        <div style="font-size:11px;color:var(--ink3);margin-top:2px"><i class="fa-solid fa-phone" style="font-size:10px"></i> ${a.phone}</div>
+      </div>
+      <div style="display:flex;gap:6px;flex-shrink:0">
+        <button onclick="openAddAddressModal('${a._id || a.id}')" style="padding:5px 10px;background:#e3f2fd;color:#1565c0;border:none;border-radius:var(--r-xs);font-size:11px;font-weight:700;cursor:pointer"><i class="fa-solid fa-pen"></i></button>
+        <button onclick="deleteAddress('${a._id || a.id}')" style="padding:5px 10px;background:#ffebee;color:var(--red);border:none;border-radius:var(--r-xs);font-size:11px;font-weight:700;cursor:pointer"><i class="fa-solid fa-trash"></i></button>
+      </div>
+    </div>`).join("");
+}
+
+/* ===== REORDER ===== */
+function reorder(orderId) {
+  const order = S.orders.find(o => o._id === orderId);
+  if (!order) { toast("Order not found", "error"); return; }
+  S.cart = [];
+  (order.items || []).forEach(item => {
+    const pid = item.product?._id || item.product || "";
+    const shopId = order.shop?._id?.toString() || order.shop?.toString() || "";
+    if (pid) S.cart.push({
+      productId: pid,
+      qty: item.quantity || 1,
+      name: item.name,
+      price: item.price,
+      image: item.image || "",
+      shopId,
+      shopName: order.shop?.name || ""
+    });
+  });
+  if (S.cart.length === 0) { toast("Could not restore items", "error"); return; }
+  saveSession(); updateHeader();
+  toast(`${S.cart.length} item${S.cart.length > 1 ? "s" : ""} added to cart!`, "success");
+  setTimeout(() => showPage("cart"), 400);
+}
+
+/* ===== CANCEL ORDER ===== */
+async function cancelOrder(orderId) {
+  if (!confirm("Cancel this order?")) return;
+  try {
+    const res = await fetch(`${API}/orders/${orderId}/cancel`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json", "Authorization": "Bearer " + S.token },
+      body: JSON.stringify({ reason: "Cancelled by customer" })
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.message);
+    toast("Order cancelled", "success");
+    loadOrders();
+  } catch (e) { toast(e.message || "Could not cancel order", "error"); }
 }
 
 /* ===== CHECKOUT ===== */
@@ -2005,6 +2395,23 @@ function renderCheckoutPage() {
     <div>
       <div class="ck-box">
         <div class="ck-box-title"><i class="fa-solid fa-location-dot"></i> Delivery Address</div>
+        ${(S.savedAddresses||[]).length > 0 ? `
+        <div style="margin-bottom:14px">
+          <div style="font-size:12px;font-weight:700;color:var(--ink3);margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em">Saved Addresses</div>
+          <div style="display:flex;flex-direction:column;gap:7px">
+            ${(S.savedAddresses||[]).map(a => `
+            <div onclick="fillAddressFromSaved('${a._id||a.id}')" style="border:2px solid var(--ink4);border-radius:var(--r-sm);padding:10px 14px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:10px" id="saved-addr-${a._id||a.id}"
+              onmouseover="this.style.borderColor='var(--brand)'" onmouseout="this.style.borderColor='var(--ink4)'">
+              <i class="fa-solid ${a.label==='Work'?'fa-briefcase':'fa-house'}" style="color:var(--brand);font-size:14px;flex-shrink:0"></i>
+              <div style="flex:1">
+                <div style="font-size:12px;font-weight:800;color:var(--ink)">${a.label} — ${a.name}</div>
+                <div style="font-size:11px;color:var(--ink3)">${a.address}, ${a.city}</div>
+              </div>
+              <i class="fa-solid fa-circle-check" style="color:var(--brand);font-size:16px;display:none" id="check-${a._id||a.id}"></i>
+            </div>`).join("")}
+          </div>
+          <div style="text-align:center;font-size:12px;color:var(--ink3);margin:10px 0">— or enter manually —</div>
+        </div>` : ""}
         <div class="fgrid">
           <div class="fgroup"><label class="flabel">Full Name *</label><input class="finput" id="ck_name" placeholder="Recipient name" value="${S.user?.name || ""}"></div>
           <div class="fgroup"><label class="flabel">Phone *</label><input class="finput" id="ck_phone" placeholder="10-digit mobile" value="${S.user?.phone || ""}"></div>
@@ -2014,6 +2421,10 @@ function renderCheckoutPage() {
           <div class="fgroup"><label class="flabel">City *</label><input class="finput" id="ck_city" placeholder="City" value="${S.user?.city || ""}"></div>
           <div class="fgroup"><label class="flabel">Pincode *</label><input class="finput" id="ck_pincode" placeholder="6-digit pincode"></div>
         </div>
+      </div>
+      <div class="ck-box">
+        <div class="ck-box-title"><i class="fa-solid fa-clock"></i> Delivery Time</div>
+        <div id="slotPicker" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px"></div>
       </div>
       <div class="ck-box">
         <div class="ck-box-title"><i class="fa-solid fa-credit-card"></i> Payment Method</div>
@@ -2038,14 +2449,18 @@ function renderCheckoutPage() {
       ${S.cart.map(i => `<div class="om-item"><img class="om-img" src="${i.image || ""}" onerror="this.style.display='none'"><div class="om-name">${i.name} &times; ${i.qty}</div><div class="om-price">&#8377;${i.price * i.qty}</div></div>`).join("")}
       <div style="border-top:1px solid #f0f0f0;margin-top:10px;padding-top:12px">
         <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--ink3);margin-bottom:5px"><span>Subtotal</span><span>&#8377;${t.subtotal}</span></div>
-        <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--ink3);margin-bottom:5px"><span>Delivery</span><span>${t.deliveryFee === 0 ? "FREE" : "&#8377;" + t.deliveryFee}</span></div>
-        <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--ink3)"><span>Taxes</span><span>&#8377;${t.tax}</span></div>
-        <div style="display:flex;justify-content:space-between;font-size:16px;font-weight:800;color:var(--ink);margin-top:10px"><span>Total</span><span>&#8377;${t.total}</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--ink3);margin-bottom:5px"><span>Delivery</span><span>${t.deliveryFee === 0 ? '<span style="color:var(--green);font-weight:700">FREE</span>' : "&#8377;" + t.deliveryFee}</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--ink3);margin-bottom:5px"><span>Taxes</span><span>&#8377;${t.tax}</span></div>
+        ${t.promoDiscount > 0 ? `<div style="display:flex;justify-content:space-between;font-size:12px;color:var(--green);font-weight:700;margin-bottom:5px"><span><i class="fa-solid fa-tag"></i> Promo</span><span>- &#8377;${t.promoDiscount}</span></div>` : ""}
+        <div style="display:flex;justify-content:space-between;font-size:16px;font-weight:800;color:var(--ink);margin-top:10px;border-top:1px solid #f0f0f0;padding-top:10px"><span>Total</span><span>&#8377;${t.total}</span></div>
       </div>
+      <div id="selectedSlotDisplay" style="display:none;background:var(--brand-light);border-radius:var(--r-sm);padding:8px 12px;margin:10px 0;font-size:12px;font-weight:700;color:var(--brand);display:flex;align-items:center;gap:6px"><i class="fa-solid fa-clock"></i> <span id="selectedSlotText"></span></div>
       <button class="btn-place" onclick="placeOrder()"><i class="fa-solid fa-check"></i> Place Order &#8377;${t.total}</button>
       <div style="text-align:center;font-size:11px;color:var(--ink3);margin-top:10px;display:flex;align-items:center;justify-content:center;gap:5px"><i class="fa-solid fa-shield-halved" style="color:var(--green)"></i> 100% Secure &amp; Encrypted</div>
     </div>
   </div>`;
+  // Render delivery slots after HTML is set
+  setTimeout(() => renderDeliverySlots(), 0);
 }
 
 function selectPayment(type) {
@@ -2143,9 +2558,11 @@ async function finalizeOrder(deliveryAddress, method, paymentResponse) {
       const verifyData = await verifyRes.json();
       if (!verifyRes.ok) throw new Error(verifyData.message || "Payment verification failed");
     }
-    S.cart = []; saveSession(); updateHeader();
+    S.cart = []; S.appliedPromo = null; saveSession(); updateHeader();
     const orderNum = savedOrder?.orderNumber || "NRZ" + Date.now().toString().slice(-6);
     const orderId = savedOrder?._id;
+    // Credit loyalty points
+    earnPoints(t.total);
     if (orderId) startCustomerOrderTracking(orderId, orderNum);
     document.getElementById("checkoutContent").innerHTML = `
     <div class="order-success">
@@ -2223,7 +2640,8 @@ function updateTrackingUI(status) {
     confirmed: `<i class="fa-solid fa-check-circle" style="color:var(--green)"></i> Your order has been accepted by the shop!`,
     preparing: `<i class="fa-solid fa-fire" style="color:var(--brand)"></i> The shop is preparing your order...`,
     ready: `<i class="fa-solid fa-check-double" style="color:var(--blue)"></i> Order is ready! Waiting for delivery partner...`,
-    picked: `<i class="fa-solid fa-motorcycle" style="color:var(--brand)"></i> Your order is on the way!`,
+    picked: `<i class="fa-solid fa-store" style="color:var(--brand)"></i> Delivery partner picked up your order from the shop!`,
+    on_the_way: `<i class="fa-solid fa-motorcycle" style="color:var(--brand)"></i> Your order is on the way to you!`,
     delivered: `<i class="fa-solid fa-house" style="color:var(--green)"></i> Order delivered! Enjoy your order 🎉`,
     cancelled: `<i class="fa-solid fa-circle-xmark" style="color:var(--red)"></i> Your order was cancelled.`
   };
@@ -2231,17 +2649,129 @@ function updateTrackingUI(status) {
   if (msgEl && msgs[status]) msgEl.innerHTML = msgs[status];
 }
 
+/* ===== SCHEDULED DELIVERY ===== */
+S.selectedSlot = null;
+
+function renderDeliverySlots() {
+  const picker = document.getElementById("slotPicker");
+  if (!picker) return;
+  const now = new Date();
+  const slots = [];
+  // ASAP slot
+  slots.push({ id: "asap", label: "As soon as possible", sub: "~30-45 mins", icon: "fa-bolt" });
+  // Generate time slots for today and tomorrow
+  const addSlots = (date, dayLabel) => {
+    for (let h = 9; h <= 21; h += 2) {
+      const slotStart = new Date(date);
+      slotStart.setHours(h, 0, 0, 0);
+      const slotEnd = new Date(date);
+      slotEnd.setHours(h + 2, 0, 0, 0);
+      // Skip slots in the past (with 30 min buffer for today)
+      if (dayLabel === "Today" && slotStart < new Date(now.getTime() + 30 * 60000)) continue;
+      const fmt = t => t.toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit", hour12: true });
+      slots.push({ id: `slot_${h}_${date.getDate()}`, label: dayLabel, sub: `${fmt(slotStart)} – ${fmt(slotEnd)}`, icon: "fa-clock" });
+    }
+  };
+  addSlots(new Date(), "Today");
+  const tomorrow = new Date(); tomorrow.setDate(tomorrow.getDate() + 1);
+  addSlots(tomorrow, "Tomorrow");
+
+  picker.innerHTML = slots.map(s => `
+    <div id="slot-${s.id}" onclick="selectSlot('${s.id}','${s.label} ${s.sub}')"
+      style="border:2px solid ${S.selectedSlot === s.id ? "var(--brand)" : "var(--ink4)"};
+      background:${S.selectedSlot === s.id ? "var(--brand-light)" : "#fff"};
+      border-radius:var(--r-sm);padding:10px 12px;cursor:pointer;transition:all .2s;text-align:center">
+      <i class="fa-solid ${s.icon}" style="color:${S.selectedSlot === s.id ? "var(--brand)" : "var(--ink3)"};font-size:16px;margin-bottom:5px;display:block"></i>
+      <div style="font-size:12px;font-weight:700;color:${S.selectedSlot === s.id ? "var(--brand)" : "var(--ink)"}">${s.label}</div>
+      <div style="font-size:11px;color:var(--ink3);margin-top:2px">${s.sub}</div>
+    </div>`).join("");
+
+  // Auto-select ASAP
+  if (!S.selectedSlot) selectSlot("asap", "As soon as possible ~30-45 mins");
+}
+
+function selectSlot(id, label) {
+  S.selectedSlot = id;
+  // Update visual
+  document.querySelectorAll("[id^='slot-']").forEach(el => {
+    const active = el.id === "slot-" + id;
+    el.style.borderColor = active ? "var(--brand)" : "var(--ink4)";
+    el.style.background = active ? "var(--brand-light)" : "#fff";
+    el.querySelector("i").style.color = active ? "var(--brand)" : "var(--ink3)";
+    el.querySelector("div").style.color = active ? "var(--brand)" : "var(--ink)";
+  });
+  // Update summary display
+  const disp = document.getElementById("selectedSlotDisplay");
+  const txt = document.getElementById("selectedSlotText");
+  if (disp && txt && id !== "asap") {
+    txt.textContent = label;
+    disp.style.display = "flex";
+  } else if (disp) {
+    disp.style.display = "none";
+  }
+}
+
+/* ===== PUSH NOTIFICATIONS (Web Push API) ===== */
+async function requestPushPermission() {
+  if (!("Notification" in window)) return false;
+  if (Notification.permission === "granted") return true;
+  if (Notification.permission === "denied") return false;
+  const result = await Notification.requestPermission();
+  return result === "granted";
+}
+
+function sendPushNotification(title, body, icon) {
+  if (Notification.permission !== "granted") return;
+  try {
+    new Notification(title, {
+      body,
+      icon: icon || "https://vidhyasagar-27.github.io/nearzy-frontend/favicon.ico",
+      badge: "https://vidhyasagar-27.github.io/nearzy-frontend/favicon.ico",
+      tag: "nearzy-order",
+      renotify: true
+    });
+  } catch(e) {}
+}
+
+// Ask for notification permission after login
+function askNotificationPermission() {
+  if (!("Notification" in window) || Notification.permission !== "default") return;
+  setTimeout(() => {
+    const bar = document.createElement("div");
+    bar.id = "notifBar";
+    bar.innerHTML = `
+      <div style="position:fixed;bottom:80px;left:12px;right:12px;background:var(--ink);color:#fff;border-radius:var(--r-sm);padding:14px 16px;z-index:5001;display:flex;align-items:center;gap:12px;box-shadow:0 8px 24px rgba(0,0,0,.3);animation:slideUp .3s ease-out">
+        <i class="fa-solid fa-bell" style="color:var(--brand);font-size:20px;flex-shrink:0"></i>
+        <div style="flex:1">
+          <div style="font-size:13px;font-weight:700">Get order updates</div>
+          <div style="font-size:11px;opacity:.7;margin-top:2px">Allow notifications to track your orders</div>
+        </div>
+        <button onclick="requestPushPermission().then(g=>{if(g)toast('Notifications enabled!','success');document.getElementById('notifBar')?.remove()})" style="padding:7px 14px;background:var(--brand);color:#fff;border:none;border-radius:var(--r-sm);font-size:12px;font-weight:700;cursor:pointer;flex-shrink:0">Enable</button>
+        <button onclick="document.getElementById('notifBar')?.remove()" style="background:none;border:none;color:rgba(255,255,255,.6);cursor:pointer;font-size:18px;flex-shrink:0">&times;</button>
+      </div>`;
+    document.body.appendChild(bar);
+    setTimeout(() => bar.remove(), 12000);
+  }, 3000);
+}
+
+// Enhanced order tracking with push notifications
 function showCustomerNotification(status, orderNum) {
   const msgs = {
-    confirmed: { title: "Order Accepted! ✅", msg: "Your order has been accepted by the shop", color: "var(--green)" },
-    preparing: { title: "Being Prepared 🔥", msg: "The shop is now preparing your order", color: "var(--brand)" },
-    ready: { title: "Order Ready! 📦", msg: "Your order is packed and ready for pickup", color: "var(--blue)" },
-    picked: { title: "On the Way! 🛵", msg: "Your delivery partner is heading to you", color: "var(--brand)" },
-    delivered: { title: "Delivered! 🎉", msg: "Your order has been delivered. Enjoy!", color: "var(--green)" },
+    confirmed: { title: "Order Accepted! ✅", msg: "Your order is being prepared", color: "var(--green)" },
+    preparing: { title: "Being Prepared 🔥", msg: "The shop is cooking your order", color: "var(--brand)" },
+    ready:     { title: "Order Ready! 📦", msg: "Packed and waiting for pickup", color: "var(--blue)" },
+    picked:    { title: "Picked Up! 🛵", msg: "Delivery partner heading to you", color: "var(--brand)" },
+    on_the_way:{ title: "On the Way! 🛵", msg: "Your order is almost there", color: "var(--brand)" },
+    delivered: { title: "Delivered! 🎉", msg: "Enjoy your order!", color: "var(--green)" },
     cancelled: { title: "Order Cancelled ❌", msg: "Your order was cancelled", color: "var(--red)" }
   };
   const m = msgs[status];
   if (!m) return;
+
+  // Push notification (native)
+  sendPushNotification(`Nearzy — ${m.title}`, `Order #${orderNum}: ${m.msg}`);
+
+  // In-app notification toast
   const existing = document.getElementById("customerAlert");
   if (existing) existing.remove();
   const alert = document.createElement("div");
@@ -2268,7 +2798,107 @@ function showCustomerNotification(status, orderNum) {
       </div>
     </div>`;
   document.body.appendChild(alert);
-  setTimeout(() => { const a = document.getElementById("customerAlert"); if (a) a.remove(); }, 8000);
+  setTimeout(() => { document.getElementById("customerAlert")?.remove(); }, 8000);
+
+  // Show rating prompt on delivery
+  if (status === "delivered") {
+    setTimeout(() => showRatingModal(orderNum), 2000);
+  }
+}
+
+/* ===== POST-DELIVERY RATING ===== */
+let _ratingOrderNum = "";
+let _shopRating = 0;
+let _deliveryRating = 0;
+
+function showRatingModal(orderNum) {
+  _ratingOrderNum = orderNum;
+  _shopRating = 0;
+  _deliveryRating = 0;
+  const modal = document.createElement("div");
+  modal.id = "ratingModal";
+  modal.style.cssText = "position:fixed;inset:0;background:rgba(40,44,63,.6);display:flex;align-items:center;justify-content:center;z-index:6000;padding:16px;backdrop-filter:blur(4px)";
+  modal.innerHTML = `
+    <div style="background:#fff;border-radius:var(--r);width:100%;max-width:400px;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.25);animation:slideUp .3s ease-out">
+      <div style="background:linear-gradient(135deg,var(--green),#14c265);padding:20px;text-align:center">
+        <div style="width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;margin:0 auto 10px">
+          <i class="fa-solid fa-circle-check" style="font-size:32px;color:#fff"></i>
+        </div>
+        <div style="font-family:'Sora',sans-serif;font-size:18px;font-weight:800;color:#fff">Order Delivered!</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.8);margin-top:4px">Order #${orderNum}</div>
+      </div>
+      <div style="padding:22px">
+        <div style="font-family:'Sora',sans-serif;font-size:15px;font-weight:700;margin-bottom:18px;text-align:center;color:var(--ink)">How was your experience?</div>
+
+        <div style="margin-bottom:18px">
+          <div style="font-size:13px;font-weight:700;color:var(--ink2);margin-bottom:8px;display:flex;align-items:center;gap:6px"><i class="fa-solid fa-store" style="color:var(--brand)"></i> Rate the Shop</div>
+          <div style="display:flex;gap:6px;justify-content:center" id="shopStars">
+            ${[1,2,3,4,5].map(n => `<i class="fa-regular fa-star" data-val="${n}" style="font-size:28px;color:#d4d5d9;cursor:pointer;transition:all .15s" onclick="setModalRating('shop',${n})" onmouseover="hoverStars('shop',${n})" onmouseout="resetStars('shop')"></i>`).join("")}
+          </div>
+          <div id="shopRatingLabel" style="text-align:center;font-size:12px;color:var(--ink3);margin-top:6px;min-height:18px"></div>
+        </div>
+
+        <div style="margin-bottom:18px">
+          <div style="font-size:13px;font-weight:700;color:var(--ink2);margin-bottom:8px;display:flex;align-items:center;gap:6px"><i class="fa-solid fa-motorcycle" style="color:var(--brand)"></i> Rate the Delivery</div>
+          <div style="display:flex;gap:6px;justify-content:center" id="deliveryStars">
+            ${[1,2,3,4,5].map(n => `<i class="fa-regular fa-star" data-val="${n}" style="font-size:28px;color:#d4d5d9;cursor:pointer;transition:all .15s" onclick="setModalRating('delivery',${n})" onmouseover="hoverStars('delivery',${n})" onmouseout="resetStars('delivery')"></i>`).join("")}
+          </div>
+          <div id="deliveryRatingLabel" style="text-align:center;font-size:12px;color:var(--ink3);margin-top:6px;min-height:18px"></div>
+        </div>
+
+        <textarea id="ratingComment" placeholder="Tell us more (optional)..." style="width:100%;padding:10px 12px;border:1.5px solid var(--ink4);border-radius:var(--r-sm);font-family:inherit;font-size:13px;resize:none;outline:none;margin-bottom:14px" rows="2"></textarea>
+
+        <div style="display:flex;gap:10px">
+          <button onclick="submitRatingModal()" style="flex:1;padding:12px;background:var(--brand);color:#fff;border:none;border-radius:var(--r-sm);font-size:14px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px">
+            <i class="fa-solid fa-paper-plane"></i> Submit Rating
+          </button>
+          <button onclick="document.getElementById('ratingModal')?.remove()" style="padding:12px 16px;background:var(--bg);color:var(--ink3);border:1px solid var(--ink4);border-radius:var(--r-sm);font-size:13px;font-weight:700;cursor:pointer">
+            Skip
+          </button>
+        </div>
+      </div>
+    </div>`;
+  document.body.appendChild(modal);
+}
+
+const ratingLabels = ["", "Poor", "Fair", "Good", "Very Good", "Excellent"];
+
+function hoverStars(type, val) {
+  const container = document.getElementById(type + "Stars");
+  if (!container) return;
+  container.querySelectorAll("i").forEach((s, i) => {
+    s.className = i < val ? "fa-solid fa-star" : "fa-regular fa-star";
+    s.style.color = i < val ? "#f8c200" : "#d4d5d9";
+  });
+}
+
+function resetStars(type) {
+  const val = type === "shop" ? _shopRating : _deliveryRating;
+  hoverStars(type, val);
+}
+
+function setModalRating(type, val) {
+  if (type === "shop") _shopRating = val;
+  else _deliveryRating = val;
+  hoverStars(type, val);
+  const label = document.getElementById(type + "RatingLabel");
+  if (label) { label.textContent = ratingLabels[val] || ""; label.style.color = val >= 4 ? "var(--green)" : val >= 3 ? "var(--brand)" : "var(--red)"; }
+}
+
+async function submitRatingModal() {
+  if (!_shopRating) { toast("Please rate the shop", "error"); return; }
+  const comment = document.getElementById("ratingComment")?.value.trim();
+  try {
+    if (S.token) {
+      await fetch(`${API}/reviews`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Authorization": "Bearer " + S.token },
+        body: JSON.stringify({ shopRating: _shopRating, deliveryRating: _deliveryRating, comment, orderNum: _ratingOrderNum })
+      });
+    }
+  } catch(e) {}
+  document.getElementById("ratingModal")?.remove();
+  toast("Thank you for your feedback! 🙏", "success");
 }
 
 /* ===== DELIVERY NOTIFICATIONS ===== */
@@ -2378,6 +3008,7 @@ async function doLogin() {
     S.user = data.user; S.token = data.token; S.role = data.user.role;
     saveSession(); updateHeader(); closeAuthModal();
     toast(`Welcome back, ${data.user.name}!`, "success");
+    askNotificationPermission();
     setTimeout(() => {
       if (S.role === "seller") showPage("seller");
       else if (S.role === "delivery") showPage("delivery");
@@ -2449,9 +3080,16 @@ function renderAccountPage() {
         <div class="acc-name">${S.user.name}</div>
         <div class="acc-email">${S.user.email}</div>
         <div class="acc-role-tag">${S.user.role}</div>
+        <div style="margin-top:12px;background:linear-gradient(135deg,#fc8019,#ff9f4a);border-radius:var(--r-sm);padding:10px 16px;text-align:center;cursor:pointer" onclick="switchAccTab('points',document.querySelector('.acc-mi[onclick*=points]'))">
+          <div style="font-size:22px;font-weight:800;color:#fff;font-family:'Sora',sans-serif">${S.loyaltyPoints}</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.85);font-weight:700;display:flex;align-items:center;justify-content:center;gap:4px"><i class="fa-solid fa-star"></i> Nearzy Points</div>
+        </div>
       </div>
       <div class="acc-menu">
         <div class="acc-mi active" onclick="switchAccTab('orders',this)"><i class="fa-solid fa-box"></i> My Orders</div>
+        <div class="acc-mi" onclick="switchAccTab('points',this)"><i class="fa-solid fa-star"></i> Loyalty Points</div>
+        <div class="acc-mi" onclick="switchAccTab('referral',this)"><i class="fa-solid fa-gift"></i> Refer & Earn</div>
+        <div class="acc-mi" onclick="switchAccTab('addresses',this)"><i class="fa-solid fa-location-dot"></i> Saved Addresses</div>
         <div class="acc-mi" onclick="switchAccTab('profile',this)"><i class="fa-solid fa-user"></i> Profile</div>
         <div class="acc-mi" onclick="switchAccTab('wishlist',this)"><i class="fa-regular fa-heart"></i> Wishlist</div>
         <div class="acc-mi" onclick="switchAccTab('support',this)"><i class="fa-solid fa-headset"></i> Support</div>
@@ -2462,8 +3100,112 @@ function renderAccountPage() {
     <div>
       <div class="acc-tab active" id="acc-orders">
         <div class="acc-box">
-          <div class="acc-box-title"><i class="fa-solid fa-box"></i> My Orders</div>
+          <div class="acc-box-title" style="display:flex;align-items:center;justify-content:space-between">
+            <span><i class="fa-solid fa-box"></i> My Orders</span>
+            <button onclick="exportOrderHistory()" style="padding:5px 12px;background:var(--bg);border:1px solid var(--ink4);border-radius:var(--r-sm);font-size:11px;font-weight:700;color:var(--ink2);cursor:pointer;display:flex;align-items:center;gap:5px">
+              <i class="fa-solid fa-download"></i> Export CSV
+            </button>
+          </div>
           <div id="ordersListEl"><div style="text-align:center;padding:30px;color:var(--ink3)"><i class="fa-solid fa-spinner fa-spin" style="font-size:24px;margin-bottom:10px;display:block"></i>Loading orders...</div></div>
+        </div>
+      </div>
+      <div class="acc-tab" id="acc-points">
+        <div class="acc-box">
+          <div class="acc-box-title"><i class="fa-solid fa-star" style="color:var(--brand)"></i> Nearzy Loyalty Points</div>
+          <div style="background:linear-gradient(135deg,#fc8019,#ff9f4a);border-radius:var(--r-sm);padding:24px;text-align:center;margin-bottom:18px">
+            <div style="font-size:48px;font-weight:800;color:#fff;font-family:'Sora',sans-serif;line-height:1">${S.loyaltyPoints}</div>
+            <div style="font-size:13px;color:rgba(255,255,255,.85);margin-top:6px;font-weight:700">Available Points</div>
+            <div style="font-size:12px;color:rgba(255,255,255,.7);margin-top:4px">₹${Math.floor(S.loyaltyPoints / 10)} worth of rewards</div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:18px">
+            <div style="background:var(--bg);border-radius:var(--r-sm);padding:14px;text-align:center">
+              <div style="font-size:18px;font-weight:800;color:var(--ink);font-family:'Sora',sans-serif">${Math.floor(S.loyaltyPoints / 100)}</div>
+              <div style="font-size:11px;color:var(--ink3);margin-top:3px">Orders worth</div>
+            </div>
+            <div style="background:var(--bg);border-radius:var(--r-sm);padding:14px;text-align:center">
+              <div style="font-size:18px;font-weight:800;color:var(--green);font-family:'Sora',sans-serif">1pt</div>
+              <div style="font-size:11px;color:var(--ink3);margin-top:3px">per ₹1 spent</div>
+            </div>
+            <div style="background:var(--bg);border-radius:var(--r-sm);padding:14px;text-align:center">
+              <div style="font-size:18px;font-weight:800;color:var(--brand);font-family:'Sora',sans-serif">10pt</div>
+              <div style="font-size:11px;color:var(--ink3);margin-top:3px">= ₹1 off</div>
+            </div>
+          </div>
+          <div style="font-size:13px;font-weight:700;color:var(--ink);margin-bottom:10px">How it works</div>
+          ${[
+            ["fa-cart-shopping","Earn points","Get 1 point for every ₹1 you spend on orders"],
+            ["fa-tag","Redeem at checkout","Use 100 points = ₹10 off on your next order"],
+            ["fa-gift","Bonus points","Get 50 bonus points on your first order"],
+            ["fa-star","Level up","500 pts = Silver, 2000 pts = Gold with extra benefits"],
+          ].map(([icon,title,desc]) => `
+            <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid #f0f0f0">
+              <div style="width:36px;height:36px;border-radius:50%;background:var(--brand-light);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                <i class="fa-solid ${icon}" style="color:var(--brand);font-size:14px"></i>
+              </div>
+              <div>
+                <div style="font-size:13px;font-weight:700;color:var(--ink)">${title}</div>
+                <div style="font-size:12px;color:var(--ink3);margin-top:2px">${desc}</div>
+              </div>
+            </div>`).join("")}
+          ${S.loyaltyPoints >= 100 ? `
+          <button onclick="redeemPoints()" style="margin-top:16px;width:100%;padding:12px;background:var(--brand);color:#fff;border:none;border-radius:var(--r-sm);font-size:14px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px">
+            <i class="fa-solid fa-gift"></i> Redeem ${S.loyaltyPoints} Points (₹${Math.floor(S.loyaltyPoints/10)} off)
+          </button>` : `
+          <div style="margin-top:16px;padding:12px;background:var(--bg);border-radius:var(--r-sm);text-align:center;font-size:12px;color:var(--ink3)">
+            <i class="fa-solid fa-lock"></i> Need 100 points to redeem. You have ${S.loyaltyPoints} pts — ${100 - S.loyaltyPoints} more to go!
+          </div>`}
+        </div>
+      </div>
+      <div class="acc-tab" id="acc-referral">
+        <div class="acc-box">
+          <div class="acc-box-title"><i class="fa-solid fa-gift" style="color:#7c3aed"></i> Refer &amp; Earn</div>
+          <div style="background:linear-gradient(135deg,#7c3aed,#a855f7);border-radius:var(--r-sm);padding:22px;text-align:center;margin-bottom:18px">
+            <i class="fa-solid fa-gift" style="font-size:36px;color:rgba(255,255,255,.9);display:block;margin-bottom:10px"></i>
+            <div style="font-family:'Sora',sans-serif;font-size:18px;font-weight:800;color:#fff">Invite Friends, Earn &#8377;50</div>
+            <div style="font-size:12px;color:rgba(255,255,255,.8);margin-top:6px">Your friend gets &#8377;30 off their first order too!</div>
+          </div>
+          <div style="margin-bottom:18px">
+            <div style="font-size:12px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">Your Referral Code</div>
+            <div style="display:flex;gap:8px;align-items:center">
+              <div style="flex:1;padding:12px 16px;background:var(--bg);border-radius:var(--r-sm);border:2px dashed var(--brand);font-family:'Sora',sans-serif;font-size:20px;font-weight:800;color:var(--brand);letter-spacing:.12em;text-align:center" id="referralCode">
+                NRZ${(S.user?.name||"USER").slice(0,4).toUpperCase()}
+              </div>
+              <button onclick="copyReferralCode()" style="padding:12px 16px;background:var(--brand);color:#fff;border:none;border-radius:var(--r-sm);font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap">
+                <i class="fa-solid fa-copy"></i> Copy
+              </button>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px">
+            <div style="background:var(--bg);border-radius:var(--r-sm);padding:14px;text-align:center">
+              <div style="font-size:24px;font-weight:800;color:var(--ink);font-family:'Sora',sans-serif">${parseInt(localStorage.getItem("nz_referrals")||"0")}</div>
+              <div style="font-size:11px;color:var(--ink3);margin-top:3px">Friends Invited</div>
+            </div>
+            <div style="background:var(--bg);border-radius:var(--r-sm);padding:14px;text-align:center">
+              <div style="font-size:24px;font-weight:800;color:var(--green);font-family:'Sora',sans-serif">&#8377;${parseInt(localStorage.getItem("nz_referrals")||"0")*50}</div>
+              <div style="font-size:11px;color:var(--ink3);margin-top:3px">Total Earned</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:10px;margin-bottom:18px">
+            <button onclick="shareReferral('whatsapp')" style="flex:1;padding:11px;background:#25d366;color:#fff;border:none;border-radius:var(--r-sm);font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px">
+              <i class="fa-brands fa-whatsapp"></i> Share on WhatsApp
+            </button>
+            <button onclick="shareReferral('copy')" style="flex:1;padding:11px;background:var(--bg);color:var(--ink2);border:1.5px solid var(--ink4);border-radius:var(--r-sm);font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px">
+              <i class="fa-solid fa-share-nodes"></i> Share Link
+            </button>
+          </div>
+          ${[["fa-share","Share your code","Send your unique code to friends"],["fa-user-plus","Friend signs up","They register using your referral code"],["fa-indian-rupee-sign","Both earn","You get ₹50, they get ₹30 off first order"],["fa-infinity","No limit","Invite unlimited friends, earn unlimited"]].map(([icon,title,desc])=>`
+            <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid #f0f0f0">
+              <div style="width:34px;height:34px;border-radius:50%;background:#f3e8ff;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="fa-solid ${icon}" style="color:#7c3aed;font-size:13px"></i></div>
+              <div><div style="font-size:13px;font-weight:700;color:var(--ink)">${title}</div><div style="font-size:12px;color:var(--ink3);margin-top:2px">${desc}</div></div>
+            </div>`).join("")}
+        </div>
+      </div>
+        <div class="acc-box">
+          <div class="acc-box-title"><i class="fa-solid fa-location-dot"></i> Saved Addresses</div>
+          <div id="addressListEl"><div style="text-align:center;padding:20px;color:var(--ink3)"><i class="fa-solid fa-spinner fa-spin"></i></div></div>
+          <button onclick="openAddAddressModal()" style="margin-top:14px;width:100%;padding:11px;border:2px dashed var(--ink4);border-radius:var(--r-sm);background:none;font-size:13px;font-weight:700;color:var(--ink3);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;transition:all .2s" onmouseover="this.style.borderColor='var(--brand)';this.style.color='var(--brand)'" onmouseout="this.style.borderColor='var(--ink4)';this.style.color='var(--ink3)'">
+            <i class="fa-solid fa-plus"></i> Add New Address
+          </button>
         </div>
       </div>
       <div class="acc-tab" id="acc-profile">
@@ -2486,23 +3228,100 @@ function renderAccountPage() {
       <div class="acc-tab" id="acc-support">
         <div class="acc-box">
           <div class="acc-box-title"><i class="fa-solid fa-headset"></i> Customer Support</div>
-          <div class="support-grid">
-            <div class="sup-card"><div class="sup-icon"><i class="fa-solid fa-phone"></i></div><h4>Call Us</h4><p>1800-NEARZY</p></div>
-            <div class="sup-card"><div class="sup-icon"><i class="fa-solid fa-comment"></i></div><h4>Live Chat</h4><p>Chat with support</p></div>
-            <div class="sup-card"><div class="sup-icon"><i class="fa-solid fa-envelope"></i></div><h4>Email</h4><p>support@nearzy.in</p></div>
-            <div class="sup-card"><div class="sup-icon"><i class="fa-solid fa-circle-question"></i></div><h4>FAQ</h4><p>Common questions</p></div>
+          <!-- Quick contact -->
+          <div class="support-grid" style="margin-bottom:18px">
+            <div class="sup-card" onclick="window.open('tel:1800639279')"><div class="sup-icon"><i class="fa-solid fa-phone"></i></div><h4>Call Us</h4><p>1800-NEARZY</p></div>
+            <div class="sup-card" onclick="window.open('https://wa.me/911800639279')"><div class="sup-icon"><i class="fa-brands fa-whatsapp" style="color:#25d366"></i></div><h4>WhatsApp</h4><p>Chat instantly</p></div>
+            <div class="sup-card" onclick="window.open('mailto:support@nearzy.in')"><div class="sup-icon"><i class="fa-solid fa-envelope"></i></div><h4>Email</h4><p>support@nearzy.in</p></div>
+            <div class="sup-card" onclick="switchAccTab('faq',this)"><div class="sup-icon"><i class="fa-solid fa-circle-question"></i></div><h4>FAQ</h4><p>Quick answers</p></div>
           </div>
+          <!-- Raise a ticket -->
+          <div style="font-size:14px;font-weight:700;color:var(--ink);margin-bottom:12px;display:flex;align-items:center;gap:8px">
+            <i class="fa-solid fa-ticket" style="color:var(--brand)"></i> Raise a Support Ticket
+          </div>
+          <div id="ticketForm">
+            <div class="fgroup" style="margin-bottom:12px">
+              <label class="flabel">Issue Type *</label>
+              <select class="fselect" id="ticketType">
+                <option value="">Select issue type...</option>
+                <option value="order">Order not delivered</option>
+                <option value="wrong">Wrong item delivered</option>
+                <option value="quality">Food/Product quality issue</option>
+                <option value="refund">Refund not received</option>
+                <option value="payment">Payment issue</option>
+                <option value="account">Account problem</option>
+                <option value="shop">Shop related complaint</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="fgroup" style="margin-bottom:12px">
+              <label class="flabel">Order Number (if applicable)</label>
+              <input class="finput" id="ticketOrder" placeholder="e.g. NRZ12345678">
+            </div>
+            <div class="fgroup" style="margin-bottom:12px">
+              <label class="flabel">Describe your issue *</label>
+              <textarea class="finput" id="ticketDesc" rows="4" placeholder="Please describe your issue in detail..."></textarea>
+            </div>
+            <button onclick="submitTicket()" style="width:100%;padding:12px;background:var(--brand);color:#fff;border:none;border-radius:var(--r-sm);font-size:14px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px">
+              <i class="fa-solid fa-paper-plane"></i> Submit Ticket
+            </button>
+          </div>
+          <!-- Ticket history -->
+          <div style="margin-top:20px" id="ticketHistory">
+            <div style="font-size:13px;font-weight:700;color:var(--ink);margin-bottom:10px">My Tickets</div>
+            <div id="ticketList"></div>
+          </div>
+        </div>
+        <!-- FAQ accordion -->
+        <div class="acc-box" style="margin-top:14px">
+          <div class="acc-box-title"><i class="fa-solid fa-circle-question"></i> Frequently Asked Questions</div>
+          ${[
+            ["How do I track my order?", "Go to My Orders → tap Track on any active order to see live status updates."],
+            ["Can I cancel my order?", "You can cancel within 60 seconds of placing. Go to My Orders → Cancel. After that, please raise a support ticket."],
+            ["How do I get a refund?", "Refunds are processed within 5-7 business days for online payments. COD orders get Nearzy credits."],
+            ["Why was my order cancelled?", "The shop may have been out of stock or closed. You will receive a full refund automatically."],
+            ["How do loyalty points work?", "Earn 1 point per ₹1 spent. 100 points = ₹10 off. Redeem in Account → Loyalty Points."],
+            ["How do I become a seller?", "Sign up and select 'Shop Owner' as your role. Set up your store and wait for admin approval."],
+          ].map(([q,a],i)=>`
+            <div style="border-bottom:1px solid #f0f0f0">
+              <button onclick="toggleFaq(${i})" style="width:100%;padding:13px 0;display:flex;align-items:center;justify-content:space-between;background:none;border:none;cursor:pointer;text-align:left;gap:10px">
+                <span style="font-size:13px;font-weight:700;color:var(--ink)">${q}</span>
+                <i class="fa-solid fa-chevron-down" id="faqArrow${i}" style="color:var(--ink3);font-size:12px;flex-shrink:0;transition:transform .2s"></i>
+              </button>
+              <div id="faqBody${i}" style="display:none;padding:0 0 13px;font-size:13px;color:var(--ink2);line-height:1.7">${a}</div>
+            </div>`).join("")}
         </div>
       </div>
     </div>
   </div>`;
   loadOrders();
 }
+function fillAddressFromSaved(id) {
+  const addr = (S.savedAddresses || []).find(a => (a._id || a.id) === id);
+  if (!addr) return;
+  const set = (elId, val) => { const el = document.getElementById(elId); if (el) el.value = val || ""; };
+  set("ck_name", addr.name); set("ck_phone", addr.phone);
+  set("ck_address", addr.address || addr.street);
+  set("ck_city", addr.city); set("ck_pincode", addr.pincode);
+  // Highlight selected
+  document.querySelectorAll("[id^='saved-addr-']").forEach(el => { el.style.borderColor = "var(--ink4)"; el.style.background = "#fff"; });
+  document.querySelectorAll("[id^='check-']").forEach(el => el.style.display = "none");
+  const card = document.getElementById("saved-addr-" + id);
+  const check = document.getElementById("check-" + id);
+  if (card) { card.style.borderColor = "var(--brand)"; card.style.background = "var(--brand-light)"; }
+  if (check) check.style.display = "block";
+  toast("Address selected", "success");
+}
+
 function switchAccTab(tab, el) {
   document.querySelectorAll(".acc-mi").forEach(i => i.classList.remove("active"));
   document.querySelectorAll(".acc-tab").forEach(t => t.classList.remove("active"));
   if (el) el.classList.add("active");
   document.getElementById("acc-" + tab)?.classList.add("active");
+  if (tab === "addresses") renderAddressList();
+  if (tab === "points") addPointsPromoCode();
+  if (tab === "referral") checkReferral();
+  if (tab === "support") setTimeout(renderTicketList, 50);
 }
 async function loadOrders() {
   if (!S.token) return;
@@ -2527,7 +3346,13 @@ async function loadOrders() {
             <div class="oca-amount">&#8377;${o.totalAmount}</div>
             <div class="oca-meta">${(o.items || []).length} item(s) &bull; ${o.paymentMethod} &bull; ${o.shop?.name || "Shop"}</div>
           </div>
-          <button class="btn-track" onclick="toast('Live tracking coming soon!')"><i class="fa-solid fa-location-dot"></i> Track</button>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <button class="btn-track" onclick="openOrderTracking('${o._id}')"><i class="fa-solid fa-location-dot"></i> Track</button>
+            <button style="padding:7px 14px;border-radius:var(--r-sm);background:var(--bg);color:var(--ink2);border:1px solid var(--ink4);font-size:12px;font-weight:700;cursor:pointer" onclick="reorder('${o._id}')"><i class="fa-solid fa-rotate-right"></i> Reorder</button>
+            ${["placed","confirmed","preparing","ready","picked","on_the_way"].includes(o.orderStatus)
+              ? `<button onclick="openChat('${o._id}','${(o.shop?.name||"Shop").replace(/'/g,"")}')" style="padding:7px 14px;border-radius:var(--r-sm);background:var(--brand-light);color:var(--brand);border:1px solid var(--brand);font-size:12px;font-weight:700;cursor:pointer"><i class="fa-solid fa-comment"></i> Chat</button>` : ""}
+            ${["placed","confirmed"].includes(o.orderStatus) ? `<button onclick="cancelOrder('${o._id}')" style="padding:7px 14px;border-radius:var(--r-sm);background:#fff;color:var(--red);border:1px solid var(--red);font-size:12px;font-weight:700;cursor:pointer"><i class="fa-solid fa-xmark"></i> Cancel</button>` : ""}
+          </div>
         </div>
       </div>`;
     }).join("");
@@ -2563,6 +3388,7 @@ async function renderSellerDashboard() {
       </div>
       <div style="padding:8px 0">
         <div class="snav-item active" onclick="switchSellerTab('overview',this)"><i class="fa-solid fa-chart-line"></i> Overview</div>
+        <div class="snav-item" onclick="switchSellerTab('analytics',this)"><i class="fa-solid fa-chart-bar"></i> Analytics</div>
         <div class="snav-item" onclick="switchSellerTab('orders',this)"><i class="fa-solid fa-receipt"></i> Orders ${pendingOrders > 0 ? `<span id="sellerOrderBadge" style="margin-left:auto;background:var(--red);color:#fff;border-radius:99px;padding:1px 7px;font-size:10px;font-weight:800">${pendingOrders}</span>` : `<span id="sellerOrderBadge" style="display:none;margin-left:auto;background:var(--red);color:#fff;border-radius:99px;padding:1px 7px;font-size:10px;font-weight:800">0</span>`}</div>
         <div class="snav-item" onclick="switchSellerTab('products',this)"><i class="fa-solid fa-box"></i> My Products</div>
         <div class="snav-item" onclick="switchSellerTab('store',this)"><i class="fa-solid fa-store"></i> My Store</div>
@@ -2582,6 +3408,108 @@ async function renderSellerDashboard() {
           <div class="sbox-head"><div class="sbox-title"><i class="fa-solid fa-box"></i> Recent Products</div><button class="btn-add-p" onclick="openAddProductModal()"><i class="fa-solid fa-plus"></i> Add Product</button></div>
           ${renderSellerTable(myProducts.slice(0, 5))}
         </div>
+      </div>
+
+      <div class="seller-tab" id="stab-analytics">
+        ${(() => {
+          const delivered = shopOrders.filter(o => o.orderStatus === "delivered");
+          const cancelled = shopOrders.filter(o => o.orderStatus === "cancelled");
+          const todayStr = new Date().toDateString();
+          const todayOrders = shopOrders.filter(o => new Date(o.createdAt).toDateString() === todayStr);
+          const todayRevenue = delivered.filter(o => new Date(o.deliveredAt||o.createdAt).toDateString() === todayStr).reduce((s,o)=>s+(o.subtotal||0),0);
+          const avgOrder = delivered.length ? Math.round(delivered.reduce((s,o)=>s+(o.totalAmount||0),0)/delivered.length) : 0;
+          const cancelRate = shopOrders.length ? Math.round((cancelled.length/shopOrders.length)*100) : 0;
+          // Top products
+          const productCount = {};
+          shopOrders.forEach(o => (o.items||[]).forEach(i => { productCount[i.name] = (productCount[i.name]||0)+i.quantity; }));
+          const topProducts = Object.entries(productCount).sort((a,b)=>b[1]-a[1]).slice(0,5);
+          // Revenue by day (last 7 days)
+          const days = Array.from({length:7},(_,i)=>{ const d=new Date(); d.setDate(d.getDate()-i); return d; }).reverse();
+          const dayRevenue = days.map(d => ({
+            label: d.toLocaleDateString("en-IN",{weekday:"short"}),
+            value: delivered.filter(o=>new Date(o.deliveredAt||o.createdAt).toDateString()===d.toDateString()).reduce((s,o)=>s+(o.subtotal||0),0)
+          }));
+          const maxRev = Math.max(...dayRevenue.map(d=>d.value), 1);
+          // Payment method breakdown
+          const payMethods = {};
+          shopOrders.forEach(o => { payMethods[o.paymentMethod||"COD"] = (payMethods[o.paymentMethod||"COD"]||0)+1; });
+
+          return `
+          <div class="stats-row" style="margin-bottom:16px">
+            <div class="stat-card"><div class="stat-icon"><i class="fa-solid fa-calendar-day"></i></div><div class="stat-label">Today's Orders</div><div class="stat-value">${todayOrders.length}</div></div>
+            <div class="stat-card green"><div class="stat-icon"><i class="fa-solid fa-indian-rupee-sign"></i></div><div class="stat-label">Today's Revenue</div><div class="stat-value">&#8377;${todayRevenue}</div></div>
+            <div class="stat-card blue"><div class="stat-icon"><i class="fa-solid fa-calculator"></i></div><div class="stat-label">Avg Order Value</div><div class="stat-value">&#8377;${avgOrder}</div></div>
+            <div class="stat-card red"><div class="stat-icon"><i class="fa-solid fa-ban"></i></div><div class="stat-label">Cancel Rate</div><div class="stat-value">${cancelRate}%</div></div>
+          </div>
+
+          <div class="sbox" style="margin-bottom:14px">
+            <div class="sbox-head"><div class="sbox-title"><i class="fa-solid fa-chart-bar"></i> Revenue — Last 7 Days</div></div>
+            <div style="padding:20px">
+              <div style="display:flex;align-items:flex-end;gap:8px;height:120px">
+                ${dayRevenue.map(d => `
+                  <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px">
+                    <div style="font-size:10px;color:var(--ink3);font-weight:700">&#8377;${d.value>0?d.value:""}</div>
+                    <div style="width:100%;border-radius:4px 4px 0 0;background:${d.value>0?"var(--brand)":"var(--ink4)"};
+                      height:${Math.max(4,Math.round((d.value/maxRev)*80))}px;transition:height .4s ease;min-height:4px"></div>
+                    <div style="font-size:11px;color:var(--ink3)">${d.label}</div>
+                  </div>`).join("")}
+              </div>
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
+            <div class="sbox">
+              <div class="sbox-head"><div class="sbox-title"><i class="fa-solid fa-fire"></i> Top Products</div></div>
+              <div style="padding:12px 16px">
+                ${topProducts.length === 0
+                  ? `<div style="color:var(--ink3);font-size:12px;padding:10px 0">No orders yet</div>`
+                  : topProducts.map(([name,qty],i) => `
+                  <div style="display:flex;align-items:center;gap:10px;padding:8px 0;${i>0?"border-top:1px solid #f0f0f0":""}">
+                    <div style="width:24px;height:24px;border-radius:50%;background:${["var(--brand)","var(--green)","var(--blue)","var(--red)","var(--ink3)"][i]};color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0">${i+1}</div>
+                    <div style="flex:1;font-size:12px;font-weight:700;color:var(--ink)">${name}</div>
+                    <div style="font-size:12px;font-weight:800;color:var(--ink3)">${qty} sold</div>
+                  </div>`).join("")}
+              </div>
+            </div>
+            <div class="sbox">
+              <div class="sbox-head"><div class="sbox-title"><i class="fa-solid fa-credit-card"></i> Payment Split</div></div>
+              <div style="padding:16px">
+                ${Object.entries(payMethods).map(([method,count]) => {
+                  const pct = Math.round((count/shopOrders.length)*100);
+                  const colors = {COD:"var(--brand)",ONLINE:"var(--blue)",UPI:"var(--green)"};
+                  return `<div style="margin-bottom:12px">
+                    <div style="display:flex;justify-content:space-between;font-size:12px;font-weight:700;margin-bottom:5px">
+                      <span>${method}</span><span style="color:var(--ink3)">${count} orders (${pct}%)</span>
+                    </div>
+                    <div style="height:6px;background:#f0f0f0;border-radius:99px;overflow:hidden">
+                      <div style="height:100%;width:${pct}%;background:${colors[method]||"var(--brand)"};border-radius:99px;transition:width .5s"></div>
+                    </div>
+                  </div>`;
+                }).join("")}
+                ${Object.keys(payMethods).length===0?`<div style="color:var(--ink3);font-size:12px">No orders yet</div>`:""}
+              </div>
+            </div>
+          </div>
+
+          <div class="sbox">
+            <div class="sbox-head"><div class="sbox-title"><i class="fa-solid fa-clock"></i> Order Status Breakdown</div></div>
+            <div style="padding:16px;display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px">
+              ${[
+                ["placed","Pending","var(--brand)"],
+                ["confirmed","Confirmed","var(--blue)"],
+                ["ready","Ready","var(--green)"],
+                ["delivered","Delivered","var(--green)"],
+                ["cancelled","Cancelled","var(--red)"]
+              ].map(([status,label,color]) => {
+                const cnt = shopOrders.filter(o=>o.orderStatus===status).length;
+                return `<div style="background:var(--bg);border-radius:var(--r-sm);padding:12px;text-align:center">
+                  <div style="font-size:22px;font-weight:800;color:${color};font-family:'Sora',sans-serif">${cnt}</div>
+                  <div style="font-size:11px;color:var(--ink3);margin-top:3px">${label}</div>
+                </div>`;
+              }).join("")}
+            </div>
+          </div>`;
+        })()}
       </div>
 
       <div class="seller-tab" id="stab-orders">
@@ -2614,10 +3542,53 @@ async function renderSellerDashboard() {
       </div>
 
       <div class="seller-tab" id="stab-products">
-        <div class="sbox">
-          <div class="sbox-head"><div class="sbox-title"><i class="fa-solid fa-box"></i> All Products (${myProducts.length})</div><button class="btn-add-p" onclick="openAddProductModal()"><i class="fa-solid fa-plus"></i> Add New</button></div>
-          ${myProducts.length > 0 ? renderSellerTable(myProducts) : `<div style="padding:40px;text-align:center;color:var(--ink3)"><i class="fa-solid fa-box-open" style="font-size:40px;display:block;margin-bottom:12px"></i><p>No products yet</p><button class="btn-add-p" style="margin-top:12px" onclick="openAddProductModal()">Add First Product</button></div>`}
-        </div>
+        ${(() => {
+          const lowStock = myProducts.filter(p => (p.stock||0) <= 5 && (p.stock||0) > 0);
+          const outOfStock = myProducts.filter(p => (p.stock||0) === 0);
+          return `
+          ${outOfStock.length > 0 || lowStock.length > 0 ? `
+          <div class="sbox" style="margin-bottom:14px;border-left:4px solid var(--red)">
+            <div class="sbox-head"><div class="sbox-title" style="color:var(--red)"><i class="fa-solid fa-triangle-exclamation"></i> Inventory Alerts</div></div>
+            <div style="padding:14px 18px">
+              ${outOfStock.length > 0 ? `
+              <div style="margin-bottom:10px">
+                <div style="font-size:12px;font-weight:800;color:var(--red);margin-bottom:7px"><i class="fa-solid fa-circle-xmark"></i> Out of Stock (${outOfStock.length})</div>
+                ${outOfStock.map(p=>`
+                  <div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid #f0f0f0">
+                    ${p.images?.[0]?`<img src="${p.images[0]}" style="width:32px;height:32px;border-radius:var(--r-sm);object-fit:cover">`:`<div style="width:32px;height:32px;border-radius:var(--r-sm);background:#f0f0f0"></div>`}
+                    <div style="flex:1;font-size:13px;font-weight:700">${p.name}</div>
+                    <button onclick="quickUpdateStock('${p._id||p.id}','${p.name}')" style="padding:5px 12px;background:var(--brand);color:#fff;border:none;border-radius:var(--r-sm);font-size:11px;font-weight:700;cursor:pointer">Update Stock</button>
+                  </div>`).join("")}
+              </div>` : ""}
+              ${lowStock.length > 0 ? `
+              <div>
+                <div style="font-size:12px;font-weight:800;color:var(--brand);margin-bottom:7px"><i class="fa-solid fa-circle-exclamation"></i> Low Stock (${lowStock.length})</div>
+                ${lowStock.map(p=>`
+                  <div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid #f0f0f0">
+                    ${p.images?.[0]?`<img src="${p.images[0]}" style="width:32px;height:32px;border-radius:var(--r-sm);object-fit:cover">`:`<div style="width:32px;height:32px;border-radius:var(--r-sm);background:#f0f0f0"></div>`}
+                    <div style="flex:1;font-size:13px;font-weight:700">${p.name}</div>
+                    <span style="padding:3px 8px;background:#fff3e8;color:var(--brand);border-radius:99px;font-size:11px;font-weight:800">Only ${p.stock} left</span>
+                    <button onclick="quickUpdateStock('${p._id||p.id}','${p.name}')" style="padding:5px 12px;background:var(--brand);color:#fff;border:none;border-radius:var(--r-sm);font-size:11px;font-weight:700;cursor:pointer">Restock</button>
+                  </div>`).join("")}
+              </div>` : ""}
+            </div>
+          </div>` : ""}
+          <div class="sbox">
+            <div class="sbox-head">
+              <div class="sbox-title"><i class="fa-solid fa-box"></i> All Products (${myProducts.length})</div>
+              <div style="display:flex;gap:8px">
+                <select onchange="filterSellerProducts(this.value)" style="padding:6px 10px;border:1px solid var(--ink4);border-radius:var(--r-sm);font-size:12px;font-family:inherit;color:var(--ink2)">
+                  <option value="all">All Stock</option>
+                  <option value="low">Low Stock</option>
+                  <option value="out">Out of Stock</option>
+                  <option value="ok">In Stock</option>
+                </select>
+                <button class="btn-add-p" onclick="openAddProductModal()"><i class="fa-solid fa-plus"></i> Add New</button>
+              </div>
+            </div>
+            ${myProducts.length > 0 ? renderSellerTable(myProducts) : `<div style="padding:40px;text-align:center;color:var(--ink3)"><i class="fa-solid fa-box-open" style="font-size:40px;display:block;margin-bottom:12px"></i><p>No products yet</p><button class="btn-add-p" style="margin-top:12px" onclick="openAddProductModal()">Add First Product</button></div>`}
+          </div>`;
+        })()}
       </div>
 
       <div class="seller-tab" id="stab-store">
@@ -3014,60 +3985,165 @@ async function renderDeliveryDashboard() {
 
   <!-- MY DELIVERIES -->
   <div class="sbox">
-    <div class="sbox-head"><div class="sbox-title"><i class="fa-solid fa-receipt"></i> My Deliveries</div></div>
+    <div class="sbox-head">
+      <div class="sbox-title"><i class="fa-solid fa-receipt"></i> My Active Deliveries</div>
+      <button onclick="renderDeliveryDashboard()" style="padding:6px 12px;background:var(--bg);border:1px solid var(--ink4);border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:4px"><i class="fa-solid fa-rotate-right"></i> Refresh</button>
+    </div>
     <div style="padding:16px">
       ${orders.myOrders.length === 0
         ? `<div style="text-align:center;padding:30px;color:var(--ink3)">
             <i class="fa-solid fa-motorcycle" style="font-size:40px;display:block;margin-bottom:12px;color:var(--ink4)"></i>
-            <p>No deliveries yet. Accept an order to start!</p>
+            <p>No active deliveries. Accept an order above!</p>
           </div>`
-        : orders.myOrders.slice(0, 20).map(o => `
-        <div class="del-order-card" style="border-left-color:${o.orderStatus === "delivered" ? "var(--green)" : o.orderStatus === "picked" ? "var(--brand)" : "var(--blue)"}">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
-            <div style="font-weight:700;font-size:14px">${o.shop?.name || "Shop"}</div>
-            <span class="oca-status s-${o.orderStatus?.toLowerCase()}">${o.orderStatus}</span>
-          </div>
-          <div class="del-order-addr"><i class="fa-solid fa-location-dot" style="color:var(--red)"></i> ${o.deliveryAddress?.address || ""}, ${o.deliveryAddress?.city || ""}</div>
-          <div class="del-order-meta" style="margin:6px 0">
-            <span style="font-weight:800">&#8377;${o.totalAmount}</span>
-            <span><i class="fa-solid fa-user"></i> ${o.customer?.name || ""}</span>
-            <span><i class="fa-solid fa-phone"></i> ${o.customer?.phone || ""}</span>
-            <span style="font-size:11px;color:var(--ink3)">${new Date(o.createdAt).toLocaleDateString("en-IN", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" })}</span>
-          </div>
-          ${o.orderStatus === "picked" ? `
-          <button class="btn-accept" style="margin-top:8px" onclick="markDelivered('${o._id}')">
-            <i class="fa-solid fa-check"></i> Mark as Delivered
-          </button>` : ""}
-          ${o.orderStatus === "delivered" ? `
-          <div style="color:var(--green);font-weight:700;font-size:12px;margin-top:6px;display:flex;align-items:center;gap:5px">
-            <i class="fa-solid fa-circle-check"></i> Delivered successfully &bull; +&#8377;50 earned
-          </div>` : ""}
-        </div>`).join("")}
+        : orders.myOrders.slice(0, 20).map(o => deliveryOrderCardHTML(o)).join("")}
     </div>
   </div>`;
 }
+
+function deliveryOrderCardHTML(o) {
+  const statusColors = { picked_up: "var(--brand)", picked: "var(--brand)", on_the_way: "var(--blue)", delivered: "var(--green)", confirmed: "var(--ink3)" };
+  const borderColor = statusColors[o.orderStatus] || "var(--blue)";
+  const steps = [
+    { key: "confirmed",  icon: "fa-check",      label: "Accepted" },
+    { key: "picked",     icon: "fa-store",       label: "Picked up" },
+    { key: "on_the_way", icon: "fa-motorcycle",  label: "On the way" },
+    { key: "delivered",  icon: "fa-house",       label: "Delivered" }
+  ];
+  const stepOrder = ["confirmed", "picked", "on_the_way", "delivered"];
+  const currentIdx = stepOrder.indexOf(o.orderStatus);
+
+  const stepsHTML = steps.map((s, i) => {
+    const done = i <= currentIdx;
+    const active = i === currentIdx;
+    return `<div style="display:flex;flex-direction:column;align-items:center;gap:4px;flex:1">
+      <div style="width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+        background:${done ? (active ? "var(--brand)" : "var(--green)") : "var(--ink4)"};
+        transition:all .3s">
+        <i class="fa-solid ${s.icon}" style="font-size:13px;color:#fff"></i>
+      </div>
+      <div style="font-size:10px;font-weight:${active ? "800" : "600"};color:${done ? (active ? "var(--brand)" : "var(--green)") : "var(--ink3)"};text-align:center">${s.label}</div>
+    </div>`;
+  }).join(`<div style="flex:1;height:2px;background:var(--ink4);margin-top:15px;border-radius:2px;position:relative">
+    <div style="position:absolute;left:0;top:0;height:100%;background:var(--green);border-radius:2px;width:${currentIdx > 0 ? "100%" : "0%"};transition:width .5s"></div>
+  </div>`);
+
+  const actionBtn = () => {
+    if (o.orderStatus === "confirmed") return `
+      <button onclick="markPickedUp('${o._id}')" style="flex:1;padding:10px;background:var(--brand);color:#fff;border:none;border-radius:var(--r-sm);font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px">
+        <i class="fa-solid fa-store"></i> Picked Up from Shop
+      </button>`;
+    if (o.orderStatus === "picked") return `
+      <button onclick="markOnTheWay('${o._id}')" style="flex:1;padding:10px;background:var(--blue);color:#fff;border:none;border-radius:var(--r-sm);font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px">
+        <i class="fa-solid fa-motorcycle"></i> Start Delivery
+      </button>`;
+    if (o.orderStatus === "on_the_way") return `
+      <button onclick="markDelivered('${o._id}')" style="flex:1;padding:10px;background:var(--green);color:#fff;border:none;border-radius:var(--r-sm);font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px">
+        <i class="fa-solid fa-circle-check"></i> Mark as Delivered
+      </button>`;
+    if (o.orderStatus === "delivered") return `
+      <div style="flex:1;padding:10px;background:var(--green-light);border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;gap:7px;font-size:13px;font-weight:700;color:var(--green)">
+        <i class="fa-solid fa-circle-check"></i> Delivered! +&#8377;${o.deliveryEarning || 50} earned
+      </div>`;
+    return "";
+  };
+
+  return `
+  <div class="del-order-card" style="border-left-color:${borderColor};margin-bottom:14px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+      <div style="font-family:'Sora',sans-serif;font-size:15px;font-weight:700">
+        <i class="fa-solid fa-store" style="color:var(--brand);margin-right:6px;font-size:13px"></i>${o.shop?.name || "Shop"}
+      </div>
+      <span style="font-size:11px;font-weight:800;background:var(--brand-light);color:var(--brand);padding:3px 10px;border-radius:99px">
+        &#8377;${o.totalAmount}
+      </span>
+    </div>
+
+    <!-- Progress steps -->
+    <div style="display:flex;align-items:flex-start;margin-bottom:14px;padding:12px;background:var(--bg);border-radius:var(--r-sm)">
+      ${stepsHTML}
+    </div>
+
+    <!-- Order details -->
+    <div style="font-size:12px;color:var(--ink2);margin-bottom:10px">
+      <div style="display:flex;align-items:center;gap:6px;margin-bottom:5px">
+        <i class="fa-solid fa-box" style="color:var(--ink3);width:14px"></i>
+        ${(o.items || []).map(i => i.name + " ×" + i.quantity).join(", ")}
+      </div>
+      <div style="display:flex;align-items:center;gap:6px;margin-bottom:5px">
+        <i class="fa-solid fa-location-dot" style="color:var(--red);width:14px"></i>
+        <span>${o.deliveryAddress?.address || ""}, ${o.deliveryAddress?.city || ""} — ${o.deliveryAddress?.pincode || ""}</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:16px">
+        <span><i class="fa-solid fa-user" style="color:var(--ink3)"></i> ${o.customer?.name || ""}</span>
+        <a href="tel:${o.customer?.phone}" style="color:var(--blue);font-weight:700;text-decoration:none">
+          <i class="fa-solid fa-phone"></i> ${o.customer?.phone || ""}
+        </a>
+        <span style="color:var(--ink3)">${o.paymentMethod === "COD" ? "💵 COD" : "✅ Paid online"}</span>
+      </div>
+    </div>
+
+    <!-- Action button -->
+    <div style="display:flex;gap:8px">
+      ${actionBtn()}
+    </div>
+  </div>`;
+}
+
 async function toggleDeliveryStatus(btn) {
   const isOn = btn.classList.contains("on");
   try {
     const res = await fetch(`${API}/delivery/availability`, { method: "PUT", headers: { "Content-Type": "application/json", "Authorization": "Bearer " + S.token }, body: JSON.stringify({ isAvailable: !isOn }) });
     if (!res.ok) throw new Error();
     btn.classList.toggle("on");
-    toast(isOn ? "You are now Offline" : "You are now Online!", isOn ? "" : "success");
+    const label = document.querySelector(".del-toggle-label");
+    const sub = document.querySelector(".del-toggle-sub");
+    const newOn = !isOn;
+    if (label) label.innerHTML = `<i class="fa-solid fa-circle" style="color:${newOn ? "var(--green)" : "var(--ink4)"};font-size:10px;margin-right:6px"></i> ${newOn ? "You are Online" : "You are Offline"}`;
+    if (sub) sub.textContent = newOn ? "You are receiving delivery orders" : "Go online to start receiving orders";
+    toast(newOn ? "You are now Online!" : "You are now Offline", newOn ? "success" : "");
   } catch (e) { toast("Failed to update status", "error"); }
 }
+
 async function acceptDeliveryOrder(orderId) {
   try {
     const res = await fetch(`${API}/delivery/accept/${orderId}`, { method: "PUT", headers: { "Authorization": "Bearer " + S.token } });
-    if (!res.ok) throw new Error();
-    toast("Order accepted!", "success"); renderDeliveryDashboard();
-  } catch (e) { toast("Failed", "error"); }
+    if (!res.ok) { const d = await res.json(); throw new Error(d.message); }
+    toast("Order accepted! Head to the shop.", "success");
+    renderDeliveryDashboard();
+  } catch (e) { toast(e.message || "Failed to accept order", "error"); }
 }
+
+async function markPickedUp(orderId) {
+  try {
+    const res = await fetch(`${API}/delivery/pickup/${orderId}`, {
+      method: "PUT",
+      headers: { "Authorization": "Bearer " + S.token }
+    });
+    if (!res.ok) { const d = await res.json(); throw new Error(d.message); }
+    toast("Picked up! Now head to the customer.", "success");
+    renderDeliveryDashboard();
+  } catch (e) { toast(e.message || "Failed", "error"); }
+}
+
+async function markOnTheWay(orderId) {
+  try {
+    const res = await fetch(`${API}/delivery/on-the-way/${orderId}`, {
+      method: "PUT",
+      headers: { "Authorization": "Bearer " + S.token }
+    });
+    if (!res.ok) { const d = await res.json(); throw new Error(d.message); }
+    toast("Customer notified — you're on the way!", "success");
+    renderDeliveryDashboard();
+  } catch (e) { toast(e.message || "Failed", "error"); }
+}
+
 async function markDelivered(orderId) {
   try {
     const res = await fetch(`${API}/delivery/delivered/${orderId}`, { method: "PUT", headers: { "Authorization": "Bearer " + S.token } });
-    if (!res.ok) throw new Error();
-    toast("Marked as delivered! +&#8377;50 earned", "success"); renderDeliveryDashboard();
-  } catch (e) { toast("Failed", "error"); }
+    if (!res.ok) { const d = await res.json(); throw new Error(d.message); }
+    toast("Order delivered! Earnings credited.", "success");
+    renderDeliveryDashboard();
+  } catch (e) { toast(e.message || "Failed", "error"); }
 }
 
 /* ===== ADMIN DASHBOARD ===== */
@@ -3119,9 +4195,92 @@ async function renderAdminDashboard() {
   <div class="admin-tabs">
     <div class="admin-tab-btn active" onclick="switchAdminTab('shops',this)">All Shops (${allShops.length})</div>
     <div class="admin-tab-btn" onclick="switchAdminTab('users',this)">Users (${allUsers.length})</div>
+    <div class="admin-tab-btn" onclick="switchAdminTab('revenue',this)">Revenue</div>
+    <div class="admin-tab-btn" onclick="switchAdminTab('payouts',this)">Payouts</div>
     <div class="admin-tab-btn" onclick="switchAdminTab('commissions',this)">Commissions</div>
   </div>
-  <div class="admin-tab active" id="atab-shops">
+  <div class="admin-tab" id="atab-revenue">
+    ${(() => {
+      const totalCommission = commissions.reduce((s,c)=>s+(c.commissionAmount||0),0);
+      const totalShopEarning = commissions.reduce((s,c)=>s+(c.shopEarning||0),0);
+      const paidComm = commissions.filter(c=>c.status==="paid").reduce((s,c)=>s+(c.commissionAmount||0),0);
+      const pendingComm = commissions.filter(c=>c.status==="pending").reduce((s,c)=>s+(c.commissionAmount||0),0);
+      // Revenue by shop
+      const shopRevMap = {};
+      commissions.forEach(c => {
+        const name = c.shop?.name || "Unknown";
+        if (!shopRevMap[name]) shopRevMap[name] = { orders:0, revenue:0, commission:0 };
+        shopRevMap[name].orders++;
+        shopRevMap[name].revenue += c.orderAmount || 0;
+        shopRevMap[name].commission += c.commissionAmount || 0;
+      });
+      const shopRevList = Object.entries(shopRevMap).sort((a,b)=>b[1].revenue-a[1].revenue).slice(0,10);
+      return `
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px">
+        <div class="stat-card"><div class="stat-icon"><i class="fa-solid fa-indian-rupee-sign"></i></div><div class="stat-label">Total GMV</div><div class="stat-value">&#8377;${(totalCommission+totalShopEarning).toLocaleString()}</div></div>
+        <div class="stat-card green"><div class="stat-icon"><i class="fa-solid fa-percent"></i></div><div class="stat-label">Total Commission</div><div class="stat-value">&#8377;${totalCommission.toLocaleString()}</div></div>
+        <div class="stat-card blue"><div class="stat-icon"><i class="fa-solid fa-check"></i></div><div class="stat-label">Commission Paid</div><div class="stat-value">&#8377;${paidComm.toLocaleString()}</div></div>
+        <div class="stat-card red"><div class="stat-icon"><i class="fa-solid fa-clock"></i></div><div class="stat-label">Pending Commission</div><div class="stat-value">&#8377;${pendingComm.toLocaleString()}</div></div>
+      </div>
+      <div class="sbox">
+        <div class="sbox-head"><div class="sbox-title"><i class="fa-solid fa-trophy"></i> Top Shops by Revenue</div></div>
+        <div style="overflow-x:auto"><table class="admin-table">
+          <thead><tr><th>#</th><th>Shop</th><th>Orders</th><th>GMV</th><th>Commission</th><th>Shop Earning</th></tr></thead>
+          <tbody>${shopRevList.map(([name,data],i)=>`<tr>
+            <td><div style="width:24px;height:24px;border-radius:50%;background:${["var(--brand)","var(--green)","var(--blue)","var(--ink3)","var(--ink3)"][Math.min(i,4)]};color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center">${i+1}</div></td>
+            <td style="font-weight:700">${name}</td>
+            <td>${data.orders}</td>
+            <td style="font-weight:700">&#8377;${data.revenue.toLocaleString()}</td>
+            <td style="color:var(--green);font-weight:700">&#8377;${data.commission.toLocaleString()}</td>
+            <td>&#8377;${(data.revenue-data.commission).toLocaleString()}</td>
+          </tr>`).join("")}
+          ${shopRevList.length===0?`<tr><td colspan="6" style="text-align:center;color:var(--ink3);padding:20px">No commission data yet</td></tr>`:""}
+          </tbody>
+        </table></div>
+      </div>`;
+    })()}
+  </div>
+  <div class="admin-tab" id="atab-payouts">
+    <div class="sbox" style="margin-bottom:14px">
+      <div class="sbox-head">
+        <div class="sbox-title"><i class="fa-solid fa-money-bill-transfer"></i> Pending Shop Payouts</div>
+        <button onclick="markAllPayoutsPaid()" style="padding:8px 16px;background:var(--green);color:#fff;border:none;border-radius:var(--r-sm);font-size:12px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px">
+          <i class="fa-solid fa-check-double"></i> Mark All Paid
+        </button>
+      </div>
+      <div style="overflow-x:auto"><table class="admin-table">
+        <thead><tr><th>Shop</th><th>Owner</th><th>Pending Orders</th><th>Amount Due</th><th>Action</th></tr></thead>
+        <tbody>${(() => {
+          const pending = {};
+          commissions.filter(c=>c.status==="pending").forEach(c => {
+            const sid = c.shop?._id || c.shop;
+            if (!sid) return;
+            if (!pending[sid]) pending[sid] = { name: c.shop?.name||"Shop", owner: "", amount: 0, orders: 0, ids: [] };
+            pending[sid].amount += c.shopEarning || 0;
+            pending[sid].orders++;
+            pending[sid].ids.push(c._id);
+          });
+          const rows = Object.entries(pending);
+          if (!rows.length) return `<tr><td colspan="5" style="text-align:center;color:var(--ink3);padding:20px">All payouts are up to date! ✅</td></tr>`;
+          return rows.map(([sid,data])=>`<tr>
+            <td style="font-weight:700">${data.name}</td>
+            <td style="font-size:12px">${data.owner||"-"}</td>
+            <td>${data.orders}</td>
+            <td style="font-weight:800;color:var(--brand)">&#8377;${data.amount.toLocaleString()}</td>
+            <td><button class="btn-approve" onclick="markShopPaid('${sid}')"><i class="fa-solid fa-check"></i> Mark Paid</button></td>
+          </tr>`).join("");
+        })()}
+        </tbody>
+      </table></div>
+    </div>
+    <div class="sbox">
+      <div class="sbox-head"><div class="sbox-title"><i class="fa-solid fa-motorcycle"></i> Delivery Partner Earnings</div></div>
+      <div style="padding:16px;font-size:13px;color:var(--ink3);text-align:center">
+        <i class="fa-solid fa-construction" style="font-size:32px;display:block;margin-bottom:10px;color:var(--ink4)"></i>
+        Delivery partner payout reports coming soon. Currently ₹50 per delivery is auto-credited.
+      </div>
+    </div>
+  </div>
     <div class="sbox"><div style="overflow-x:auto"><table class="admin-table">
       <thead><tr><th>Shop</th><th>Owner</th><th>Category</th><th>City</th><th>Orders</th><th>Status</th><th>Action</th></tr></thead>
       <tbody>${allShops.map(s => `<tr>
@@ -3200,7 +4359,726 @@ async function activateUser(id) {
   } catch (e) { toast("Failed", "error"); }
 }
 
-/* ===== HELPERS ===== */
+/* ===== PRODUCT SEARCH & FILTERS ===== */
+let _prodPage = 0;
+const PROD_PAGE_SIZE = 20;
+
+function renderProducts() {
+  _prodPage = 0;
+  filterProducts();
+}
+
+function getFilteredProducts() {
+  const q = (document.getElementById("productSearchInput")?.value || "").trim().toLowerCase();
+  const cat = document.getElementById("prodCatFilter")?.value || "";
+  const sort = document.getElementById("prodSortFilter")?.value || "relevance";
+  const minRating = parseFloat(document.getElementById("prodRatingFilter")?.value || "0");
+  const maxPrice = parseFloat(document.getElementById("prodPriceFilter")?.value || "0");
+  let prods = [...S.products];
+  if (q) prods = prods.filter(p => (p.name||"").toLowerCase().includes(q) || (p.category||"").toLowerCase().includes(q) || (p.shop?.name||"").toLowerCase().includes(q));
+  if (cat) prods = prods.filter(p => (p.category||"").toLowerCase() === cat.toLowerCase());
+  if (minRating > 0) prods = prods.filter(p => (p.rating||0) >= minRating);
+  if (maxPrice > 0) prods = prods.filter(p => p.price <= maxPrice);
+  switch(sort) {
+    case "price-low": prods.sort((a,b) => a.price - b.price); break;
+    case "price-high": prods.sort((a,b) => b.price - a.price); break;
+    case "rating": prods.sort((a,b) => (b.rating||0) - (a.rating||0)); break;
+    case "newest": prods.sort((a,b) => new Date(b.createdAt||0) - new Date(a.createdAt||0)); break;
+  }
+  return prods;
+}
+
+function filterProducts() {
+  const grid = document.getElementById("productGrid");
+  const empty = document.getElementById("productsEmpty");
+  const countEl = document.getElementById("prodFilterCount");
+  const loadMoreEl = document.getElementById("prodLoadMore");
+  if (!grid) return;
+  const prods = getFilteredProducts();
+  const page = prods.slice(0, (_prodPage + 1) * PROD_PAGE_SIZE);
+  if (countEl) countEl.textContent = prods.length + " product" + (prods.length !== 1 ? "s" : "") + " found";
+  if (prods.length === 0) {
+    grid.innerHTML = "";
+    empty?.classList.remove("hidden");
+    if (loadMoreEl) loadMoreEl.style.display = "none";
+    return;
+  }
+  empty?.classList.add("hidden");
+  grid.innerHTML = page.map(p => productCardHTML(p)).join("");
+  if (loadMoreEl) loadMoreEl.style.display = prods.length > page.length ? "block" : "none";
+}
+
+function loadMoreProducts() {
+  _prodPage++;
+  filterProducts();
+  // Smooth scroll to new items
+  const grid = document.getElementById("productGrid");
+  if (grid) {
+    const items = grid.children;
+    const startIdx = _prodPage * PROD_PAGE_SIZE;
+    if (items[startIdx]) items[startIdx].scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+}
+
+function toggleProductFilters() {
+  const panel = document.getElementById("productFilterPanel");
+  const btn = document.getElementById("prodFilterBtn");
+  if (!panel) return;
+  const isOpen = panel.style.display !== "none";
+  panel.style.display = isOpen ? "none" : "block";
+  if (btn) {
+    btn.style.borderColor = isOpen ? "var(--ink4)" : "var(--brand)";
+    btn.style.color = isOpen ? "var(--ink2)" : "var(--brand)";
+  }
+}
+
+function resetProductFilters() {
+  ["productSearchInput","prodPriceFilter"].forEach(id => { const el = document.getElementById(id); if (el) el.value = ""; });
+  ["prodCatFilter","prodSortFilter","prodRatingFilter"].forEach(id => { const el = document.getElementById(id); if (el) el.selectedIndex = 0; });
+  _prodPage = 0;
+  filterProducts();
+}
+
+function showAllProducts() {
+  // Scroll to products and open filter panel
+  showPage("home");
+  setTimeout(() => {
+    const sec = document.getElementById("productsSection");
+    if (sec) sec.scrollIntoView({ behavior: "smooth" });
+    const panel = document.getElementById("productFilterPanel");
+    if (panel) panel.style.display = "block";
+  }, 100);
+}
+
+/* ===== ORDER HISTORY EXPORT ===== */
+function exportOrderHistory() {
+  if (!S.orders || S.orders.length === 0) { toast("No orders to export", "error"); return; }
+  const headers = ["Order Number", "Date", "Items", "Shop", "Total (₹)", "Payment", "Status"];
+  const rows = S.orders.map(o => [
+    o.orderNumber || o._id?.slice(-8) || "",
+    new Date(o.createdAt).toLocaleDateString("en-IN"),
+    (o.items||[]).map(i => `${i.name} x${i.quantity}`).join("; "),
+    o.shop?.name || "",
+    o.totalAmount || "",
+    o.paymentMethod || "",
+    o.orderStatus || ""
+  ]);
+  const csv = [headers, ...rows].map(r => r.map(v => `"${String(v).replace(/"/g,'""')}"`).join(",")).join("\n");
+  const blob = new Blob(["\uFEFF" + csv], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `nearzy-orders-${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+  URL.revokeObjectURL(url);
+  toast("Orders exported as CSV!", "success");
+}
+
+/* ===== SUPPORT TICKET SYSTEM ===== */
+function submitTicket() {
+  const type = document.getElementById("ticketType")?.value;
+  const order = document.getElementById("ticketOrder")?.value.trim();
+  const desc = document.getElementById("ticketDesc")?.value.trim();
+  if (!type) { toast("Please select an issue type", "error"); return; }
+  if (!desc || desc.length < 10) { toast("Please describe your issue (at least 10 characters)", "error"); return; }
+  // Save ticket locally
+  const tickets = JSON.parse(localStorage.getItem("nz_tickets") || "[]");
+  const ticket = {
+    id: "TKT" + Date.now().toString().slice(-8),
+    type, order, desc,
+    status: "open",
+    createdAt: new Date().toISOString(),
+    user: S.user?.name || "Guest"
+  };
+  tickets.unshift(ticket);
+  localStorage.setItem("nz_tickets", JSON.stringify(tickets.slice(0, 20)));
+  // Also try API
+  if (S.token) {
+    fetch(`${API}/support/tickets`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Authorization": "Bearer " + S.token },
+      body: JSON.stringify({ type, orderNumber: order, description: desc })
+    }).catch(() => {});
+  }
+  // Clear form
+  ["ticketType","ticketOrder","ticketDesc"].forEach(id => { const el = document.getElementById(id); if (el) el.value = ""; });
+  toast(`Ticket #${ticket.id} raised! We'll respond within 24 hours.`, "success");
+  renderTicketList();
+}
+
+function renderTicketList() {
+  const el = document.getElementById("ticketList");
+  if (!el) return;
+  const tickets = JSON.parse(localStorage.getItem("nz_tickets") || "[]");
+  if (tickets.length === 0) {
+    el.innerHTML = `<div style="text-align:center;padding:20px;color:var(--ink3);font-size:13px"><i class="fa-solid fa-ticket" style="font-size:28px;display:block;margin-bottom:8px;color:var(--ink4)"></i>No tickets yet</div>`;
+    return;
+  }
+  const statusColors = { open:"var(--brand)", "in-progress":"var(--blue)", resolved:"var(--green)", closed:"var(--ink3)" };
+  const statusBg = { open:"var(--brand-light)", "in-progress":"#e3f2fd", resolved:"var(--green-light)", closed:"var(--bg)" };
+  el.innerHTML = tickets.map(t => `
+    <div style="border:1px solid #f0f0f0;border-radius:var(--r-sm);padding:12px 14px;margin-bottom:8px">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:5px">
+        <div style="font-size:12px;font-weight:800;color:var(--ink)">#${t.id}</div>
+        <span style="padding:3px 9px;border-radius:99px;font-size:10px;font-weight:800;background:${statusBg[t.status]||"var(--bg)"};color:${statusColors[t.status]||"var(--ink3)"}">
+          ${(t.status||"open").toUpperCase()}
+        </span>
+      </div>
+      <div style="font-size:13px;color:var(--ink2);margin-bottom:4px">${t.type?.replace(/_/g," ")}</div>
+      <div style="font-size:12px;color:var(--ink3)">${t.desc?.slice(0,80)}${t.desc?.length>80?"...":""}</div>
+      <div style="font-size:11px;color:var(--ink3);margin-top:5px">${new Date(t.createdAt).toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"})}</div>
+    </div>`).join("");
+}
+
+function toggleFaq(i) {
+  const body = document.getElementById("faqBody" + i);
+  const arrow = document.getElementById("faqArrow" + i);
+  if (!body) return;
+  const isOpen = body.style.display !== "none";
+  body.style.display = isOpen ? "none" : "block";
+  if (arrow) arrow.style.transform = isOpen ? "" : "rotate(180deg)";
+}
+function toggleDarkMode() {
+  const isDark = document.body.classList.toggle("dark-mode");
+  localStorage.setItem("nz_dark", isDark ? "1" : "0");
+  const icon = document.getElementById("darkIcon");
+  if (icon) { icon.className = isDark ? "fa-solid fa-sun" : "fa-solid fa-moon"; }
+}
+
+function initDarkMode() {
+  const saved = localStorage.getItem("nz_dark");
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  if (saved === "1" || (saved === null && prefersDark)) {
+    document.body.classList.add("dark-mode");
+    const icon = document.getElementById("darkIcon");
+    if (icon) icon.className = "fa-solid fa-sun";
+  }
+}
+
+/* ===== REFERRAL SYSTEM ===== */
+function copyReferralCode() {
+  const code = document.getElementById("referralCode")?.textContent?.trim();
+  if (!code) return;
+  navigator.clipboard.writeText(code).then(() => toast("Referral code copied!", "success")).catch(() => {
+    const el = document.createElement("textarea");
+    el.value = code; document.body.appendChild(el); el.select(); document.execCommand("copy"); el.remove();
+    toast("Referral code copied!", "success");
+  });
+}
+
+function shareReferral(method) {
+  const code = document.getElementById("referralCode")?.textContent?.trim() || "";
+  const url = `${window.location.origin}${window.location.pathname}?ref=${code}`;
+  const msg = `🛵 Join Nearzy — order from any shop in our city!\nUse my code *${code}* and get ₹30 off your first order!\n${url}`;
+  if (method === "whatsapp") {
+    window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, "_blank");
+  } else {
+    if (navigator.share) {
+      navigator.share({ title: "Join Nearzy!", text: msg, url }).catch(() => {});
+    } else {
+      navigator.clipboard.writeText(msg).then(() => toast("Share link copied!", "success")).catch(() => toast("Copy the link and share it!", "info"));
+    }
+  }
+}
+
+// Check if user came via referral link
+function checkReferral() {
+  const params = new URLSearchParams(window.location.search);
+  const ref = params.get("ref");
+  if (ref) {
+    localStorage.setItem("nz_ref", ref);
+    // Apply referral discount on first order
+    if (!localStorage.getItem("nz_ref_used")) {
+      PROMO_CODES["REF30"] = { type: "flat", value: 30, min: 0, desc: "₹30 referral discount" };
+      toast(`Referral code applied! You get ₹30 off your first order 🎉`, "success");
+    }
+  }
+}
+
+/* ===== ADMIN PAYOUTS ===== */
+async function markShopPaid(shopId) {
+  if (!confirm("Mark all pending commissions as paid for this shop?")) return;
+  try {
+    const res = await fetch(`${API}/admin/payouts/mark-paid`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json", "Authorization": "Bearer " + S.token },
+      body: JSON.stringify({ shopId })
+    });
+    if (res.ok) { toast("Payout marked as paid!", "success"); renderAdminDashboard(); }
+    else { toast("Could not update — check backend", "error"); }
+  } catch(e) { toast("Failed", "error"); }
+}
+
+async function markAllPayoutsPaid() {
+  if (!confirm("Mark ALL pending commission payouts as paid?")) return;
+  try {
+    const res = await fetch(`${API}/admin/payouts/mark-all-paid`, {
+      method: "PUT",
+      headers: { "Authorization": "Bearer " + S.token }
+    });
+    if (res.ok) { toast("All payouts marked as paid!", "success"); renderAdminDashboard(); }
+    else toast("Could not update — check backend", "error");
+  } catch(e) { toast("Failed", "error"); }
+}
+const LANGS = {
+  en: {
+    appName: "Nearzy", tagline: "Everything near you, delivered fast",
+    searchPlaceholder: "Search shops, products, restaurants...",
+    home: "Home", search: "Search", cart: "Cart", wishlist: "Wishlist", account: "Account",
+    login: "Login", logout: "Logout", myOrders: "My Orders", addToCart: "Add",
+    orderNow: "Order Now", placeOrder: "Place Order", proceedCheckout: "Proceed to Checkout",
+    allShops: "All Shops Near You", featuredProducts: "Featured Products",
+    noShops: "No Shops Found", emptyCart: "Your Cart is Empty",
+    deliveryAddress: "Delivery Address", paymentMethod: "Payment Method",
+    cashOnDelivery: "Cash on Delivery", onlinePayment: "Online Payment",
+    orderPlaced: "Order Placed Successfully!", browseShops: "Browse Shops",
+    savedAddresses: "Saved Addresses", loyaltyPoints: "Loyalty Points",
+    openNow: "Open Now", nearby: "Nearby", topRated: "Top Rated",
+    fastest: "Fastest", newest: "Newest"
+  },
+  te: {
+    appName: "నియర్జీ", tagline: "మీ దగ్గర అన్నీ, వేగంగా డెలివరీ",
+    searchPlaceholder: "దుకాణాలు, ఉత్పత్తులు వెతకండి...",
+    home: "హోమ్", search: "శోధన", cart: "కార్ట్", wishlist: "విష్‌లిస్ట్", account: "ఖాతా",
+    login: "లాగిన్", logout: "లాగ్అవుట్", myOrders: "నా ఆర్డర్లు", addToCart: "జోడించు",
+    orderNow: "ఆర్డర్ చేయండి", placeOrder: "ఆర్డర్ ఇవ్వండి", proceedCheckout: "చెక్అవుట్‌కు వెళ్ళండి",
+    allShops: "మీ దగ్గర అన్ని దుకాణాలు", featuredProducts: "ఫీచర్డ్ ఉత్పత్తులు",
+    noShops: "దుకాణాలు కనుగొనబడలేదు", emptyCart: "మీ కార్ట్ ఖాళీగా ఉంది",
+    deliveryAddress: "డెలివరీ చిరునామా", paymentMethod: "చెల్లింపు పద్ధతి",
+    cashOnDelivery: "డెలివరీలో నగదు", onlinePayment: "ఆన్‌లైన్ చెల్లింపు",
+    orderPlaced: "ఆర్డర్ విజయవంతంగా ఇవ్వబడింది!", browseShops: "దుకాణాలు చూడండి",
+    savedAddresses: "సేవ్ చేసిన చిరునామాలు", loyaltyPoints: "లాయల్టీ పాయింట్లు",
+    openNow: "ఇప్పుడు తెరిచి", nearby: "సమీపంలో", topRated: "టాప్ రేటెడ్",
+    fastest: "వేగవంతమైన", newest: "కొత్తవి"
+  },
+  hi: {
+    appName: "नियर्ज़ी", tagline: "आपके पास सब कुछ, तेज़ डिलीवरी",
+    searchPlaceholder: "दुकानें, उत्पाद खोजें...",
+    home: "होम", search: "खोज", cart: "कार्ट", wishlist: "विशलिस्ट", account: "खाता",
+    login: "लॉगिन", logout: "लॉगआउट", myOrders: "मेरे ऑर्डर", addToCart: "जोड़ें",
+    orderNow: "अभी ऑर्डर करें", placeOrder: "ऑर्डर दें", proceedCheckout: "चेकआउट करें",
+    allShops: "आपके पास सभी दुकानें", featuredProducts: "फीचर्ड उत्पाद",
+    noShops: "कोई दुकान नहीं मिली", emptyCart: "आपका कार्ट खाली है",
+    deliveryAddress: "डिलीवरी पता", paymentMethod: "भुगतान विधि",
+    cashOnDelivery: "कैश ऑन डिलीवरी", onlinePayment: "ऑनलाइन भुगतान",
+    orderPlaced: "ऑर्डर सफलतापूर्वक दिया गया!", browseShops: "दुकानें देखें",
+    savedAddresses: "सहेजे गए पते", loyaltyPoints: "लॉयल्टी पॉइंट्स",
+    openNow: "अभी खुला", nearby: "पास में", topRated: "टॉप रेटेड",
+    fastest: "सबसे तेज़", newest: "नवीनतम"
+  }
+};
+
+S.lang = localStorage.getItem("nz_lang") || "en";
+
+function t(key) {
+  return (LANGS[S.lang] || LANGS.en)[key] || (LANGS.en)[key] || key;
+}
+
+function openLangPicker() {
+  document.getElementById("langModal").classList.add("open");
+  // Highlight current
+  ["en","te","hi"].forEach(code => {
+    const card = document.getElementById("lang-" + code);
+    const check = document.getElementById("langcheck-" + code);
+    if (card) card.style.borderColor = code === S.lang ? "var(--brand)" : "var(--ink4)";
+    if (check) check.style.display = code === S.lang ? "block" : "none";
+  });
+}
+
+function closeLangPicker() {
+  document.getElementById("langModal").classList.remove("open");
+}
+
+function setLanguage(code) {
+  S.lang = code;
+  localStorage.setItem("nz_lang", code);
+  closeLangPicker();
+  applyLanguage();
+  toast(code === "te" ? "భాష మార్చబడింది!" : code === "hi" ? "भाषा बदली गई!" : "Language changed!", "success");
+}
+
+function applyLanguage() {
+  const L = LANGS[S.lang] || LANGS.en;
+  // Update header
+  const langLabel = document.getElementById("langLabel");
+  if (langLabel) langLabel.textContent = S.lang.toUpperCase();
+  // Update search placeholder
+  const searchInput = document.getElementById("searchInput");
+  if (searchInput) searchInput.placeholder = L.searchPlaceholder;
+  // Update bottom nav labels
+  const navMap = { "bn-home": L.home, "bn-search": L.search, "bn-cart": L.cart, "bn-wishlist": L.wishlist, "bn-account": L.account };
+  Object.entries(navMap).forEach(([id, label]) => {
+    const el = document.getElementById(id);
+    if (el) { const span = el.querySelector("span"); if (span) span.textContent = label; }
+  });
+  // Update sections titles
+  const shopTitle = document.getElementById("shopsSectionTitle");
+  if (shopTitle && S.filters.category === "all") shopTitle.innerHTML = `<span style="width:4px;height:20px;background:var(--brand);border-radius:2px;display:inline-block"></span> ${L.allShops}`;
+  // Update filter chips
+  const chips = document.querySelectorAll(".fsb-chip");
+  const chipLabels = [L.topRated, L.newest, L.fastest, L.openNow, L.nearby];
+  chips.forEach((chip, i) => { if (chipLabels[i]) chip.childNodes[chip.childNodes.length-1].textContent = " " + chipLabels[i]; });
+}
+
+/* ===== GPS HYPERLOCAL FILTER ===== */
+S.userLat = null;
+S.userLng = null;
+S.nearbyOnly = false;
+S.nearbyRadius = 5; // km
+
+function toggleNearbyFilter(btn) {
+  if (!S.nearbyOnly) {
+    btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin" style="font-size:11px"></i> Locating...`;
+    btn.disabled = true;
+    navigator.geolocation.getCurrentPosition(
+      pos => {
+        S.userLat = pos.coords.latitude;
+        S.userLng = pos.coords.longitude;
+        S.nearbyOnly = true;
+        btn.disabled = false;
+        btn.innerHTML = `<i class="fa-solid fa-location-crosshairs" style="font-size:11px;color:var(--brand)"></i> ${S.nearbyRadius}km`;
+        btn.classList.add("active");
+        renderShops();
+        toast(`Showing shops within ${S.nearbyRadius}km of you`, "success");
+      },
+      err => {
+        btn.disabled = false;
+        btn.innerHTML = `<i class="fa-solid fa-location-crosshairs" style="font-size:11px"></i> Nearby`;
+        toast("Could not get location. Please allow location access.", "error");
+      },
+      { timeout: 8000, enableHighAccuracy: false }
+    );
+  } else {
+    S.nearbyOnly = false;
+    S.userLat = null; S.userLng = null;
+    btn.classList.remove("active");
+    btn.innerHTML = `<i class="fa-solid fa-location-crosshairs" style="font-size:11px"></i> Nearby`;
+    renderShops();
+    toast("Showing all shops", "info");
+  }
+}
+
+function getDistanceKm(lat1, lng1, lat2, lng2) {
+  if (!lat1 || !lng1 || !lat2 || !lng2) return 999;
+  const R = 6371;
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLng = (lng2 - lng1) * Math.PI / 180;
+  const a = Math.sin(dLat/2)**2 + Math.cos(lat1*Math.PI/180) * Math.cos(lat2*Math.PI/180) * Math.sin(dLng/2)**2;
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+}
+
+/* ===== INVENTORY MANAGEMENT ===== */
+async function quickUpdateStock(productId, productName) {
+  const newStock = prompt(`Update stock for "${productName}":\nEnter new quantity:`);
+  if (newStock === null) return;
+  const qty = parseInt(newStock);
+  if (isNaN(qty) || qty < 0) { toast("Enter a valid number", "error"); return; }
+  try {
+    const res = await fetch(`${API}/products/${productId}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json", "Authorization": "Bearer " + S.token },
+      body: JSON.stringify({ stock: qty })
+    });
+    if (!res.ok) throw new Error();
+    toast(`Stock updated to ${qty}`, "success");
+    renderSellerDashboard();
+  } catch(e) { toast("Failed to update stock", "error"); }
+}
+
+function filterSellerProducts(filter) {
+  const grid = document.querySelector("#stab-products .sp-table tbody");
+  if (!grid) return;
+  const rows = grid.querySelectorAll("tr");
+  rows.forEach(row => {
+    const stockEl = row.querySelector("td:nth-child(5)");
+    if (!stockEl) return;
+    const stock = parseInt(stockEl.textContent) || 0;
+    const show = filter === "all" ||
+      (filter === "out" && stock === 0) ||
+      (filter === "low" && stock > 0 && stock <= 5) ||
+      (filter === "ok" && stock > 5);
+    row.style.display = show ? "" : "none";
+  });
+}
+function earnPoints(orderTotal) {
+  const pts = Math.floor(orderTotal); // 1 point per ₹1
+  S.loyaltyPoints += pts;
+  localStorage.setItem("nz_points", S.loyaltyPoints);
+  if (pts > 0) {
+    setTimeout(() => {
+      const el = document.createElement("div");
+      el.innerHTML = `
+        <div style="position:fixed;top:80px;left:50%;transform:translateX(-50%);z-index:9999;
+          background:linear-gradient(135deg,#fc8019,#ff9f4a);color:#fff;border-radius:99px;
+          padding:10px 20px;font-size:13px;font-weight:800;white-space:nowrap;
+          box-shadow:0 8px 24px rgba(252,128,25,.4);animation:slideUp .3s ease-out;
+          display:flex;align-items:center;gap:7px">
+          <i class="fa-solid fa-star"></i> +${pts} Nearzy Points earned!
+        </div>`;
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 3500);
+    }, 1500);
+  }
+}
+
+function redeemPoints() {
+  if (S.loyaltyPoints < 100) { toast("Need at least 100 points to redeem", "error"); return; }
+  const discount = Math.floor(S.loyaltyPoints / 10);
+  S.appliedPromo = { code: "POINTS", type: "flat", value: discount, desc: `${S.loyaltyPoints} points redeemed (₹${discount} off)` };
+  S.loyaltyPoints = 0;
+  localStorage.setItem("nz_points", 0);
+  toast(`₹${discount} discount applied from your points!`, "success");
+  showPage("cart");
+}
+
+function addPointsPromoCode() {
+  // Add POINTS as a valid promo code if user has enough
+  if (S.loyaltyPoints >= 100) {
+    PROMO_CODES["POINTS"] = { type: "flat", value: Math.floor(S.loyaltyPoints / 10), min: 0, desc: `${S.loyaltyPoints} points = ₹${Math.floor(S.loyaltyPoints / 10)} off` };
+  }
+}
+
+/* ===== IN-APP CHAT ===== */
+function openChat(orderId, shopName) {
+  S.chatOrderId = orderId;
+  S.chatMessages = JSON.parse(localStorage.getItem("nz_chat_" + orderId) || "[]");
+  const existing = document.getElementById("chatWidget");
+  if (existing) existing.remove();
+
+  const widget = document.createElement("div");
+  widget.id = "chatWidget";
+  widget.innerHTML = `
+    <div style="position:fixed;bottom:80px;right:12px;width:320px;max-height:480px;
+      background:#fff;border-radius:var(--r);box-shadow:0 8px 40px rgba(0,0,0,.2);
+      z-index:4000;display:flex;flex-direction:column;overflow:hidden;animation:slideUp .3s ease-out">
+      <!-- Header -->
+      <div style="background:linear-gradient(135deg,#1a1a2e,#16213e);padding:14px 16px;display:flex;align-items:center;gap:10px">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--brand);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+          <i class="fa-solid fa-store" style="color:#fff;font-size:14px"></i>
+        </div>
+        <div style="flex:1">
+          <div style="font-size:13px;font-weight:800;color:#fff">${shopName || "Shop"}</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.6)">Chat about your order</div>
+        </div>
+        <button onclick="document.getElementById('chatWidget')?.remove()" style="background:none;border:none;color:rgba(255,255,255,.6);cursor:pointer;font-size:18px">&times;</button>
+      </div>
+      <!-- Messages -->
+      <div id="chatMessages" style="flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px;min-height:200px;max-height:280px;background:#f8f8f8">
+        ${S.chatMessages.length === 0
+          ? `<div style="text-align:center;padding:20px;color:var(--ink3);font-size:12px"><i class="fa-solid fa-comment-dots" style="font-size:28px;display:block;margin-bottom:8px;color:var(--ink4)"></i>No messages yet.<br>Ask the shop anything about your order!</div>`
+          : S.chatMessages.map(m => chatBubbleHTML(m)).join("")}
+      </div>
+      <!-- Quick replies -->
+      <div style="padding:8px 12px;background:#fff;border-top:1px solid #f0f0f0;display:flex;gap:5px;overflow-x:auto;scrollbar-width:none">
+        ${["Is my order ready?","Add extra spice 🌶️","No onions please","What's the ETA?"].map(q =>
+          `<button onclick="sendChatMsg('${q}')" style="padding:5px 10px;background:var(--brand-light);color:var(--brand);border:1px solid var(--brand);border-radius:99px;font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap;flex-shrink:0">${q}</button>`
+        ).join("")}
+      </div>
+      <!-- Input -->
+      <div style="padding:10px 12px;background:#fff;border-top:1px solid #f0f0f0;display:flex;gap:8px;align-items:center">
+        <input id="chatInput" placeholder="Type a message..." style="flex:1;border:1.5px solid var(--ink4);border-radius:99px;padding:8px 14px;font-size:13px;outline:none;font-family:inherit"
+          onkeydown="if(event.key==='Enter')sendChatMsg(this.value)">
+        <button onclick="sendChatMsg(document.getElementById('chatInput')?.value)"
+          style="width:36px;height:36px;border-radius:50%;background:var(--brand);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+          <i class="fa-solid fa-paper-plane" style="font-size:13px"></i>
+        </button>
+      </div>
+    </div>`;
+  document.body.appendChild(widget);
+  scrollChatToBottom();
+}
+
+function chatBubbleHTML(m) {
+  const isMe = m.sender === "customer";
+  return `<div style="display:flex;justify-content:${isMe ? "flex-end" : "flex-start"}">
+    <div style="max-width:75%;padding:8px 12px;border-radius:${isMe ? "12px 12px 2px 12px" : "12px 12px 12px 2px"};
+      background:${isMe ? "var(--brand)" : "#fff"};color:${isMe ? "#fff" : "var(--ink)"};
+      font-size:13px;box-shadow:0 1px 4px rgba(0,0,0,.08)">
+      ${m.text}
+      <div style="font-size:10px;opacity:.65;margin-top:3px;text-align:right">${m.time}</div>
+    </div>
+  </div>`;
+}
+
+function sendChatMsg(text) {
+  if (!text || !text.trim()) return;
+  const msg = { sender: "customer", text: text.trim(), time: new Date().toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit" }) };
+  S.chatMessages.push(msg);
+  localStorage.setItem("nz_chat_" + S.chatOrderId, JSON.stringify(S.chatMessages));
+  const container = document.getElementById("chatMessages");
+  if (container) { container.insertAdjacentHTML("beforeend", chatBubbleHTML(msg)); scrollChatToBottom(); }
+  const input = document.getElementById("chatInput");
+  if (input) input.value = "";
+  // Simulate shop auto-reply after 2s
+  setTimeout(() => {
+    const replies = ["Got it! We'll take care of that 👍", "Sure, no problem!", "Your order will be ready in ~15 mins", "We've noted that, thanks!", "On it! 🙏"];
+    const reply = { sender: "shop", text: replies[Math.floor(Math.random() * replies.length)], time: new Date().toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit" }) };
+    S.chatMessages.push(reply);
+    localStorage.setItem("nz_chat_" + S.chatOrderId, JSON.stringify(S.chatMessages));
+    const c = document.getElementById("chatMessages");
+    if (c) { c.insertAdjacentHTML("beforeend", chatBubbleHTML(reply)); scrollChatToBottom(); }
+    playOrderSound();
+  }, 1500 + Math.random() * 1000);
+}
+
+function scrollChatToBottom() {
+  const c = document.getElementById("chatMessages");
+  if (c) setTimeout(() => { c.scrollTop = c.scrollHeight; }, 50);
+}
+
+/* ===== PWA — INSTALL PROMPT ===== */
+let _pwaPrompt = null;
+window.addEventListener("beforeinstallprompt", e => {
+  e.preventDefault();
+  _pwaPrompt = e;
+  // Show install banner after 30s if user hasn't dismissed
+  setTimeout(() => {
+    if (!_pwaPrompt || localStorage.getItem("nz_pwa_dismissed")) return;
+    showPWABanner();
+  }, 30000);
+});
+
+function showPWABanner() {
+  if (document.getElementById("pwaBanner")) return;
+  const banner = document.createElement("div");
+  banner.id = "pwaBanner";
+  banner.innerHTML = `
+    <div style="position:fixed;bottom:80px;left:12px;right:12px;background:#fff;border-radius:var(--r-sm);
+      padding:14px 16px;z-index:3999;display:flex;align-items:center;gap:12px;
+      box-shadow:0 8px 32px rgba(0,0,0,.15);border:1px solid #f0f0f0;animation:slideUp .3s ease-out">
+      <div style="width:44px;height:44px;border-radius:var(--r-sm);background:var(--brand);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <span style="font-family:'Sora',sans-serif;font-size:20px;font-weight:800;color:#fff">N</span>
+      </div>
+      <div style="flex:1">
+        <div style="font-size:13px;font-weight:800;color:var(--ink)">Install Nearzy App</div>
+        <div style="font-size:11px;color:var(--ink3);margin-top:2px">Add to home screen for the best experience</div>
+      </div>
+      <button onclick="installPWA()" style="padding:8px 14px;background:var(--brand);color:#fff;border:none;border-radius:var(--r-sm);font-size:12px;font-weight:800;cursor:pointer;flex-shrink:0">Install</button>
+      <button onclick="localStorage.setItem('nz_pwa_dismissed','1');document.getElementById('pwaBanner')?.remove()"
+        style="background:none;border:none;color:var(--ink3);cursor:pointer;font-size:18px;flex-shrink:0">&times;</button>
+    </div>`;
+  document.body.appendChild(banner);
+}
+
+async function installPWA() {
+  if (!_pwaPrompt) { toast("To install: tap Share → Add to Home Screen", "info"); return; }
+  _pwaPrompt.prompt();
+  const { outcome } = await _pwaPrompt.userChoice;
+  if (outcome === "accepted") { toast("Nearzy installed! 🎉", "success"); _pwaPrompt = null; }
+  document.getElementById("pwaBanner")?.remove();
+}
+
+// Register service worker for offline support
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("sw.js").catch(() => {});
+  });
+}
+
+/* ===== ORDER TRACKING PAGE ===== */
+async function openOrderTracking(orderId) {
+  showPage("tracking");
+  const el = document.getElementById("trackingContent");
+  el.innerHTML = `<div style="text-align:center;padding:40px;color:var(--ink3)"><i class="fa-solid fa-spinner fa-spin" style="font-size:28px;display:block;margin-bottom:12px"></i>Loading order...</div>`;
+  try {
+    const res = await fetch(`${API}/orders/${orderId}`, { headers: { "Authorization": "Bearer " + S.token } });
+    if (!res.ok) throw new Error("Order not found");
+    const o = await res.json();
+    renderTrackingPage(o);
+    if (!["delivered","cancelled"].includes(o.orderStatus)) {
+      if (window._trackInterval) clearInterval(window._trackInterval);
+      window._trackInterval = setInterval(async () => {
+        const activePage = document.querySelector(".page.active");
+        if (activePage?.id !== "page-tracking") { clearInterval(window._trackInterval); return; }
+        try {
+          const r = await fetch(`${API}/orders/${orderId}`, { headers: { "Authorization": "Bearer " + S.token } });
+          if (r.ok) { const updated = await r.json(); renderTrackingPage(updated); if (["delivered","cancelled"].includes(updated.orderStatus)) clearInterval(window._trackInterval); }
+        } catch(e) {}
+      }, 15000);
+    }
+  } catch(e) { el.innerHTML = `<div class="empty-box"><i class="fa-solid fa-circle-exclamation"></i><h3>Could not load order</h3><button class="btn-empty" onclick="showPage('account')">Go Back</button></div>`; }
+}
+
+function renderTrackingPage(o) {
+  const el = document.getElementById("trackingContent");
+  if (!el) return;
+  const allSteps = [
+    { key:"placed",     icon:"fa-check",         label:"Order Placed",     desc:"Your order has been placed" },
+    { key:"confirmed",  icon:"fa-store",          label:"Shop Accepted",    desc:"Shop confirmed your order" },
+    { key:"preparing",  icon:"fa-fire",           label:"Being Prepared",   desc:"Shop is cooking your order" },
+    { key:"ready",      icon:"fa-box-open",       label:"Ready for Pickup", desc:"Packed and ready to go" },
+    { key:"picked",     icon:"fa-motorcycle",     label:"Picked Up",        desc:"Delivery partner on the way" },
+    { key:"on_the_way", icon:"fa-location-dot",   label:"On the Way",       desc:"Almost there!" },
+    { key:"delivered",  icon:"fa-house",          label:"Delivered",        desc:"Enjoy your order!" },
+  ];
+  if (o.orderStatus === "cancelled") allSteps.push({ key:"cancelled", icon:"fa-xmark", label:"Cancelled", desc:o.cancelReason||"Order was cancelled" });
+  const statusOrder = allSteps.map(s=>s.key);
+  const currentIdx = statusOrder.indexOf(o.orderStatus);
+
+  const stepsHTML = allSteps.map((step,i) => {
+    const done = i <= currentIdx;
+    const active = step.key === o.orderStatus;
+    const cancelled = step.key === "cancelled";
+    const color = cancelled ? "var(--red)" : active ? "var(--brand)" : done ? "var(--green)" : "var(--ink4)";
+    const trackEntry = (o.tracking||[]).filter(t=>t.status===step.key).pop();
+    const timeStr = trackEntry ? new Date(trackEntry.time||trackEntry.createdAt).toLocaleTimeString("en-IN",{hour:"2-digit",minute:"2-digit"}) : "";
+    return `<div style="display:flex;gap:14px;position:relative">
+      <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0">
+        <div style="width:40px;height:40px;border-radius:50%;background:${done||active?color:"#f0f0f0"};display:flex;align-items:center;justify-content:center;border:2px solid ${done||active?color:"var(--ink4)"};box-shadow:${active?"0 0 0 4px "+color+"33":""};transition:all .4s">
+          <i class="fa-solid ${step.icon}" style="color:${done||active?"#fff":"var(--ink4)"};font-size:14px"></i>
+        </div>
+        ${i<allSteps.length-1?`<div style="width:2px;flex:1;min-height:24px;background:${done?"var(--green)":"#f0f0f0"};margin:4px 0;border-radius:2px"></div>`:""}
+      </div>
+      <div style="flex:1;padding-bottom:${i<allSteps.length-1?"18":"0"}px">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div style="font-size:14px;font-weight:${active?"800":"700"};color:${active?color:done?"var(--ink)":"var(--ink3)"}">${step.label}</div>
+          ${timeStr?`<div style="font-size:11px;color:var(--ink3)">${timeStr}</div>`:""}
+        </div>
+        <div style="font-size:12px;color:${active?color:"var(--ink3)"};margin-top:2px">${active?`<b>${step.desc}</b>`:step.desc}</div>
+      </div>
+    </div>`;
+  }).join("");
+
+  el.innerHTML = `
+  <div style="background:var(--white);border-radius:var(--r);box-shadow:var(--card-shadow);overflow:hidden;margin-bottom:14px">
+    <div style="background:linear-gradient(135deg,#1a1a2e,#16213e);padding:20px 22px">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+        <div style="font-family:'Sora',sans-serif;font-size:16px;font-weight:800;color:#fff">Order #${o.orderNumber||o._id?.slice(-8)}</div>
+        <span style="padding:4px 12px;border-radius:99px;font-size:11px;font-weight:800;background:rgba(255,255,255,.15);color:#fff">${(o.orderStatus||"").replace(/_/g," ").toUpperCase()}</span>
+      </div>
+      <div style="font-size:12px;color:rgba(255,255,255,.6)">${new Date(o.createdAt).toLocaleDateString("en-IN",{day:"numeric",month:"long",hour:"2-digit",minute:"2-digit"})}</div>
+    </div>
+    <div style="padding:16px 20px;border-bottom:1px solid #f0f0f0">
+      ${(o.items||[]).map(i=>`<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+        ${i.image?`<img src="${i.image}" style="width:36px;height:36px;border-radius:var(--r-sm);object-fit:cover" onerror="this.style.display='none'">`:`<div style="width:36px;height:36px;border-radius:var(--r-sm);background:#f0f0f0"></div>`}
+        <div style="flex:1;font-size:13px;font-weight:600">${i.name} <span style="color:var(--ink3)">×${i.quantity}</span></div>
+        <div style="font-size:13px;font-weight:800">&#8377;${i.price*i.quantity}</div>
+      </div>`).join("")}
+      <div style="border-top:1px solid #f0f0f0;padding-top:10px;display:flex;justify-content:space-between;font-size:14px;font-weight:800">
+        <span>Total</span><span>&#8377;${o.totalAmount}</span>
+      </div>
+    </div>
+    <div style="padding:16px 20px;border-bottom:1px solid #f0f0f0;display:flex;gap:10px;align-items:flex-start">
+      <i class="fa-solid fa-location-dot" style="color:var(--red);margin-top:2px;flex-shrink:0"></i>
+      <div>
+        <div style="font-size:13px;font-weight:700">${o.deliveryAddress?.name||""}</div>
+        <div style="font-size:12px;color:var(--ink3);margin-top:2px">${o.deliveryAddress?.address||""}, ${o.deliveryAddress?.city||""}</div>
+      </div>
+    </div>
+    <div style="padding:20px 22px">
+      <div style="font-size:12px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:16px">
+        Live Tracking ${!["delivered","cancelled"].includes(o.orderStatus)?`<span style="font-size:10px;background:var(--green-light);color:var(--green);padding:2px 8px;border-radius:99px;margin-left:8px">● LIVE</span>`:""}
+      </div>
+      ${stepsHTML}
+    </div>
+    <div style="padding:14px 20px;border-top:1px solid #f0f0f0;display:flex;gap:10px;flex-wrap:wrap">
+      ${["placed","confirmed"].includes(o.orderStatus)?`<button onclick="cancelOrder('${o._id}')" style="padding:9px 16px;background:#fff;color:var(--red);border:1.5px solid var(--red);border-radius:var(--r-sm);font-size:12px;font-weight:700;cursor:pointer"><i class="fa-solid fa-xmark"></i> Cancel</button>`:""}
+      ${["placed","confirmed","preparing","ready","picked","on_the_way"].includes(o.orderStatus)?`<button onclick="openChat('${o._id}','${(o.shop?.name||"Shop").replace(/'/g,"")}')" style="padding:9px 16px;background:var(--brand-light);color:var(--brand);border:1.5px solid var(--brand);border-radius:var(--r-sm);font-size:12px;font-weight:700;cursor:pointer"><i class="fa-solid fa-comment"></i> Chat</button>`:""}
+      <button onclick="reorder('${o._id}')" style="padding:9px 16px;background:var(--brand);color:#fff;border:none;border-radius:var(--r-sm);font-size:12px;font-weight:700;cursor:pointer;margin-left:auto"><i class="fa-solid fa-rotate-right"></i> Reorder</button>
+    </div>
+  </div>`;
+}
+
 function setBnav(page) {
   document.querySelectorAll(".bnav-item").forEach(b => b.classList.remove("active"));
   const el = document.getElementById("bn-" + page);
@@ -3223,6 +5101,8 @@ function toast(msg, type = "") {
 }
 document.getElementById("authModal").addEventListener("click", e => { if (e.target === e.currentTarget) closeAuthModal(); });
 document.getElementById("productModal").addEventListener("click", e => { if (e.target === e.currentTarget) closeProductModal(); });
+document.getElementById("addressModal").addEventListener("click", e => { if (e.target === e.currentTarget) closeAddressModal(); });
+document.getElementById("langModal").addEventListener("click", e => { if (e.target === e.currentTarget) closeLangPicker(); });
 
 const pw = document.createElement("div");
 pw.id = "pagesWrap";

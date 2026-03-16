@@ -1,0 +1,20 @@
+{
+  "name": "Nearzy — Everything Near You, Delivered Fast",
+  "short_name": "Nearzy",
+  "description": "Order from any shop in your city — restaurants, grocery, pharmacy, flowers and more.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#fc8019",
+  "orientation": "portrait-primary",
+  "icons": [
+    { "src": "https://placehold.co/192x192/fc8019/fff?text=N", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "https://placehold.co/512x512/fc8019/fff?text=N", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ],
+  "categories": ["food", "shopping", "lifestyle"],
+  "screenshots": [],
+  "shortcuts": [
+    { "name": "Order Food", "url": "/?cat=restaurant", "description": "Browse restaurants near you" },
+    { "name": "My Orders", "url": "/?page=account", "description": "Track your orders" }
+  ]
+}
