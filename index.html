@@ -109,7 +109,7 @@ a{text-decoration:none;color:inherit}
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   z-index:9999;gap:0;transition:opacity 0.6s
 }
-#loadingScreen.hidden{opacity:0;pointer-events:none;transition:opacity 0.6s}
+#loadingScreen.hidden{opacity:0;pointer-events:none;transition:opacity 0.3s}
 .load-logo{
   font-family:'Sora',sans-serif;font-size:52px;font-weight:800;
   color:#fff;letter-spacing:-1px;
@@ -127,8 +127,8 @@ a{text-decoration:none;color:inherit}
 .load-tagline{font-size:14px;color:rgba(255,255,255,.5);margin-top:8px;margin-bottom:28px;animation:fadeUp 0.5s 0.4s ease forwards;opacity:0;transform:translateY(8px)}
 @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
 .load-bar{width:180px;height:3px;background:rgba(255,255,255,.15);border-radius:99px;overflow:hidden;animation:fadeUp 0.5s 0.5s ease forwards;opacity:0}
-.load-bar-fill{height:100%;background:linear-gradient(90deg,var(--brand),#ff9f4a);border-radius:99px;animation:loadfill 1.4s 0.5s ease forwards;width:0}
-@keyframes loadfill{0%{width:0}70%{width:85%}100%{width:100%}}
+.load-bar-fill{height:100%;background:linear-gradient(90deg,var(--brand),#ff9f4a);border-radius:99px;animation:loadfill 1s 0.2s ease forwards;width:0}
+@keyframes loadfill{0%{width:0}60%{width:90%}100%{width:100%}}
 .load-steps{display:flex;flex-direction:column;gap:6px;margin-top:20px;animation:fadeUp 0.5s 0.6s ease forwards;opacity:0}
 .load-step{font-size:11px;color:rgba(255,255,255,.4);display:flex;align-items:center;gap:6px;transition:color .3s}
 .load-step.active{color:rgba(255,255,255,.85)}
@@ -2029,28 +2029,67 @@ window.addEventListener("DOMContentLoaded", async () => {
   initHero();
   startTimer();
   initFlashSale();
+
+  // ── INSTANT LOAD STRATEGY ──────────────────────────────
+  // 1. Load cached data immediately (< 5ms, no network)
+  const cachedShops = localStorage.getItem("nz_shops_cache");
+  const cachedProducts = localStorage.getItem("nz_products_cache");
+  const cacheAge = Date.now() - parseInt(localStorage.getItem("nz_cache_time") || "0");
+  const cacheIsRecent = cacheAge < 10 * 60 * 1000; // 10 minutes
+
+  if (cachedShops) { S.shops = JSON.parse(cachedShops); }
+  if (cachedProducts) { S.products = JSON.parse(cachedProducts); }
+
+  // 2. Render immediately if we have cache
+  if (S.shops.length > 0 || S.products.length > 0) {
+    renderShops();
+    renderProducts();
+    updateHeader();
+    applyLanguage();
+    initPullToRefresh();
+    renderStories();
+    renderTimeGreeting();
+    const tg = document.getElementById("timeGreeting");
+    if (tg && S.user) tg.classList.remove("hidden");
+    hideLoadingScreen("cache");
+    // Post-load non-blocking
+    setTimeout(() => {
+      renderRecommendations();
+      renderBundlesSection();
+      renderRecentlyViewed();
+      checkAbandonedCart();
+      checkBirthdayOnLogin();
+      checkPriceAlerts();
+      initInfiniteScroll();
+      setTimeout(showQuickReorderBanner, 3000);
+      schedulePromoNotifications();
+    }, 100);
+    // 3. Silently refresh in background if cache is stale
+    if (!cacheIsRecent) {
+      silentRefresh();
+    }
+    return; // done — UI is live
+  }
+
+  // 4. No cache — first time load, show skeleton + fetch
   showSkeletons();
+  const hardHideTimer = setTimeout(() => {
+    hideLoadingScreen("timeout");
+    renderShops();
+    renderProducts();
+    updateHeader();
+  }, 4000); // 4s max wait on first load
 
-  // HARD TIMEOUT — always hide loading screen after 6 seconds no matter what
-  const hardHideTimer = setTimeout(() => hideLoadingScreen("timeout"), 6000);
-
-  // Animate loading steps
-  setTimeout(() => { const s = document.getElementById("lstep2"); if (s) { s.classList.add("active"); document.getElementById("lstep1")?.classList.remove("active"); } }, 400);
+  setTimeout(() => { const s = document.getElementById("lstep2"); if (s) { s.classList.add("active"); document.getElementById("lstep1")?.classList.remove("active"); } }, 300);
 
   try {
     await Promise.race([
-      loadShops(),
-      new Promise(resolve => setTimeout(resolve, 5000)) // 5s timeout
+      (async () => { await loadShops(); await loadProducts(); })(),
+      new Promise(resolve => setTimeout(resolve, 4000))
     ]);
-    setTimeout(() => { const s = document.getElementById("lstep3"); if (s) { s.classList.add("active"); document.getElementById("lstep2")?.classList.remove("active"); } }, 200);
-    await Promise.race([
-      loadProducts(),
-      new Promise(resolve => setTimeout(resolve, 5000)) // 5s timeout
-    ]);
-  } catch(e) {
-    console.warn("Nearzy: backend slow/offline, showing cached data");
-  }
+  } catch(e) {}
 
+  clearTimeout(hardHideTimer);
   renderShops();
   renderProducts();
   updateHeader();
@@ -2060,12 +2099,8 @@ window.addEventListener("DOMContentLoaded", async () => {
   renderTimeGreeting();
   const tg = document.getElementById("timeGreeting");
   if (tg && S.user) tg.classList.remove("hidden");
-
-  // Clear hard timeout and hide now
-  clearTimeout(hardHideTimer);
   hideLoadingScreen("loaded");
 
-  // Post-load tasks (non-blocking)
   setTimeout(() => {
     renderRecommendations();
     renderBundlesSection();
@@ -2079,14 +2114,62 @@ window.addEventListener("DOMContentLoaded", async () => {
   }, 100);
 });
 
+// Silent background refresh — updates data without blocking UI
+async function silentRefresh() {
+  try {
+    const ctrl1 = new AbortController();
+    const t1 = setTimeout(() => ctrl1.abort(), 8000);
+    const res1 = await fetch(`${API}/shops?limit=100`, { signal: ctrl1.signal });
+    clearTimeout(t1);
+    if (res1.ok) {
+      const fresh = await res1.json();
+      if (fresh.length > 0) {
+        S.shops = fresh;
+        localStorage.setItem("nz_shops_cache", JSON.stringify(fresh));
+        localStorage.setItem("nz_cache_time", Date.now().toString());
+        renderShops();
+      }
+    }
+  } catch(e) {}
+  try {
+    const ctrl2 = new AbortController();
+    const t2 = setTimeout(() => ctrl2.abort(), 8000);
+    const res2 = await fetch(`${API}/products?limit=100`, { signal: ctrl2.signal });
+    clearTimeout(t2);
+    if (res2.ok) {
+      const data = await res2.json();
+      S.products = data.map(p => ({
+        ...p, id: p._id||p.id,
+        image: (Array.isArray(p.images) && p.images[0]) ? p.images[0] : "",
+        shopId: p.shop?._id?.toString()||p.shop?.id?.toString()||(typeof p.shop==="string"?p.shop:"")||""
+      }));
+      localStorage.setItem("nz_products_cache", JSON.stringify(S.products));
+      renderProducts();
+    }
+  } catch(e) {}
+}
+
 function hideLoadingScreen(reason) {
   const ls = document.getElementById("loadingScreen");
   if (!ls || ls.classList.contains("hidden")) return;
   ls.classList.add("hidden");
-  // If backend was slow, show a gentle toast
   if (reason === "timeout" && S.shops.length === 0) {
-    setTimeout(() => toast("Backend is waking up... Pull down to refresh once shops load", "info"), 800);
+    setTimeout(() => toast("⏳ Still loading... Pull down to refresh", "info"), 800);
   }
+}
+
+// Ping backend to wake it up as soon as page loads (Render free tier)
+(function pingBackend() {
+  fetch(`${API}/shops?limit=1`, { method: "GET" }).catch(() => {});
+})();
+
+// Clear stale cache if version changes
+const APP_VERSION = "1.4";
+if (localStorage.getItem("nz_app_version") !== APP_VERSION) {
+  localStorage.removeItem("nz_shops_cache");
+  localStorage.removeItem("nz_products_cache");
+  localStorage.removeItem("nz_cache_time");
+  localStorage.setItem("nz_app_version", APP_VERSION);
 }
 
 function showLoading(v) {}
@@ -2147,19 +2230,37 @@ function showPage(page) {
 /* ===== LOAD DATA ===== */
 async function loadShops() {
   try {
+    // Try cache first — instant
+    const cached = localStorage.getItem("nz_shops_cache");
+    if (cached) {
+      S.shops = JSON.parse(cached);
+    }
+    // Fetch fresh in background with short timeout
     const ctrl = new AbortController();
-    const t = setTimeout(() => ctrl.abort(), 8000);
+    const t = setTimeout(() => ctrl.abort(), 7000);
     const res = await fetch(`${API}/shops?limit=100`, { signal: ctrl.signal });
     clearTimeout(t);
     if (!res.ok) throw new Error();
-    S.shops = await res.json();
-  } catch (e) { S.shops = []; }
+    const fresh = await res.json();
+    S.shops = fresh;
+    localStorage.setItem("nz_shops_cache", JSON.stringify(fresh));
+    localStorage.setItem("nz_cache_time", Date.now().toString());
+  } catch (e) {
+    // Use cached data silently — already set above
+    if (!S.shops?.length) S.shops = [];
+  }
 }
 
 async function loadProducts() {
   try {
+    // Try cache first — instant
+    const cached = localStorage.getItem("nz_products_cache");
+    if (cached) {
+      S.products = JSON.parse(cached);
+    }
+    // Fetch fresh in background
     const ctrl = new AbortController();
-    const t = setTimeout(() => ctrl.abort(), 8000);
+    const t = setTimeout(() => ctrl.abort(), 7000);
     const res = await fetch(`${API}/products?limit=100`, { signal: ctrl.signal });
     clearTimeout(t);
     if (!res.ok) throw new Error();
@@ -2170,7 +2271,10 @@ async function loadProducts() {
       image: (Array.isArray(p.images) && p.images[0]) ? p.images[0] : "",
       shopId: p.shop?._id?.toString() || p.shop?.id?.toString() || (typeof p.shop === "string" ? p.shop : "") || ""
     }));
-  } catch (e) { S.products = []; }
+    localStorage.setItem("nz_products_cache", JSON.stringify(S.products));
+  } catch (e) {
+    if (!S.products?.length) S.products = [];
+  }
 }
 
 /* ===== RENDER SHOPS ===== */
@@ -6103,24 +6207,6 @@ function showComparison() {
 }
 
 /* ===== APP VERSION CHANGELOG ===== */
-const APP_VERSION = "2.0.0";
-(() => {
-  const last = localStorage.getItem("nz_version");
-  if (last && last !== APP_VERSION) {
-    setTimeout(() => {
-      const bar = document.createElement("div");
-      bar.innerHTML = `<div style="position:fixed;top:80px;left:50%;transform:translateX(-50%);background:var(--white);border:2px solid var(--brand);border-radius:var(--r-sm);padding:12px 18px;z-index:5000;box-shadow:0 8px 24px rgba(0,0,0,.15);min-width:280px;animation:slideUp .3s ease-out;text-align:center">
-        <div style="font-size:13px;font-weight:800;color:var(--ink);margin-bottom:4px">🎉 Nearzy v${APP_VERSION} is here!</div>
-        <div style="font-size:11px;color:var(--ink3)">Dark mode, recommendations, bundles, compare & more</div>
-        <button onclick="this.closest('div').parentElement.remove()" style="margin-top:8px;padding:5px 16px;background:var(--brand);color:#fff;border:none;border-radius:99px;font-size:11px;font-weight:700;cursor:pointer">Got it!</button>
-      </div>`;
-      document.body.appendChild(bar);
-      setTimeout(()=>bar.remove(), 8000);
-    }, 2500);
-  }
-  localStorage.setItem("nz_version", APP_VERSION);
-})();
-
 function toggleDarkMode() {
   const isDark = document.body.classList.toggle("dark-mode");
   localStorage.setItem("nz_dark", isDark ? "1" : "0");

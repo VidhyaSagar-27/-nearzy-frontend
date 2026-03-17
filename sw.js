@@ -1,5 +1,5 @@
 const CACHE = "nearzy-v5";
-
+ 
 self.addEventListener("install", e => {
   self.skipWaiting();
   e.waitUntil(
@@ -9,7 +9,7 @@ self.addEventListener("install", e => {
     ]).catch(() => {}))
   );
 });
-
+ 
 self.addEventListener("activate", e => {
   e.waitUntil(
     caches.keys().then(keys =>
@@ -18,14 +18,14 @@ self.addEventListener("activate", e => {
   );
   self.clients.claim();
 });
-
+ 
 self.addEventListener("fetch", e => {
   if (e.request.method !== "GET") return;
   const url = e.request.url;
   if (url.includes("nearzy-backend.onrender.com")) return;
   if (url.includes("razorpay")) return;
   if (url.includes("api.anthropic")) return;
-
+ 
   e.respondWith(
     fetch(e.request)
       .then(res => {
@@ -38,7 +38,7 @@ self.addEventListener("fetch", e => {
       .catch(() => caches.match(e.request).then(r => r || caches.match("./index.html")))
   );
 });
-
+ 
 self.addEventListener("push", e => {
   const data = e.data?.json() || {};
   e.waitUntil(
@@ -52,7 +52,7 @@ self.addEventListener("push", e => {
     })
   );
 });
-
+ 
 self.addEventListener("notificationclick", e => {
   e.notification.close();
   e.waitUntil(
@@ -62,7 +62,7 @@ self.addEventListener("notificationclick", e => {
     })
   );
 });
-
+ 
 self.addEventListener("message", e => {
   if (e.data?.type === "SKIP_WAITING") self.skipWaiting();
 });
