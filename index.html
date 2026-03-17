@@ -2059,13 +2059,28 @@ window.addEventListener("DOMContentLoaded", async () => {
   initHero();
   startTimer();
   initFlashSale();
-  showLoading(true);
   showSkeletons();
+
+  // HARD TIMEOUT — always hide loading screen after 6 seconds no matter what
+  const hardHideTimer = setTimeout(() => hideLoadingScreen("timeout"), 6000);
+
   // Animate loading steps
   setTimeout(() => { const s = document.getElementById("lstep2"); if (s) { s.classList.add("active"); document.getElementById("lstep1")?.classList.remove("active"); } }, 400);
-  await loadShops();
-  setTimeout(() => { const s = document.getElementById("lstep3"); if (s) { s.classList.add("active"); document.getElementById("lstep2")?.classList.remove("active"); } }, 700);
-  await loadProducts();
+
+  try {
+    await Promise.race([
+      loadShops(),
+      new Promise(resolve => setTimeout(resolve, 5000)) // 5s timeout
+    ]);
+    setTimeout(() => { const s = document.getElementById("lstep3"); if (s) { s.classList.add("active"); document.getElementById("lstep2")?.classList.remove("active"); } }, 200);
+    await Promise.race([
+      loadProducts(),
+      new Promise(resolve => setTimeout(resolve, 5000)) // 5s timeout
+    ]);
+  } catch(e) {
+    console.warn("Nearzy: backend slow/offline, showing cached data");
+  }
+
   renderShops();
   renderProducts();
   updateHeader();
@@ -2073,21 +2088,36 @@ window.addEventListener("DOMContentLoaded", async () => {
   initPullToRefresh();
   renderStories();
   renderTimeGreeting();
-  // Show time greeting if logged in
   const tg = document.getElementById("timeGreeting");
   if (tg && S.user) tg.classList.remove("hidden");
+
+  // Clear hard timeout and hide now
+  clearTimeout(hardHideTimer);
+  hideLoadingScreen("loaded");
+
+  // Post-load tasks (non-blocking)
   setTimeout(() => {
     renderRecommendations();
     renderBundlesSection();
     renderRecentlyViewed();
-    document.getElementById("loadingScreen").classList.add("hidden");
     checkAbandonedCart();
     checkBirthdayOnLogin();
     checkPriceAlerts();
     initInfiniteScroll();
     setTimeout(showQuickReorderBanner, 3000);
-  }, 1500);
+    schedulePromoNotifications();
+  }, 100);
 });
+
+function hideLoadingScreen(reason) {
+  const ls = document.getElementById("loadingScreen");
+  if (!ls || ls.classList.contains("hidden")) return;
+  ls.classList.add("hidden");
+  // If backend was slow, show a gentle toast
+  if (reason === "timeout" && S.shops.length === 0) {
+    setTimeout(() => toast("Backend is waking up... Pull down to refresh once shops load", "info"), 800);
+  }
+}
 
 function showLoading(v) {}
 
@@ -2147,7 +2177,10 @@ function showPage(page) {
 /* ===== LOAD DATA ===== */
 async function loadShops() {
   try {
-    const res = await fetch(`${API}/shops?limit=100`);
+    const ctrl = new AbortController();
+    const t = setTimeout(() => ctrl.abort(), 8000);
+    const res = await fetch(`${API}/shops?limit=100`, { signal: ctrl.signal });
+    clearTimeout(t);
     if (!res.ok) throw new Error();
     S.shops = await res.json();
   } catch (e) { S.shops = []; }
@@ -2155,14 +2188,16 @@ async function loadShops() {
 
 async function loadProducts() {
   try {
-    const res = await fetch(`${API}/products?limit=100`);
+    const ctrl = new AbortController();
+    const t = setTimeout(() => ctrl.abort(), 8000);
+    const res = await fetch(`${API}/products?limit=100`, { signal: ctrl.signal });
+    clearTimeout(t);
     if (!res.ok) throw new Error();
     const data = await res.json();
     S.products = data.map(p => ({
       ...p,
       id: p._id || p.id,
       image: (Array.isArray(p.images) && p.images[0]) ? p.images[0] : "",
-      // Normalize shopId to a string at load time so cart never gets an object
       shopId: p.shop?._id?.toString() || p.shop?.id?.toString() || (typeof p.shop === "string" ? p.shop : "") || ""
     }));
   } catch (e) { S.products = []; }
