@@ -138,18 +138,18 @@ a{text-decoration:none;color:inherit}
 .header{
   background:var(--white);
   position:sticky;top:0;z-index:800;
-  border-bottom:1px solid #f0f0f0;
-  box-shadow:0 2px 8px rgba(0,0,0,0.06);
+  border-bottom:1px solid rgba(0,0,0,0.06);
+  box-shadow:0 1px 12px rgba(0,0,0,0.05);
 }
 .header-inner{
-  max-width:1400px;margin:0 auto;
-  padding:0 20px;height:64px;
-  display:flex;align-items:center;gap:16px;
+  max-width:1280px;margin:0 auto;
+  padding:0 16px;height:60px;
+  display:flex;align-items:center;gap:12px;
 }
-.logo{display:flex;align-items:center;gap:2px;cursor:pointer;flex-shrink:0}
-.logo-n{font-family:'Sora',sans-serif;font-size:26px;font-weight:800;color:var(--brand)}
-.logo-rest{font-family:'Sora',sans-serif;font-size:26px;font-weight:800;color:var(--ink)}
-.logo-dot{width:6px;height:6px;border-radius:50%;background:var(--brand);margin-left:2px;margin-bottom:10px}
+.logo{display:flex;align-items:center;gap:0;cursor:pointer;flex-shrink:0;text-decoration:none}
+.logo-n{font-family:'Sora',sans-serif;font-size:24px;font-weight:800;color:var(--brand);letter-spacing:-0.5px}
+.logo-rest{font-family:'Sora',sans-serif;font-size:24px;font-weight:800;color:var(--ink);letter-spacing:-0.5px}
+.logo-dot{width:5px;height:5px;border-radius:50%;background:var(--brand);margin-left:1px;margin-bottom:12px;flex-shrink:0}
 
 .location-btn{
   display:flex;align-items:center;gap:6px;
@@ -455,108 +455,114 @@ a{text-decoration:none;color:inherit}
 .shop-meta span{display:flex;align-items:center;gap:4px}
 .shop-meta i{color:var(--ink3);font-size:11px}
 
-/* ===== PRODUCT GRID ===== */
-.product-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(195px,1fr));
-  gap:14px;
-}
-.prod-card{
-  background:var(--white);border-radius:var(--r);
+/* ===== SHOP CARDS — professional redesign ===== */
+.shops-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+.shop-card{
+  background:var(--white);border-radius:16px;
   overflow:hidden;cursor:pointer;
-  box-shadow:var(--card-shadow);
-  border:1px solid #f0f0f0;
-  transition:transform .2s cubic-bezier(.34,1.56,.64,1), box-shadow .2s;
+  box-shadow:0 2px 10px rgba(0,0,0,.06);
+  border:1px solid rgba(0,0,0,.05);
+  transition:transform .2s ease,box-shadow .2s ease;
+  position:relative;
+}
+.shop-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.12)}
+.shop-card:active{transform:scale(.97)}
+.shop-card-banner{height:120px;position:relative;overflow:hidden;background:#f5f5f5}
+.shop-card-banner img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.shop-card:hover .shop-card-banner img{transform:scale(1.07)}
+.shop-card-banner-fallback{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:48px}
+.shop-card-discount{position:absolute;bottom:8px;left:8px;background:var(--green);color:#fff;padding:3px 8px;border-radius:6px;font-size:10px;font-weight:800}
+.shop-card-closed{position:absolute;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;letter-spacing:.06em}
+.shop-card-body{padding:12px 14px 14px}
+.shop-card-top{display:flex;align-items:flex-start;gap:10px;margin-bottom:8px}
+.shop-logo{width:40px;height:40px;border-radius:10px;overflow:hidden;border:1.5px solid #f0f0f0;flex-shrink:0;background:#f8f8f8;display:flex;align-items:center;justify-content:center;font-size:20px}
+.shop-logo img{width:100%;height:100%;object-fit:cover}
+.shop-info{flex:1;min-width:0}
+.shop-name{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.shop-cat-tag{font-size:11px;color:var(--ink3);text-transform:capitalize}
+.shop-rating-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.shop-rating{display:inline-flex;align-items:center;gap:4px;background:var(--green);color:#fff;padding:3px 7px;border-radius:6px;font-size:11px;font-weight:700}
+.shop-rating i{font-size:9px}
+.shop-rating-count{font-size:11px;color:var(--ink3)}
+.shop-meta{display:flex;align-items:center;gap:10px;font-size:11px;color:var(--ink3)}
+.shop-meta span{display:flex;align-items:center;gap:3px}
+.shop-meta i{font-size:10px}
+.shop-meta-tags{display:flex;gap:5px;margin-top:8px;flex-wrap:wrap}
+.smt{font-size:10px;font-weight:700;padding:3px 8px;border-radius:99px}
+.smt-free{background:#e6f7ee;color:var(--green)}
+.smt-fast{background:var(--brand-light);color:var(--brand)}
+.smt-top{background:#fef3c7;color:#d97706}
+
+/* ===== PRODUCT GRID — clean redesign ===== */
+.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}
+.prod-card{
+  background:var(--white);border-radius:14px;
+  overflow:hidden;cursor:pointer;
+  box-shadow:0 2px 10px rgba(0,0,0,.06);
+  border:1px solid rgba(0,0,0,.04);
+  transition:transform .2s ease,box-shadow .2s ease;
   position:relative;
   -webkit-user-select:none;user-select:none;
 }
-.prod-card:hover{transform:translateY(-4px);box-shadow:var(--card-shadow-hover)}
+.prod-card:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(0,0,0,.1)}
 .prod-card:active{transform:scale(.97);transition:transform .1s}
 @media(max-width:768px){.prod-card:hover{transform:none}.prod-card:active{transform:scale(.96)}}
-.prod-img{position:relative;aspect-ratio:1;overflow:hidden;background:#fafafa}
+.prod-img{position:relative;aspect-ratio:1;overflow:hidden;background:#f8f8f8}
 .prod-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
 .prod-card:hover .prod-img img{transform:scale(1.07)}
-/* Price drop badge pulse */
 @keyframes pricePulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
 .price-drop-badge{animation:pricePulse 2s infinite}
-.prod-badge{
-  position:absolute;top:8px;left:8px;
-  padding:3px 8px;border-radius:var(--r-xs);
-  font-size:10px;font-weight:800;color:#fff;
-  background:var(--red);
-}
+.prod-badge{position:absolute;top:8px;left:8px;padding:3px 7px;border-radius:6px;font-size:9px;font-weight:800;color:#fff;background:var(--red)}
 .prod-badge.bestseller{background:#7c3aed}
 .prod-badge.new{background:var(--green)}
-.prod-wish{
-  position:absolute;top:8px;right:8px;
-  width:30px;height:30px;border-radius:50%;
-  background:rgba(255,255,255,.92);
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.1);
-  transition:all .2s;z-index:1;border:none;
-}
+.prod-wish{position:absolute;top:8px;right:8px;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.1);transition:all .2s;z-index:1;border:none}
 .prod-wish:hover{transform:scale(1.12)}
-.prod-wish i{font-size:13px;color:var(--ink3);transition:color .2s}
+.prod-wish i{font-size:12px;color:var(--ink3);transition:color .2s}
 .prod-wish.active i{color:var(--red)}
 .prod-body{padding:10px 12px 12px}
 .prod-shop{font-size:10px;color:var(--brand);font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px}
 .prod-name{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:3px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:36px}
 .prod-unit{font-size:11px;color:var(--ink3);margin-bottom:6px}
 .prod-rating-row{display:flex;align-items:center;gap:5px;margin-bottom:8px}
-.prod-stars{background:var(--green);color:#fff;padding:2px 6px;border-radius:var(--r-xs);font-size:10px;font-weight:700;display:inline-flex;align-items:center;gap:2px}
+.prod-stars{background:var(--green);color:#fff;padding:2px 6px;border-radius:6px;font-size:10px;font-weight:700;display:inline-flex;align-items:center;gap:2px}
 .prod-rc{font-size:10px;color:var(--ink3)}
 .prod-price-row{display:flex;align-items:center;justify-content:space-between;gap:6px}
 .prod-prices{display:flex;flex-direction:column;gap:1px}
-.prod-now{font-size:16px;font-weight:800;color:var(--ink)}
+.prod-now{font-size:15px;font-weight:800;color:var(--ink)}
 .prod-old-row{display:flex;align-items:center;gap:5px}
 .prod-old{font-size:11px;text-decoration:line-through;color:var(--ink3)}
 .prod-off{font-size:11px;font-weight:700;color:var(--green)}
-.btn-add-prod{
-  padding:7px 13px;border-radius:var(--r-sm);
-  background:var(--brand);color:#fff;
-  font-size:12px;font-weight:700;
-  display:flex;align-items:center;gap:4px;
-  box-shadow:0 2px 8px rgba(252,128,25,.3);
-  transition:all .2s;border:none;flex-shrink:0;
-}
+.btn-add-prod{padding:7px 12px;border-radius:8px;background:var(--brand);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;gap:4px;box-shadow:0 2px 8px rgba(252,128,25,.3);transition:all .2s;border:none;flex-shrink:0;cursor:pointer}
 .btn-add-prod:hover{background:var(--brand-dark);transform:translateY(-1px)}
 .btn-add-prod i{font-size:10px}
-.qty-box{
-  display:flex;align-items:center;
-  border:2px solid var(--brand);border-radius:var(--r-sm);
-  overflow:hidden;flex-shrink:0;
-}
-.qty-box button{
-  width:28px;height:28px;background:var(--brand);color:#fff;
-  font-size:14px;font-weight:700;
-  display:flex;align-items:center;justify-content:center;
-  border:none;cursor:pointer;
-}
+.qty-box{display:flex;align-items:center;border:2px solid var(--brand);border-radius:8px;overflow:hidden;flex-shrink:0}
+.qty-box button{width:28px;height:28px;background:var(--brand);color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;border:none;cursor:pointer}
 .qty-box button:hover{background:var(--brand-dark)}
 .qty-box .qv{padding:0 10px;font-size:13px;font-weight:800;color:var(--brand);background:#fff}
-.prod-delivery{font-size:10px;color:var(--green);font-weight:600;margin-top:6px;display:flex;align-items:center;gap:3px}
 
 /* ===== HSCROLL ===== */
 .hscroll{overflow-x:auto;scrollbar-width:none;padding-bottom:4px}
 .hscroll::-webkit-scrollbar{display:none}
 .hscroll-row{display:flex;gap:14px;min-width:max-content}
-.hscroll-row .prod-card{width:200px;flex-shrink:0}
-.hscroll-row .shop-card{width:270px;flex-shrink:0}
+.hscroll-row .prod-card{width:185px;flex-shrink:0}
+.hscroll-row .shop-card{width:250px;flex-shrink:0}
 
-/* ===== OFFER BANNERS ===== */
-.offer-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px}
+/* ===== OFFER BANNERS — 2-col on mobile, 4-col desktop ===== */
+.offer-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:24px}
 .offer-card{
-  border-radius:var(--r);padding:20px;cursor:pointer;
+  border-radius:14px;padding:16px;cursor:pointer;
   position:relative;overflow:hidden;
-  box-shadow:var(--card-shadow);transition:all .22s;
+  box-shadow:0 2px 10px rgba(0,0,0,.08);
+  transition:transform .2s ease,box-shadow .2s ease;
+  min-height:90px;
 }
-.offer-card:hover{transform:translateY(-2px);box-shadow:var(--card-shadow-hover)}
+.offer-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.14)}
 .oc1{background:linear-gradient(135deg,#fc8019,#ff9f4a)}
 .oc2{background:linear-gradient(135deg,#0c9e52,#14c265)}
 .oc3{background:linear-gradient(135deg,#1a73e8,#5b9cf6)}
-.oc4{background:linear-gradient(135deg,#e23744,#f56776)}
-.offer-card h3{font-family:'Sora',sans-serif;font-size:15px;font-weight:800;color:#fff;margin-bottom:5px}
-.offer-card p{font-size:11px;color:rgba(255,255,255,.87);margin-bottom:14px;line-height:1.5}
+.oc4{background:linear-gradient(135deg,#7c3aed,#a855f7)}
+.offer-card h3{font-family:'Sora',sans-serif;font-size:13px;font-weight:800;color:#fff;margin-bottom:4px}
+.offer-card p{font-size:11px;color:rgba(255,255,255,.85);margin-bottom:12px;line-height:1.4}
 .offer-cta{
   display:inline-flex;align-items:center;gap:5px;
   padding:6px 14px;background:rgba(255,255,255,.22);
@@ -1307,140 +1313,108 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
 <div id="page-home" class="page active">
   <div class="container">
 
-    <!-- HERO CAROUSEL -->
-    <div class="hero-wrap" style="margin-bottom:20px">
-      <div class="hero-slides" id="heroSlides">
-        <div class="hero-slide hs1">
-          <div class="hero-content">
-            <div class="hero-tag"><i class="fa-solid fa-bolt"></i> Delivering in 30 mins</div>
-            <div class="hero-title">Order from any shop<br>in your city</div>
-            <div class="hero-sub">Restaurants, grocery, pharmacy, flowers and more — all delivered fast</div>
-            <div class="hero-ctas">
-              <button class="btn-hero-white" style="color:var(--brand)" onclick="scrollToShops()">Order Now</button>
-              <button class="btn-hero-outline" onclick="filterCat('restaurant')">Restaurants</button>
-            </div>
-          </div>
-          <div class="hero-deco"></div><div class="hero-deco2"></div>
-          <i class="fa-solid fa-store hero-icon"></i>
-        </div>
-        <div class="hero-slide hs2">
-          <div class="hero-content">
-            <div class="hero-tag"><i class="fa-solid fa-tractor"></i> Farm to doorstep</div>
-            <div class="hero-title">Fresh groceries &amp;<br>vegetables daily</div>
-            <div class="hero-sub">Locally sourced fresh produce from trusted stores near you</div>
-            <div class="hero-ctas">
-              <button class="btn-hero-white" style="color:var(--green)" onclick="filterCat('grocery')">Shop Grocery</button>
-              <button class="btn-hero-outline" onclick="filterCat('fruits')">Fruits &amp; Veg</button>
-            </div>
-          </div>
-          <div class="hero-deco"></div><div class="hero-deco2"></div>
-          <i class="fa-solid fa-bag-shopping hero-icon"></i>
-        </div>
-        <div class="hero-slide hs3">
-          <div class="hero-content">
-            <div class="hero-tag"><i class="fa-solid fa-shield-halved"></i> Secure Payments</div>
-            <div class="hero-title">Pay online or<br>cash on delivery</div>
-            <div class="hero-sub">UPI, cards, net banking or simply pay when your order arrives</div>
-            <div class="hero-ctas">
-              <button class="btn-hero-white" style="color:var(--blue)" onclick="scrollToShops()">Start Shopping</button>
-              <button class="btn-hero-outline" onclick="openAuthModal()">Create Account</button>
-            </div>
-          </div>
-          <div class="hero-deco"></div><div class="hero-deco2"></div>
-          <i class="fa-solid fa-credit-card hero-icon"></i>
-        </div>
-        <div class="hero-slide hs4">
-          <div class="hero-content">
-            <div class="hero-tag"><i class="fa-solid fa-store"></i> For Shop Owners</div>
-            <div class="hero-title">List your shop<br>reach more customers</div>
-            <div class="hero-sub">Join Nearzy and start receiving orders from customers in your city today</div>
-            <div class="hero-ctas">
-              <button class="btn-hero-white" style="color:#7c3aed" onclick="openAuthModal()">Register Shop</button>
-              <button class="btn-hero-outline" onclick="scrollToShops()">Browse Shops</button>
-            </div>
-          </div>
-          <div class="hero-deco"></div><div class="hero-deco2"></div>
-          <i class="fa-solid fa-shop hero-icon"></i>
-        </div>
+    <!-- HERO — clean, fast, professional -->
+    <div style="background:linear-gradient(135deg,#1a1a2e 0%,#fc8019 100%);border-radius:var(--r);overflow:hidden;margin-bottom:20px;position:relative;min-height:160px;display:flex;align-items:center;padding:24px 24px 24px 28px">
+      <!-- Background pattern -->
+      <div style="position:absolute;inset:0;opacity:.08;background-image:radial-gradient(circle at 20% 50%,#fff 1px,transparent 1px),radial-gradient(circle at 80% 20%,#fff 1px,transparent 1px);background-size:32px 32px"></div>
+      <div style="position:absolute;right:-20px;top:-20px;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,.06)"></div>
+      <div style="position:absolute;right:40px;bottom:-40px;width:100px;height:100px;border-radius:50%;background:rgba(255,255,255,.04)"></div>
+      <!-- Content -->
+      <div style="position:relative;z-index:1;flex:1">
+        <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.12em;margin-bottom:8px">🚀 Fast Delivery</div>
+        <div style="font-family:'Sora',sans-serif;font-size:22px;font-weight:800;color:#fff;line-height:1.25;margin-bottom:6px">Order from any<br>shop near you</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.75);margin-bottom:16px">Restaurants · Grocery · Pharmacy · Flowers</div>
+        <button onclick="document.getElementById('searchInput').focus()" style="padding:10px 20px;background:#fff;color:var(--brand);border:none;border-radius:99px;font-size:13px;font-weight:800;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.2)">
+          <i class="fa-solid fa-magnifying-glass" style="margin-right:6px"></i>Search shops & products
+        </button>
       </div>
-      <button class="h-prev" onclick="prevHero()"><i class="fa-solid fa-chevron-left"></i></button>
-      <button class="h-next" onclick="nextHero()"><i class="fa-solid fa-chevron-right"></i></button>
-      <div class="h-dots" id="heroDots"></div>
+      <div style="position:absolute;right:24px;top:50%;transform:translateY(-50%);font-size:72px;opacity:.15">🛵</div>
     </div>
 
-    <!-- DEAL TIMER + FLASH SALES -->
-    <div class="deal-timer" id="flashSaleBar">
-      <div class="deal-left">
-        <div class="deal-title"><i class="fa-solid fa-bolt"></i> <span id="flashSaleTitle">Flash Sale</span></div>
-        <div class="deal-sub" id="flashSaleSubtitle">Limited time offers — ends soon!</div>
-      </div>
-      <div class="timer-row">
-        <div class="tbox"><div class="tnum" id="dh">00</div><div class="tlbl">Hours</div></div>
-        <div class="tsep">:</div>
-        <div class="tbox"><div class="tnum" id="dm">00</div><div class="tlbl">Mins</div></div>
-        <div class="tsep">:</div>
-        <div class="tbox"><div class="tnum" id="ds">00</div><div class="tlbl">Secs</div></div>
-      </div>
-      <button class="deal-cta" onclick="showFlashSaleProducts()"><i class="fa-solid fa-bolt"></i> Grab Now</button>
+    <!-- QUICK CATEGORY CHIPS — horizontal scroll -->
+    <div style="display:flex;gap:8px;overflow-x:auto;padding:2px 0 10px;scrollbar-width:none;margin-bottom:4px">
+      ${[
+        {cat:"restaurant",emoji:"🍽️",label:"Food"},
+        {cat:"grocery",emoji:"🛒",label:"Grocery"},
+        {cat:"pharmacy",emoji:"💊",label:"Pharmacy"},
+        {cat:"bakery",emoji:"🎂",label:"Bakery"},
+        {cat:"flowers",emoji:"💐",label:"Flowers"},
+        {cat:"fruits",emoji:"🍎",label:"Fruits"},
+        {cat:"sweets",emoji:"🍬",label:"Sweets"},
+        {cat:"electronics",emoji:"📱",label:"Electronics"},
+        {cat:"meat",emoji:"🥩",label:"Meat"},
+        {cat:"clothing",emoji:"👗",label:"Fashion"},
+      ].map(({cat,emoji,label})=>`<button onclick="filterCat('${cat}')" style="display:flex;align-items:center;gap:6px;padding:8px 14px;background:var(--white);border:1.5px solid #f0f0f0;border-radius:99px;font-size:12px;font-weight:700;color:var(--ink2);cursor:pointer;white-space:nowrap;flex-shrink:0;transition:all .2s;box-shadow:0 1px 4px rgba(0,0,0,.06)" onmouseover="this.style.borderColor='var(--brand)';this.style.color='var(--brand)'" onmouseout="this.style.borderColor='#f0f0f0';this.style.color='var(--ink2)'">${emoji} ${label}</button>`).join("")}
     </div>
-    <!-- Flash sale products strip (hidden until clicked) -->
+
+    <!-- DEAL TIMER (compact) -->
+    <div style="background:linear-gradient(135deg,#e23744,#ff6b7a);border-radius:var(--r-sm);padding:12px 16px;margin-bottom:16px;display:flex;align-items:center;gap:12px;cursor:pointer" onclick="showFlashSaleProducts()">
+      <div style="font-size:20px">⚡</div>
+      <div style="flex:1">
+        <div style="font-size:13px;font-weight:800;color:#fff" id="flashSaleTitle">Flash Sale</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.8)" id="flashSaleSubtitle">Limited time offers!</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:4px">
+        <div style="background:rgba(0,0,0,.2);border-radius:4px;padding:4px 7px;text-align:center"><div style="font-size:16px;font-weight:800;color:#fff;font-family:'Sora',sans-serif;line-height:1" id="dh">00</div><div style="font-size:8px;color:rgba(255,255,255,.7);margin-top:1px">HR</div></div>
+        <span style="color:rgba(255,255,255,.6);font-weight:800">:</span>
+        <div style="background:rgba(0,0,0,.2);border-radius:4px;padding:4px 7px;text-align:center"><div style="font-size:16px;font-weight:800;color:#fff;font-family:'Sora',sans-serif;line-height:1" id="dm">00</div><div style="font-size:8px;color:rgba(255,255,255,.7);margin-top:1px">MIN</div></div>
+        <span style="color:rgba(255,255,255,.6);font-weight:800">:</span>
+        <div style="background:rgba(0,0,0,.2);border-radius:4px;padding:4px 7px;text-align:center"><div style="font-size:16px;font-weight:800;color:#fff;font-family:'Sora',sans-serif;line-height:1" id="ds">00</div><div style="font-size:8px;color:rgba(255,255,255,.7);margin-top:1px">SEC</div></div>
+      </div>
+      <i class="fa-solid fa-chevron-right" style="color:rgba(255,255,255,.7);font-size:12px"></i>
+    </div>
     <div id="flashSaleStrip" style="display:none;margin-bottom:16px">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
-        <div class="sec-title" style="font-size:15px"><i class="fa-solid fa-fire" style="color:var(--red)"></i> Flash Sale Products</div>
+        <div class="sec-title">⚡ Flash Sale Products</div>
         <button onclick="document.getElementById('flashSaleStrip').style.display='none'" style="background:none;border:none;color:var(--ink3);cursor:pointer;font-size:12px">Hide</button>
       </div>
       <div id="flashSaleGrid" class="product-grid"></div>
     </div>
-
-    <!-- OFFER BANNERS -->
-    <div class="offer-row">
-      <div class="offer-card oc1" onclick="filterCat('restaurant')">
-        <h3>Food Delivery</h3><p>Order from top restaurants near you</p>
-        <span class="offer-cta">Order Now <i class="fa-solid fa-arrow-right"></i></span>
-        <div class="offer-deco"></div>
-      </div>
-      <div class="offer-card oc2" onclick="filterCat('grocery')">
-        <h3>Grocery Deals</h3><p>Fresh grocery at best prices daily</p>
-        <span class="offer-cta">Shop Now <i class="fa-solid fa-arrow-right"></i></span>
-        <div class="offer-deco"></div>
-      </div>
-      <div class="offer-card oc3" onclick="filterCat('pharmacy')">
-        <h3>Medicines Fast</h3><p>Get medicines delivered in minutes</p>
-        <span class="offer-cta">Order Now <i class="fa-solid fa-arrow-right"></i></span>
-        <div class="offer-deco"></div>
-      </div>
-      <div class="offer-card oc4" onclick="filterCat('flowers')">
-        <h3>Fresh Flowers</h3><p>Same day flower delivery for any occasion</p>
-        <span class="offer-cta">Send Now <i class="fa-solid fa-arrow-right"></i></span>
-        <div class="offer-deco"></div>
-      </div>
-    </div>
-
     <!-- SHOP STORIES -->
-    <div id="storiesSection" style="display:flex;gap:14px;overflow-x:auto;padding:4px 0 8px;margin-bottom:16px;scrollbar-width:none"></div>
+    <div id="storiesSection" style="display:flex;gap:12px;overflow-x:auto;padding:4px 0 12px;scrollbar-width:none"></div>
 
     <!-- TIME GREETING -->
-    <div id="timeGreeting" style="margin-bottom:14px;display:flex;align-items:center;gap:10px" class="hidden">
-      <div>
-        <div class="tg-title" style="font-family:'Sora',sans-serif;font-size:16px;font-weight:800;color:var(--ink)"></div>
-        <div class="tg-sub" style="font-size:12px;color:var(--ink3);margin-top:2px"></div>
+    <div id="timeGreeting" class="hidden" style="margin-bottom:12px;padding:12px 16px;background:var(--white);border-radius:14px;box-shadow:0 2px 10px rgba(0,0,0,.05)">
+      <div class="tg-title" style="font-family:'Sora',sans-serif;font-size:15px;font-weight:800;color:var(--ink)"></div>
+      <div class="tg-sub" style="font-size:12px;color:var(--ink3);margin-top:2px"></div>
+    </div>
+
+    <!-- 4 SERVICE TILES — replaces cluttered offer banners -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px">
+      <div onclick="filterCat('restaurant')" style="border-radius:14px;background:linear-gradient(135deg,#fff3e8,#fde8d0);padding:14px 10px;text-align:center;cursor:pointer;transition:transform .2s" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+        <div style="font-size:28px;margin-bottom:6px">🍽️</div>
+        <div style="font-size:12px;font-weight:800;color:#e67e22">Food</div>
+        <div style="font-size:10px;color:#e67e22;opacity:.8;margin-top:1px">30 mins</div>
+      </div>
+      <div onclick="filterCat('grocery')" style="border-radius:14px;background:linear-gradient(135deg,#e6f7ee,#d0f0e0);padding:14px 10px;text-align:center;cursor:pointer;transition:transform .2s" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+        <div style="font-size:28px;margin-bottom:6px">🛒</div>
+        <div style="font-size:12px;font-weight:800;color:#0c9e52">Grocery</div>
+        <div style="font-size:10px;color:#0c9e52;opacity:.8;margin-top:1px">Fresh daily</div>
+      </div>
+      <div onclick="filterCat('pharmacy')" style="border-radius:14px;background:linear-gradient(135deg,#e3f2fd,#d0e8f8);padding:14px 10px;text-align:center;cursor:pointer;transition:transform .2s" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+        <div style="font-size:28px;margin-bottom:6px">💊</div>
+        <div style="font-size:12px;font-weight:800;color:#1a73e8">Pharmacy</div>
+        <div style="font-size:10px;color:#1a73e8;opacity:.8;margin-top:1px">Fast delivery</div>
+      </div>
+      <div onclick="filterCat('bakery')" style="border-radius:14px;background:linear-gradient(135deg,#f3e8ff,#e8d5ff);padding:14px 10px;text-align:center;cursor:pointer;transition:transform .2s" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+        <div style="font-size:28px;margin-bottom:6px">🎂</div>
+        <div style="font-size:12px;font-weight:800;color:#7c3aed">Bakery</div>
+        <div style="font-size:10px;color:#7c3aed;opacity:.8;margin-top:1px">Fresh baked</div>
       </div>
     </div>
 
-    <!-- CASHBACK BANNER -->
-    <div class="cashback-banner" style="margin-bottom:16px" onclick="openAuthModal()">
-      <div style="width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-        <i class="fa-solid fa-coins" style="font-size:22px;color:#fff"></i>
-      </div>
+    <!-- LOYALTY / CASHBACK BANNER -->
+    <div style="background:linear-gradient(135deg,#1a1a2e,#2d2d4e);border-radius:14px;padding:14px 18px;margin-bottom:20px;display:flex;align-items:center;gap:12px;cursor:pointer" onclick="S.user ? (showPage('account'),setTimeout(()=>switchAccTab('points'),100)) : openAuthModal()">
+      <div style="font-size:28px;flex-shrink:0">⭐</div>
       <div style="flex:1">
-        <div style="font-family:'Sora',sans-serif;font-size:14px;font-weight:800;color:#fff">Earn cashback on every order!</div>
-        <div style="font-size:11px;color:rgba(255,255,255,.8);margin-top:2px">1 point per ₹1 · 100 pts = ₹10 off · No expiry</div>
+        <div style="font-size:13px;font-weight:800;color:#fff">Earn rewards on every order</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.65);margin-top:3px">1 point per ₹1 · 100 pts = ₹10 off · No expiry</div>
       </div>
-      <i class="fa-solid fa-chevron-right" style="color:rgba(255,255,255,.6);font-size:14px;flex-shrink:0"></i>
+      <div style="background:var(--brand);color:#fff;padding:6px 14px;border-radius:99px;font-size:12px;font-weight:700;white-space:nowrap">${S.user ? S.loyaltyPoints + " pts" : "Join Free"}</div>
     </div>
 
-    <!-- PULL TO REFRESH INDICATOR -->
-    <div id="pullRefreshBar" style="display:none;text-align:center;padding:12px;font-size:13px;font-weight:700;color:var(--brand);background:var(--brand-light);border-radius:var(--r-sm);margin-bottom:12px">
+    <!-- PULL TO REFRESH -->
+    <div id="pullRefreshBar" style="display:none;text-align:center;padding:10px;font-size:13px;font-weight:700;color:var(--brand);background:var(--brand-light);border-radius:10px;margin-bottom:12px">
       <i class="fa-solid fa-rotate" id="pullRefreshIcon"></i> <span id="pullRefreshText">Pull down to refresh</span>
     </div>
 
@@ -1451,15 +1425,6 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
         <div class="sec-viewall" onclick="document.getElementById('recommendSection').style.display='none'">Hide</div>
       </div>
       <div style="display:flex;gap:12px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none" id="recommendStrip"></div>
-    </div>
-
-    <!-- PRODUCT BUNDLES -->
-    <div id="bundlesSection" style="display:none;margin-bottom:20px">
-      <div class="sec-head" style="margin-bottom:10px">
-        <div class="sec-title"><i class="fa-solid fa-box-open" style="color:var(--green)"></i> Bundle & Save</div>
-        <div class="sec-viewall" onclick="document.getElementById('bundlesSection').style.display='none'">Hide</div>
-      </div>
-      <div style="display:flex;gap:12px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none" id="bundlesStrip"></div>
     </div>
 
     <!-- RECENTLY VIEWED -->
@@ -1473,8 +1438,8 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
 
     <!-- ALL SHOPS -->
     <div id="shopsSection">
-      <div class="sec-head" style="margin-bottom:14px">
-        <div class="sec-title" id="shopsSectionTitle">All Shops Near You</div>
+      <div class="sec-head" style="margin-bottom:12px">
+        <div style="font-family:'Sora',sans-serif;font-size:18px;font-weight:800;color:var(--ink)" id="shopsSectionTitle">Shops Near You</div>
         <div class="sec-viewall" id="shopsSectionCount"></div>
       </div>
       <div class="filter-sort-bar">
@@ -1491,12 +1456,17 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
     </div>
 
     <!-- PRODUCT BUNDLES -->
-    <div id="bundlesSection" style="margin-top:24px;margin-bottom:8px"></div>
+    <div id="bundlesSection" style="display:none;margin-top:24px;margin-bottom:8px">
+      <div class="sec-head" style="margin-bottom:10px">
+        <div class="sec-title"><i class="fa-solid fa-box-open" style="color:var(--green)"></i> Bundle & Save</div>
+      </div>
+      <div style="display:flex;gap:12px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none" id="bundlesStrip"></div>
+    </div>
 
     <!-- ALL PRODUCTS -->
-    <div id="productsSection" style="margin-top:28px">
-      <div class="sec-head" style="margin-bottom:10px">
-        <div class="sec-title">Featured Products</div>
+    <div id="productsSection" style="margin-top:24px">
+      <div class="sec-head" style="margin-bottom:12px">
+        <div style="font-family:'Sora',sans-serif;font-size:18px;font-weight:800;color:var(--ink)">Featured Products</div>
         <div class="sec-viewall" onclick="showAllProducts()">View All <i class="fa-solid fa-arrow-right"></i></div>
       </div>
       <!-- Product search & filters -->
@@ -2250,51 +2220,52 @@ function getFilteredShops() {
 
 function shopCardHTML(s) {
   const id = s._id || s.id;
-  const catIcons = { restaurant: "fa-utensils", grocery: "fa-bag-shopping", bakery: "fa-bread-slice", flowers: "fa-fan", pharmacy: "fa-prescription-bottle-medical", clothing: "fa-shirt", electronics: "fa-laptop", fruits: "fa-apple-whole", meat: "fa-drumstick-bite", dairy: "fa-droplet", sweets: "fa-candy-cane", salon: "fa-scissors", hardware: "fa-screwdriver-wrench", general: "fa-store" };
+  const catIcons = { restaurant:"fa-utensils", grocery:"fa-bag-shopping", bakery:"fa-bread-slice", flowers:"fa-fan", pharmacy:"fa-prescription-bottle-medical", clothing:"fa-shirt", electronics:"fa-laptop", fruits:"fa-apple-whole", meat:"fa-drumstick-bite", dairy:"fa-droplet", sweets:"fa-candy-cane", salon:"fa-scissors", hardware:"fa-screwdriver-wrench", general:"fa-store" };
+  const catEmojis = { restaurant:"🍽️", grocery:"🛒", bakery:"🎂", flowers:"💐", pharmacy:"💊", clothing:"👗", electronics:"📱", fruits:"🍎", meat:"🥩", dairy:"🥛", sweets:"🍬", salon:"✂️", hardware:"🔧", general:"🏪" };
   const icon = catIcons[s.category] || "fa-store";
+  const emoji = catEmojis[s.category] || "🏪";
   const rating = (s.rating || 0).toFixed(1);
   const isOpen = s.isOpen !== false;
-  // Live order count simulation (real shops get real counts via API)
-  const liveOrders = (s.totalOrders || 0) % 8; // simulate active orders
-  const hasOffer = s.deliveryFee === 0 || (s.commission && s.commission < 8);
+  const isFree = s.deliveryFee === 0;
   const isFast = (s.deliveryTime || 30) <= 20;
-  const isNew = s.createdAt && (Date.now() - new Date(s.createdAt)) < 7 * 24 * 3600000;
+  const isTop = (s.rating || 0) >= 4.5;
+  const isNew = s.createdAt && (Date.now() - new Date(s.createdAt)) < 7*24*3600000;
+  const dist = (S.nearbyOnly && S.userLat) ? (() => { const d = getDistanceKm(S.userLat, S.userLng, s.address?.lat||s.lat, s.address?.lng||s.lng); return d < 50 ? d.toFixed(1)+"km" : ""; })() : "";
   return `
   <div class="shop-card" onclick="openShop('${id}')">
-    <div class="shop-card-banner" style="position:relative">
+    <div class="shop-card-banner" style="background:${getCatColor(s.category)}">
       ${s.banner ? `<img src="${s.banner}" alt="${s.name}" onerror="this.style.display='none'">` : ""}
-      <div class="shop-card-banner-fallback" style="background:${getCatColor(s.category)}"><i class="fa-solid ${icon}" style="font-size:52px;color:rgba(255,255,255,0.7)"></i></div>
-      ${!isOpen ? `<div class="shop-card-closed"><i class="fa-solid fa-moon" style="margin-right:6px"></i>Currently Closed</div>` : ""}
-      <!-- Badges overlay -->
-      <div style="position:absolute;top:8px;left:8px;display:flex;gap:5px;flex-wrap:wrap">
-        ${isNew ? `<span style="padding:3px 7px;background:#7c3aed;color:#fff;border-radius:99px;font-size:10px;font-weight:800">NEW</span>` : ""}
-        ${hasOffer ? `<span style="padding:3px 7px;background:var(--green);color:#fff;border-radius:99px;font-size:10px;font-weight:800"><i class="fa-solid fa-tag" style="font-size:8px"></i> OFFER</span>` : ""}
-        ${isFast ? `<span class="speed-badge"><i class="fa-solid fa-bolt" style="font-size:8px"></i> FAST</span>` : ""}
-      </div>
-      ${isOpen && liveOrders > 0 ? `<div style="position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,.6);color:#fff;padding:3px 8px;border-radius:99px;font-size:10px;font-weight:700;display:flex;align-items:center;gap:4px"><span class="live-dot" style="width:5px;height:5px"></span>${liveOrders} active orders</div>` : ""}
+      <div class="shop-card-banner-fallback" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:54px;opacity:.35">${emoji}</div>
+      ${isNew ? `<div style="position:absolute;top:8px;left:8px;background:#7c3aed;color:#fff;padding:3px 8px;border-radius:99px;font-size:10px;font-weight:800">NEW ✨</div>` : ""}
+      ${!isOpen ? `<div class="shop-card-closed">🌙 Closed</div>` : ""}
     </div>
     <div class="shop-card-body">
-      <div class="shop-card-top">
-        <div class="shop-logo">
-          ${s.logo ? `<img src="${s.logo}" alt="${s.name}">` : `<i class="fa-solid ${icon}" style="font-size:20px;color:${getCatColorDark(s.category)}"></i>`}
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+        <div class="shop-logo" style="background:${getCatColor(s.category)}22">
+          ${s.logo ? `<img src="${s.logo}" alt="${s.name}">` : `<span style="font-size:20px">${emoji}</span>`}
         </div>
-        <div class="shop-info">
+        <div style="flex:1;min-width:0">
           <div class="shop-name">${s.name}</div>
-          <div class="shop-cat-tag">${capitalize(s.category || "General")}</div>
+          <div class="shop-cat-tag">${capitalize(s.category || "General")} · ${dist || (s.address?.city || s.city || "")}</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:3px">
+          <div style="display:flex;align-items:center;gap:3px;background:var(--green);color:#fff;padding:3px 7px;border-radius:6px;font-size:11px;font-weight:700">
+            <i class="fa-solid fa-star" style="font-size:9px"></i> ${rating}
+          </div>
+          <div style="font-size:10px;color:${isOpen?"var(--green)":"var(--red)"};font-weight:700">${isOpen?"● Open":"● Closed"}</div>
         </div>
       </div>
-      <div class="shop-rating-row">
-        <span class="shop-rating"><i class="fa-solid fa-star"></i> ${rating}</span>
-        <span class="shop-rating-count">(${s.ratingCount || 0} ratings)</span>
-        <span class="open-badge ${isOpen ? "open" : "closed"}">
-          <i class="fa-solid fa-circle" style="font-size:7px"></i> ${isOpen ? "Open" : "Closed"}
+      <div style="display:flex;align-items:center;justify-content:space-between;font-size:11px;color:var(--ink3);margin-bottom:8px">
+        <span style="display:flex;align-items:center;gap:3px"><i class="fa-regular fa-clock"></i> ${s.deliveryTime || 30} mins</span>
+        <span style="display:flex;align-items:center;gap:3px;${isFree?"color:var(--green);font-weight:700":""}">
+          <i class="fa-solid fa-motorcycle"></i> ${isFree ? "Free delivery" : "₹"+(s.deliveryFee||49)+" del"}
         </span>
+        ${s.minOrder ? `<span>Min ₹${s.minOrder}</span>` : `<span>(${s.ratingCount||0} ratings)</span>`}
       </div>
-      <div class="shop-meta">
-        <span><i class="fa-regular fa-clock"></i> ${s.deliveryTime || 30} mins</span>
-        <span><i class="fa-solid fa-motorcycle"></i> ${s.deliveryFee === 0 ? '<span style="color:var(--green);font-weight:700">Free delivery</span>' : "&#8377;" + (s.deliveryFee || 49) + " delivery"}</span>
-        ${s.minOrder ? `<span><i class="fa-solid fa-indian-rupee-sign"></i> Min &#8377;${s.minOrder}</span>` : ""}
-        ${S.nearbyOnly && S.userLat ? (() => { const d = getDistanceKm(S.userLat, S.userLng, s.address?.lat||s.lat, s.address?.lng||s.lng); return d < 50 ? `<span style="color:var(--green);font-weight:700"><i class="fa-solid fa-location-dot"></i> ${d.toFixed(1)}km</span>` : ""; })() : ""}
+      <div style="display:flex;gap:5px;flex-wrap:wrap">
+        ${isFree ? `<span class="smt smt-free">🚚 Free delivery</span>` : ""}
+        ${isFast ? `<span class="smt smt-fast">⚡ Fast</span>` : ""}
+        ${isTop ? `<span class="smt smt-top">⭐ Top Rated</span>` : ""}
       </div>
     </div>
   </div>`;
