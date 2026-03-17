@@ -1,20 +1,26 @@
 {
-  "name": "Nearzy — Everything Near You, Delivered Fast",
+  "name": "Nearzy — Everything Near You",
   "short_name": "Nearzy",
-  "description": "Order from any shop in your city — restaurants, grocery, pharmacy, flowers and more.",
-  "start_url": "/",
+  "description": "Order from any shop in your city — restaurants, grocery, pharmacy and more.",
+  "start_url": "/nearzy-frontend/",
+  "scope": "/nearzy-frontend/",
   "display": "standalone",
-  "background_color": "#ffffff",
+  "background_color": "#fc8019",
   "theme_color": "#fc8019",
   "orientation": "portrait-primary",
   "icons": [
-    { "src": "https://placehold.co/192x192/fc8019/fff?text=N", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
-    { "src": "https://placehold.co/512x512/fc8019/fff?text=N", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+    {"src":"https://placehold.co/72x72/fc8019/fff?text=N","sizes":"72x72","type":"image/png","purpose":"any"},
+    {"src":"https://placehold.co/96x96/fc8019/fff?text=N","sizes":"96x96","type":"image/png","purpose":"any"},
+    {"src":"https://placehold.co/128x128/fc8019/fff?text=N","sizes":"128x128","type":"image/png","purpose":"any"},
+    {"src":"https://placehold.co/192x192/fc8019/fff?text=N","sizes":"192x192","type":"image/png","purpose":"any"},
+    {"src":"https://placehold.co/192x192/fc8019/fff?text=N","sizes":"192x192","type":"image/png","purpose":"maskable"},
+    {"src":"https://placehold.co/512x512/fc8019/fff?text=N","sizes":"512x512","type":"image/png","purpose":"any"},
+    {"src":"https://placehold.co/512x512/fc8019/fff?text=N","sizes":"512x512","type":"image/png","purpose":"maskable"}
   ],
-  "categories": ["food", "shopping", "lifestyle"],
-  "screenshots": [],
+  "categories": ["food","shopping","lifestyle"],
   "shortcuts": [
-    { "name": "Order Food", "url": "/?cat=restaurant", "description": "Browse restaurants near you" },
-    { "name": "My Orders", "url": "/?page=account", "description": "Track your orders" }
+    {"name":"Order Food","short_name":"Food","url":"/nearzy-frontend/?cat=restaurant","icons":[{"src":"https://placehold.co/96x96/fc8019/fff?text=F","sizes":"96x96"}]},
+    {"name":"My Orders","short_name":"Orders","url":"/nearzy-frontend/?page=account","icons":[{"src":"https://placehold.co/96x96/0c9e52/fff?text=O","sizes":"96x96"}]},
+    {"name":"Grocery","short_name":"Grocery","url":"/nearzy-frontend/?cat=grocery","icons":[{"src":"https://placehold.co/96x96/1a73e8/fff?text=G","sizes":"96x96"}]}
   ]
 }
