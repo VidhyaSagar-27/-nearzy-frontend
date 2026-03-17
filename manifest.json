@@ -1,17 +1,15 @@
 {
-  "name": "Nearzy — Everything Near You",
+  "name": "Nearzy",
   "short_name": "Nearzy",
-  "description": "Order from any shop in your city — restaurants, grocery, pharmacy and more.",
-  "start_url": "/nearzy-frontend/",
-  "scope": "/nearzy-frontend/",
+  "description": "Everything near you, delivered fast",
+  "start_url": ".",
+  "scope": ".",
   "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
   "background_color": "#fc8019",
   "theme_color": "#fc8019",
   "orientation": "portrait-primary",
   "icons": [
-    {"src":"https://placehold.co/72x72/fc8019/fff?text=N","sizes":"72x72","type":"image/png","purpose":"any"},
-    {"src":"https://placehold.co/96x96/fc8019/fff?text=N","sizes":"96x96","type":"image/png","purpose":"any"},
-    {"src":"https://placehold.co/128x128/fc8019/fff?text=N","sizes":"128x128","type":"image/png","purpose":"any"},
     {"src":"https://placehold.co/192x192/fc8019/fff?text=N","sizes":"192x192","type":"image/png","purpose":"any"},
     {"src":"https://placehold.co/192x192/fc8019/fff?text=N","sizes":"192x192","type":"image/png","purpose":"maskable"},
     {"src":"https://placehold.co/512x512/fc8019/fff?text=N","sizes":"512x512","type":"image/png","purpose":"any"},
@@ -19,8 +17,7 @@
   ],
   "categories": ["food","shopping","lifestyle"],
   "shortcuts": [
-    {"name":"Order Food","short_name":"Food","url":"/nearzy-frontend/?cat=restaurant","icons":[{"src":"https://placehold.co/96x96/fc8019/fff?text=F","sizes":"96x96"}]},
-    {"name":"My Orders","short_name":"Orders","url":"/nearzy-frontend/?page=account","icons":[{"src":"https://placehold.co/96x96/0c9e52/fff?text=O","sizes":"96x96"}]},
-    {"name":"Grocery","short_name":"Grocery","url":"/nearzy-frontend/?cat=grocery","icons":[{"src":"https://placehold.co/96x96/1a73e8/fff?text=G","sizes":"96x96"}]}
+    {"name":"Order Food","short_name":"Food","url":"?cat=restaurant","icons":[{"src":"https://placehold.co/96x96/fc8019/fff?text=F","sizes":"96x96"}]},
+    {"name":"My Orders","short_name":"Orders","url":"?page=account","icons":[{"src":"https://placehold.co/96x96/0c9e52/fff?text=O","sizes":"96x96"}]}
   ]
 }
