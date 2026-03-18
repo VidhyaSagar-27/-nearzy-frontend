@@ -3945,6 +3945,9 @@ function renderAccountPage() {
           <div style="font-size:22px;font-weight:800;color:#fff;font-family:'Sora',sans-serif">${S.loyaltyPoints}</div>
           <div style="font-size:11px;color:rgba(255,255,255,.85);font-weight:700;display:flex;align-items:center;justify-content:center;gap:4px"><i class="fa-solid fa-star"></i> Nearzy Points</div>
         </div>
+        <button onclick="switchAccTab('profile',document.querySelector('.acc-mi[onclick*=profile]'))" style="width:100%;margin-top:10px;padding:9px;background:var(--bg);border:1.5px solid var(--ink4);border-radius:var(--r-sm);font-size:12px;font-weight:700;color:var(--ink2);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:all .2s" onmouseover="this.style.borderColor='var(--brand)';this.style.color='var(--brand)'" onmouseout="this.style.borderColor='var(--ink4)';this.style.color='var(--ink2)'">
+          <i class="fa-solid fa-user-pen"></i> Edit My Profile
+        </button>
       </div>
       <div class="acc-menu">
         <div class="acc-mi active" onclick="switchAccTab('orders',this)"><i class="fa-solid fa-box"></i> My Orders</div>
@@ -4395,6 +4398,7 @@ async function renderSellerDashboard() {
         <div class="snav-item" onclick="switchSellerTab('products',this)"><i class="fa-solid fa-box"></i> My Products</div>
         <div class="snav-item" onclick="switchSellerTab('promotions',this)"><i class="fa-solid fa-tag"></i> Promotions</div>
         <div class="snav-item" onclick="switchSellerTab('store',this)"><i class="fa-solid fa-store"></i> My Store</div>
+        <div class="snav-item" onclick="switchSellerTab('sellerprofile',this)"><i class="fa-solid fa-user-circle"></i> My Profile</div>
         <div class="snav-item logout" onclick="doLogout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</div>
         <div style="padding:8px 16px 4px;font-size:9px;font-weight:800;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.1em;margin-top:8px">🤖 AI Tools</div>
         <div class="snav-item" onclick="switchSellerTab('ai_demand',this)" style="color:#a78bfa"><i class="fa-solid fa-chart-line" style="color:#a78bfa"></i> AI Demand Forecast</div>
@@ -4768,6 +4772,45 @@ async function renderSellerDashboard() {
         </div>
       </div>
     </div>
+      <!-- ═══ SELLER PERSONAL PROFILE TAB ═══ -->
+      <div class="seller-tab" id="stab-sellerprofile">
+        <div class="sbox" style="padding:22px">
+          <div class="sbox-head" style="padding:0 0 16px;border-bottom:1px solid #f0f0f0">
+            <div class="sbox-title"><i class="fa-solid fa-user-circle"></i> My Personal Profile</div>
+          </div>
+          <div style="padding-top:18px">
+            <div style="display:flex;align-items:center;gap:16px;margin-bottom:22px;padding:16px;background:linear-gradient(135deg,var(--brand-light),#f0f7ff);border-radius:var(--r-sm)">
+              <div style="width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--brand),#7c3aed);display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:800;color:#fff;flex-shrink:0">${(S.user?.name||"S")[0].toUpperCase()}</div>
+              <div>
+                <div style="font-size:17px;font-weight:800;color:var(--ink)">${S.user?.name||""}</div>
+                <div style="font-size:13px;color:var(--ink3);margin-top:2px">${S.user?.email||""}</div>
+                <span style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:99px;background:var(--brand);color:#fff;margin-top:6px;display:inline-block">🏪 Seller</span>
+              </div>
+            </div>
+            <div class="fgrid" style="margin-bottom:14px">
+              <div class="fgroup"><label class="flabel">Full Name</label><input class="finput" id="sellerEditName" value="${S.user?.name||""}" placeholder="Your full name"></div>
+              <div class="fgroup"><label class="flabel">Phone</label><input class="finput" id="sellerEditPhone" value="${S.user?.phone||""}" placeholder="10-digit mobile"></div>
+              <div class="fgroup"><label class="flabel">Email</label><input class="finput" id="sellerEditEmail" value="${S.user?.email||""}" placeholder="your@email.com" type="email"></div>
+              <div class="fgroup"><label class="flabel">City</label><input class="finput" id="sellerEditCity" value="${S.user?.city||""}" placeholder="Your city"></div>
+            </div>
+            <button onclick="saveSellerPersonalProfile()" style="width:100%;padding:12px;background:var(--brand);color:#fff;border:none;border-radius:var(--r-sm);font-size:14px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:20px">
+              <i class="fa-solid fa-floppy-disk"></i> Save Personal Details
+            </button>
+            <div style="padding:16px;background:var(--bg);border-radius:var(--r-sm);border:1px solid #f0f0f0">
+              <div style="font-size:13px;font-weight:800;color:var(--ink);margin-bottom:12px">🔑 Change Password</div>
+              <div style="position:relative;margin-bottom:10px">
+                <input class="finput" id="sellerCurrentPass" type="password" placeholder="Current password" style="padding-right:44px">
+                <button type="button" onclick="togglePassVis('sellerCurrentPass','scpEye')" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--ink3);font-size:16px;padding:0;line-height:1"><i id="scpEye" class="fa-regular fa-eye"></i></button>
+              </div>
+              <div style="position:relative;margin-bottom:12px">
+                <input class="finput" id="sellerNewPass" type="password" placeholder="New password (min 6 chars)" style="padding-right:44px">
+                <button type="button" onclick="togglePassVis('sellerNewPass','snpEye')" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--ink3);font-size:16px;padding:0;line-height:1"><i id="snpEye" class="fa-regular fa-eye"></i></button>
+              </div>
+              <button onclick="changeSellerPassword()" style="width:100%;padding:10px;background:var(--bg);border:1.5px solid var(--brand);color:var(--brand);border-radius:var(--r-sm);font-size:13px;font-weight:700;cursor:pointer">Update Password</button>
+            </div>
+          </div>
+        </div>
+      </div>
   </div>`;
 }
 function renderSellerTable(products) {
@@ -10675,6 +10718,56 @@ var NZ_PERSONALIZATION = {
 })();
 
 /* ══ END NEARZY FEATURE + FIX PATCH ══════════════════════════════ */
+
+
+/* ─── SELLER PERSONAL PROFILE FUNCTIONS ──────────────────────── */
+async function saveSellerPersonalProfile() {
+  var name  = (document.getElementById("sellerEditName")  || {}).value || "";
+  var email = (document.getElementById("sellerEditEmail") || {}).value || "";
+  var phone = (document.getElementById("sellerEditPhone") || {}).value || "";
+  var city  = (document.getElementById("sellerEditCity")  || {}).value || "";
+  name = name.trim(); email = email.trim(); phone = phone.trim(); city = city.trim();
+  if (!name) { toast("Name cannot be empty", "error"); return; }
+  if (name)  S.user.name  = name;
+  if (email) S.user.email = email;
+  if (phone) S.user.phone = phone;
+  if (city)  S.user.city  = city;
+  localStorage.setItem("nz_user", JSON.stringify(S.user));
+  // Update the header name display
+  var navSub = document.querySelector(".seller-nav-sub");
+  if (navSub) navSub.textContent = S.user.name;
+  try {
+    await fetch(API + "/auth/update-profile", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json", "Authorization": "Bearer " + S.token },
+      body: JSON.stringify({ name: name, email: email, phone: phone, city: city })
+    });
+  } catch(e) {}
+  toast("✅ Personal details saved!", "success");
+}
+
+async function changeSellerPassword() {
+  var cur = ((document.getElementById("sellerCurrentPass") || {}).value || "").trim();
+  var nw  = ((document.getElementById("sellerNewPass")     || {}).value || "").trim();
+  if (!cur || !nw) { toast("Please fill both password fields", "error"); return; }
+  if (nw.length < 6) { toast("New password must be at least 6 characters", "error"); return; }
+  try {
+    var res = await fetch(API + "/auth/change-password", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Authorization": "Bearer " + S.token },
+      body: JSON.stringify({ currentPassword: cur, newPassword: nw })
+    });
+    if (res.ok) {
+      toast("✅ Password changed successfully!", "success");
+      var cp = document.getElementById("sellerCurrentPass");
+      var np = document.getElementById("sellerNewPass");
+      if (cp) cp.value = ""; if (np) np.value = "";
+    } else {
+      var d = await res.json();
+      toast(d.message || "Current password is incorrect", "error");
+    }
+  } catch(e) { toast("Could not connect. Try again.", "error"); }
+}
 
 </script>
 </body>
