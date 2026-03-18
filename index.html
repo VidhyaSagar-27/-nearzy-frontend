@@ -2224,9 +2224,11 @@ function restoreSession() {
       try {
         S.user = JSON.parse(u); S.token = t; S.role = S.user.role || "customer";
         // Auto-route on startup based on stored role
-        if (S.role === "seller")   setTimeout(() => showPage("seller"),   500);
-        else if (S.role === "delivery") setTimeout(() => showPage("delivery"), 500);
-        else if (S.role === "admin" || S.role === "superadmin") setTimeout(() => showPage("admin"), 500);
+        if (S.role === "seller")   setTimeout(() => { applyRoleBasedUI(); showPage("seller"); },   500);
+        else if (S.role === "delivery") setTimeout(() => { applyRoleBasedUI(); showPage("delivery"); }, 500);
+        else if (S.role === "admin" || S.role === "superadmin") setTimeout(() => { applyRoleBasedUI(); showPage("admin"); }, 500);
+        // For customers: just load data, stay on home
+        else { setTimeout(() => { if (typeof loadOrders === "function") loadOrders(); }, 1000); }
       } catch(e) { localStorage.removeItem("nz_user"); localStorage.removeItem("nz_token"); }
     }
     if (c) S.cart = JSON.parse(c);
@@ -2246,10 +2248,12 @@ function saveSession() {
 /* ===== PAGE NAV ===== */
 function showPage(page) {
   const role = S.user ? (S.user.role || "customer") : "customer";
-  // Role guard: sellers and delivery partners don't see customer pages
-  const customerPages = ["home","cart","checkout","wishlist","shop"];
-  if (customerPages.includes(page) && role === "seller")   page = "seller";
-  if (customerPages.includes(page) && role === "delivery") page = "delivery";
+  // Role guard: sellers and delivery see their dashboard instead of shopping pages
+  // BUT: "account" is allowed for ALL roles (profile/orders/settings)
+  const sellerOnly    = ["home","cart","checkout","wishlist","shop"];
+  const deliveryOnly  = ["home","cart","checkout","wishlist","shop"];
+  if (sellerOnly.includes(page)   && role === "seller")   page = "seller";
+  if (deliveryOnly.includes(page) && role === "delivery") page = "delivery";
 
   document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
   const el = document.getElementById("page-" + page);
@@ -3800,7 +3804,7 @@ function _orig_selectRole(role) {
   document.querySelectorAll(".role-opt").forEach(o => o.classList.remove("selected"));
   document.getElementById("role-" + role)?.classList.add("selected");
 }
-async function _orig_doLogin() {
+async function doLogin() {
   const email = document.getElementById("loginEmail").value.trim();
   const password = document.getElementById("loginPassword").value.trim();
   if (!email || !password) { toast("Enter email and password", "error"); return; }
@@ -3810,18 +3814,19 @@ async function _orig_doLogin() {
     if (!res.ok) throw new Error(data.message);
     S.user = data.user; S.token = data.token; S.role = data.user.role;
     saveSession(); updateHeader(); closeAuthModal();
-    toast(`Welcome back, ${data.user.name}!`, "success");
+    applyRoleBasedUI();
+    toast(`Welcome back, ${data.user.name}! 🎉`, "success");
     askNotificationPermission();
-    addNotification("system", `Welcome back, ${data.user.name.split(' ')[0]}! 👋`, "Good to see you! Check out today's deals.");
-    // Show greeting for logged-in user
+    addNotification("system", `Welcome back, ${data.user.name.split(" ")[0]}! 👋`, "Good to see you! Check out today's deals.");
     const tg = document.getElementById("timeGreeting");
     if (tg) tg.classList.remove("hidden");
     renderRecommendations();
     setTimeout(schedulePromoNotifications, 5000);
     setTimeout(() => {
-      if (S.role === "seller") showPage("seller");
-      else if (S.role === "delivery") showPage("delivery");
-      else if (S.role === "admin" || S.role === "superadmin") showPage("admin");
+      if (S.role === "seller")   { showPage("seller"); }
+      else if (S.role === "delivery") { showPage("delivery"); }
+      else if (S.role === "admin" || S.role === "superadmin") { showPage("admin"); }
+      else { loadOrders(); }
     }, 400);
   } catch (err) { toast(err.message || "Login failed", "error"); }
 }
@@ -3832,23 +3837,33 @@ async function doSignup() {
   const city = document.getElementById("signupCity").value.trim();
   const password = document.getElementById("signupPassword").value.trim();
   if (!name || !email || !phone || !password) { toast("Please fill all fields", "error"); return; }
+  if (password.length < 6) { toast("Password must be at least 6 characters", "error"); return; }
   try {
     const res = await fetch(`${API}/auth/signup`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ name, email, phone, password, role: selectedRole, city }) });
     const data = await res.json();
     if (!res.ok) throw new Error(data.message);
     S.user = data.user; S.token = data.token; S.role = data.user.role;
     saveSession(); updateHeader(); closeAuthModal();
-    toast(`Welcome to Nearzy, ${data.user.name}!`, "success");
+    applyRoleBasedUI();
+    toast(`Welcome to Nearzy, ${data.user.name}! 🎉`, "success");
     setTimeout(() => {
-      if (S.role === "seller") showPage("seller");
-      else if (S.role === "delivery") showPage("delivery");
+      if (S.role === "seller")   { showPage("seller"); }
+      else if (S.role === "delivery") { showPage("delivery"); }
+      else if (S.role === "admin" || S.role === "superadmin") { showPage("admin"); }
     }, 400);
   } catch (err) { toast(err.message || "Signup failed", "error"); }
 }
-function _orig_doLogout() {
+function doLogout() {
   S.user = null; S.token = null; S.role = "guest"; S.cart = []; S.wishlist = [];
   localStorage.removeItem("nz_user"); localStorage.removeItem("nz_token");
   localStorage.removeItem("nz_cart"); localStorage.removeItem("nz_wish");
+  // Show header/nav again for guest
+  const hdr  = document.querySelector(".header");
+  const bnav = document.querySelector(".bottom-nav");
+  const fab  = document.getElementById("fabBtn");
+  if (hdr)  hdr.style.display  = "";
+  if (bnav) bnav.style.display = "";
+  if (fab)  fab.style.display  = "";
   updateHeader(); showPage("home"); toast("Logged out successfully");
 }
 
@@ -10453,91 +10468,13 @@ function applyRoleBasedUI() {
   if (fab)  fab.style.display  = hide ? "none" : "";
 }
 
-/* ─── PATCHED doLogin ─────────────────────────────────────────── */
-async function doLogin() {
-  var email    = (document.getElementById("loginEmail")    || {}).value || "";
-  var password = (document.getElementById("loginPassword") || {}).value || "";
-  email = email.trim(); password = password.trim();
-  if (!email || !password) { toast("Please fill email and password", "error"); return; }
-  try {
-    var res = await fetch(API + "/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email: email, password: password })
-    });
-    var data = await res.json();
-    if (!res.ok) { toast(data.message || "Login failed", "error"); return; }
-    S.user = data.user; S.token = data.token; S.role = data.user.role || "customer";
-    localStorage.setItem("nz_user",  JSON.stringify(S.user));
-    localStorage.setItem("nz_token", S.token);
-    var authModal = document.getElementById("authModal");
-    if (authModal) authModal.classList.remove("open");
-    if (typeof updateHeader    === "function") updateHeader();
-    if (typeof updateCartBadge === "function") updateCartBadge();
-    applyRoleBasedUI();
-    if (S.role === "seller")        { showPage("seller");   toast("Welcome back, " + S.user.name + "! 🏪", "success"); }
-    else if (S.role === "delivery") { showPage("delivery"); toast("Welcome back, " + S.user.name + "! 🛵", "success"); }
-    else if (S.role === "admin" || S.role === "superadmin") { showPage("admin"); toast("Welcome, Admin!", "success"); }
-    else { toast("Welcome back, " + S.user.name + "! 🎉", "success"); if (typeof loadShops === "function") loadShops(); }
-  } catch(e) { toast("Network error. Check connection.", "error"); }
-}
+/* doLogin handled by original function above */
 
-/* ─── PATCHED doRegister ─────────────────────────────────────────*/
-async function doRegister() {
-  var name     = (document.getElementById("signupName")     || {}).value || "";
-  var email    = (document.getElementById("signupEmail")    || {}).value || "";
-  var phone    = (document.getElementById("signupPhone")    || {}).value || "";
-  var password = (document.getElementById("signupPassword") || {}).value || "";
-  var city     = (document.getElementById("signupCity")     || {}).value || "";
-  var role     = window._selectedRole || "customer";
-  name = name.trim(); email = email.trim(); phone = phone.trim(); password = password.trim(); city = city.trim();
-  if (!name || !email || !password) { toast("Please fill all required fields", "error"); return; }
-  if (password.length < 6) { toast("Password must be at least 6 characters", "error"); return; }
-  try {
-    var res = await fetch(API + "/auth/signup", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name: name, email: email, phone: phone, password: password, role: role, city: city })
-    });
-    var data = await res.json();
-    if (!res.ok) { toast(data.message || "Registration failed", "error"); return; }
-    S.user = data.user; S.token = data.token; S.role = data.user.role || "customer";
-    localStorage.setItem("nz_user",  JSON.stringify(S.user));
-    localStorage.setItem("nz_token", S.token);
-    var authModal = document.getElementById("authModal");
-    if (authModal) authModal.classList.remove("open");
-    if (typeof updateHeader    === "function") updateHeader();
-    if (typeof updateCartBadge === "function") updateCartBadge();
-    applyRoleBasedUI();
-    if (S.role === "seller")        { showPage("seller");   toast("Welcome, " + name + "! Set up your shop 🏪", "success"); }
-    else if (S.role === "delivery") { showPage("delivery"); toast("Welcome, " + name + "! You're a delivery partner 🛵", "success"); }
-    else { toast("Welcome to Nearzy, " + name + "! 🎉", "success"); if (typeof loadShops === "function") loadShops(); }
-  } catch(e) { toast("Network error. Check connection.", "error"); }
-}
+/* doRegister/doSignup handled by original function above */
 
-/* ─── PATCHED doLogout ────────────────────────────────────────── */
-function doLogout() {
-  S.user = null; S.token = null; S.role = "customer"; S.cart = []; S.wishlist = [];
-  localStorage.removeItem("nz_user"); localStorage.removeItem("nz_token");
-  var hdr  = document.querySelector(".header");
-  var bnav = document.querySelector(".bottom-nav");
-  var fab  = document.getElementById("fabBtn");
-  if (hdr)  hdr.style.display  = "";
-  if (bnav) bnav.style.display = "";
-  if (fab)  fab.style.display  = "";
-  if (typeof updateHeader    === "function") updateHeader();
-  if (typeof updateCartBadge === "function") updateCartBadge();
-  showPage("home");
-  toast("Logged out. See you soon!", "info");
-}
+/* doLogout handled by original function + applyRoleBasedUI patch below */
 
-/* ─── PATCHED selectRole ──────────────────────────────────────── */
-function selectRole(role) {
-  window._selectedRole = role;
-  document.querySelectorAll(".role-opt").forEach(function(r) { r.classList.remove("active"); });
-  var el = document.getElementById("role-" + role);
-  if (el) el.classList.add("active");
-}
+/* selectRole handled by original */
 
 /* ─── ENHANCED LANGUAGE: full page translation ─────────────────── */
 var NZ_LANG_EXTRA = {
