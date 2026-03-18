@@ -841,6 +841,10 @@ a{text-decoration:none;color:inherit}
 .seller-nav-head{background:linear-gradient(135deg,#1a1a2e,#16213e);padding:20px;color:#fff}
 .seller-nav-title{font-family:'Sora',sans-serif;font-size:15px;font-weight:700;display:flex;align-items:center;gap:8px}
 .seller-nav-sub{font-size:11px;opacity:.65;margin-top:3px}
+.pdrop-item{display:flex;align-items:center;gap:10px;padding:10px 16px;font-size:13px;font-weight:600;color:var(--ink2);cursor:pointer;transition:background .15s}
+.pdrop-item:hover{background:var(--bg);color:var(--brand)}
+.pdrop-item i{width:16px;text-align:center;font-size:13px;color:var(--ink3)}
+.pdrop-item:hover i{color:var(--brand)}
 .snav-item{display:flex;align-items:center;gap:10px;padding:12px 18px;font-size:13px;font-weight:600;color:var(--ink2);cursor:pointer;transition:all .18s;border-left:3px solid transparent}
 .snav-item:hover{background:var(--bg);color:var(--brand)}
 .snav-item.active{background:var(--brand-light);color:var(--brand);border-left-color:var(--brand)}
@@ -1283,9 +1287,39 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
         <span class="hlabel">Cart</span>
         <span class="h-badge hidden" id="cartBadge">0</span>
       </div>
-      <div class="h-btn primary" id="authBtn" onclick="openAuthModal()">
+      <!-- When logged OUT: Login button -->
+      <div class="h-btn primary" id="loginBtn" onclick="openAuthModal()" style="display:flex">
         <i class="fa-regular fa-user"></i>
-        <span id="authLabel">Login</span>
+        <span class="hlabel">Login</span>
+      </div>
+      <!-- When logged IN: Profile avatar button with dropdown -->
+      <div id="userBtn" style="display:none;position:relative">
+        <button onclick="toggleProfileDropdown()" style="display:flex;align-items:center;gap:6px;padding:6px 10px;background:var(--brand);border:none;border-radius:99px;cursor:pointer;color:#fff;font-family:inherit">
+          <div style="width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;flex-shrink:0" id="userAvatarBadge">?</div>
+          <span id="userNameEl" style="font-size:12px;font-weight:700;max-width:70px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Me</span>
+          <i class="fa-solid fa-chevron-down" style="font-size:9px;opacity:.8"></i>
+        </button>
+        <!-- Dropdown -->
+        <div id="profileDropdown" style="display:none;position:absolute;top:calc(100% + 8px);right:0;background:var(--white);border-radius:var(--r-sm);box-shadow:0 8px 32px rgba(0,0,0,.15);border:1px solid var(--ink4);min-width:200px;z-index:6000;overflow:hidden">
+          <!-- User info header -->
+          <div style="padding:14px 16px;background:linear-gradient(135deg,var(--brand),#7c3aed);color:#fff">
+            <div id="dropUserName" style="font-size:14px;font-weight:800;font-family:'Sora',sans-serif"></div>
+            <div id="dropUserEmail" style="font-size:11px;opacity:.85;margin-top:2px"></div>
+            <div id="dropUserPhone" style="font-size:11px;opacity:.75;margin-top:1px"></div>
+          </div>
+          <!-- Menu items -->
+          <div style="padding:6px 0">
+            <div onclick="goToAccountTab('orders')" class="pdrop-item"><i class="fa-solid fa-box"></i> My Orders</div>
+            <div onclick="goToAccountTab('profile')" class="pdrop-item"><i class="fa-solid fa-user-pen"></i> My Profile</div>
+            <div onclick="goToAccountTab('addresses')" class="pdrop-item"><i class="fa-solid fa-location-dot"></i> Saved Addresses</div>
+            <div onclick="goToAccountTab('points')" class="pdrop-item"><i class="fa-solid fa-star" style="color:#f9ca24"></i> Loyalty Points</div>
+            <div onclick="goToAccountTab('wishlist')" class="pdrop-item"><i class="fa-regular fa-heart" style="color:var(--red)"></i> Wishlist</div>
+            <div onclick="goToAccountTab('spending')" class="pdrop-item"><i class="fa-solid fa-chart-pie" style="color:var(--blue)"></i> My Spending</div>
+            <div onclick="goToAccountTab('support')" class="pdrop-item"><i class="fa-solid fa-headset" style="color:var(--green)"></i> Support</div>
+            <div style="height:1px;background:var(--ink4);margin:4px 0"></div>
+            <div onclick="doLogout();closeProfileDropdown()" class="pdrop-item" style="color:var(--red)"><i class="fa-solid fa-right-from-bracket"></i> Logout</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -3897,17 +3931,29 @@ function updateHeader() {
   const _lb = document.getElementById("loyaltyBannerBtn");
   if (_lb) _lb.textContent = S.user ? (S.loyaltyPoints + " pts") : "Join Free";
 
-  // User button
+  // User button — toggle login vs profile
   const loginBtn = document.getElementById("loginBtn");
-  const userBtn = document.getElementById("userBtn");
-  const userNameEl = document.getElementById("userNameEl");
+  const userBtn  = document.getElementById("userBtn");
   if (S.user) {
     if (loginBtn) loginBtn.style.display = "none";
-    if (userBtn) userBtn.style.display = "flex";
-    if (userNameEl) userNameEl.textContent = S.user.name?.split(" ")[0] || "Me";
+    if (userBtn)  userBtn.style.display  = "block";
+    // Update avatar badge (first letter of name)
+    const badge = document.getElementById("userAvatarBadge");
+    const nameEl = document.getElementById("userNameEl");
+    const firstName = (S.user.name || "Me").split(" ")[0];
+    if (badge)  badge.textContent  = firstName[0].toUpperCase();
+    if (nameEl) nameEl.textContent = firstName;
+    // Update dropdown info
+    const dn = document.getElementById("dropUserName");
+    const de = document.getElementById("dropUserEmail");
+    const dp = document.getElementById("dropUserPhone");
+    if (dn) dn.textContent = S.user.name  || "";
+    if (de) de.textContent = S.user.email || "";
+    if (dp) dp.textContent = S.user.phone || "";
   } else {
     if (loginBtn) loginBtn.style.display = "flex";
-    if (userBtn) userBtn.style.display = "none";
+    if (userBtn)  userBtn.style.display  = "none";
+    closeProfileDropdown();
   }
 }
 
@@ -10788,6 +10834,38 @@ async function changeSellerPassword() {
       toast(d.message || "Current password is incorrect", "error");
     }
   } catch(e) { toast("Could not connect. Try again.", "error"); }
+}
+
+
+/* ─── PROFILE DROPDOWN ────────────────────────────────────────── */
+function toggleProfileDropdown() {
+  const dd = document.getElementById("profileDropdown");
+  if (!dd) return;
+  const isOpen = dd.style.display === "block";
+  dd.style.display = isOpen ? "none" : "block";
+  // Close on outside click
+  if (!isOpen) {
+    setTimeout(() => {
+      document.addEventListener("click", closeProfileDropdownOutside, { once: true });
+    }, 10);
+  }
+}
+function closeProfileDropdownOutside(e) {
+  const btn  = document.getElementById("userBtn");
+  if (btn && btn.contains(e.target)) return; // clicked inside — ignore
+  closeProfileDropdown();
+}
+function closeProfileDropdown() {
+  const dd = document.getElementById("profileDropdown");
+  if (dd) dd.style.display = "none";
+}
+function goToAccountTab(tab) {
+  closeProfileDropdown();
+  showPage("account");
+  setTimeout(function() {
+    var menuItem = document.querySelector(".acc-mi[onclick*='" + tab + "']");
+    switchAccTab(tab, menuItem);
+  }, 120);
 }
 
 </script>
