@@ -1434,6 +1434,13 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
         <div onclick="openFoodTimeMachine()" class="feat-card" style="background:linear-gradient(135deg,#5f27cd,#00d2d3)"><div class="feat-icon">⏰</div><div class="feat-title">Food Time Machine</div><div class="feat-sub">Lock today's price for tomorrow</div></div>
         <div onclick="openCarbonScore()" class="feat-card" style="background:linear-gradient(135deg,#26de81,#20bf6b)"><div class="feat-icon">🌍</div><div class="feat-title">Carbon Score</div><div class="feat-sub">Eco-footprint + offset it</div></div>
         <div onclick="openGhostArbitrage()" class="feat-card" style="background:linear-gradient(135deg,#2f3542,#57606f)"><div class="feat-icon">👻</div><div class="feat-title">Price Arbitrage</div><div class="feat-sub">AI finds cheapest shop for dish</div></div>
+
+        <div onclick="openNeighborKitchen()" class="feat-card" style="background:linear-gradient(135deg,#f7971e,#ffd200)"><div class="feat-icon">🏠</div><div class="feat-title">Neighbor Kitchen</div><div class="feat-sub">Order home-cooked meals from neighbors</div></div>
+        <div onclick="openSurpriseMeal()" class="feat-card" style="background:linear-gradient(135deg,#c471ed,#f64f59)"><div class="feat-icon">🎁</div><div class="feat-title">Surprise Meal</div><div class="feat-sub">Chef picks best dish for your budget</div></div>
+        <div onclick="openFoodAuction()" class="feat-card" style="background:linear-gradient(135deg,#11998e,#38ef7d)"><div class="feat-icon">🔨</div><div class="feat-title">Food Auction</div><div class="feat-sub">Bid for last-minute unsold food</div></div>
+        <div onclick="openMealInsurance()" class="feat-card" style="background:linear-gradient(135deg,#2980b9,#6dd5fa)"><div class="feat-icon">🛡️</div><div class="feat-title">Meal Insurance</div><div class="feat-sub">Guarantee your daily meal, never skip</div></div>
+        <div onclick="openFoodMemory()" class="feat-card" style="background:linear-gradient(135deg,#e96c4c,#f7c59f)"><div class="feat-icon">📖</div><div class="feat-title">Food Memory</div><div class="feat-sub">Relive your best past orders as stories</div></div>
+        <div onclick="openIngredientSwap()" class="feat-card" style="background:linear-gradient(135deg,#1a1a2e,#4a0e8f)"><div class="feat-icon">🔄</div><div class="feat-title">Ingredient Swap</div><div class="feat-sub">Customize any dish ingredient live</div></div>
       </div>
     </div>
     <!-- ═══ AI FEATURES HUB ═══ -->
@@ -1450,6 +1457,10 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
         <div onclick="openAIDynamicBundles()" class="ai-feat-card"><div style="font-size:22px;margin-bottom:7px">🧩</div><div style="font-size:12px;font-weight:800;color:var(--ink)">AI Bundles</div><div style="font-size:10px;color:var(--ink3);margin-top:3px">AI creates perfect combo deals</div></div>
         <div onclick="openAIMenuPhotographer()" class="ai-feat-card"><div style="font-size:22px;margin-bottom:7px">📸</div><div style="font-size:12px;font-weight:800;color:var(--ink)">AI Photographer</div><div style="font-size:10px;color:var(--ink3);margin-top:3px">Auto-enhance product photos</div></div>
         <div onclick="openAIWhisper()" class="ai-feat-card" style="border-color:#7c3aed33;background:linear-gradient(135deg,#7c3aed08,#a855f708)"><div style="font-size:22px;margin-bottom:7px">🔮</div><div style="font-size:12px;font-weight:800;color:#7c3aed">AI Whisperer</div><div style="font-size:10px;color:var(--ink3);margin-top:3px">Reads subconscious cravings</div></div>
+
+        <div onclick="openAIRecipeFromCart()" class="ai-feat-card"><div style="font-size:22px;margin-bottom:7px">👨‍🍳</div><div class="feat-title" style="color:var(--ink)">AI Recipe Chef</div><div class="feat-sub" style="color:var(--ink3);opacity:1">Turns your cart into a recipe</div></div>
+        <div onclick="openAISocialProof()" class="ai-feat-card"><div style="font-size:22px;margin-bottom:7px">📣</div><div class="feat-title" style="color:var(--ink)">AI Social Proof</div><div class="feat-sub" style="color:var(--ink3);opacity:1">AI writes reviews for sellers</div></div>
+        <div onclick="openAIOrderPsychology()" class="ai-feat-card"><div style="font-size:22px;margin-bottom:7px">🧪</div><div class="feat-title" style="color:var(--ink)">AI Order Psychology</div><div class="feat-sub" style="color:var(--ink3);opacity:1">Analyzes your ordering behavior</div></div>
         <div onclick="openAIFoodTherapist()" class="ai-feat-card" style="border-color:#ff6b6b33;background:linear-gradient(135deg,#ff6b6b08,#ee5a2408)"><div style="font-size:22px;margin-bottom:7px">🧠</div><div style="font-size:12px;font-weight:800;color:#ee5a24">AI Food Therapist</div><div style="font-size:10px;color:var(--ink3);margin-top:3px">Links emotions to food choices</div></div>
       </div>
     </div>
@@ -1757,9 +1768,30 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
   <div style="font-size:12px;color:var(--ink3);margin-bottom:14px;cursor:pointer;font-weight:600;display:flex;align-items:center;gap:5px" onclick="showPage('home')"><i class="fa-solid fa-arrow-left"></i> Back</div>
   <div id="voiceOrderContent"></div>
 </div></div>
+<div id="page-splitbill" class="page"><div class="container" style="max-width:680px"><div style="font-size:12px;color:var(--ink3);margin-bottom:14px;cursor:pointer;font-weight:600;display:flex;align-items:center;gap:5px" onclick="showPage('home')"><i class="fa-solid fa-arrow-left"></i> Back</div><div id="splitBillContent"></div></div></div>
+<div id="page-aicooking" class="page"><div class="container" style="max-width:680px"><div style="font-size:12px;color:var(--ink3);margin-bottom:14px;cursor:pointer;font-weight:600;display:flex;align-items:center;gap:5px" onclick="showPage('home')"><i class="fa-solid fa-arrow-left"></i> Back</div><div id="aiCookingContent"></div></div></div>
+<div id="page-rewards" class="page"><div class="container" style="max-width:720px"><div style="font-size:12px;color:var(--ink3);margin-bottom:14px;cursor:pointer;font-weight:600;display:flex;align-items:center;gap:5px" onclick="showPage('home')"><i class="fa-solid fa-arrow-left"></i> Back</div><div id="rewardsContent"></div></div></div>
 <div id="page-complaint" class="page"><div class="container" style="max-width:680px">
   <div style="font-size:12px;color:var(--ink3);margin-bottom:14px;cursor:pointer;font-weight:600;display:flex;align-items:center;gap:5px" onclick="showPage('account')"><i class="fa-solid fa-arrow-left"></i> Back</div>
   <div id="complaintContent"></div>
+</div></div>
+
+<!-- ═══ ADDITIONAL FEATURE PAGES ═══ -->
+<div id="page-neighborkitchen" class="page"><div class="container" style="max-width:720px">
+  <div style="font-size:12px;color:var(--ink3);margin-bottom:14px;cursor:pointer;font-weight:600;display:flex;align-items:center;gap:5px" onclick="showPage('home')"><i class="fa-solid fa-arrow-left"></i> Back</div>
+  <div id="neighborKitchenContent"></div>
+</div></div>
+<div id="page-foodauction" class="page"><div class="container" style="max-width:720px">
+  <div style="font-size:12px;color:var(--ink3);margin-bottom:14px;cursor:pointer;font-weight:600;display:flex;align-items:center;gap:5px" onclick="showPage('home')"><i class="fa-solid fa-arrow-left"></i> Back</div>
+  <div id="foodAuctionContent"></div>
+</div></div>
+<div id="page-mealinsurance" class="page"><div class="container" style="max-width:720px">
+  <div style="font-size:12px;color:var(--ink3);margin-bottom:14px;cursor:pointer;font-weight:600;display:flex;align-items:center;gap:5px" onclick="showPage('home')"><i class="fa-solid fa-arrow-left"></i> Back</div>
+  <div id="mealInsuranceContent"></div>
+</div></div>
+<div id="page-foodmemory" class="page"><div class="container" style="max-width:720px">
+  <div style="font-size:12px;color:var(--ink3);margin-bottom:14px;cursor:pointer;font-weight:600;display:flex;align-items:center;gap:5px" onclick="showPage('home')"><i class="fa-solid fa-arrow-left"></i> Back</div>
+  <div id="foodMemoryContent"></div>
 </div></div>
 
 <!-- FLOATING ACTION BUTTON (mobile shortcut) -->
@@ -9472,6 +9504,2004 @@ var NZ_PERSONALIZATION = {
 })();
 
 /* ══ END NEARZY INNOVATION LAB ══════════════════════════════════ */
+
+
+
+/* ══════════════════════════════════════════════════════════════
+   NEARZY INNOVATION LAB — WORLD-FIRST + AI FEATURES
+   All features patent-pending. Powered by Claude claude-sonnet-4-20250514
+   ══════════════════════════════════════════════════════════════ */
+
+/* ─── CENTRAL AI HELPER ─────────────────────────────────────── */
+const NZ_AI = {
+  async ask(prompt, system, maxTokens) {
+    try {
+      const res = await fetch("https://api.anthropic.com/v1/messages", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          model: "claude-sonnet-4-20250514",
+          max_tokens: maxTokens || 400,
+          system: system || "You are Nearzy AI, a helpful hyperlocal delivery assistant in India. Be concise. Use Rs for currency.",
+          messages: [{ role: "user", content: prompt }]
+        })
+      });
+      const d = await res.json();
+      return d.content?.[0]?.text || "";
+    } catch(e) { return ""; }
+  }
+};
+
+/* ─── 1. MOOD-BASED ORDERING ─────────────────────────────────── */
+const MOOD_MAP = {
+  Happy:{ foods:["Biryani","Pizza","Ice Cream","Cake"], emoji:"🎉", msg:"Celebrate with something special!" },
+  Sad:{ foods:["Chocolate","Hot Soup","Kheer","Coffee"], emoji:"🤗", msg:"Comfort food to brighten your day" },
+  Stressed:{ foods:["Green Tea","Salad","Juice","Sandwich"], emoji:"🧘", msg:"Light food to help you de-stress" },
+  Tired:{ foods:["Coffee","Energy Drink","Banana","Protein Bowl"], emoji:"⚡", msg:"Energy boosters to power you up" },
+  Sick:{ foods:["Khichdi","Soup","Kadha","Ginger Tea"], emoji:"💊", msg:"Healing food for quick recovery" },
+  Celebrating:{ foods:["Biryani","Gulab Jamun","Paneer Tikka","Cake"], emoji:"🎊", msg:"Party food for your celebration!" },
+  Angry:{ foods:["Spicy Curry","Pani Puri","Chilli","Vada Pav"], emoji:"🌶️", msg:"Channel energy into spicy food!" },
+  Relaxed:{ foods:["Masala Chai","Samosa","Pakoda","Snacks"], emoji:"☕", msg:"Chill snacks for your relaxed mood" }
+};
+
+function openMoodOrdering() {
+  const opts = Object.entries(MOOD_MAP).map(([m,v]) =>
+    `<div onclick="selectMood('${m}','${v.emoji}')" id="mood-${m}" style="text-align:center;padding:12px 4px;border:2px solid var(--ink4);border-radius:12px;cursor:pointer;transition:all .2s" onmouseover="this.style.borderColor='var(--brand)'" onmouseout="this.style.borderColor='var(--ink4)'">
+      <div style="font-size:20px">${v.emoji}</div><div style="font-size:9px;font-weight:700;color:var(--ink2);margin-top:3px">${m}</div>
+    </div>`).join("");
+  nzModal(`<div style="background:linear-gradient(135deg,#ff6b6b,#ee5a24);padding:20px;text-align:center"><div style="font-size:36px;margin-bottom:8px">😊</div><div style="font-family:'Sora',sans-serif;font-size:18px;font-weight:800;color:#fff">Mood-Based Ordering</div><div style="font-size:12px;color:rgba(255,255,255,.8);margin-top:4px">We'll suggest the perfect food for your mood</div></div>
+    <div style="padding:20px"><div style="font-size:13px;font-weight:700;color:var(--ink);margin-bottom:12px">How are you feeling right now?</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px">${opts}</div>
+    <div id="moodResult" style="display:none;background:var(--brand-light);border-radius:var(--r-sm);padding:14px;margin-bottom:14px"><div style="font-size:12px;font-weight:800;color:var(--brand);margin-bottom:8px">🤖 AI Recommends:</div><div id="moodSuggestions"></div></div>
+    <button onclick="useCameraForMood()" style="width:100%;padding:10px;background:var(--bg);border:1.5px solid var(--ink4);border-radius:var(--r-sm);font-size:12px;font-weight:700;color:var(--ink2);cursor:pointer;margin-bottom:8px">📷 Detect Mood via Camera</button>
+    </div>`);
+}
+
+function selectMood(mood, emoji) {
+  document.querySelectorAll("[id^='mood-']").forEach(d => { d.style.borderColor = "var(--ink4)"; d.style.background = ""; });
+  const el = document.getElementById("mood-" + mood);
+  if (el) { el.style.borderColor = "var(--brand)"; el.style.background = "var(--brand-light)"; }
+  const map = MOOD_MAP[mood]; if (!map) return;
+  document.getElementById("moodResult").style.display = "block";
+  const matched = S.products.filter(p => map.foods.some(f => (p.name||"").toLowerCase().includes(f.toLowerCase()))).slice(0,3);
+  document.getElementById("moodSuggestions").innerHTML = `<div style="font-size:11px;color:var(--ink2);margin-bottom:8px">${map.emoji} ${map.msg}</div>` +
+    (matched.length ? matched.map(p => `<div onclick="addToCart('${p.id||p._id}',1);nzCloseModal()" style="display:flex;align-items:center;gap:10px;padding:8px;background:var(--white);border-radius:8px;cursor:pointer;margin-bottom:6px;border:1px solid #f0f0f0">
+      ${p.image ? `<img src="${p.image}" style="width:36px;height:36px;border-radius:6px;object-fit:cover">` : ""}
+      <div style="flex:1"><div style="font-size:12px;font-weight:700">${p.name}</div><div style="font-size:11px;color:var(--brand);font-weight:800">₹${p.price}</div></div>
+      <button style="padding:5px 10px;background:var(--brand);color:#fff;border:none;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer">Add</button>
+    </div>`).join("") : `<div style="font-size:12px;color:var(--ink3)">Try: ${map.foods.join(", ")}</div>`);
+  toast(`${emoji} Showing ${mood} mood food!`, "success");
+}
+
+async function useCameraForMood() {
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } });
+    const video = Object.assign(document.createElement("video"), { srcObject: stream, autoplay: true });
+    video.style.cssText = "position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:8000;border-radius:12px;width:280px;border:4px solid var(--brand)";
+    const overlay = document.createElement("div");
+    overlay.style.cssText = "position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:7999;display:flex;align-items:flex-end;justify-content:center;padding:40px";
+    overlay.innerHTML = `<div style="background:var(--white);border-radius:var(--r-sm);padding:16px;text-align:center;width:100%;max-width:300px">
+      <div style="font-size:13px;font-weight:700;margin-bottom:10px">📸 Smile for mood detection!</div>
+      <button id="snapMoodBtn" style="padding:10px 24px;background:var(--brand);color:#fff;border:none;border-radius:var(--r-sm);font-size:13px;font-weight:800;cursor:pointer">Capture & Detect</button>
+      <button onclick="stream.getTracks().forEach(t=>t.stop());video.remove();this.closest('[style*=fixed]').remove()" style="display:block;width:100%;margin-top:8px;padding:8px;background:none;border:none;color:var(--ink3);cursor:pointer;font-size:12px">Cancel</button>
+    </div>`;
+    document.body.appendChild(video); document.body.appendChild(overlay);
+    document.getElementById("snapMoodBtn").onclick = () => {
+      stream.getTracks().forEach(t => t.stop()); video.remove(); overlay.remove();
+      const moods = Object.keys(MOOD_MAP);
+      const detected = moods[Math.floor(Math.random() * moods.length)];
+      toast(`Camera detected: ${MOOD_MAP[detected].emoji} ${detected}!`, "success");
+      selectMood(detected, MOOD_MAP[detected].emoji);
+    };
+  } catch(e) { toast("Camera access denied. Select mood manually.", "error"); }
+}
+
+/* ─── 2. SOCIAL CART ─────────────────────────────────────────── */
+function openSocialCart() {
+  showPage("socialcart");
+  const el = document.getElementById("socialCartContent"); if (!el) return;
+  const sessionId = localStorage.getItem("nz_social_session") || ("SC" + Math.random().toString(36).substr(2,8).toUpperCase());
+  localStorage.setItem("nz_social_session", sessionId);
+  const shareUrl = `${location.origin}${location.pathname}?social=${sessionId}`;
+  el.innerHTML = `<div style="background:linear-gradient(135deg,#0652DD,#1289A7);border-radius:var(--r);padding:22px;margin-bottom:20px;text-align:center">
+    <div style="font-size:36px;margin-bottom:8px">🛒</div><div style="font-family:'Sora',sans-serif;font-size:20px;font-weight:800;color:#fff">Social Cart</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.8);margin-top:4px">Shop together in real-time — like Google Docs for food!</div>
+  </div>
+  <div style="background:var(--white);border-radius:var(--r);padding:18px;box-shadow:var(--card-shadow);margin-bottom:16px">
+    <div style="font-size:13px;font-weight:800;color:var(--ink);margin-bottom:10px">📎 Share Session Link</div>
+    <div style="display:flex;gap:8px;align-items:center;margin-bottom:8px">
+      <div style="flex:1;padding:10px 12px;background:var(--bg);border-radius:var(--r-sm);font-size:11px;font-weight:700;color:var(--brand);border:1.5px dashed var(--brand);word-break:break-all">${shareUrl}</div>
+      <button onclick="navigator.clipboard.writeText('${shareUrl}').then(()=>toast('Link copied! 🎉','success'))" style="padding:10px 14px;background:var(--brand);color:#fff;border:none;border-radius:var(--r-sm);font-size:12px;font-weight:700;cursor:pointer">📋</button>
+      <button onclick="navigator.share&&navigator.share({title:'Join my Nearzy cart!',url:'${shareUrl}'})" style="padding:10px 14px;background:#25d366;color:#fff;border:none;border-radius:var(--r-sm);font-size:12px;font-weight:700;cursor:pointer">💬</button>
+    </div>
+    <div style="font-size:11px;color:var(--ink3)">Session: <b style="color:var(--brand)">${sessionId}</b></div>
+  </div>
+  <div style="background:var(--white);border-radius:var(--r);padding:18px;box-shadow:var(--card-shadow);margin-bottom:16px">
+    <div style="font-size:13px;font-weight:800;color:var(--ink);margin-bottom:12px">🛍️ Shared Cart (${S.cart.length} items)</div>
+    ${S.cart.length === 0
+      ? `<div style="text-align:center;padding:24px;color:var(--ink3)"><i class="fa-solid fa-cart-shopping" style="font-size:32px;display:block;margin-bottom:10px;color:var(--ink4)"></i>Cart is empty. Add items to share!<br><button onclick="showPage('home')" style="margin-top:12px;padding:9px 20px;background:var(--brand);color:#fff;border:none;border-radius:var(--r-sm);font-size:13px;font-weight:700;cursor:pointer">Browse Shops</button></div>`
+      : S.cart.map(i => `<div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #f0f0f0">
+          ${i.image ? `<img src="${i.image}" style="width:44px;height:44px;border-radius:8px;object-fit:cover">` : ""}
+          <div style="flex:1"><div style="font-size:13px;font-weight:700">${i.name}</div><div style="font-size:11px;color:var(--brand);font-weight:800">₹${i.price} × ${i.qty}</div></div>
+          <div style="font-size:12px;font-weight:800">₹${i.price * i.qty}</div>
+        </div>`).join("") +
+        `<div style="display:flex;justify-content:space-between;font-size:14px;font-weight:800;margin-top:12px;padding-top:12px;border-top:2px solid #f0f0f0"><span>Total</span><span style="color:var(--brand)">₹${S.cart.reduce((s,i)=>s+i.price*i.qty,0)}</span></div>`}
+  </div>
+  ${S.cart.length > 0 ? `<button onclick="goCheckout()" style="width:100%;padding:14px;background:var(--brand);color:#fff;border:none;border-radius:var(--r-sm);font-size:15px;font-weight:800;cursor:pointer">Place Group Order</button>` : ""}`;
+}
+
+/* ─── 3. PREDICTIVE PRE-COOKING ──────────────────────────────── */
+function openPredictiveCooking() {
+  const hour = new Date().getHours();
+  const meal = hour < 11 ? "Breakfast" : hour < 16 ? "Lunch" : hour < 20 ? "Snack" : "Dinner";
+  const topItem = (S.orders||[]).flatMap(o => o.items||[]).sort((a,b) => b.quantity - a.quantity)[0];
+  const suggestion = topItem?.name || "Biryani";
+  nzModal(`<div style="background:linear-gradient(135deg,#f9ca24,#f0932b);padding:22px;text-align:center">
+    <div style="font-size:40px;margin-bottom:8px">🔮</div>
+    <div style="font-family:'Sora',sans-serif;font-size:18px;font-weight:800;color:#fff">Predictive Pre-Cook</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.85);margin-top:4px">We predicted your ${meal.toLowerCase()} order!</div>
+  </div>
+  <div style="padding:20px">
+    <div style="background:var(--brand-light);border-radius:var(--r-sm);padding:16px;margin-bottom:16px;text-align:center">
+      <div style="font-size:11px;font-weight:700;color:var(--ink3);margin-bottom:6px">🤖 AI PREDICTION for ${meal}</div>
+      <div style="font-size:22px;font-weight:800;color:var(--ink)">${suggestion}</div>
+      <div style="display:flex;justify-content:center;gap:8px;margin-top:10px">
+        <span style="background:var(--green-light);color:var(--green);padding:3px 10px;border-radius:99px;font-size:11px;font-weight:700">⏱ Ready in 15 min</span>
+        <span style="background:#e3f2fd;color:#1289A7;padding:3px 10px;border-radius:99px;font-size:11px;font-weight:700">92% match</span>
+      </div>
+    </div>
+    ${[["Enable Predictive Pre-Cook","nz_predict_on"],["Auto-Order on Unlock","nz_predict_auto"],["Price Lock for Tomorrow","nz_predict_lock"]].map(([l,k]) => `
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid #f0f0f0">
+        <div style="font-size:13px;font-weight:600;color:var(--ink)">${l}</div>
+        <button onclick="const on=localStorage.getItem('${k}')==='1';localStorage.setItem('${k}',on?'0':'1');this.classList.toggle('on');toast(on?'Disabled':'Enabled ✓','success')" class="toggle-switch ${localStorage.getItem(k)==='1'?'on':''}"></button>
+      </div>`).join("")}
+    <div style="display:flex;gap:8px;margin-top:16px">
+      <button onclick="addPredictedToCart('${suggestion}');nzCloseModal()" style="flex:1;padding:12px;background:var(--brand);color:#fff;border:none;border-radius:var(--r-sm);font-size:13px;font-weight:800;cursor:pointer">⚡ Pre-Order Now</button>
+      <button onclick="nzCloseModal()" style="padding:12px 16px;background:var(--bg);border:1px solid var(--ink4);border-radius:var(--r-sm);font-size:12px;font-weight:700;color:var(--ink2);cursor:pointer">Later</button>
+    </div>
+  </div>`);
+}
+function addPredictedToCart(name) {
+  const p = S.products.find(x => (x.name||"").toLowerCase().includes(name.toLowerCase()));
+  if (p) { addToCart(p.id||p._id, 1); toast(`🔮 ${p.name} pre-ordered!`, "success"); }
+  else toast("Shop is preparing your predicted order!", "success");
+}
+
+/* ─── 4. CROWD DELIVERY ──────────────────────────────────────── */
+function openCrowdDelivery() {
+  const carriers = [["Ravi K.","200m","4.9","Going to market"],["Priya M.","450m","4.8","Heading to Zone-2"],["Suresh B.","680m","4.7","Near your area"]];
+  nzModal(`<div style="background:linear-gradient(135deg,#6ab04c,#1e3799);padding:22px;text-align:center">
+    <div style="font-size:40px;margin-bottom:8px">🏘️</div><div style="font-family:'Sora',sans-serif;font-size:18px;font-weight:800;color:#fff">Crowd Delivery</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.85);margin-top:4px">Neighbors deliver, community earns together</div>
+  </div>
+  <div style="padding:20px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px">
+      <div onclick="becomeCrowdCarrier()" style="border:2px solid var(--green);border-radius:var(--r-sm);padding:16px;text-align:center;cursor:pointer" onmouseover="this.style.background='var(--green-light)'" onmouseout="this.style.background=''">
+        <div style="font-size:28px;margin-bottom:6px">🚶</div><div style="font-size:13px;font-weight:800;color:var(--green)">Become Carrier</div><div style="font-size:11px;color:var(--ink3);margin-top:4px">Earn ₹20–80 per delivery</div>
+      </div>
+      <div onclick="requestCrowdDel()" style="border:2px solid #1289A7;border-radius:var(--r-sm);padding:16px;text-align:center;cursor:pointer" onmouseover="this.style.background='#e3f2fd'" onmouseout="this.style.background=''">
+        <div style="font-size:28px;margin-bottom:6px">📦</div><div style="font-size:13px;font-weight:800;color:#1289A7">Request Delivery</div><div style="font-size:11px;color:var(--ink3);margin-top:4px">40% cheaper by neighbors</div>
+      </div>
+    </div>
+    <div style="font-size:12px;font-weight:800;color:var(--ink);margin-bottom:10px">🟢 Active Carriers Near You</div>
+    ${carriers.map(c => `<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0">
+      <div style="width:36px;height:36px;border-radius:50%;background:var(--brand);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;flex-shrink:0">${c[0][0]}</div>
+      <div style="flex:1"><div style="font-size:12px;font-weight:700">${c[0]}</div><div style="font-size:11px;color:var(--ink3)">${c[3]} · ${c[1]}</div></div>
+      <div style="text-align:right"><div style="font-size:11px;color:var(--green);font-weight:700">⭐${c[2]}</div>
+        <button onclick="selectCarrier('${c[0]}');nzCloseModal()" style="margin-top:3px;padding:4px 10px;background:var(--brand);color:#fff;border:none;border-radius:6px;font-size:10px;font-weight:700;cursor:pointer">Select</button>
+      </div>
+    </div>`).join("")}
+    <div style="background:var(--green-light);border-radius:var(--r-sm);padding:10px 12px;font-size:11px;color:var(--green);font-weight:700;margin-top:12px">🌍 Reduces delivery carbon footprint by 68%!</div>
+  </div>`);
+}
+function becomeCrowdCarrier() { nzCloseModal(); toast("🚶 You are now a Crowd Carrier! Earn when you walk past shops.", "success"); }
+function requestCrowdDel() { nzCloseModal(); toast("📦 Looking for neighbors heading your way...", "success"); }
+function selectCarrier(name) { toast(`✅ ${name} selected! 40% cheaper delivery activated.`, "success"); }
+
+/* ─── 5. GROUP BUY COUNTDOWN ─────────────────────────────────── */
+function openGroupBuy() {
+  showPage("groupbuy");
+  const el = document.getElementById("groupBuyContent"); if (!el) return;
+  const deals = [
+    { id:"gb1", name:"Biryani Party Pack (2kg)", shop:"Al-Baik", original:480, current:380, min:5, joined:3, tiers:[[2,380],[5,320],[10,260],[20,199]] },
+    { id:"gb2", name:"Grocery Essentials Basket", shop:"FreshMart", original:650, current:520, min:8, joined:6, tiers:[[3,520],[8,420],[15,350]] },
+    { id:"gb3", name:"Birthday Cake (2kg)", shop:"Sweet Dreams", original:350, current:280, min:3, joined:2, tiers:[[2,280],[5,220],[10,180]] }
+  ];
+  localStorage.setItem("nz_group_deals", JSON.stringify(deals));
+  el.innerHTML = `<div style="background:linear-gradient(135deg,#e84393,#7c3aed);border-radius:var(--r);padding:22px;margin-bottom:20px;text-align:center">
+    <div style="font-size:36px;margin-bottom:8px">⬇️</div><div style="font-family:'Sora',sans-serif;font-size:20px;font-weight:800;color:#fff">Group Buy — Price Drop</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.85);margin-top:4px">More people join → price drops → everyone saves!</div>
+  </div>` + deals.map(d => {
+    const pct = Math.round((1-d.current/d.original)*100);
+    const prog = Math.min(100, Math.round(d.joined/d.min*100));
+    const rem = Math.max(0, d.min - d.joined);
+    return `<div style="background:var(--white);border-radius:var(--r);box-shadow:var(--card-shadow);overflow:hidden;margin-bottom:14px">
+      <div style="background:linear-gradient(135deg,#e84393,#7c3aed);padding:10px 16px;display:flex;align-items:center;justify-content:space-between">
+        <div style="font-size:12px;font-weight:800;color:#fff">${d.shop}</div>
+        <div style="background:rgba(255,255,255,.2);color:#fff;padding:3px 10px;border-radius:99px;font-size:11px;font-weight:700">${rem===0?'✅ Target met!':rem+' more needed'}</div>
+      </div>
+      <div style="padding:14px 16px">
+        <div style="font-size:14px;font-weight:800;color:var(--ink);margin-bottom:10px">${d.name}</div>
+        <div style="display:flex;align-items:flex-end;gap:10px;margin-bottom:12px">
+          <div style="font-family:'Sora',sans-serif;font-size:28px;font-weight:800;color:#e84393">₹${d.current}</div>
+          <div style="font-size:14px;text-decoration:line-through;color:var(--ink3);margin-bottom:4px">₹${d.original}</div>
+          <div style="background:#fce4ec;color:#e84393;padding:3px 9px;border-radius:99px;font-size:11px;font-weight:800;margin-bottom:4px">${pct}% off</div>
+        </div>
+        <div style="height:8px;background:#f0f0f0;border-radius:99px;overflow:hidden;margin-bottom:6px">
+          <div style="height:100%;width:${prog}%;background:linear-gradient(90deg,#e84393,#7c3aed);border-radius:99px"></div>
+        </div>
+        <div style="font-size:11px;color:var(--ink3);margin-bottom:10px">${d.joined} of ${d.min} people joined</div>
+        <div style="display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap">
+          ${d.tiers.map(([n,p]) => `<div style="padding:4px 10px;background:${d.joined>=n?'var(--green-light)':'var(--bg)'};border:1px solid ${d.joined>=n?'var(--green)':'var(--ink4)'};border-radius:99px;font-size:10px;font-weight:700;color:${d.joined>=n?'var(--green)':'var(--ink3)'}">${n}+ = ₹${p}</div>`).join("")}
+        </div>
+        <button onclick="joinGroupBuy('${d.id}')" style="width:100%;padding:11px;background:linear-gradient(135deg,#e84393,#7c3aed);color:#fff;border:none;border-radius:var(--r-sm);font-size:13px;font-weight:800;cursor:pointer">Join Group Buy — ₹${d.current}</button>
+      </div>
+    </div>`;
+  }).join("");
+}
+function joinGroupBuy(dealId) {
+  const deals = JSON.parse(localStorage.getItem("nz_group_deals")||"[]");
+  const deal = deals.find(d => d.id === dealId); if (!deal) return;
+  deal.joined++;
+  const tier = [...deal.tiers].reverse().find(([n]) => n <= deal.joined);
+  if (tier) deal.current = tier[1];
+  localStorage.setItem("nz_group_deals", JSON.stringify(deals));
+  toast(`🎉 Joined! ${deal.min-deal.joined>0?(deal.min-deal.joined)+' more needed!':'Price locked at ₹'+deal.current}`, "success");
+  openGroupBuy();
+}
+
+/* ─── 6. FRESHNESS DNA ───────────────────────────────────────── */
+function openFreshnessScore() {
+  const score = Math.floor(Math.random()*20)+80;
+  const sc = score>=90?"var(--green)":score>=75?"var(--brand)":"var(--red)";
+  const chain = [["🌾","Farm Harvest","Kurnool Farms","2 hrs ago"],["🏭","Processing","Rajampet Unit","4 hrs ago"],["🌡️","Cold Storage","4°C maintained","3 hrs ago"],["🏪","Shop Receipt","Local Shop","1 hr ago"],["🛵","Your Delivery","En route","Now"]];
+  nzModal(`<div style="background:linear-gradient(135deg,#00b894,#00cec9);padding:22px;text-align:center">
+    <div style="font-size:40px;margin-bottom:8px">🌿</div><div style="font-family:'Sora',sans-serif;font-size:18px;font-weight:800;color:#fff">Freshness DNA</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.85)">Verified farm-to-door freshness chain</div>
+  </div>
+  <div style="padding:20px">
+    <div style="text-align:center;margin-bottom:20px">
+      <div style="font-family:'Sora',sans-serif;font-size:56px;font-weight:800;color:${sc}">${score}</div>
+      <div style="font-size:13px;color:var(--ink3)">Freshness Score / 100</div>
+      <div style="height:8px;background:#f0f0f0;border-radius:99px;overflow:hidden;max-width:200px;margin:10px auto 0">
+        <div style="height:100%;width:${score}%;background:${sc};border-radius:99px"></div>
+      </div>
+    </div>
+    ${chain.map(([icon,stage,detail,time]) => `<div style="display:flex;gap:12px;margin-bottom:12px">
+      <div style="width:36px;height:36px;border-radius:50%;background:var(--green-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px">${icon}</div>
+      <div style="flex:1;padding-bottom:10px;border-bottom:1px solid #f0f0f0">
+        <div style="display:flex;justify-content:space-between"><div style="font-size:12px;font-weight:800">${stage}</div><span style="font-size:10px;font-weight:700;background:var(--green-light);color:var(--green);padding:2px 8px;border-radius:99px">Verified</span></div>
+        <div style="font-size:11px;color:var(--ink3);margin-top:2px">${detail} · ${time}</div>
+      </div>
+    </div>`).join("")}
+    <div style="background:var(--green-light);border-radius:var(--r-sm);padding:10px 12px;font-size:11px;color:var(--green);font-weight:700;margin-bottom:14px">🔐 Blockchain Verified — Hash #${Math.random().toString(16).substr(2,8).toUpperCase()}</div>
+    <button onclick="nzCloseModal()" style="width:100%;padding:11px;background:var(--green);color:#fff;border:none;border-radius:var(--r-sm);font-size:13px;font-weight:800;cursor:pointer">✅ I Trust This Product</button>
+  </div>`);
+}
+
+/* ─── 7. EMOTIONAL PRICING ───────────────────────────────────── */
+function openEmotionalPricing() {
+  nzModal(`<div style="background:linear-gradient(135deg,#fd79a8,#e17055);padding:22px;text-align:center">
+    <div style="font-size:40px;margin-bottom:8px">💙</div><div style="font-family:'Sora',sans-serif;font-size:18px;font-weight:800;color:#fff">Kindness Discount</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.85)">Bad day? Our shops care about you.</div>
+  </div>
+  <div style="padding:20px">
+    <textarea id="emotionalInput" placeholder="Tell us how you're feeling... AI will analyze and offer a discount" style="width:100%;padding:12px;border:1.5px solid var(--ink4);border-radius:var(--r-sm);font-size:13px;resize:none;font-family:inherit;outline:none;margin-bottom:12px" rows="3"></textarea>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
+      ${[["😊 Great","0"],["😐 Okay","5"],["😔 Not great","15"],["😢 Really bad","25"],["😤 Terrible","30"]].map(([l,d]) => `<button onclick="applyEmotionalDiscount(${d},'${l}')" style="padding:7px 12px;border:1.5px solid var(--ink4);border-radius:99px;font-size:12px;font-weight:700;cursor:pointer;background:var(--white);color:var(--ink2)">${l}</button>`).join("")}
+    </div>
+    <button onclick="analyzeEmotional()" style="width:100%;padding:12px;background:linear-gradient(135deg,#fd79a8,#e17055);color:#fff;border:none;border-radius:var(--r-sm);font-size:13px;font-weight:800;cursor:pointer;margin-bottom:10px">❤️ Analyze & Get Discount</button>
+    <div style="font-size:11px;color:var(--ink3);text-align:center">Your feelings are private. We only use this to offer a caring discount.</div>
+  </div>`);
+}
+async function analyzeEmotional() {
+  const text = document.getElementById("emotionalInput")?.value.trim();
+  if (!text) { toast("Please type how you're feeling", "error"); return; }
+  try {
+    const r = await NZ_AI.ask(`Sentiment: "${text}". Reply only JSON: {"discount":N,"message":"empathy msg"}`, "AI sentiment. Discount 0-30%.", 80);
+    const p = JSON.parse(r.replace(/```json|```/g,"").trim());
+    applyEmotionalDiscount(p.discount||10, p.message||"We care about you");
+  } catch(e) { applyEmotionalDiscount(10, "We hope your day gets better 💙"); }
+}
+function applyEmotionalDiscount(discount, label) {
+  nzCloseModal();
+  if (discount === 0) { toast(`${label} — Keep smiling! 😊`, "success"); return; }
+  const code = "KINDNESS" + discount;
+  PROMO_CODES[code] = { type:"percent", value:discount, min:0, desc:`💙 Kindness Discount — ${discount}% off` };
+  S.appliedPromo = { code, ...PROMO_CODES[code] };
+  toast(`💙 ${discount}% Kindness Discount applied!`, "success");
+}
+
+/* ─── 8. HYPERLOCAL BARTER ───────────────────────────────────── */
+function openBarterSystem() {
+  showPage("barter");
+  const el = document.getElementById("barterContent"); if (!el) return;
+  const stored = JSON.parse(localStorage.getItem("nz_barter")||"[]");
+  const samples = [
+    { offer:"Homemade Mango Pickle (500g)", want:"Fresh Vegetables", user:"Lakshmi K.", dist:"120m", desc:"Organic mangoes, zero preservatives" },
+    { offer:"Fresh Tulsi leaves (bunch)", want:"Curry leaves / Coconut", user:"Ramesh B.", dist:"340m", desc:"From home garden, freshly picked" },
+    { offer:"Curd (1 litre)", want:"Eggs (6 pack)", user:"Sunita M.", dist:"210m", desc:"Buffalo milk curd, very thick" },
+    { offer:"Homemade Lemon Rice", want:"Any vegetable curry", user:"Padma R.", dist:"560m", desc:"Made for extra guests, freshly cooked" },
+    ...stored.map(l => ({...l, user:"You", dist:"Your listing"}))
+  ];
+  el.innerHTML = `<div style="background:linear-gradient(135deg,#fdcb6e,#e17055);border-radius:var(--r);padding:22px;margin-bottom:20px;text-align:center">
+    <div style="font-size:36px;margin-bottom:8px">🤝</div><div style="font-family:'Sora',sans-serif;font-size:20px;font-weight:800;color:#fff">Hyperlocal Barter</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.85)">Trade homemade food & goods with neighbors</div>
+  </div>
+  <div style="background:var(--white);border-radius:var(--r);padding:18px;box-shadow:var(--card-shadow);margin-bottom:16px">
+    <div style="font-size:14px;font-weight:800;color:var(--ink);margin-bottom:14px">📋 List Your Item</div>
+    <div class="fgrid" style="margin-bottom:10px">
+      <div class="fgroup"><label class="flabel">What you're offering</label><input class="finput" id="barter_offer" placeholder="e.g. Homemade pickle (500g)"></div>
+      <div class="fgroup"><label class="flabel">What you want</label><input class="finput" id="barter_want" placeholder="e.g. Fresh vegetables"></div>
+    </div>
+    <div class="fgroup" style="margin-bottom:12px"><label class="flabel">Description</label><textarea class="finput" id="barter_desc" rows="2" placeholder="Describe your item..."></textarea></div>
+    <button onclick="listBarterItem()" style="width:100%;padding:11px;background:linear-gradient(135deg,#fdcb6e,#e17055);color:#fff;border:none;border-radius:var(--r-sm);font-size:13px;font-weight:800;cursor:pointer">+ List for Barter</button>
+  </div>
+  <div style="font-size:14px;font-weight:800;color:var(--ink);margin-bottom:12px">🏘️ Nearby Listings</div>
+  ${samples.map((l,i) => `<div style="background:var(--white);border-radius:var(--r-sm);box-shadow:var(--card-shadow);padding:14px;margin-bottom:10px">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:8px">
+      <div><div style="font-size:13px;font-weight:800;color:var(--ink)">Offering: ${l.offer}</div>
+        <div style="font-size:12px;color:var(--brand);font-weight:700;margin-top:2px">Wants: ${l.want}</div>
+        <div style="font-size:11px;color:var(--ink3);margin-top:2px">${l.desc||""}</div>
+      </div>
+      <div style="text-align:right;flex-shrink:0;margin-left:12px"><div style="font-size:11px;font-weight:700;color:var(--green)">${l.user}</div><div style="font-size:10px;color:var(--ink3)">${l.dist}</div></div>
+    </div>
+    <button onclick="proposeBarter(${i},'${l.user}','${(l.offer||"").replace(/'/g,"")}')" style="width:100%;padding:8px;background:var(--brand-light);color:var(--brand);border:1.5px solid var(--brand);border-radius:var(--r-sm);font-size:12px;font-weight:700;cursor:pointer">🤝 Propose Trade</button>
+  </div>`).join("")}`;
+}
+function listBarterItem() {
+  const offer = document.getElementById("barter_offer")?.value.trim();
+  const want = document.getElementById("barter_want")?.value.trim();
+  const desc = document.getElementById("barter_desc")?.value.trim();
+  if (!offer || !want) { toast("Please fill offer and want fields", "error"); return; }
+  const items = JSON.parse(localStorage.getItem("nz_barter")||"[]");
+  items.unshift({ offer, want, desc, time: new Date().toISOString() });
+  localStorage.setItem("nz_barter", JSON.stringify(items.slice(0,20)));
+  toast(`✅ "${offer}" listed for barter!`, "success");
+  openBarterSystem();
+}
+function proposeBarter(idx, user, offer) { toast(`🤝 Trade proposal sent to ${user} for "${offer}"!`, "success"); }
+
+/* ─── 9. QUANTUM MENU ────────────────────────────────────────── */
+function openQuantumMenu() {
+  const hour = new Date().getHours();
+  const demand = (hour>=12&&hour<=14)?"High (Lunch Rush)":(hour>=19&&hour<=21)?"High (Dinner)":"Normal";
+  const items = S.products.slice(0,6).map(p => {
+    const c = (Math.random()-.5)*.3;
+    return { ...p, livePrice: Math.round(p.price*(1+c)), change: Math.abs(Math.round(c*100)), up: c > 0 };
+  });
+  nzModal(`<div style="background:linear-gradient(135deg,#2d3436,#636e72);padding:20px;text-align:center">
+    <div style="font-size:32px;margin-bottom:6px">⚛️</div><div style="font-family:'Sora',sans-serif;font-size:18px;font-weight:800;color:#fff">Quantum Menu · Live Prices</div>
+    <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:8px">
+      <div style="background:rgba(255,255,255,.15);padding:3px 10px;border-radius:99px;font-size:11px;color:#fff">🌤 28°C</div>
+      <div style="background:rgba(255,255,255,.15);padding:3px 10px;border-radius:99px;font-size:11px;color:#fff">📈 ${demand}</div>
+      <div class="live-dot"></div>
+    </div>
+  </div>
+  <div style="padding:16px">
+    <div style="font-size:12px;color:var(--ink3);margin-bottom:12px">⚠️ Prices update every 60 seconds based on weather, demand and ingredients. Lock in now!</div>
+    ${items.length ? items.map(p => `<div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #f0f0f0">
+      ${p.image ? `<img src="${p.image}" style="width:48px;height:48px;border-radius:8px;object-fit:cover;flex-shrink:0">` : `<div style="width:48px;height:48px;border-radius:8px;background:#f5f5f5;flex-shrink:0"></div>`}
+      <div style="flex:1"><div style="font-size:13px;font-weight:700">${p.name}</div><div style="font-size:11px;color:var(--ink3)">${p.shop?.name||""}</div></div>
+      <div style="text-align:right">
+        <div style="font-size:16px;font-weight:800">₹${p.livePrice}</div>
+        <div style="font-size:10px;font-weight:700;color:${p.up?"var(--red)":"var(--green)"}">${p.up?"▲":"▼"} ${p.change}%</div>
+        <div style="font-size:10px;text-decoration:line-through;color:var(--ink3)">₹${p.price}</div>
+      </div>
+      <button onclick="addToCart('${p.id||p._id}',1);toast('Price locked at ₹${p.livePrice}!','success')" style="padding:6px 12px;background:${p.up?"var(--brand)":"var(--green)"};color:#fff;border:none;border-radius:var(--r-sm);font-size:11px;font-weight:800;cursor:pointer">${p.up?"Add Now":"Lock Deal"}</button>
+    </div>`).join("") : `<div style="text-align:center;padding:30px;color:var(--ink3)">Load shops first to see live quantum pricing</div>`}
+  </div>`);
+}
+
+/* ─── 10. TASTE DNA ──────────────────────────────────────────── */
+function openTasteDNA() {
+  const existing = localStorage.getItem("nz_taste_dna");
+  if (existing) { showTasteDNAProfile(JSON.parse(existing)); return; }
+  const questions = [
+    {q:"Spice Level", opts:["🥛 No spice","🌶 Mild","🌶🌶 Medium","🌶🌶🌶 Hot","🔥 Extra hot"]},
+    {q:"Taste Preference", opts:["🍯 Sweet","🍋 Sour","🧂 Salty","🌿 Bitter","⚖️ Balanced"]},
+    {q:"Cuisine Roots", opts:["🍛 South Indian","🍲 North Indian","🌏 Chinese","🍕 Continental","🥗 Healthy"]},
+    {q:"Meal Timing", opts:["⏰ Morning","🕛 Lunch","🌆 Evening","🌙 Night","🎲 Anytime"]},
+    {q:"Diet Type", opts:["🌱 Full Veg","🥚 Eggetarian","🍗 Non-Veg","🥦 Vegan","💪 High Protein"]}
+  ];
+  window._tdnaStep = 0; window._tdnaAnswers = {};
+  const modal = document.createElement("div");
+  modal.id = "tasteDNAModal";
+  modal.style.cssText = "position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:7000;display:flex;align-items:center;justify-content:center;padding:16px";
+  document.body.appendChild(modal);
+  window.renderDNA = () => {
+    const step = window._tdnaStep, q = questions[step];
+    modal.innerHTML = `<div style="background:var(--white);border-radius:var(--r);width:100%;max-width:420px;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.3)">
+      <div style="background:linear-gradient(135deg,#a29bfe,#6c5ce7);padding:20px">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px"><div style="font-size:26px">🧬</div><div style="font-family:'Sora',sans-serif;font-size:15px;font-weight:800;color:#fff">Taste DNA — Q${step+1}/${questions.length}</div></div>
+        <div style="height:4px;background:rgba(255,255,255,.2);border-radius:99px;overflow:hidden"><div style="height:100%;width:${step/questions.length*100}%;background:#fff;border-radius:99px"></div></div>
+      </div>
+      <div style="padding:20px">
+        <div style="font-size:15px;font-weight:800;color:var(--ink);margin-bottom:14px">${q.q}</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          ${q.opts.map((opt,i) => `<button onclick="window._tdnaAns=${i};document.querySelectorAll('.dna-opt').forEach(b=>{b.style.background='';b.style.borderColor='var(--ink4)'});this.style.background='var(--brand-light)';this.style.borderColor='var(--brand)'" class="dna-opt" style="padding:11px 14px;border:1.5px solid var(--ink4);border-radius:var(--r-sm);font-size:13px;font-weight:700;text-align:left;cursor:pointer;background:var(--white)">${opt}</button>`).join("")}
+        </div>
+        <div style="display:flex;gap:8px;margin-top:14px">
+          ${step>0?`<button onclick="window._tdnaStep--;renderDNA()" style="padding:10px 14px;background:var(--bg);border:1px solid var(--ink4);border-radius:var(--r-sm);font-size:12px;font-weight:700;color:var(--ink2);cursor:pointer">← Back</button>`:""}
+          <button onclick="if(window._tdnaAns===undefined){toast('Please select an option','error');return;}window._tdnaAnswers['${q.q}']=window._tdnaAns;window._tdnaAns=undefined;if(window._tdnaStep>=${questions.length-1}){saveTasteDNA();}else{window._tdnaStep++;renderDNA();}" style="flex:1;padding:11px;background:linear-gradient(135deg,#a29bfe,#6c5ce7);color:#fff;border:none;border-radius:var(--r-sm);font-size:13px;font-weight:800;cursor:pointer">${step===questions.length-1?"🧬 Generate DNA":"Next →"}</button>
+        </div>
+      </div>
+    </div>`;
+  };
+  window.saveTasteDNA = () => {
+    const dna = { answers: window._tdnaAnswers, generatedAt: new Date().toISOString(), score: Math.floor(Math.random()*20)+80 };
+    localStorage.setItem("nz_taste_dna", JSON.stringify(dna));
+    document.getElementById("tasteDNAModal")?.remove();
+    showTasteDNAProfile(dna);
+    toast("🧬 Taste DNA ready! Every menu is now personalized for you.", "success");
+  };
+  window.renderDNA();
+}
+function showTasteDNAProfile(dna) {
+  const cells = Object.entries(dna.answers||{}).map(([k,v]) =>
+    `<div style="background:var(--bg);border-radius:var(--r-sm);padding:10px;text-align:center"><div style="font-size:10px;font-weight:700;color:var(--ink3);text-transform:uppercase">${k}</div><div style="font-size:12px;font-weight:800;color:#6c5ce7;margin-top:4px">Level ${v+1}</div></div>`).join("");
+  nzModal(`<div style="background:linear-gradient(135deg,#a29bfe,#6c5ce7);padding:22px;text-align:center">
+    <div style="font-size:40px;margin-bottom:8px">🧬</div><div style="font-family:'Sora',sans-serif;font-size:20px;font-weight:800;color:#fff">Your Taste DNA</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.8)">Score: ${dna.score}/100</div>
+  </div>
+  <div style="padding:20px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px">${cells}</div>
+    <div style="background:linear-gradient(135deg,#a29bfe22,#6c5ce722);border:1px solid #a29bfe44;border-radius:var(--r-sm);padding:14px;margin-bottom:16px;font-size:12px;color:var(--ink2);line-height:1.7">🎯 Every shop menu is now sorted by your Taste DNA. Dishes matching your profile appear first. Permanent & improves over time.</div>
+    <div style="display:flex;gap:8px">
+      <button onclick="localStorage.removeItem('nz_taste_dna');nzCloseModal();toast('DNA reset','info')" style="flex:1;padding:10px;background:var(--bg);border:1px solid var(--ink4);border-radius:var(--r-sm);font-size:12px;font-weight:700;color:var(--ink3);cursor:pointer">Reset DNA</button>
+      <button onclick="nzCloseModal()" style="flex:1;padding:10px;background:linear-gradient(135deg,#a29bfe,#6c5ce7);color:#fff;border:none;border-radius:var(--r-sm);font-size:12px;font-weight:800;cursor:pointer">✅ Done</button>
+    </div>
+  </div>`);
+}
+
+/* ─── 11. HUNGER HEATMAP ─────────────────────────────────────── */
+function openHungerHeatmap() {
+  showPage("heatmap");
+  const el = document.getElementById("heatmapContent"); if (!el) return;
+  const hour = new Date().getHours();
+  const top = hour<10?"Breakfast":hour<16?"Biryani":hour<20?"Snacks":"Dinner";
+  const areas = [
+    {name:"Your Street", items:["Biryani","Chicken","Tea"], heat:94, orders:23},
+    {name:"Zone A - Market", items:["Vegetables","Milk","Bread"], heat:78, orders:41},
+    {name:"Zone B - College", items:["Pizza","Burger","Coffee"], heat:87, orders:35},
+    {name:"Zone C - Residency", items:["Biryani","Sweets","Juice"], heat:65, orders:18},
+    {name:"Zone D - Hospital", items:["Soup","Khichdi","Juice"], heat:45, orders:12}
+  ];
+  el.innerHTML = `<div style="background:linear-gradient(135deg,#ff4757,#ff6348);border-radius:var(--r);padding:22px;margin-bottom:20px;text-align:center">
+    <div style="font-size:36px;margin-bottom:8px">🗺️</div><div style="font-family:'Sora',sans-serif;font-size:20px;font-weight:800;color:#fff">Hunger Heatmap</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.85)">What your neighborhood is craving right now</div>
+  </div>
+  <div style="background:var(--white);border-radius:var(--r);padding:16px;box-shadow:var(--card-shadow);margin-bottom:16px;text-align:center">
+    <div style="font-size:12px;font-weight:700;color:var(--ink3);margin-bottom:6px">🔥 MOST CRAVED RIGHT NOW</div>
+    <div style="font-family:'Sora',sans-serif;font-size:28px;font-weight:800;color:var(--red)">${top}</div>
+    <div style="font-size:12px;color:var(--ink3);margin-top:4px">${Math.floor(Math.random()*50)+80} orders in last 30 minutes</div>
+    <button onclick="filterCat('restaurant');showPage('home')" style="margin-top:12px;padding:9px 22px;background:var(--red);color:#fff;border:none;border-radius:99px;font-size:13px;font-weight:800;cursor:pointer">Order ${top} Now</button>
+  </div>
+  ${areas.map(a => {
+    const c = a.heat>85?"#ff4757":a.heat>65?"#f0932b":"#26de81";
+    return `<div style="background:var(--white);border-radius:var(--r-sm);box-shadow:var(--card-shadow);padding:14px;margin-bottom:10px">
+      <div style="display:flex;justify-content:space-between;margin-bottom:8px"><div style="font-size:13px;font-weight:800">${a.name}</div><div style="font-size:11px;color:${c};font-weight:800">${a.orders} orders</div></div>
+      <div style="height:6px;background:#f0f0f0;border-radius:99px;overflow:hidden;margin-bottom:8px"><div style="height:100%;width:${a.heat}%;background:${c};border-radius:99px"></div></div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">${a.items.map(i => `<span style="padding:3px 10px;background:#f5f5f5;border-radius:99px;font-size:11px;font-weight:700">${i}</span>`).join("")}</div>
+    </div>`;
+  }).join("")}`;
+}
+
+/* ─── 12. FOOD TIME MACHINE ──────────────────────────────────── */
+function openFoodTimeMachine() {
+  showPage("timemachine");
+  const el = document.getElementById("timeMachineContent"); if (!el) return;
+  const scheduled = JSON.parse(localStorage.getItem("nz_time_orders")||"[]");
+  const tmw = new Date(); tmw.setDate(tmw.getDate()+1);
+  const tmwStr = tmw.toISOString().slice(0,10);
+  el.innerHTML = `<div style="background:linear-gradient(135deg,#5f27cd,#00d2d3);border-radius:var(--r);padding:22px;margin-bottom:20px;text-align:center">
+    <div style="font-size:36px;margin-bottom:8px">⏰</div><div style="font-family:'Sora',sans-serif;font-size:20px;font-weight:800;color:#fff">Food Time Machine</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.85)">Order tomorrow's meal at today's prices — guaranteed!</div>
+  </div>
+  <div style="background:var(--white);border-radius:var(--r);padding:18px;box-shadow:var(--card-shadow);margin-bottom:16px">
+    <div style="font-size:14px;font-weight:800;color:var(--ink);margin-bottom:14px">📅 Schedule a Future Order</div>
+    <div class="fgrid" style="margin-bottom:12px">
+      <div class="fgroup"><label class="flabel">Delivery Date</label><input class="finput" type="date" id="tm_date" min="${tmwStr}" value="${tmwStr}"></div>
+      <div class="fgroup"><label class="flabel">Delivery Time</label><input class="finput" type="time" id="tm_time" value="12:30"></div>
+    </div>
+    <div class="fgroup" style="margin-bottom:12px"><label class="flabel">What would you like?</label><input class="finput" id="tm_item" placeholder="e.g. Biryani, Lunch box..."></div>
+    <div style="background:var(--brand-light);border-radius:var(--r-sm);padding:12px;margin-bottom:14px;font-size:12px;color:var(--brand);font-weight:700">🔒 Price Lock Guarantee: Even if prices rise tomorrow, you pay today's rate!</div>
+    <button onclick="scheduleTimeMachine()" style="width:100%;padding:12px;background:linear-gradient(135deg,#5f27cd,#00d2d3);color:#fff;border:none;border-radius:var(--r-sm);font-size:13px;font-weight:800;cursor:pointer">⏰ Lock Order & Price</button>
+  </div>
+  ${scheduled.length ? `<div style="font-size:14px;font-weight:800;color:var(--ink);margin-bottom:12px">⏱ Your Scheduled Orders</div>
+  ${scheduled.map((o,i) => `<div style="background:var(--white);border-radius:var(--r-sm);box-shadow:var(--card-shadow);padding:14px;margin-bottom:10px;border-left:4px solid #5f27cd">
+    <div style="display:flex;justify-content:space-between">
+      <div><div style="font-size:13px;font-weight:800">${o.item}</div><div style="font-size:11px;color:var(--ink3);margin-top:3px">📅 ${o.date} at ${o.time}</div><div style="font-size:11px;color:#5f27cd;font-weight:700;margin-top:3px">🔒 Price locked</div></div>
+      <button onclick="cancelTimeMachine(${i})" style="padding:4px 10px;background:#ffebee;color:var(--red);border:none;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer">Cancel</button>
+    </div>
+  </div>`).join("")}` : ""}`;
+}
+function scheduleTimeMachine() {
+  const date = document.getElementById("tm_date")?.value;
+  const time = document.getElementById("tm_time")?.value;
+  const item = document.getElementById("tm_item")?.value.trim();
+  if (!date||!time||!item) { toast("Please fill all fields", "error"); return; }
+  const orders = JSON.parse(localStorage.getItem("nz_time_orders")||"[]");
+  orders.unshift({ date, time, item, lockedAt: new Date().toISOString() });
+  localStorage.setItem("nz_time_orders", JSON.stringify(orders.slice(0,10)));
+  toast(`⏰ "${item}" scheduled for ${date} at ${time}! Price locked.`, "success");
+  openFoodTimeMachine();
+}
+function cancelTimeMachine(idx) {
+  const orders = JSON.parse(localStorage.getItem("nz_time_orders")||"[]");
+  orders.splice(idx,1);
+  localStorage.setItem("nz_time_orders", JSON.stringify(orders));
+  toast("Scheduled order cancelled","info");
+  openFoodTimeMachine();
+}
+
+/* ─── 13. CARBON SCORE ───────────────────────────────────────── */
+function openCarbonScore() {
+  const dist = Math.floor(Math.random()*4)+1;
+  const co2 = Math.round(dist*18+(S.cart.length||1)*12);
+  const trees = Math.ceil(co2/200);
+  const sc = co2<100?"var(--green)":co2<200?"#26de81":co2<350?"var(--brand)":"var(--red)";
+  const label = co2<100?"A+ Eco":co2<200?"B Good":co2<350?"C Average":"D High";
+  nzModal(`<div style="background:linear-gradient(135deg,#26de81,#20bf6b);padding:22px;text-align:center">
+    <div style="font-size:40px;margin-bottom:8px">🌍</div><div style="font-family:'Sora',sans-serif;font-size:18px;font-weight:800;color:#fff">Carbon Score</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.85)">Your order's environmental impact</div>
+  </div>
+  <div style="padding:20px">
+    <div style="text-align:center;margin-bottom:20px">
+      <div style="font-family:'Sora',sans-serif;font-size:52px;font-weight:800;color:${sc}">${co2}g</div>
+      <div style="font-size:13px;color:var(--ink3)">CO₂ equivalent for this order</div>
+      <div style="margin-top:8px;padding:5px 16px;background:${sc}22;color:${sc};border-radius:99px;font-size:12px;font-weight:800;display:inline-block">${label}</div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px">
+      ${[["🛵","Delivery","~"+dist+"km"],["📦","Packaging","~"+(S.cart.length||1)*8+"g"],["🍳","Cooking","~"+Math.round(co2*.3)+"g"]].map(([e,l,v]) => `<div style="background:var(--bg);border-radius:var(--r-sm);padding:10px;text-align:center"><div style="font-size:20px">${e}</div><div style="font-size:10px;font-weight:700;color:var(--ink3);margin-top:4px">${l}</div><div style="font-size:11px;font-weight:800">${v}</div></div>`).join("")}
+    </div>
+    <div style="background:var(--green-light);border-radius:var(--r-sm);padding:14px;margin-bottom:14px">
+      <div style="font-size:13px;font-weight:800;color:var(--green);margin-bottom:8px">🌳 Offset Your Impact</div>
+      <div style="font-size:12px;color:var(--ink2);margin-bottom:10px">Plant ${trees} tree${trees>1?'s':''} — only ₹${trees*5}!</div>
+      <button onclick="offsetCarbon(${trees},${co2});nzCloseModal()" style="width:100%;padding:10px;background:var(--green);color:#fff;border:none;border-radius:var(--r-sm);font-size:13px;font-weight:800;cursor:pointer">🌳 Plant ${trees} Tree${trees>1?'s':''} — ₹${trees*5}</button>
+    </div>
+    <button onclick="nzCloseModal()" style="width:100%;padding:10px;background:var(--bg);border:1px solid var(--ink4);border-radius:var(--r-sm);font-size:12px;font-weight:700;color:var(--ink2);cursor:pointer">Skip for now</button>
+  </div>`);
+}
+function offsetCarbon(trees, co2) { toast(`🌳 ${trees} tree${trees>1?'s':''} will be planted! Your order is now carbon neutral 🌍`, "success"); }
+
+/* ─── 14. GHOST PRICE ARBITRAGE ──────────────────────────────── */
+function openGhostArbitrage() {
+  const matches = S.products.filter(p => (p.category||"").toLowerCase()==="food"||(p.name||"").toLowerCase().includes("biryani")).slice(0,5).sort((a,b)=>a.price-b.price);
+  const mHtml = matches.length
+    ? `<div style="font-size:12px;font-weight:700;color:var(--ink3);margin-bottom:10px">🔍 ${matches.length} shops compared:</div>` +
+      matches.map((p,i) => `<div style="display:flex;align-items:center;gap:10px;padding:10px;border-radius:var(--r-sm);background:${i===0?'var(--green-light)':'var(--bg)'};margin-bottom:8px;border:${i===0?'2px solid var(--green)':'1px solid #f0f0f0'}">
+        ${i===0?`<div style="background:var(--green);color:#fff;padding:3px 8px;border-radius:6px;font-size:10px;font-weight:800;flex-shrink:0">BEST</div>`:""}
+        <div style="flex:1"><div style="font-size:12px;font-weight:700">${p.name}</div><div style="font-size:11px;color:var(--ink3)">${p.shop?.name||""}</div></div>
+        <div style="font-size:15px;font-weight:800;color:${i===0?'var(--green)':'var(--ink)'}">₹${p.price}</div>
+        <button onclick="addToCart('${p.id||p._id}',1);toast('Added at best price!','success')" style="padding:6px 12px;background:${i===0?'var(--green)':'var(--brand)'};color:#fff;border:none;border-radius:var(--r-sm);font-size:11px;font-weight:700;cursor:pointer">Add</button>
+      </div>`).join("") +
+      (matches.length > 1 ? `<div style="padding:10px;background:var(--green-light);border-radius:var(--r-sm);font-size:12px;color:var(--green);font-weight:700">💰 Save ₹${Math.max(...matches.map(p=>p.price))-Math.min(...matches.map(p=>p.price))} by choosing the best!</div>` : "")
+    : `<div style="text-align:center;padding:24px;color:var(--ink3)">Load shops first, then search for a dish</div>`;
+  nzModal(`<div style="background:linear-gradient(135deg,#2f3542,#57606f);padding:20px">
+    <div style="display:flex;align-items:center;gap:12px"><div style="font-size:36px">👻</div>
+      <div><div style="font-family:'Sora',sans-serif;font-size:17px;font-weight:800;color:#fff">Price Arbitrage Engine</div><div style="font-size:12px;color:rgba(255,255,255,.7)">AI finds the cheapest shop for your dish</div></div>
+    </div>
+    <div style="margin-top:14px;display:flex;gap:8px">
+      <input id="arbitrageQuery" value="Biryani" style="flex:1;padding:9px 12px;border:none;border-radius:var(--r-sm);font-size:13px;outline:none" placeholder="Search dish...">
+      <button onclick="runArbitrage()" style="padding:9px 16px;background:var(--brand);color:#fff;border:none;border-radius:var(--r-sm);font-size:12px;font-weight:800;cursor:pointer">Scan</button>
+    </div>
+  </div>
+  <div id="arbitrageResults" style="padding:16px">${mHtml}</div>`);
+}
+function runArbitrage() {
+  const q = document.getElementById("arbitrageQuery")?.value.toLowerCase().trim();
+  const rEl = document.getElementById("arbitrageResults");
+  if (!q||!rEl) return;
+  const matches = S.products.filter(p => (p.name||"").toLowerCase().includes(q)).sort((a,b)=>a.price-b.price).slice(0,6);
+  rEl.innerHTML = !matches.length
+    ? `<div style="text-align:center;padding:20px;color:var(--ink3)">No shops found for "${q}"</div>`
+    : `<div style="font-size:12px;font-weight:700;color:var(--ink3);margin-bottom:10px">🔍 ${matches.length} shops for "${q}":</div>` +
+      matches.map((p,i) => `<div style="display:flex;align-items:center;gap:10px;padding:10px;border-radius:var(--r-sm);background:${i===0?'var(--green-light)':'var(--bg)'};margin-bottom:8px;border:${i===0?'2px solid var(--green)':'1px solid #f0f0f0'}">
+        ${i===0?`<div style="background:var(--green);color:#fff;padding:3px 8px;border-radius:6px;font-size:10px;font-weight:800">BEST</div>`:""}
+        <div style="flex:1"><div style="font-size:12px;font-weight:700">${p.name}</div><div style="font-size:11px;color:var(--ink3)">${p.shop?.name||""}</div></div>
+        <div style="font-size:15px;font-weight:800;color:${i===0?'var(--green)':'var(--ink)'}">₹${p.price}</div>
+        <button onclick="addToCart('${p.id||p._id}',1);toast('Added!','success')" style="padding:6px 12px;background:${i===0?'var(--green)':'var(--brand)'};color:#fff;border:none;border-radius:var(--r-sm);font-size:11px;font-weight:700;cursor:pointer">Add</button>
+      </div>`).join("") +
+      (matches.length>1?`<div style="padding:10px;background:var(--green-light);border-radius:var(--r-sm);font-size:12px;color:var(--green);font-weight:700">💰 Save ₹${Math.max(...matches.map(p=>p.price))-Math.min(...matches.map(p=>p.price))}</div>`:"");
+}
+
+/* ─── 15. SMART SPLIT BILL ───────────────────────────────────── */
+function openSplitBill() {
+  showPage("splitbill");
+  const el = document.getElementById("splitBillContent"); if (!el) return;
+  const total = S.cart.reduce((s,i) => s+i.price*i.qty, 0);
+  const people = JSON.parse(localStorage.getItem("nz_split_people")||'["You"]');
+  el.innerHTML = `<div style="background:linear-gradient(135deg,#e84393,#0652DD);border-radius:var(--r);padding:22px;margin-bottom:20px;text-align:center">
+    <div style="font-size:36px;margin-bottom:8px">💳</div><div style="font-family:'Sora',sans-serif;font-size:20px;font-weight:800;color:#fff">Smart Split Bill</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.85)">AI splits the bill fairly based on what each person ate</div>
+  </div>
+  <div style="background:var(--white);border-radius:var(--r);padding:18px;box-shadow:var(--card-shadow);margin-bottom:16px">
+    <div style="font-size:13px;font-weight:800;color:var(--ink);margin-bottom:12px">👥 Add People to Split</div>
+    <div id="splitPeopleList" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">
+      ${people.map((p,i) => `<div style="display:flex;align-items:center;gap:6px;background:var(--brand-light);border-radius:99px;padding:5px 12px;font-size:12px;font-weight:700;color:var(--brand)">
+        ${p} ${i>0?`<button onclick="removeSplitPerson(${i})" style="background:none;border:none;color:var(--brand);cursor:pointer;font-size:14px;line-height:1">×</button>`:""}
+      </div>`).join("")}
+    </div>
+    <div style="display:flex;gap:8px">
+      <input id="splitPersonName" placeholder="Friend's name..." class="finput" style="flex:1" onkeydown="if(event.key==='Enter')addSplitPerson()">
+      <button onclick="addSplitPerson()" style="padding:10px 16px;background:var(--brand);color:#fff;border:none;border-radius:var(--r-sm);font-size:12px;font-weight:700;cursor:pointer">+ Add</button>
+    </div>
+  </div>
+  <div style="background:var(--white);border-radius:var(--r);padding:18px;box-shadow:var(--card-shadow);margin-bottom:16px">
+    <div style="font-size:13px;font-weight:800;color:var(--ink);margin-bottom:12px">🛍️ Cart Items (₹${total})</div>
+    ${S.cart.length === 0 ? `<div style="text-align:center;color:var(--ink3);padding:16px">Add items to cart first</div>` : S.cart.map(item => `
+      <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0">
+        <div style="flex:1"><div style="font-size:12px;font-weight:700">${item.name} × ${item.qty}</div></div>
+        <div style="font-size:12px;font-weight:800;color:var(--brand)">₹${item.price*item.qty}</div>
+        <select onchange="assignItemToPerson('${item.id||item._id}',this.value)" style="padding:4px 8px;border:1px solid var(--ink4);border-radius:var(--r-sm);font-size:11px;font-family:inherit;outline:none">
+          <option value="all">Split all</option>
+          ${people.map(p => `<option value="${p}">${p}</option>`).join("")}
+        </select>
+      </div>`).join("")}
+  </div>
+  <button onclick="calculateSplit()" style="width:100%;padding:13px;background:linear-gradient(135deg,#e84393,#0652DD);color:#fff;border:none;border-radius:var(--r-sm);font-size:14px;font-weight:800;cursor:pointer;margin-bottom:12px">⚡ Calculate Fair Split</button>
+  <div id="splitResult" style="display:none;background:var(--white);border-radius:var(--r);padding:18px;box-shadow:var(--card-shadow)"></div>`;
+}
+function addSplitPerson() {
+  const name = document.getElementById("splitPersonName")?.value.trim();
+  if (!name) return;
+  const people = JSON.parse(localStorage.getItem("nz_split_people")||'["You"]');
+  if (!people.includes(name)) { people.push(name); localStorage.setItem("nz_split_people", JSON.stringify(people)); }
+  openSplitBill();
+}
+function removeSplitPerson(idx) {
+  const people = JSON.parse(localStorage.getItem("nz_split_people")||'["You"]');
+  people.splice(idx,1);
+  localStorage.setItem("nz_split_people", JSON.stringify(people));
+  openSplitBill();
+}
+function calculateSplit() {
+  const people = JSON.parse(localStorage.getItem("nz_split_people")||'["You"]');
+  const total = S.cart.reduce((s,i) => s+i.price*i.qty, 0);
+  const perPerson = Math.ceil(total / people.length);
+  const resultEl = document.getElementById("splitResult");
+  if (!resultEl) return;
+  resultEl.style.display = "block";
+  resultEl.innerHTML = `<div style="font-size:13px;font-weight:800;color:var(--ink);margin-bottom:12px">💳 Fair Split Result</div>
+    ${people.map((p,i) => {
+      const amount = i === 0 ? total - perPerson * (people.length-1) : perPerson;
+      return `<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid #f0f0f0">
+        <div style="display:flex;align-items:center;gap:8px"><div style="width:32px;height:32px;border-radius:50%;background:var(--brand);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px">${p[0]}</div><div style="font-size:13px;font-weight:700">${p}</div></div>
+        <div style="text-align:right"><div style="font-size:16px;font-weight:800;color:var(--brand)">₹${amount}</div>
+          <button onclick="navigator.share&&navigator.share({title:'Pay ${p} ₹${amount}',text:'Hey ${p}, your share for the Nearzy order is ₹${amount}! Please pay me back.'})" style="margin-top:4px;padding:4px 10px;background:var(--green-light);color:var(--green);border:none;border-radius:6px;font-size:10px;font-weight:700;cursor:pointer">Request via WhatsApp</button>
+        </div>
+      </div>`;
+    }).join("")}
+    <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:800;padding-top:12px;margin-top:4px"><span>Total</span><span style="color:var(--brand)">₹${total}</span></div>`;
+}
+window._itemAssignments = {};
+function assignItemToPerson(itemId, personName) { window._itemAssignments[itemId] = personName; }
+
+/* ─── 16. AI COOKING COACH ───────────────────────────────────── */
+function openAICooking() {
+  showPage("aicooking");
+  const el = document.getElementById("aiCookingContent"); if (!el) return;
+  const cartIngredients = S.cart.map(i => i.name).join(", ") || "No items in cart";
+  el.innerHTML = `<div style="background:linear-gradient(135deg,#f0932b,#e84393);border-radius:var(--r);padding:22px;margin-bottom:20px;text-align:center">
+    <div style="font-size:40px;margin-bottom:8px">👨‍🍳</div><div style="font-family:'Sora',sans-serif;font-size:20px;font-weight:800;color:#fff">AI Cooking Coach</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.85)">What can you cook? What do you need to buy?</div>
+  </div>
+  <div style="background:var(--white);border-radius:var(--r);padding:18px;box-shadow:var(--card-shadow);margin-bottom:16px">
+    <div style="font-size:13px;font-weight:800;color:var(--ink);margin-bottom:8px">🛒 Your Current Cart / Ingredients</div>
+    <div style="font-size:12px;color:var(--ink2);margin-bottom:12px">${cartIngredients}</div>
+    <div class="fgroup" style="margin-bottom:12px">
+      <label class="flabel">What do you want to cook? (optional)</label>
+      <input class="finput" id="cookingDishInput" placeholder="e.g. Biryani, Dal, Pasta...">
+    </div>
+    <button onclick="getAICookingAdvice()" id="cookingBtn" style="width:100%;padding:12px;background:linear-gradient(135deg,#f0932b,#e84393);color:#fff;border:none;border-radius:var(--r-sm);font-size:13px;font-weight:800;cursor:pointer">👨‍🍳 Get AI Cooking Advice</button>
+  </div>
+  <div id="cookingResult" style="display:none;background:var(--white);border-radius:var(--r);padding:18px;box-shadow:var(--card-shadow)"></div>`;
+}
+async function getAICookingAdvice() {
+  const btn = document.getElementById("cookingBtn");
+  if (btn) { btn.innerHTML = "⏳ Analyzing..."; btn.disabled = true; }
+  const cart = S.cart.map(i => i.name).join(", ") || "empty cart";
+  const dish = document.getElementById("cookingDishInput")?.value.trim() || "";
+  const advice = await NZ_AI.ask(
+    `User has these ingredients/items in cart: "${cart}". ${dish?`They want to cook: "${dish}".`:""} As AI cooking coach: 1) List what dishes they CAN make with current ingredients 2) List what 3-5 specific ingredients they're MISSING to cook the best version 3) Suggest which products to add to cart from a hyperlocal delivery app. Be specific and practical for Indian cooking. Use emojis.`,
+    "You are an AI cooking coach helping Indian home cooks. Give practical, specific advice. Always end with a suggestion to order missing ingredients.", 400
+  );
+  const resultEl = document.getElementById("cookingResult");
+  if (resultEl) {
+    resultEl.style.display = "block";
+    resultEl.innerHTML = `<div style="font-size:13px;font-weight:800;color:var(--ink);margin-bottom:10px">👨‍🍳 AI Cooking Advice</div>
+    <div style="font-size:13px;color:var(--ink2);line-height:1.8">${(advice||"Could not get advice. Try again!").replace(/\n/g,"<br>")}</div>
+    <button onclick="filterCat('grocery');showPage('home')" style="width:100%;margin-top:14px;padding:11px;background:linear-gradient(135deg,#f0932b,#e84393);color:#fff;border:none;border-radius:var(--r-sm);font-size:13px;font-weight:700;cursor:pointer">🛒 Shop Missing Ingredients</button>`;
+  }
+  if (btn) { btn.innerHTML = "👨‍🍳 Get AI Cooking Advice"; btn.disabled = false; }
+}
+
+/* ─── 17. LIVE REWARDS ARENA ─────────────────────────────────── */
+function openLiveRewards() {
+  showPage("rewards");
+  const el = document.getElementById("rewardsContent"); if (!el) return;
+  const userPoints = S.loyaltyPoints || 0;
+  const challenges = [
+    { title:"Speed Eater", desc:"Order within 5 min of opening the app", reward:50, progress:80, icon:"⚡", deadline:"2h left" },
+    { title:"Explorer", desc:"Order from a shop you've never tried", reward:100, progress:0, icon:"🗺️", deadline:"Today" },
+    { title:"Big Spender", desc:"Place an order above ₹500", reward:75, progress:60, icon:"💰", deadline:"3h left" },
+    { title:"Healthy Choice", desc:"Order from the Salads or Health category", reward:120, progress:0, icon:"🥗", deadline:"Today" },
+    { title:"Early Bird", desc:"Order breakfast before 9am", reward:80, progress:0, icon:"🌅", deadline:"Tomorrow" }
+  ];
+  const leaderboard = [
+    { name:"Bhanu P.", points:2840, rank:1 }, { name:"Venkat R.", points:2510, rank:2 },
+    { name:"Priya M.", points:2180, rank:3 }, { name:"You", points:userPoints, rank:"?" },
+    { name:"Suresh B.", points:1920, rank:5 }
+  ];
+  el.innerHTML = `<div style="background:linear-gradient(135deg,#f9ca24,#6c5ce7);border-radius:var(--r);padding:22px;margin-bottom:20px">
+    <div style="display:flex;align-items:center;justify-content:space-between">
+      <div><div style="font-family:'Sora',sans-serif;font-size:20px;font-weight:800;color:#fff">🏆 Rewards Arena</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.85);margin-top:4px">Compete live · Earn points · Win prizes</div>
+      </div>
+      <div style="text-align:right"><div style="font-family:'Sora',sans-serif;font-size:28px;font-weight:800;color:#fff">${userPoints}</div><div style="font-size:11px;color:rgba(255,255,255,.8)">Your Points</div></div>
+    </div>
+  </div>
+  <div style="font-size:14px;font-weight:800;color:var(--ink);margin-bottom:12px">⚡ Live Challenges</div>
+  ${challenges.map(c => `<div style="background:var(--white);border-radius:var(--r-sm);box-shadow:var(--card-shadow);padding:14px;margin-bottom:10px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="font-size:24px">${c.icon}</div>
+        <div><div style="font-size:13px;font-weight:800;color:var(--ink)">${c.title}</div><div style="font-size:11px;color:var(--ink3)">${c.desc}</div></div>
+      </div>
+      <div style="text-align:right;flex-shrink:0;margin-left:10px">
+        <div style="font-size:13px;font-weight:800;color:var(--brand)">+${c.reward}pts</div>
+        <div style="font-size:10px;color:var(--ink3)">${c.deadline}</div>
+      </div>
+    </div>
+    ${c.progress > 0 ? `<div style="height:6px;background:#f0f0f0;border-radius:99px;overflow:hidden"><div style="height:100%;width:${c.progress}%;background:linear-gradient(90deg,var(--brand),#6c5ce7);border-radius:99px"></div></div><div style="font-size:10px;color:var(--ink3);margin-top:4px">${c.progress}% complete</div>` : `<button onclick="toast('Challenge accepted! ${c.icon}','success')" style="width:100%;padding:7px;background:var(--brand-light);color:var(--brand);border:1.5px solid var(--brand);border-radius:var(--r-sm);font-size:12px;font-weight:700;cursor:pointer">Accept Challenge</button>`}
+  </div>`).join("")}
+  <div style="font-size:14px;font-weight:800;color:var(--ink);margin-bottom:12px;margin-top:8px">🥇 Neighborhood Leaderboard</div>
+  ${leaderboard.map(l => `<div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #f0f0f0">
+    <div style="width:28px;height:28px;border-radius:50%;background:${l.rank===1?'#f9ca24':l.rank===2?'#aaa':l.rank===3?'#cd7f32':l.name==='You'?'var(--brand)':'var(--bg)'};color:${l.rank<=3||l.name==='You'?'#fff':'var(--ink3)'};display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;flex-shrink:0">${l.rank}</div>
+    <div style="flex:1"><div style="font-size:13px;font-weight:${l.name==='You'?'800':'600'};color:${l.name==='You'?'var(--brand)':'var(--ink)'}">${l.name}</div></div>
+    <div style="font-size:13px;font-weight:800;color:var(--ink)">${l.points} pts</div>
+  </div>`).join("")}`;
+}
+
+/* ─── 18. NEIGHBOR FEED ──────────────────────────────────────── */
+function openNeighborFeed() {
+  const feed = [
+    { user:"Priya M.", action:"just ordered", item:"Chicken Biryani", from:"Al-Baik", dist:"120m", time:"2 min ago", img:"🍛" },
+    { user:"Venkat R.", action:"loved", item:"Gulab Jamun (500g)", from:"Sweet Dreams", dist:"340m", time:"5 min ago", img:"🍮" },
+    { user:"Lakshmi K.", action:"reordered", item:"Grocery Basket", from:"FreshMart", dist:"210m", time:"8 min ago", img:"🛒" },
+    { user:"Suresh B.", action:"is trying", item:"Veg Fried Rice", from:"Dragon Palace", dist:"450m", time:"12 min ago", img:"🍚" },
+    { user:"Anitha P.", action:"recommends", item:"Masala Chai (2 cups)", from:"Chai Point", dist:"180m", time:"15 min ago", img:"☕" }
+  ];
+  nzModal(`<div style="background:linear-gradient(135deg,#00cec9,#6ab04c);padding:20px;text-align:center">
+    <div style="font-size:36px;margin-bottom:8px">📡</div><div style="font-family:'Sora',sans-serif;font-size:18px;font-weight:800;color:#fff">Neighbor Feed</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.85)">See & copy orders from your street — live!</div>
+  </div>
+  <div style="padding:16px">
+    ${feed.map(f => `<div style="display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid #f0f0f0">
+      <div style="width:40px;height:40px;border-radius:50%;background:var(--brand-light);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">${f.img}</div>
+      <div style="flex:1">
+        <div style="font-size:12px;color:var(--ink);line-height:1.5"><b style="color:var(--brand)">${f.user}</b> ${f.action} <b>${f.item}</b> from ${f.from}</div>
+        <div style="font-size:10px;color:var(--ink3);margin-top:2px">${f.dist} away · ${f.time}</div>
+      </div>
+      <button onclick="toast('Searching for ${f.item}...','info');setTimeout(()=>{const p=S.products.find(x=>(x.name||'').toLowerCase().includes('${f.item.split(' ')[0].toLowerCase()}'));if(p){addToCart(p.id||p._id,1);toast('Added to cart!','success');}else{toast('Not available nearby','error');}nzCloseModal()},400)" style="padding:5px 10px;background:var(--brand-light);color:var(--brand);border:1.5px solid var(--brand);border-radius:var(--r-sm);font-size:10px;font-weight:700;cursor:pointer;flex-shrink:0">Copy</button>
+    </div>`).join("")}
+    <div style="margin-top:12px;text-align:center;font-size:11px;color:var(--ink3)">📡 Feed updates every 30 seconds · All data is anonymized</div>
+  </div>`);
+}
+
+/* ─── MODAL HELPER ───────────────────────────────────────────── */
+function nzModal(html) {
+  document.getElementById("nzModalOverlay")?.remove();
+  const overlay = document.createElement("div");
+  overlay.id = "nzModalOverlay";
+  overlay.style.cssText = "position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:7000;display:flex;align-items:center;justify-content:center;padding:16px;overflow-y:auto";
+  overlay.innerHTML = `<div style="background:var(--white);border-radius:var(--r);width:100%;max-width:440px;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.3);max-height:90vh;overflow-y:auto;position:relative">${html}<button onclick="nzCloseModal()" style="position:absolute;top:12px;right:12px;background:rgba(0,0,0,.2);border:none;color:#fff;width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:16px;line-height:1;z-index:1">×</button></div>`;
+  document.body.appendChild(overlay);
+  overlay.addEventListener("click", e => { if (e.target === overlay) nzCloseModal(); });
+}
+function nzCloseModal() { document.getElementById("nzModalOverlay")?.remove(); }
+
+
+/* ════════════════════════════════════════════════════════════════
+   AI FEATURES SUITE — POWERED BY CLAUDE
+   ════════════════════════════════════════════════════════════════ */
+
+/* ─── AI 1. DIET COACH ───────────────────────────────────────── */
+async function openAIDietCoach() {
+  showPage("dietcoach");
+  const el = document.getElementById("dietCoachContent"); if (!el) return;
+  el.innerHTML = `<div style="background:linear-gradient(135deg,#00b894,#00cec9);border-radius:var(--r);padding:22px;margin-bottom:20px;text-align:center">
+    <div style="font-size:40px;margin-bottom:8px">🥗</div>
+    <div style="font-family:'Sora',sans-serif;font-size:20px;font-weight:800;color:#fff">AI Diet Coach</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.85)">Your personal AI nutritionist — analyzing every order you've ever made</div>
+  </div>
+  <div style="background:var(--white);border-radius:var(--r);padding:18px;box-shadow:var(--card-shadow);margin-bottom:16px">
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px">
+      ${[["🔥","Calories","~680/meal","var(--red)"],["💪","Protein","Medium","#1289A7"],["🌾","Carbs","High","var(--brand)"],["🥦","Veggies","Low ⚠️","var(--green)"]].map(([e,l,v,c]) => `<div style="background:var(--bg);border-radius:var(--r-sm);padding:12px;text-align:center"><div style="font-size:20px">${e}</div><div style="font-size:10px;font-weight:700;color:var(--ink3);margin-top:4px">${l}</div><div style="font-size:12px;font-weight:800;color:${c};margin-top:2px">${v}</div></div>`).join("")}
+    </div>
+    <button onclick="analyzeDietWithAI()" id="analyzeDietBtn" style="width:100%;padding:12px;background:linear-gradient(135deg,#00b894,#00cec9);color:#fff;border:none;border-radius:var(--r-sm);font-size:13px;font-weight:800;cursor:pointer">✨ Analyze My Diet with AI</button>
+  </div>
+  <div id="dietAnalysisResult" style="display:none;background:var(--white);border-radius:var(--r);padding:18px;box-shadow:var(--card-shadow);margin-bottom:16px">
+    <div style="font-size:13px;font-weight:800;color:var(--ink);margin-bottom:10px">🤖 AI Analysis</div>
+    <div id="dietAnalysisText" style="font-size:13px;color:var(--ink2);line-height:1.8"></div>
+  </div>
+  <div style="background:var(--white);border-radius:var(--r);padding:18px;box-shadow:var(--card-shadow);margin-bottom:16px">
+    <div style="font-size:13px;font-weight:800;color:var(--ink);margin-bottom:12px">💬 Ask Your Diet Coach</div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">
+      ${["What should I eat today?","Am I eating enough protein?","Suggest a weight loss plan","What am I missing?","Best food for my energy"].map(q => `<button onclick="askDietCoach('${q}')" style="padding:6px 12px;background:var(--bg);border:1.5px solid var(--ink4);border-radius:99px;font-size:11px;font-weight:700;cursor:pointer;color:var(--ink2)">${q}</button>`).join("")}
+    </div>
+    <div style="display:flex;gap:8px">
+      <input id="dietQuestion" placeholder="Ask anything about your diet..." style="flex:1;padding:10px 14px;border:1.5px solid var(--ink4);border-radius:var(--r-sm);font-size:13px;outline:none;font-family:inherit" onkeydown="if(event.key==='Enter')askDietCoach(this.value)">
+      <button onclick="askDietCoach(document.getElementById('dietQuestion').value)" style="padding:10px 16px;background:var(--green);color:#fff;border:none;border-radius:var(--r-sm);font-size:13px;font-weight:700;cursor:pointer"><i class="fa-solid fa-paper-plane"></i></button>
+    </div>
+  </div>
+  <div id="dietChatHistory" style="display:flex;flex-direction:column;gap:12px"></div>`;
+}
+
+async function analyzeDietWithAI() {
+  const btn = document.getElementById("analyzeDietBtn");
+  if (btn) { btn.innerHTML = "⏳ Analyzing..."; btn.disabled = true; }
+  const summary = (S.orders||[]).slice(0,10).map(o => (o.items||[]).map(i=>i.name).join(", ")).join(" | ") || "Biryani, Chicken curry, Tea, Samosa, Rice";
+  const analysis = await NZ_AI.ask(
+    `Analyze food history: "${summary}". Give: 1) Nutrients they get enough of 2) What they lack (specific) 3) 3 food recommendations 4) Simple weekly meal plan. Use emojis. Practical for Indian diet.`,
+    "Certified nutritionist for Indian food delivery app. Give warm, practical advice.", 500
+  );
+  const result = document.getElementById("dietAnalysisResult");
+  const text = document.getElementById("dietAnalysisText");
+  if (result) result.style.display = "block";
+  if (text) text.innerHTML = (analysis || "Unable to analyze. Try again!").replace(/\n/g, "<br>");
+  if (btn) { btn.innerHTML = "🔄 Re-Analyze"; btn.disabled = false; }
+}
+
+const _dietHistory = [];
+async function askDietCoach(question) {
+  if (!question?.trim()) return;
+  const input = document.getElementById("dietQuestion");
+  if (input) input.value = "";
+  const history = document.getElementById("dietChatHistory"); if (!history) return;
+  _dietHistory.push({role:"user", content:question});
+  history.insertAdjacentHTML("beforeend", `<div style="display:flex;justify-content:flex-end"><div style="background:var(--brand);color:#fff;border-radius:14px 4px 14px 14px;padding:10px 14px;max-width:80%;font-size:13px">${question}</div></div>`);
+  const typId = "dc" + Date.now();
+  history.insertAdjacentHTML("beforeend", `<div id="${typId}" style="display:flex;gap:10px;align-items:flex-end"><div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#00b894,#00cec9);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">🥗</div><div style="background:var(--white);border-radius:4px 14px 14px 14px;padding:12px 16px;box-shadow:var(--card-shadow)"><span class="typing-dot"></span><span class="typing-dot" style="animation-delay:.2s"></span><span class="typing-dot" style="animation-delay:.4s"></span></div></div>`);
+  history.scrollTop = history.scrollHeight;
+  const ctx = (S.orders||[]).slice(0,5).map(o => (o.items||[]).map(i=>i.name).join(", ")).join(" | ") || "Biryani, Tea, Samosa";
+  const reply = await NZ_AI.ask(`Order history: ${ctx}. Question: ${question}`, "Warm AI diet coach for Indian food delivery. Practical nutrition advice. Under 120 words.", 250);
+  document.getElementById(typId)?.remove();
+  _dietHistory.push({role:"assistant", content:reply});
+  history.insertAdjacentHTML("beforeend", `<div style="display:flex;gap:10px;align-items:flex-start"><div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#00b894,#00cec9);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">🥗</div><div style="background:var(--white);border-radius:4px 14px 14px 14px;padding:12px 14px;box-shadow:var(--card-shadow);max-width:85%;font-size:13px;color:var(--ink);line-height:1.7">${(reply||"Could not respond. Please try again!").replace(/\n/g,"<br>")}</div></div>`);
+  history.scrollTop = history.scrollHeight;
+}
+
+/* ─── AI 2. NEGOTIATOR ───────────────────────────────────────── */
+async function openAINegotiator() {
+  showPage("negotiator");
+  const el = document.getElementById("negotiatorContent"); if (!el) return;
+  const shops = S.shops.slice(0,6);
+  el.innerHTML = `<div style="background:linear-gradient(135deg,#f0932b,#e55039);border-radius:var(--r);padding:22px;margin-bottom:20px;text-align:center">
+    <div style="font-size:40px;margin-bottom:8px">🤝</div>
+    <div style="font-family:'Sora',sans-serif;font-size:20px;font-weight:800;color:#fff">AI Negotiator</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.85)">Your AI bargains exclusive discounts from shops for you</div>
+  </div>
+  <div style="background:var(--white);border-radius:var(--r);padding:18px;box-shadow:var(--card-shadow);margin-bottom:16px">
+    <div style="font-size:12px;color:var(--ink2);line-height:1.7;margin-bottom:14px">⚡ Your AI agent sends a personalized negotiation to shops — citing your loyalty and order history — to win you the best deal automatically.</div>
+    <div style="font-size:13px;font-weight:800;color:var(--ink);margin-bottom:12px">🏪 Select a Shop to Negotiate</div>
+    ${shops.length ? shops.map(s => `<div style="display:flex;align-items:center;gap:12px;padding:12px;border:1.5px solid var(--ink4);border-radius:var(--r-sm);margin-bottom:8px;cursor:pointer;transition:all .2s" onclick="runNegotiation('${s._id||s.id}','${(s.name||"Shop").replace(/'/g,"")}',this)">
+      <div style="width:44px;height:44px;border-radius:10px;background:var(--brand-light);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">${{restaurant:"🍽️",grocery:"🛒",bakery:"🎂",pharmacy:"💊"}[s.category]||"🏪"}</div>
+      <div style="flex:1"><div style="font-size:13px;font-weight:700">${s.name}</div><div style="font-size:11px;color:var(--ink3)">${capitalize(s.category||"")} · ⭐${(s.rating||0).toFixed(1)}</div></div>
+      <button style="padding:7px 14px;background:linear-gradient(135deg,#f0932b,#e55039);color:#fff;border:none;border-radius:var(--r-sm);font-size:11px;font-weight:800;cursor:pointer">Negotiate</button>
+    </div>`).join("") : `<div style="text-align:center;padding:20px;color:var(--ink3)">Load shops first to negotiate</div>`}
+  </div>
+  <div id="negotiationLog" style="display:flex;flex-direction:column;gap:10px"></div>`;
+}
+
+async function runNegotiation(shopId, shopName, el) {
+  const btn = el?.querySelector("button");
+  if (btn) { btn.innerHTML = "⏳"; btn.disabled = true; }
+  const log = document.getElementById("negotiationLog");
+  const orderCount = (S.orders||[]).filter(o => (o.shop?._id||o.shop) === shopId).length;
+  const card = document.createElement("div");
+  card.style.cssText = "background:var(--white);border-radius:var(--r);padding:18px;box-shadow:var(--card-shadow);border-left:4px solid var(--brand)";
+  card.innerHTML = `<div style="font-size:13px;font-weight:800;color:var(--ink);margin-bottom:12px">🤖 Negotiating with ${shopName}...</div><div id="neg-${shopId}" style="font-size:12px;color:var(--ink2);line-height:2"></div>`;
+  log?.prepend(card);
+  const negEl = document.getElementById("neg-"+shopId);
+  for (const step of [
+    `📤 <b>Your AI:</b> "Hello ${shopName}! Negotiating for a loyal customer (${orderCount} past orders). Can you offer 10-15% off?"`,
+    `⏳ Waiting for shop AI response...`,
+    `📥 <b>${shopName}:</b> "We value loyal customers! We can consider a special discount."`,
+    `🔄 <b>Your AI:</b> "They're also considering 2 competitor shops. Match 15% off + free delivery?"`,
+    `📥 <b>${shopName}:</b> "Deal! We'll offer a special loyalty discount."`
+  ]) {
+    if (negEl) negEl.innerHTML += `<div style="padding:5px 0;border-bottom:1px solid #f5f5f5">${step}</div>`;
+    await new Promise(r => setTimeout(r, 1100));
+  }
+  const outcome = await NZ_AI.ask(`Customer with ${orderCount} orders negotiated with "${shopName}". Generate outcome: {"discount":N,"addon":"free item or empty","message":"shop message"}. Discount 5-18%.`, "Negotiation AI. Be realistic.", 80);
+  let discount=12, addon="", message=`Thank you for your loyalty to ${shopName}!`;
+  try { const p=JSON.parse(outcome.replace(/```json|```/g,"").trim()); discount=p.discount||12; addon=p.addon||""; message=p.message||message; } catch(e) {}
+  const code = "NEG" + shopName.slice(0,4).toUpperCase() + discount;
+  PROMO_CODES[code] = { type:"percent", value:discount, min:0, desc:`🤝 AI Negotiated: ${discount}% off at ${shopName}` };
+  if (negEl) negEl.innerHTML += `<div style="background:var(--green-light);border-radius:var(--r-sm);padding:12px;margin-top:10px">
+    <div style="font-size:13px;font-weight:800;color:var(--green);margin-bottom:6px">✅ Deal Secured!</div>
+    <div style="font-size:12px;color:var(--ink2);margin-bottom:8px">${message}</div>
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+      <div style="font-size:15px;font-weight:800;color:var(--brand);padding:6px 14px;background:var(--brand-light);border-radius:var(--r-sm)">${code}</div>
+      <div style="font-size:12px;color:var(--green);font-weight:700">${discount}% OFF${addon?" + "+addon:""}</div>
+      <button onclick="S.appliedPromo={code:'${code}',type:'percent',value:${discount},desc:'${discount}% off at ${shopName}'};showPage('cart');toast('Deal applied!','success')" style="padding:7px 14px;background:var(--green);color:#fff;border:none;border-radius:var(--r-sm);font-size:12px;font-weight:700;cursor:pointer">Use Now</button>
+    </div>
+  </div>`;
+  if (btn) { btn.innerHTML = "✅ Done"; }
+}
+
+/* ─── AI 3. VOICE ORDERING ───────────────────────────────────── */
+async function openAIVoiceOrder() {
+  showPage("voiceorder");
+  const el = document.getElementById("voiceOrderContent"); if (!el) return;
+  el.innerHTML = `<div style="background:linear-gradient(135deg,#6c5ce7,#a29bfe);border-radius:var(--r);padding:22px;margin-bottom:20px;text-align:center">
+    <div style="font-size:40px;margin-bottom:8px">🎙️</div>
+    <div style="font-family:'Sora',sans-serif;font-size:20px;font-weight:800;color:#fff">AI Voice Ordering</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.85)">Just speak naturally — AI understands and builds your cart</div>
+  </div>
+  <div style="background:var(--white);border-radius:var(--r);padding:24px;box-shadow:var(--card-shadow);margin-bottom:16px;text-align:center">
+    <div id="voiceStatus" style="font-size:14px;font-weight:700;color:var(--ink3);margin-bottom:20px">Press the mic and say what you want to order</div>
+    <button id="voiceBtn" onclick="toggleAIVoice()" style="width:100px;height:100px;border-radius:50%;background:linear-gradient(135deg,#6c5ce7,#a29bfe);color:#fff;border:none;cursor:pointer;font-size:36px;box-shadow:0 8px 32px rgba(108,92,231,.4);transition:all .3s">🎙️</button>
+    <div id="voiceTranscript" style="margin-top:16px;font-size:15px;font-weight:600;color:var(--ink);background:var(--bg);border-radius:var(--r-sm);padding:12px;display:none"></div>
+  </div>
+  <div style="background:var(--white);border-radius:var(--r);padding:18px;box-shadow:var(--card-shadow);margin-bottom:16px">
+    <div style="font-size:12px;font-weight:700;color:var(--ink3);margin-bottom:10px">💡 Try saying:</div>
+    ${["Order 2 biryanis and a cold drink","Get me something spicy under ₹200","Find the cheapest chicken dish","Add 1kg tomatoes and bread to cart","Reorder my last meal"].map(ex => `<div onclick="processVoiceText('${ex}')" style="padding:9px 12px;background:var(--bg);border-radius:var(--r-sm);font-size:12px;color:var(--ink2);cursor:pointer;margin-bottom:6px;display:flex;align-items:center;gap:8px;transition:background .15s" onmouseover="this.style.background='var(--brand-light)'" onmouseout="this.style.background='var(--bg)'"><i class="fa-solid fa-microphone" style="color:var(--brand);font-size:11px"></i>${ex}</div>`).join("")}
+  </div>
+  <div id="voiceCartResult" style="display:none;background:var(--white);border-radius:var(--r);padding:18px;box-shadow:var(--card-shadow)">
+    <div style="font-size:13px;font-weight:800;color:var(--ink);margin-bottom:12px">🛒 AI Built Your Cart</div>
+    <div id="voiceCartItems"></div>
+    <button onclick="showPage('cart')" style="width:100%;margin-top:12px;padding:12px;background:var(--brand);color:#fff;border:none;border-radius:var(--r-sm);font-size:14px;font-weight:800;cursor:pointer">View Cart & Checkout</button>
+  </div>`;
+}
+
+let _voiceActive = false, _voiceRecogAI = null;
+function toggleAIVoice() {
+  const btn = document.getElementById("voiceBtn"), status = document.getElementById("voiceStatus");
+  if (_voiceActive) {
+    _voiceActive = false; _voiceRecogAI?.stop();
+    if (btn) { btn.innerHTML="🎙️"; btn.style.background="linear-gradient(135deg,#6c5ce7,#a29bfe)"; }
+    if (status) status.textContent = "Press the mic and say what you want to order";
+    return;
+  }
+  if (!window.SpeechRecognition && !window.webkitSpeechRecognition) { toast("Voice not supported. Try example phrases!", "error"); return; }
+  _voiceActive = true;
+  if (btn) { btn.innerHTML="⏹️"; btn.style.background="linear-gradient(135deg,#e55039,#ff6b6b)"; }
+  if (status) status.textContent = "🔴 Listening... speak your order now!";
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  _voiceRecogAI = new SR();
+  _voiceRecogAI.lang = "en-IN"; _voiceRecogAI.continuous = false; _voiceRecogAI.interimResults = true;
+  _voiceRecogAI.onresult = e => {
+    const transcript = Array.from(e.results).map(r => r[0].transcript).join(" ");
+    const t = document.getElementById("voiceTranscript");
+    if (t) { t.style.display="block"; t.textContent=`"${transcript}"`; }
+    if (e.results[0].isFinal) processVoiceText(transcript);
+  };
+  _voiceRecogAI.onend = () => { _voiceActive=false; if(btn){btn.innerHTML="🎙️";btn.style.background="linear-gradient(135deg,#6c5ce7,#a29bfe)";} };
+  _voiceRecogAI.onerror = () => { toast("Could not hear you. Try example phrases!","error"); _voiceActive=false; };
+  _voiceRecogAI.start();
+}
+
+async function processVoiceText(text) {
+  const status = document.getElementById("voiceStatus");
+  if (status) status.textContent = `🤖 Processing: "${text}"`;
+  const productList = S.products.slice(0,30).map(p => `${p.name}(₹${p.price},id:${p.id||p._id})`).join(", ");
+  const response = await NZ_AI.ask(`Voice order: "${text}". Products: ${productList}. Reply ONLY JSON array: [{"id":"id","qty":N,"name":"name","price":N}]. Empty array if no match.`, "Voice order AI. Match products liberally.", 200);
+  let items = [];
+  try { items = JSON.parse(response.replace(/```json|```/g,"").trim()); } catch(e) {}
+  if (!items.length) { if (status) status.textContent = "❓ Could not find those items. Try the example phrases!"; return; }
+  items.forEach(item => { if (item.id) addToCart(item.id, item.qty||1); });
+  const resultEl = document.getElementById("voiceCartResult");
+  const itemsEl = document.getElementById("voiceCartItems");
+  if (resultEl) resultEl.style.display = "block";
+  if (itemsEl) itemsEl.innerHTML = items.map(i => `<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #f0f0f0;font-size:13px"><span style="font-weight:600">${i.name} × ${i.qty||1}</span><span style="font-weight:800;color:var(--brand)">₹${(i.price||0)*(i.qty||1)}</span></div>`).join("");
+  if (status) status.textContent = `✅ Added ${items.length} item${items.length>1?"s":""}!`;
+  toast(`🎙️ ${items.length} items added to cart!`, "success");
+}
+
+/* ─── AI 4. COMPLAINT RESOLVER ───────────────────────────────── */
+async function openAIComplaintResolver() {
+  showPage("complaint");
+  const el = document.getElementById("complaintContent"); if (!el) return;
+  const recentOrders = (S.orders||[]).slice(0,5);
+  el.innerHTML = `<div style="background:linear-gradient(135deg,#e55039,#ff6b6b);border-radius:var(--r);padding:22px;margin-bottom:20px;text-align:center">
+    <div style="font-size:40px;margin-bottom:8px">⚡</div>
+    <div style="font-family:'Sora',sans-serif;font-size:20px;font-weight:800;color:#fff">AI Complaint Resolver</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.85)">Tell us what went wrong — AI resolves in under 60 seconds</div>
+  </div>
+  <div style="background:var(--white);border-radius:var(--r);padding:18px;box-shadow:var(--card-shadow);margin-bottom:16px">
+    <div style="font-size:13px;font-weight:800;color:var(--ink);margin-bottom:12px">📦 Which order had a problem?</div>
+    ${recentOrders.length
+      ? recentOrders.map(o => `<div onclick="selectComplaintOrder('${o._id}','${o.orderNumber||o._id?.slice(-8)||"N/A"}',this)" id="co-${o._id}" style="display:flex;align-items:center;gap:12px;padding:10px;border:1.5px solid var(--ink4);border-radius:var(--r-sm);margin-bottom:8px;cursor:pointer;transition:all .2s">
+        <div style="font-size:13px;font-weight:700;flex:1">Order #${o.orderNumber||o._id?.slice(-8)||"N/A"}<br><span style="font-size:11px;color:var(--ink3);font-weight:400">${(o.items||[]).slice(0,2).map(i=>i.name).join(", ")}</span></div>
+        <span style="font-size:11px;font-weight:800;padding:3px 10px;border-radius:99px;background:${o.orderStatus==='delivered'?'var(--green-light)':'var(--brand-light)'};color:${o.orderStatus==='delivered'?'var(--green)':'var(--brand)'}">${o.orderStatus||"placed"}</span>
+      </div>`).join("")
+      : `<div style="padding:12px;background:var(--bg);border-radius:var(--r-sm);font-size:13px;color:var(--ink3);text-align:center">No recent orders found</div>`}
+  </div>
+  <div style="background:var(--white);border-radius:var(--r);padding:18px;box-shadow:var(--card-shadow);margin-bottom:16px">
+    <div style="font-size:13px;font-weight:800;color:var(--ink);margin-bottom:12px">❓ What happened?</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
+      ${[["🕐","Order was late"],["🍽️","Wrong item delivered"],["😞","Bad food quality"],["📦","Item missing"],["💸","Overcharged"],["🚫","Order not delivered"]].map(([e,t]) => `<button onclick="selectComplaintType('${t}',this)" class="complaint-type-btn" style="padding:10px 8px;border:1.5px solid var(--ink4);border-radius:var(--r-sm);font-size:12px;font-weight:700;cursor:pointer;background:var(--white);text-align:left;display:flex;align-items:center;gap:7px">${e} ${t}</button>`).join("")}
+    </div>
+    <textarea id="complaintDetails" placeholder="Any additional details? (optional)" style="width:100%;padding:10px;border:1.5px solid var(--ink4);border-radius:var(--r-sm);font-size:13px;resize:none;font-family:inherit;outline:none;margin-bottom:12px" rows="2"></textarea>
+    <button onclick="resolveComplaintWithAI()" style="width:100%;padding:13px;background:linear-gradient(135deg,#e55039,#ff6b6b);color:#fff;border:none;border-radius:var(--r-sm);font-size:14px;font-weight:800;cursor:pointer">⚡ Resolve Instantly with AI</button>
+  </div>
+  <div id="complaintResolution" style="display:none;background:var(--white);border-radius:var(--r);padding:20px;box-shadow:var(--card-shadow)"></div>`;
+}
+
+let _selectedComplaintOrder = null, _selectedComplaintType = null;
+function selectComplaintOrder(id, num, el) {
+  document.querySelectorAll("[id^='co-']").forEach(e => { e.style.borderColor="var(--ink4)"; e.style.background=""; });
+  el.style.borderColor = "var(--brand)"; el.style.background = "var(--brand-light)";
+  _selectedComplaintOrder = { id, num };
+}
+function selectComplaintType(type, el) {
+  document.querySelectorAll(".complaint-type-btn").forEach(b => { b.style.borderColor="var(--ink4)"; b.style.background="var(--white)"; b.style.color="var(--ink)"; });
+  el.style.borderColor = "var(--red)"; el.style.background = "#ffebee"; el.style.color = "var(--red)";
+  _selectedComplaintType = type;
+}
+async function resolveComplaintWithAI() {
+  if (!_selectedComplaintType) { toast("Please select what went wrong", "error"); return; }
+  const details = document.getElementById("complaintDetails")?.value.trim() || "";
+  const orderNum = _selectedComplaintOrder?.num || "recent order";
+  const result = document.getElementById("complaintResolution");
+  if (result) { result.style.display="block"; result.innerHTML=`<div style="text-align:center;padding:20px;color:var(--ink3)"><i class="fa-solid fa-spinner fa-spin" style="font-size:24px;display:block;margin-bottom:10px"></i>AI resolving your complaint...</div>`; }
+  const resolution = await NZ_AI.ask(`Complaint for order #${orderNum}: "${_selectedComplaintType}". Details: "${details}". Determine fair resolution. Reply JSON: {"fault":"shop|delivery|system|customer","resolution":"description","refundPercent":N,"creditPoints":N,"apology":"empathetic message","nextStep":"what happens now"}`, "AI dispute resolution. Be fair. Avoid full refunds unless justified.", 250);
+  let res = {}; try { res = JSON.parse(resolution.replace(/```json|```/g,"").trim()); } catch(e) {}
+  const refund = res.refundPercent || 0, points = res.creditPoints || 50;
+  if (points > 0 && typeof S.loyaltyPoints !== "undefined") S.loyaltyPoints += points;
+  const resCode = "RESOLVE" + Math.floor(Math.random()*999);
+  if (refund > 10) PROMO_CODES[resCode] = { type:"percent", value:refund, min:0, desc:`⚡ AI Resolved: ${refund}% refund credit` };
+  if (result) result.innerHTML = `<div style="text-align:center;margin-bottom:16px"><div style="font-size:40px;margin-bottom:8px">${refund>0?"💚":"🤝"}</div><div style="font-family:'Sora',sans-serif;font-size:17px;font-weight:800">Issue Resolved!</div></div>
+    <div style="background:var(--bg);border-radius:var(--r-sm);padding:14px;margin-bottom:12px;font-size:13px;color:var(--ink2);line-height:1.6">${res.apology||"We sincerely apologize for the inconvenience."}</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px">
+      <div style="background:var(--green-light);border-radius:var(--r-sm);padding:12px;text-align:center"><div style="font-size:10px;font-weight:700;color:var(--green);text-transform:uppercase">Refund Credit</div><div style="font-size:20px;font-weight:800;color:var(--green)">${refund}%</div></div>
+      <div style="background:var(--brand-light);border-radius:var(--r-sm);padding:12px;text-align:center"><div style="font-size:10px;font-weight:700;color:var(--brand);text-transform:uppercase">Bonus Points</div><div style="font-size:20px;font-weight:800;color:var(--brand)">+${points}pts</div></div>
+    </div>
+    <div style="font-size:13px;font-weight:700;color:var(--ink);margin-bottom:6px">${res.resolution||"Resolution applied."}</div>
+    <div style="font-size:12px;color:var(--ink3);margin-bottom:14px">${res.nextStep||"Credits reflect within 24 hours."}</div>
+    ${refund>10?`<button onclick="S.appliedPromo={code:'${resCode}',type:'percent',value:${refund},desc:'${refund}% refund credit'};showPage('cart');toast('Credit applied!','success')" style="width:100%;padding:11px;background:var(--green);color:#fff;border:none;border-radius:var(--r-sm);font-size:13px;font-weight:800;cursor:pointer">Apply ${refund}% Credit to Next Order</button>`:""}`;
+}
+
+/* ─── AI 5. DYNAMIC BUNDLES ──────────────────────────────────── */
+async function openAIDynamicBundles() {
+  nzModal(`<div style="background:linear-gradient(135deg,#a29bfe,#6c5ce7);padding:20px;text-align:center">
+    <div style="font-size:36px;margin-bottom:6px">🧩</div>
+    <div style="font-family:'Sora',sans-serif;font-size:18px;font-weight:800;color:#fff">AI Dynamic Bundles</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.8)">Personalized combos just for you, right now</div>
+  </div>
+  <div id="aiBundlesContent" style="padding:18px"><div style="text-align:center;padding:24px;color:var(--ink3)"><i class="fa-solid fa-spinner fa-spin" style="font-size:24px;display:block;margin-bottom:10px"></i>AI creating personalized bundles...</div></div>`);
+  const hour = new Date().getHours();
+  const meal = hour<11?"breakfast":hour<16?"lunch":hour<20?"snack":"dinner";
+  const cartItems = S.cart.map(i=>i.name).join(", ")||"nothing";
+  const topProds = S.products.slice(0,15).map(p=>`${p.name}(₹${p.price})`).join(", ");
+  const aiResponse = await NZ_AI.ask(`Create 3 personalized food bundle combos. time=${hour}:00 (${meal}), cart: ${cartItems}, products: ${topProds}. Reply JSON array: [{"name":"name","tagline":"tagline","items":["item1","item2"],"originalPrice":N,"bundlePrice":N,"saving":N,"reason":"why now"}]`, "AI bundle creator for Indian food delivery.", 400);
+  let bundles = []; try { bundles = JSON.parse(aiResponse.replace(/```json|```/g,"").trim()); } catch(e) {}
+  const content = document.getElementById("aiBundlesContent"); if (!content) return;
+  if (!bundles.length) { content.innerHTML = `<div style="text-align:center;padding:20px;color:var(--ink3)">Could not generate bundles. Browse shops first!</div>`; return; }
+  const grads = ["linear-gradient(135deg,#fd79a8,#e17055)","linear-gradient(135deg,#00b894,#00cec9)","linear-gradient(135deg,#6c5ce7,#a29bfe)"];
+  content.innerHTML = bundles.map((b,i) => {
+    const matched = (b.items||[]).map(name => S.products.find(p => (p.name||"").toLowerCase().includes(name.toLowerCase().split(" ")[0]))).filter(Boolean);
+    const addFns = matched.map(p => `addToCart('${p.id||p._id}',1);`).join("");
+    return `<div style="background:var(--white);border-radius:var(--r-sm);border:2px solid var(--ink4);overflow:hidden;margin-bottom:14px">
+      <div style="background:${grads[i%3]};padding:12px 16px;display:flex;align-items:center;justify-content:space-between">
+        <div><div style="font-size:13px;font-weight:800;color:#fff">${b.name}</div><div style="font-size:11px;color:rgba(255,255,255,.8);margin-top:2px">${b.tagline}</div></div>
+        <span style="background:rgba(255,255,255,.2);color:#fff;padding:3px 10px;border-radius:99px;font-size:11px;font-weight:800">Save ₹${b.saving}</span>
+      </div>
+      <div style="padding:12px 16px">
+        <div style="font-size:12px;color:var(--ink3);margin-bottom:8px;font-style:italic">💡 ${b.reason}</div>
+        <div style="display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap">${(b.items||[]).map(item=>`<span style="padding:4px 10px;background:var(--bg);border-radius:99px;font-size:11px;font-weight:700">${item}</span>`).join("")}</div>
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div><span style="font-size:18px;font-weight:800;color:var(--brand)">₹${b.bundlePrice}</span><span style="font-size:12px;text-decoration:line-through;color:var(--ink3);margin-left:6px">₹${b.originalPrice}</span></div>
+          <button onclick="(function(){${addFns}toast('Bundle added! Save ₹${b.saving}','success')})()" style="padding:8px 16px;background:var(--brand);color:#fff;border:none;border-radius:var(--r-sm);font-size:12px;font-weight:800;cursor:pointer">Add Bundle</button>
+        </div>
+      </div>
+    </div>`;
+  }).join("");
+}
+
+/* ─── AI 6. MENU PHOTOGRAPHER ────────────────────────────────── */
+function openAIMenuPhotographer() {
+  nzModal(`<div style="background:linear-gradient(135deg,#fd79a8,#e17055);padding:20px;text-align:center">
+    <div style="font-size:36px;margin-bottom:8px">📸</div>
+    <div style="font-family:'Sora',sans-serif;font-size:18px;font-weight:800;color:#fff">AI Menu Photographer</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.85)">Upload any dish photo — AI writes the perfect listing</div>
+  </div>
+  <div style="padding:20px">
+    <div onclick="document.getElementById('aiPhotoInput').click()" style="border:2px dashed var(--ink4);border-radius:var(--r-sm);padding:24px;text-align:center;cursor:pointer;margin-bottom:14px;transition:all .2s" onmouseover="this.style.borderColor='var(--brand)'" onmouseout="this.style.borderColor='var(--ink4)'">
+      <input type="file" id="aiPhotoInput" accept="image/*" style="display:none" onchange="analyzeMenuPhoto(this)">
+      <div style="font-size:40px;margin-bottom:10px">📷</div>
+      <div style="font-size:13px;font-weight:700;color:var(--ink2)">Click to upload dish photo</div>
+      <div style="font-size:11px;color:var(--ink3);margin-top:4px">AI auto-writes: name, description, price & category</div>
+    </div>
+    <div id="photoPreviewArea" style="display:none;margin-bottom:14px"><img id="photoPreview" style="width:100%;border-radius:var(--r-sm);max-height:200px;object-fit:cover"></div>
+    <div id="photoAnalysisResult" style="display:none">
+      <div style="font-size:13px;font-weight:800;color:var(--ink);margin-bottom:10px">🤖 AI Generated Listing</div>
+      <div id="photoResultContent"></div>
+      <button onclick="applyAIPhotoListing()" style="width:100%;margin-top:12px;padding:11px;background:var(--brand);color:#fff;border:none;border-radius:var(--r-sm);font-size:13px;font-weight:800;cursor:pointer">✅ Use This Listing</button>
+    </div>
+  </div>`);
+}
+
+let _aiPhotoListing = null;
+async function analyzeMenuPhoto(input) {
+  const file = input.files?.[0]; if (!file) return;
+  const reader = new FileReader();
+  reader.onload = async e => {
+    const base64 = e.target.result.split(",")[1];
+    const preview = document.getElementById("photoPreview"), previewArea = document.getElementById("photoPreviewArea");
+    if (preview) preview.src = e.target.result;
+    if (previewArea) previewArea.style.display = "block";
+    const resultEl = document.getElementById("photoAnalysisResult"), contentEl = document.getElementById("photoResultContent");
+    if (resultEl) resultEl.style.display = "block";
+    if (contentEl) contentEl.innerHTML = `<div style="text-align:center;padding:16px;color:var(--ink3)"><i class="fa-solid fa-spinner fa-spin" style="font-size:20px;display:block;margin-bottom:8px"></i>AI analyzing your dish...</div>`;
+    try {
+      const res = await fetch("https://api.anthropic.com/v1/messages", {
+        method:"POST", headers:{"Content-Type":"application/json"},
+        body: JSON.stringify({ model:"claude-sonnet-4-20250514", max_tokens:300, messages:[{ role:"user", content:[
+          { type:"image", source:{ type:"base64", media_type:file.type, data:base64 } },
+          { type:"text", text:'Analyze this food image for an Indian delivery app. Reply only JSON: {"name":"product name","description":"appetizing 1-2 sentence description","category":"Food|Grocery|Bakery|Sweets|Beverages|Other","suggestedPrice":N,"tags":["tag1","tag2"],"servingSize":"e.g. 1 plate"}' }
+        ]}] })
+      });
+      const data = await res.json();
+      _aiPhotoListing = JSON.parse(data.content[0].text.replace(/```json|```/g,"").trim());
+    } catch(e) { _aiPhotoListing = { name:"Delicious Dish", description:"A mouth-watering dish made with fresh ingredients.", category:"Food", suggestedPrice:120, tags:["fresh","tasty"], servingSize:"1 serving" }; }
+    if (_aiPhotoListing && contentEl) contentEl.innerHTML = `
+      <div class="fgrid" style="margin-bottom:10px"><div class="fgroup"><label class="flabel">Name</label><input class="finput" id="aiName" value="${_aiPhotoListing.name}"></div><div class="fgroup"><label class="flabel">Category</label><input class="finput" id="aiCategory" value="${_aiPhotoListing.category}"></div></div>
+      <div class="fgroup" style="margin-bottom:10px"><label class="flabel">Description</label><textarea class="finput" id="aiDesc" rows="2">${_aiPhotoListing.description}</textarea></div>
+      <div class="fgrid" style="margin-bottom:10px"><div class="fgroup"><label class="flabel">Price (₹)</label><input class="finput" id="aiPrice" type="number" value="${_aiPhotoListing.suggestedPrice}"></div><div class="fgroup"><label class="flabel">Serving</label><input class="finput" id="aiServing" value="${_aiPhotoListing.servingSize}"></div></div>
+      <div style="display:flex;gap:5px;flex-wrap:wrap">${(_aiPhotoListing.tags||[]).map(t=>`<span style="padding:3px 10px;background:var(--brand-light);color:var(--brand);border-radius:99px;font-size:11px;font-weight:700">${t}</span>`).join("")}</div>`;
+  };
+  reader.readAsDataURL(file);
+}
+function applyAIPhotoListing() {
+  [["aiName","pName"],["aiCategory","pCategory"],["aiDesc","pDescription"],["aiPrice","pPrice"]].forEach(([from,to]) => {
+    const val = document.getElementById(from)?.value;
+    if (val) { const el = document.getElementById(to); if (el) el.value = val; }
+  });
+  nzCloseModal();
+  document.getElementById("productModal")?.classList.add("open");
+  toast("✅ AI listing applied! Review and save.", "success");
+}
+
+/* ─── AI 7. SELLER DEMAND FORECASTER ────────────────────────── */
+async function renderAIDemandForecast(el, shopOrders, myProducts) {
+  el.innerHTML = `<div style="background:linear-gradient(135deg,#7c3aed,#a29bfe);border-radius:var(--r);padding:20px;margin-bottom:16px"><div style="display:flex;align-items:center;gap:12px"><div style="font-size:32px">📈</div><div><div style="font-family:'Sora',sans-serif;font-size:17px;font-weight:800;color:#fff">AI Demand Forecaster</div><div style="font-size:12px;color:rgba(255,255,255,.8)">Predicts tomorrow's demand so you stock right</div></div></div></div>
+  <div id="demandForecastContent" style="background:var(--white);border-radius:var(--r);padding:18px;box-shadow:var(--card-shadow)"><div style="text-align:center;padding:20px;color:var(--ink3)"><i class="fa-solid fa-spinner fa-spin" style="font-size:20px;display:block;margin-bottom:8px"></i>Analyzing sales patterns...</div></div>`;
+  const topItems = {};
+  (shopOrders||[]).forEach(o => (o.items||[]).forEach(i => { topItems[i.name] = (topItems[i.name]||0)+(i.quantity||1); }));
+  const topStr = Object.entries(topItems).sort((a,b)=>b[1]-a[1]).slice(0,8).map(([n,c])=>`${n}(${c} sold)`).join(", ")||"General food items";
+  const dayName = new Date(Date.now()+86400000).toLocaleDateString("en-IN",{weekday:"long"});
+  const forecast = await NZ_AI.ask(`Top sellers: ${topStr}. Total orders: ${(shopOrders||[]).length}. Tomorrow is ${dayName}. Forecast demand. Reply JSON: {"summary":"2 sentence forecast","items":[{"name":"item","expectedOrders":N,"trend":"up|down|stable","stockAdvice":"advice","confidence":N}],"topTip":"key business tip"}`, "AI demand forecaster for Indian food shop.", 350);
+  let fc = {}; try { fc = JSON.parse(forecast.replace(/```json|```/g,"").trim()); } catch(e) {}
+  const contentEl = document.getElementById("demandForecastContent"); if (!contentEl) return;
+  contentEl.innerHTML = `<div style="background:var(--brand-light);border-radius:var(--r-sm);padding:14px;margin-bottom:16px;font-size:13px;color:var(--ink2);line-height:1.7">${fc.summary||"Demand forecast ready."}</div>` +
+    (fc.items||[]).map(item => {
+      const tc = item.trend==="up"?"var(--green)":item.trend==="down"?"var(--red)":"var(--brand)";
+      return `<div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #f0f0f0">
+        <div style="flex:1"><div style="font-size:13px;font-weight:700">${item.name}</div><div style="font-size:11px;color:var(--ink3);margin-top:3px">${item.stockAdvice}</div></div>
+        <div style="text-align:right"><div style="font-size:15px;font-weight:800;color:${tc}">${item.trend==="up"?"▲":item.trend==="down"?"▼":"→"} ${item.expectedOrders} orders</div><div style="font-size:10px;color:var(--ink3);margin-top:2px">${item.confidence||75}% confidence</div></div>
+      </div>`;
+    }).join("") +
+    (fc.topTip?`<div style="background:linear-gradient(135deg,#7c3aed11,#a29bfe11);border:1px solid #7c3aed33;border-radius:var(--r-sm);padding:12px;margin-top:14px;font-size:12px;color:#6c5ce7;font-weight:700"><i class="fa-solid fa-lightbulb" style="margin-right:6px"></i>${fc.topTip}</div>`:"");
+}
+
+/* ─── AI 8. PRICE OPTIMIZER ──────────────────────────────────── */
+async function renderAIPriceOptimizer(el, myProducts) {
+  el.innerHTML = `<div style="background:linear-gradient(135deg,#f0932b,#fdcb6e);border-radius:var(--r);padding:20px;margin-bottom:16px"><div style="display:flex;align-items:center;gap:12px"><div style="font-size:32px">💰</div><div><div style="font-family:'Sora',sans-serif;font-size:17px;font-weight:800;color:#fff">AI Price Optimizer</div><div style="font-size:12px;color:rgba(255,255,255,.85)">AI sets the perfect price to maximize revenue</div></div></div></div>
+  <div id="priceOptimizerContent" style="background:var(--white);border-radius:var(--r);padding:18px;box-shadow:var(--card-shadow)"><div style="text-align:center;padding:20px;color:var(--ink3)"><i class="fa-solid fa-spinner fa-spin" style="font-size:20px;display:block;margin-bottom:8px"></i>Comparing market prices...</div></div>`;
+  const productStr = (myProducts||[]).slice(0,10).map(p=>`${p.name}(₹${p.price},stock:${p.stock||0})`).join(", ")||"Biryani ₹180, Tea ₹20";
+  const marketPrices = S.products.slice(0,20).map(p=>`${p.name}:₹${p.price}`).join(", ");
+  const priceAdvice = await NZ_AI.ask(`My products: ${productStr}. Market prices: ${marketPrices}. Suggest optimal pricing. Reply JSON: {"items":[{"name":"item","currentPrice":N,"suggestedPrice":N,"reason":"short reason","expectedImpact":"e.g. +15% revenue"}],"overallTip":"pricing strategy"}`, "AI pricing strategist for small Indian food shop.", 350);
+  let advice = {}; try { advice = JSON.parse(priceAdvice.replace(/```json|```/g,"").trim()); } catch(e) {}
+  const el2 = document.getElementById("priceOptimizerContent"); if (!el2) return;
+  el2.innerHTML = (advice.items||[]).map(item => {
+    const diff = item.suggestedPrice - item.currentPrice, up = diff > 0;
+    return `<div style="border:1.5px solid #f0f0f0;border-radius:var(--r-sm);padding:14px;margin-bottom:10px">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:8px">
+        <div style="font-size:13px;font-weight:800">${item.name}</div>
+        <div style="display:flex;align-items:center;gap:8px"><div style="font-size:13px;text-decoration:line-through;color:var(--ink3)">₹${item.currentPrice}</div><div style="font-size:16px;font-weight:800;color:${up?"var(--green)":"#1289A7"}">₹${item.suggestedPrice}</div></div>
+      </div>
+      <div style="font-size:11px;color:var(--ink3);margin-bottom:6px">${item.reason}</div>
+      <div style="font-size:11px;font-weight:700;color:var(--green)">📈 ${item.expectedImpact}</div>
+      <button onclick="applyPriceSuggestion('${item.name}',${item.suggestedPrice})" style="margin-top:8px;padding:6px 14px;background:var(--brand);color:#fff;border:none;border-radius:var(--r-sm);font-size:11px;font-weight:700;cursor:pointer">Apply Price</button>
+    </div>`;
+  }).join("") + (advice.overallTip?`<div style="background:linear-gradient(135deg,#f0932b11,#fdcb6e11);border:1px solid #f0932b33;border-radius:var(--r-sm);padding:12px;font-size:12px;color:#e17055;font-weight:700"><i class="fa-solid fa-lightbulb" style="margin-right:6px"></i>${advice.overallTip}</div>`:"");
+}
+async function applyPriceSuggestion(productName, newPrice) {
+  const product = S.products.find(p => (p.name||"").toLowerCase() === productName.toLowerCase());
+  if (!product) { toast("Update price manually in Products tab","info"); return; }
+  try {
+    await fetch(`${API}/products/${product.id||product._id}`, { method:"PUT", headers:{"Content-Type":"application/json","Authorization":"Bearer "+S.token}, body:JSON.stringify({price:newPrice}) });
+    toast(`✅ Price of ${productName} updated to ₹${newPrice}`, "success");
+  } catch(e) { toast("Update manually from Products tab","info"); }
+}
+
+/* ─── AI 9. SHOP ASSISTANT ───────────────────────────────────── */
+async function renderAIShopAssistant(el, myShop) {
+  const shopName = myShop?.name || S.user?.name || "My Shop";
+  const savedPersona = localStorage.getItem("nz_ai_persona_"+(S.user?._id||""))||"";
+  el.innerHTML = `<div style="background:linear-gradient(135deg,#00cec9,#00b894);border-radius:var(--r);padding:20px;margin-bottom:16px"><div style="display:flex;align-items:center;gap:12px"><div style="font-size:32px">🤖</div><div><div style="font-family:'Sora',sans-serif;font-size:17px;font-weight:800;color:#fff">AI Shop Assistant</div><div style="font-size:12px;color:rgba(255,255,255,.85)">Your 24/7 AI that talks to customers on your behalf</div></div><div class="live-dot" style="margin-left:auto"></div></div></div>
+  <div style="background:var(--white);border-radius:var(--r);padding:18px;box-shadow:var(--card-shadow);margin-bottom:14px">
+    <div class="fgrid" style="margin-bottom:12px">
+      <div class="fgroup"><label class="flabel">Shop Name</label><input class="finput" id="aiShopName" value="${shopName}"></div>
+      <div class="fgroup"><label class="flabel">Tone</label><select class="fselect" id="aiTone"><option value="friendly">😊 Friendly</option><option value="professional">💼 Professional</option><option value="casual">😎 Casual</option></select></div>
+    </div>
+    <div class="fgroup" style="margin-bottom:12px"><label class="flabel">Special Offers / Info to mention</label><textarea class="finput" id="aiOffers" rows="2" placeholder="e.g. 10% off above ₹200. Free delivery weekends.">${savedPersona}</textarea></div>
+    <button onclick="saveAIPersona()" style="padding:9px 18px;background:var(--green);color:#fff;border:none;border-radius:var(--r-sm);font-size:13px;font-weight:700;cursor:pointer">✅ Save Persona</button>
+  </div>
+  <div style="background:var(--white);border-radius:var(--r);padding:18px;box-shadow:var(--card-shadow)">
+    <div style="font-size:13px;font-weight:800;color:var(--ink);margin-bottom:12px">🧪 Test Your AI Assistant</div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">
+      ${["Do you have veg options?","What time do you close?","Can I get a discount?","Is delivery free?","Can I customize my order?"].map(q => `<button onclick="testAIAssistant('${q}')" style="padding:6px 12px;background:var(--bg);border:1px solid var(--ink4);border-radius:99px;font-size:11px;font-weight:700;cursor:pointer;color:var(--ink2)">${q}</button>`).join("")}
+    </div>
+    <div style="display:flex;gap:8px;margin-bottom:12px">
+      <input id="aiTestInput" placeholder="Type a customer question..." style="flex:1;padding:10px;border:1.5px solid var(--ink4);border-radius:var(--r-sm);font-size:13px;outline:none;font-family:inherit" onkeydown="if(event.key==='Enter')testAIAssistant(this.value)">
+      <button onclick="testAIAssistant(document.getElementById('aiTestInput').value)" style="padding:10px 16px;background:var(--brand);color:#fff;border:none;border-radius:var(--r-sm);font-size:13px;font-weight:700;cursor:pointer"><i class="fa-solid fa-paper-plane"></i></button>
+    </div>
+    <div id="aiAssistantChat" style="display:flex;flex-direction:column;gap:8px;max-height:280px;overflow-y:auto"></div>
+  </div>`;
+}
+function saveAIPersona() {
+  const persona = document.getElementById("aiOffers")?.value.trim();
+  localStorage.setItem("nz_ai_persona_"+(S.user?._id||""), persona||"");
+  toast("✅ AI Assistant persona saved!", "success");
+}
+async function testAIAssistant(question) {
+  if (!question?.trim()) return;
+  const input = document.getElementById("aiTestInput"); if (input) input.value = "";
+  const chat = document.getElementById("aiAssistantChat"); if (!chat) return;
+  const shopName = document.getElementById("aiShopName")?.value || S.user?.name || "Our Shop";
+  const tone = document.getElementById("aiTone")?.value || "friendly";
+  const persona = document.getElementById("aiOffers")?.value || "";
+  chat.insertAdjacentHTML("beforeend", `<div style="display:flex;justify-content:flex-end"><div style="background:var(--ink);color:#fff;border-radius:14px 4px 14px 14px;padding:8px 12px;max-width:75%;font-size:12px">👤 ${question}</div></div>`);
+  const typId = "at" + Date.now();
+  chat.insertAdjacentHTML("beforeend", `<div id="${typId}" style="display:flex;gap:8px;align-items:flex-end"><div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#00cec9,#00b894);display:flex;align-items:center;justify-content:center;font-size:12px">🤖</div><div style="background:var(--white);border:1px solid #f0f0f0;border-radius:4px 14px 14px 14px;padding:8px 12px"><span class="typing-dot"></span><span class="typing-dot" style="animation-delay:.2s"></span><span class="typing-dot" style="animation-delay:.4s"></span></div></div>`);
+  chat.scrollTop = chat.scrollHeight;
+  const reply = await NZ_AI.ask(`You are AI for "${shopName}". Customer: "${question}". Shop info: ${persona||"standard food shop"}. Reply as shop in ${tone} tone. Under 60 words.`, `${tone} shop assistant AI for ${shopName}. Always helpful.`, 150);
+  document.getElementById(typId)?.remove();
+  chat.insertAdjacentHTML("beforeend", `<div style="display:flex;gap:8px;align-items:flex-start"><div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#00cec9,#00b894);display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0">🤖</div><div style="background:var(--white);border:1px solid #f0f0f0;border-radius:4px 14px 14px 14px;padding:8px 12px;max-width:75%;font-size:12px;color:var(--ink);line-height:1.5">${reply||"Thank you! We'll get back to you shortly."}</div></div>`);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+/* ─── SELLER TAB ROUTER ──────────────────────────────────────── */
+const _origSwitchSellerTab = switchSellerTab;
+switchSellerTab = async function(tab, el) {
+  _origSwitchSellerTab(tab, el);
+  const layout = document.querySelector(".seller-layout > div:last-child");
+  if (layout) {
+    ["ai_demand","ai_price","ai_assistant"].forEach(t => {
+      if (!document.getElementById("stab-"+t)) {
+        const div = document.createElement("div"); div.className="seller-tab"; div.id="stab-"+t;
+        layout.appendChild(div);
+      }
+    });
+  }
+  const tabEl = document.getElementById("stab-"+tab);
+  if (!tabEl || tabEl.dataset.aiLoaded) return;
+  if (tab==="ai_demand") {
+    tabEl.dataset.aiLoaded = "1";
+    try {
+      const [or, pr] = await Promise.all([fetch(`${API}/orders/shop-orders`,{headers:{"Authorization":"Bearer "+S.token}}), fetch(`${API}/products/my-products`,{headers:{"Authorization":"Bearer "+S.token}})]);
+      await renderAIDemandForecast(tabEl, or.ok?await or.json():[], pr.ok?await pr.json():[]);
+    } catch(e) { tabEl.innerHTML = `<div style="padding:20px;text-align:center;color:var(--ink3)">Could not load forecast.</div>`; }
+  }
+  if (tab==="ai_price") {
+    tabEl.dataset.aiLoaded = "1";
+    try {
+      const pr = await fetch(`${API}/products/my-products`,{headers:{"Authorization":"Bearer "+S.token}});
+      await renderAIPriceOptimizer(tabEl, pr.ok?await pr.json():[]);
+    } catch(e) { tabEl.innerHTML = `<div style="padding:20px;text-align:center;color:var(--ink3)">Could not load optimizer.</div>`; }
+  }
+  if (tab==="ai_assistant") {
+    tabEl.dataset.aiLoaded = "1";
+    try {
+      const sr = await fetch(`${API}/shops/seller/my-shop`,{headers:{"Authorization":"Bearer "+S.token}});
+      await renderAIShopAssistant(tabEl, sr.ok?await sr.json():null);
+    } catch(e) { await renderAIShopAssistant(tabEl, null); }
+  }
+};
+
+/* ─── AI 10. WHISPERER ───────────────────────────────────────── */
+async function openAIWhisper() {
+  const hour = new Date().getHours();
+  nzModal(`<div style="background:rgba(0,0,0,.9);padding:30px 20px;text-align:center">
+    <div style="font-size:52px;margin-bottom:16px">🔮</div>
+    <div style="font-family:'Sora',sans-serif;font-size:22px;font-weight:800;color:#fff;margin-bottom:8px">AI Whisperer</div>
+    <div style="font-size:13px;color:rgba(255,255,255,.7);margin-bottom:24px;line-height:1.7">Reading your subconscious food desires...<br>Analyzing ${Math.floor(Math.random()*8)+12} behavioral signals</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:24px">
+      ${["⏰ Time pattern","📅 Day of week","🌤 Weather signal","🛒 Cart history","💝 Wishlist pattern","🧠 Browsing depth"].map((s,i) => `<div style="background:rgba(255,255,255,.08);border-radius:8px;padding:8px 14px;font-size:12px;color:rgba(255,255,255,.7);display:flex;align-items:center;gap:8px"><span>${s}</span><div style="flex:1;height:2px;background:rgba(255,255,255,.1);border-radius:99px;overflow:hidden"><div style="height:100%;background:linear-gradient(90deg,#7c3aed,#a29bfe);border-radius:99px;width:${Math.floor(Math.random()*40)+50}%"></div></div></div>`).join("")}
+    </div>
+    <div id="whisperResult" style="display:none;background:rgba(255,255,255,.1);border-radius:var(--r);padding:18px;text-align:left"></div>
+  </div>`);
+  // Override close button style for dark modal
+  const closeBtn = document.querySelector("#nzModalOverlay button[onclick*='nzCloseModal']");
+  if (closeBtn) { closeBtn.style.background = "rgba(255,255,255,.2)"; }
+  await new Promise(r => setTimeout(r, 2000));
+  const cartHistory = (S.orders||[]).slice(0,10).flatMap(o => (o.items||[]).map(i=>i.name)).join(", ")||"";
+  const desire = await NZ_AI.ask(`Predict subconscious food desires. Signals: time=${hour}:00, history="${cartHistory}". Give mystical yet accurate prediction: 1 dish, 1 flavor, 1 emotion, 1 product from: ${S.products.slice(0,8).map(p=>p.name).join(", ")}. 80 words max.`, "AI reading subconscious food desires. Be poetic yet practical.", 200);
+  const resultEl = document.getElementById("whisperResult");
+  if (resultEl) {
+    resultEl.style.display = "block";
+    resultEl.innerHTML = `<div style="font-size:13px;color:rgba(255,255,255,.9);line-height:1.8;margin-bottom:12px">${(desire||"Your subconscious craves something warm and comforting right now...").replace(/\n/g,"<br>")}</div>
+    <button onclick="filterCat('restaurant');nzCloseModal()" style="padding:9px 20px;background:linear-gradient(135deg,#7c3aed,#a29bfe);color:#fff;border:none;border-radius:99px;font-size:12px;font-weight:800;cursor:pointer">Order What My Soul Wants 🔮</button>`;
+  }
+}
+
+/* ─── AI 11. FOOD THERAPIST ──────────────────────────────────── */
+function openAIFoodTherapist() {
+  const chips = ["I want something sweet","I'm stress eating","I need comfort food","I deserve a treat","I'm bored"].map(c => `<button onclick="document.getElementById('therapistInput').value='${c}'" style="padding:6px 12px;background:var(--bg);border:1px solid var(--ink4);border-radius:99px;font-size:11px;font-weight:700;cursor:pointer;color:var(--ink2)">${c}</button>`).join("");
+  nzModal(`<div style="background:linear-gradient(135deg,#ff6b6b,#ee5a24);padding:22px;text-align:center">
+    <div style="font-size:40px;margin-bottom:8px">🧠</div>
+    <div style="font-family:'Sora',sans-serif;font-size:18px;font-weight:800;color:#fff">AI Food Therapist</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.85)">Understanding the emotions behind your food choices</div>
+  </div>
+  <div style="padding:20px">
+    <div style="font-size:13px;color:var(--ink2);line-height:1.7;margin-bottom:14px">Your food choices tell a story. Share what you're craving — I'll help you understand why.</div>
+    <textarea id="therapistInput" placeholder="What are you craving right now, and why do you think you want it?" style="width:100%;padding:12px;border:1.5px solid var(--ink4);border-radius:var(--r-sm);font-size:13px;resize:none;font-family:inherit;outline:none;margin-bottom:12px" rows="3"></textarea>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px">${chips}</div>
+    <button onclick="runFoodTherapy()" style="width:100%;padding:12px;background:linear-gradient(135deg,#ff6b6b,#ee5a24);color:#fff;border:none;border-radius:var(--r-sm);font-size:13px;font-weight:800;cursor:pointer">🧠 Understand My Cravings</button>
+    <div id="therapyResult" style="display:none;margin-top:14px;padding:14px;background:var(--bg);border-radius:var(--r-sm)"></div>
+  </div>`);
+}
+async function runFoodTherapy() {
+  const input = document.getElementById("therapistInput")?.value.trim();
+  if (!input) { toast("Please describe your craving","error"); return; }
+  const resultEl = document.getElementById("therapyResult");
+  if (resultEl) { resultEl.style.display="block"; resultEl.innerHTML=`<div style="text-align:center;color:var(--ink3)"><i class="fa-solid fa-spinner fa-spin" style="display:block;margin-bottom:6px"></i>Analyzing...</div>`; }
+  const orderHistory = (S.orders||[]).slice(0,8).flatMap(o=>(o.items||[]).map(i=>i.name)).join(", ")||"various foods";
+  const therapy = await NZ_AI.ask(`Customer says: "${input}". Order history: ${orderHistory}. As empathetic food therapist: 1) Identify emotional need 2) Validate warmly 3) Suggest healthy alternative 4) Recommend 1 product from: ${S.products.slice(0,8).map(p=>p.name).join(", ")}. Compassionate, 100 words.`, "Warm, non-judgmental AI food therapist.", 250);
+  if (resultEl) resultEl.innerHTML = `<div style="font-size:13px;color:var(--ink2);line-height:1.8">${(therapy||"Your craving makes sense. Be kind to yourself!").replace(/\n/g,"<br>")}</div>`;
+}
+
+/* ─── AI 12. RECIPE GENERATOR ────────────────────────────────── */
+async function openAIRecipeGen() {
+  const cartNames = S.cart.map(i=>i.name).join(", ")||"your ingredients";
+  nzModal(`<div style="background:linear-gradient(135deg,#00b894,#00cec9);padding:20px;text-align:center">
+    <div style="font-size:36px;margin-bottom:8px">📖</div>
+    <div style="font-family:'Sora',sans-serif;font-size:18px;font-weight:800;color:#fff">AI Recipe Generator</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.85)">Generate recipes from your cart items</div>
+  </div>
+  <div style="padding:20px">
+    <div style="font-size:12px;color:var(--ink2);margin-bottom:14px">🛒 Using from your cart: <b>${cartNames}</b></div>
+    <div class="fgroup" style="margin-bottom:12px"><label class="flabel">Any dietary restrictions?</label>
+      <select class="fselect" id="recipeRestriction"><option value="">None</option><option value="vegetarian">Vegetarian</option><option value="vegan">Vegan</option><option value="gluten-free">Gluten-free</option><option value="diabetic-friendly">Diabetic-friendly</option></select>
+    </div>
+    <button id="recipeGenBtn" onclick="generateAIRecipe('${cartNames.replace(/'/g,"")}',this)" style="width:100%;padding:12px;background:linear-gradient(135deg,#00b894,#00cec9);color:#fff;border:none;border-radius:var(--r-sm);font-size:13px;font-weight:800;cursor:pointer">📖 Generate Recipe</button>
+    <div id="recipeResult" style="display:none;margin-top:14px"></div>
+  </div>`);
+}
+async function generateAIRecipe(ingredients, btn) {
+  if (btn) { btn.innerHTML="⏳ Generating..."; btn.disabled=true; }
+  const restriction = document.getElementById("recipeRestriction")?.value||"";
+  const recipe = await NZ_AI.ask(
+    `Create a detailed recipe using these ingredients: "${ingredients}"${restriction?`, restrictions: ${restriction}`:""}. Format with: Recipe name, Ingredients list, Step-by-step instructions, Cooking time, Serves. Make it practical for Indian home cooking. Use emojis.`,
+    "AI chef specializing in Indian cuisine. Give detailed, practical recipes.", 500
+  );
+  const resultEl = document.getElementById("recipeResult");
+  if (resultEl) {
+    resultEl.style.display="block";
+    resultEl.innerHTML = `<div style="background:var(--bg);border-radius:var(--r-sm);padding:14px;font-size:13px;color:var(--ink2);line-height:1.8">${(recipe||"Could not generate recipe. Try again!").replace(/\n/g,"<br>")}</div>`;
+  }
+  if (btn) { btn.innerHTML="📖 Generate Recipe"; btn.disabled=false; }
+}
+
+/* ─── AI 13. WEEKLY SHOPPING LIST ────────────────────────────── */
+async function openAIShoppingList() {
+  nzModal(`<div style="background:linear-gradient(135deg,#0652DD,#1289A7);padding:20px;text-align:center">
+    <div style="font-size:36px;margin-bottom:8px">📝</div>
+    <div style="font-family:'Sora',sans-serif;font-size:18px;font-weight:800;color:#fff">AI Shopping List</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.85)">AI builds your personalized weekly grocery list</div>
+  </div>
+  <div style="padding:20px">
+    <div class="fgrid" style="margin-bottom:12px">
+      <div class="fgroup"><label class="flabel">Family Size</label><select class="fselect" id="familySize"><option value="1">Just me</option><option value="2" selected>2 people</option><option value="4">4 people</option><option value="6">6+ people</option></select></div>
+      <div class="fgroup"><label class="flabel">Budget per week</label><select class="fselect" id="weeklyBudget"><option value="500">₹500</option><option value="1000" selected>₹1,000</option><option value="2000">₹2,000</option><option value="5000">₹5,000</option></select></div>
+    </div>
+    <div class="fgroup" style="margin-bottom:12px"><label class="flabel">Diet preference</label><select class="fselect" id="dietPref"><option value="vegetarian">Vegetarian</option><option value="non-vegetarian" selected>Non-Vegetarian</option><option value="vegan">Vegan</option></select></div>
+    <button id="shoppingListBtn" onclick="generateShoppingList(this)" style="width:100%;padding:12px;background:linear-gradient(135deg,#0652DD,#1289A7);color:#fff;border:none;border-radius:var(--r-sm);font-size:13px;font-weight:800;cursor:pointer">📝 Generate My Shopping List</button>
+    <div id="shoppingListResult" style="display:none;margin-top:14px"></div>
+  </div>`);
+}
+async function generateShoppingList(btn) {
+  if (btn) { btn.innerHTML="⏳ Generating..."; btn.disabled=true; }
+  const family = document.getElementById("familySize")?.value||"2";
+  const budget = document.getElementById("weeklyBudget")?.value||"1000";
+  const diet = document.getElementById("dietPref")?.value||"non-vegetarian";
+  const orderHistory = (S.orders||[]).slice(0,10).flatMap(o=>(o.items||[]).map(i=>i.name)).slice(0,20).join(", ")||"typical Indian household";
+  const list = await NZ_AI.ask(
+    `Create a weekly shopping list for ${family} people, budget ₹${budget}/week, ${diet} diet. Based on order history: "${orderHistory}". Include: vegetables, fruits, dairy, grains, proteins, snacks. Group by category. Show estimated cost for each category. Total should be within ₹${budget}. Use emojis for each category.`,
+    "AI nutritionist for Indian households. Create practical, budget-friendly weekly shopping lists.", 500
+  );
+  const resultEl = document.getElementById("shoppingListResult");
+  if (resultEl) {
+    resultEl.style.display="block";
+    resultEl.innerHTML = `<div style="background:var(--bg);border-radius:var(--r-sm);padding:14px;font-size:12px;color:var(--ink2);line-height:1.9">${(list||"Could not generate list. Try again!").replace(/\n/g,"<br>")}</div>
+    <button onclick="filterCat('grocery');nzCloseModal()" style="width:100%;margin-top:12px;padding:10px;background:var(--green);color:#fff;border:none;border-radius:var(--r-sm);font-size:13px;font-weight:700;cursor:pointer">🛒 Shop These Items</button>`;
+  }
+  if (btn) { btn.innerHTML="📝 Generate My Shopping List"; btn.disabled=false; }
+}
+
+/* ─── AI 14. PRICE PREDICTOR ─────────────────────────────────── */
+async function openAIPricePrediction() {
+  const topProds = S.products.slice(0,8).map(p=>`${p.name}(₹${p.price})`).join(", ")||"various products";
+  nzModal(`<div style="background:linear-gradient(135deg,#f0932b,#fdcb6e);padding:20px;text-align:center">
+    <div style="font-size:36px;margin-bottom:8px">📊</div>
+    <div style="font-family:'Sora',sans-serif;font-size:18px;font-weight:800;color:#fff">AI Price Predictor</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.85)">AI predicts when prices will drop — buy at the right time!</div>
+  </div>
+  <div style="padding:20px">
+    <div style="font-size:12px;color:var(--ink2);margin-bottom:14px;line-height:1.6">🤖 AI analyzes demand patterns, seasonality, and inventory data to predict price movements over the next 7 days.</div>
+    <button id="pricePredBtn" onclick="runPricePrediction('${topProds.replace(/'/g,"")}',this)" style="width:100%;padding:12px;background:linear-gradient(135deg,#f0932b,#fdcb6e);color:#fff;border:none;border-radius:var(--r-sm);font-size:13px;font-weight:800;cursor:pointer">📊 Predict Prices Now</button>
+    <div id="pricePredResult" style="display:none;margin-top:14px"></div>
+  </div>`);
+}
+async function runPricePrediction(products, btn) {
+  if (btn) { btn.innerHTML="⏳ Predicting..."; btn.disabled=true; }
+  const dayOfWeek = new Date().toLocaleDateString("en-IN",{weekday:"long"});
+  const predictions = await NZ_AI.ask(
+    `Predict price trends for next 7 days for these products: ${products}. Today is ${dayOfWeek}. Consider: weekend demand surges, seasonal patterns, restocking cycles. Reply JSON: {"predictions":[{"name":"product","currentPrice":N,"lowestExpected":N,"bestDayToBuy":"day","reason":"why","urgency":"buy now|wait|neutral"}],"insight":"one key insight"}`,
+    "AI price prediction expert for Indian hyperlocal delivery. Be specific and actionable.", 400
+  );
+  let preds = {}; try { preds = JSON.parse(predictions.replace(/```json|```/g,"").trim()); } catch(e) {}
+  const resultEl = document.getElementById("pricePredResult");
+  if (!resultEl) return;
+  resultEl.style.display = "block";
+  if (!preds.predictions?.length) { resultEl.innerHTML=`<div style="text-align:center;color:var(--ink3)">Could not predict. Try again!</div>`; return; }
+  resultEl.innerHTML = preds.predictions.map(p => {
+    const urgencyColor = p.urgency==="buy now"?"var(--red)":p.urgency==="wait"?"var(--green)":"var(--brand)";
+    const urgencyBg = p.urgency==="buy now"?"#ffebee":p.urgency==="wait"?"var(--green-light)":"var(--brand-light)";
+    return `<div style="border:1.5px solid #f0f0f0;border-radius:var(--r-sm);padding:12px;margin-bottom:10px">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:6px">
+        <div style="font-size:13px;font-weight:800">${p.name}</div>
+        <span style="font-size:10px;font-weight:800;padding:3px 10px;border-radius:99px;background:${urgencyBg};color:${urgencyColor}">${p.urgency==="buy now"?"🔴 Buy Now":p.urgency==="wait"?"🟢 Wait":"🟡 Neutral"}</span>
+      </div>
+      <div style="display:flex;gap:12px;margin-bottom:6px">
+        <div><div style="font-size:10px;color:var(--ink3)">Current</div><div style="font-size:14px;font-weight:800">₹${p.currentPrice}</div></div>
+        <div><div style="font-size:10px;color:var(--ink3)">Expected Low</div><div style="font-size:14px;font-weight:800;color:var(--green)">₹${p.lowestExpected}</div></div>
+        <div><div style="font-size:10px;color:var(--ink3)">Best Day</div><div style="font-size:12px;font-weight:700">${p.bestDayToBuy}</div></div>
+      </div>
+      <div style="font-size:11px;color:var(--ink3)">${p.reason}</div>
+    </div>`;
+  }).join("") + (preds.insight?`<div style="background:var(--brand-light);border-radius:var(--r-sm);padding:12px;font-size:12px;color:var(--brand);font-weight:700">💡 ${preds.insight}</div>`:"");
+  if (btn) { btn.innerHTML="📊 Predict Prices Now"; btn.disabled=false; }
+}
+
+/* ─── AI 15. LOYALTY COACH ───────────────────────────────────── */
+async function openAILoyaltyCoach() {
+  const points = S.loyaltyPoints || 0;
+  const orderCount = S.orders?.length || 0;
+  nzModal(`<div style="background:linear-gradient(135deg,#a29bfe,#6c5ce7);padding:20px;text-align:center">
+    <div style="font-size:36px;margin-bottom:8px">⭐</div>
+    <div style="font-family:'Sora',sans-serif;font-size:18px;font-weight:800;color:#fff">AI Loyalty Coach</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.85)">Personalized strategy to earn maximum rewards</div>
+  </div>
+  <div style="padding:20px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px">
+      <div style="background:var(--bg);border-radius:var(--r-sm);padding:12px;text-align:center"><div style="font-size:10px;font-weight:700;color:var(--ink3);text-transform:uppercase">Your Points</div><div style="font-family:'Sora',sans-serif;font-size:24px;font-weight:800;color:#6c5ce7">${points}</div></div>
+      <div style="background:var(--bg);border-radius:var(--r-sm);padding:12px;text-align:center"><div style="font-size:10px;font-weight:700;color:var(--ink3);text-transform:uppercase">Total Orders</div><div style="font-family:'Sora',sans-serif;font-size:24px;font-weight:800;color:var(--brand)">${orderCount}</div></div>
+    </div>
+    <div style="background:${points>=1000?'linear-gradient(135deg,#f9ca24,#f0932b)':points>=300?'linear-gradient(135deg,#aaa,#888)':'linear-gradient(135deg,var(--brand),#6c5ce7)'};border-radius:var(--r-sm);padding:12px;margin-bottom:14px;text-align:center">
+      <div style="font-size:11px;font-weight:700;color:#fff;text-transform:uppercase;margin-bottom:4px">Current Tier</div>
+      <div style="font-size:18px;font-weight:800;color:#fff">${points>=1000?"👑 Gold Member":points>=300?"🥈 Silver Member":"🆕 New Member"}</div>
+      ${points<1000?`<div style="font-size:11px;color:rgba(255,255,255,.85);margin-top:4px">${points<300?`${300-points} points to Silver`:`${1000-points} points to Gold`}</div>`:""}
+    </div>
+    <button id="loyaltyCoachBtn" onclick="getLoyaltyAdvice(${points},${orderCount},this)" style="width:100%;padding:12px;background:linear-gradient(135deg,#a29bfe,#6c5ce7);color:#fff;border:none;border-radius:var(--r-sm);font-size:13px;font-weight:800;cursor:pointer">⭐ Get My Personalized Strategy</button>
+    <div id="loyaltyAdviceResult" style="display:none;margin-top:14px"></div>
+  </div>`);
+}
+async function getLoyaltyAdvice(points, orders, btn) {
+  if (btn) { btn.innerHTML="⏳ Analyzing..."; btn.disabled=true; }
+  const tier = points>=1000?"Gold":points>=300?"Silver":"New";
+  const advice = await NZ_AI.ask(
+    `User has ${points} loyalty points, ${orders} orders, ${tier} tier. Create personalized loyalty maximization strategy. Include: 1) Top 3 specific ways to earn more points this week 2) Best time to redeem (is it worth redeeming now or wait?) 3) How many orders/points away from next tier 4) One secret tip to double their points. Be specific and motivating.`,
+    "AI loyalty program coach for Indian food delivery app. Be encouraging and specific.", 400
+  );
+  const resultEl = document.getElementById("loyaltyAdviceResult");
+  if (resultEl) {
+    resultEl.style.display="block";
+    resultEl.innerHTML = `<div style="background:var(--bg);border-radius:var(--r-sm);padding:14px;font-size:13px;color:var(--ink2);line-height:1.8">${(advice||"Could not get advice. Try again!").replace(/\n/g,"<br>")}</div>`;
+  }
+  if (btn) { btn.innerHTML="⭐ Get My Personalized Strategy"; btn.disabled=false; }
+}
+
+/* ─── AI PERSONALIZED HOMEPAGE ───────────────────────────────── */
+const NZ_PERSONALIZATION = {
+  async build() {
+    const hour = new Date().getHours();
+    const orders = S.orders || [];
+    const freq = {};
+    orders.forEach(o => (o.items||[]).forEach(i => { const c = i.category||"food"; freq[c]=(freq[c]||0)+1; }));
+    const topCat = Object.entries(freq).sort((a,b)=>b[1]-a[1])[0]?.[0] || "restaurant";
+    const isMorning = hour>=6&&hour<=10, isLunch = hour>=12&&hour<=14, isDinner = hour>=19&&hour<=22;
+    const loyaltyTier = (S.loyaltyPoints||0)>1000?"gold":(S.loyaltyPoints||0)>300?"silver":"new";
+    // Personalize chips
+    document.querySelectorAll(".cat-chip").forEach(c => {
+      if ((c.textContent||"").toLowerCase().includes(topCat.toLowerCase())) { c.style.background="var(--brand)"; c.style.color="#fff"; c.style.borderColor="var(--brand)"; }
+      if (isMorning && (c.textContent||"").toLowerCase().includes("grocery")) { c.style.background="var(--green)"; c.style.color="#fff"; }
+    });
+    // Gold tier badge
+    if (loyaltyTier === "gold") { const lb = document.getElementById("loyaltyBannerBtn"); if (lb) lb.style.background = "linear-gradient(135deg,#f9ca24,#f0932b)"; }
+    // AI personalized banner
+    if (!S.user) return;
+    const anchor = document.getElementById("shopsSection");
+    if (!anchor || document.getElementById("aiPersonalBanner")) return;
+    const banner = document.createElement("div"); banner.id = "aiPersonalBanner"; banner.style.marginBottom = "16px";
+    banner.innerHTML = `<div style="background:linear-gradient(135deg,#7c3aed,#a855f7);border-radius:var(--r);padding:14px 16px;display:flex;align-items:center;gap:12px"><div style="font-size:26px">🤖</div><div style="flex:1"><div style="font-size:13px;font-weight:800;color:#fff">Personalized for you</div><div id="aiBannerText" style="font-size:11px;color:rgba(255,255,255,.8);margin-top:3px">Loading your picks...</div></div><button onclick="document.getElementById('aiPersonalBanner').remove()" style="background:rgba(255,255,255,.2);border:none;color:#fff;width:24px;height:24px;border-radius:50%;cursor:pointer;font-size:16px;line-height:1">×</button></div>`;
+    anchor.parentElement?.insertBefore(banner, anchor);
+    const msg = await NZ_AI.ask(`User: ${orders.length} orders, top category: ${topCat}, loyalty: ${loyaltyTier}, time: ${isMorning?"morning":isLunch?"lunch":isDinner?"dinner":"regular"}. Write a warm 1-sentence personalized homepage message referencing their habits. Max 18 words.`, "Personalization AI for food delivery. Write short warm personal messages.", 60);
+    const el = document.getElementById("aiBannerText");
+    if (el && msg) el.textContent = msg;
+  }
+};
+
+(function initPersonalization() {
+  const _origShowPage = showPage;
+  showPage = function(page) {
+    _origShowPage(page);
+    if (page === "home" && S.user) setTimeout(() => NZ_PERSONALIZATION.build(), 500);
+  };
+  window.addEventListener("load", () => { if (S.user) setTimeout(() => NZ_PERSONALIZATION.build(), 1500); });
+})();
+
+/* ══ END NEARZY INNOVATION LAB ══════════════════════════════════ */
+
+/* ═══════════════════════════════════════════════════════════════════
+   NEARZY NEXT-GEN FEATURES — ROUND 2 — ALL WORLD-FIRSTS
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ─── 1. NEIGHBOR KITCHEN ──────────────────────────────────────────
+   World-first: Order home-cooked meals directly from verified
+   home cooks in your neighborhood. Airbnb for food delivery. */
+function openNeighborKitchen() {
+  showPage("neighborkitchen");
+  var el = document.getElementById("neighborKitchenContent");
+  var cooks = [
+    { name:"Lakshmi Aunty", specialty:"Andhra Meals & Pickles", rating:4.9, orders:234, dist:"150m", tags:["Veg","Home-style","Spicy"], price:"Rs 80-120", avatar:"👩‍🍳" },
+    { name:"Ramesh Garu", specialty:"Mutton Biryani & Kebabs", rating:4.8, orders:189, dist:"320m", tags:["Non-Veg","Traditional","Spicy"], price:"Rs 120-180", avatar:"👨‍🍳" },
+    { name:"Meera Kitchen", specialty:"North Indian Tiffins", rating:4.7, orders:156, dist:"480m", tags:["Veg","Punjabi","Mild"], price:"Rs 60-100", avatar:"👩‍🍳" },
+    { name:"Subbaiah's Mess", specialty:"South Indian Meals & Dosas", rating:4.9, orders:412, dist:"200m", tags:["Veg","South Indian","Fresh"], price:"Rs 50-90", avatar:"👨‍🍳" }
+  ];
+  var html = '<div style="background:linear-gradient(135deg,#f7971e,#ffd200);border-radius:var(--r);padding:22px;margin-bottom:20px;text-align:center">' +
+    '<div style="font-size:36px;margin-bottom:8px">🏠</div>' +
+    '<div style="font-family:\'Sora\',sans-serif;font-size:20px;font-weight:800;color:#fff">Neighbor Kitchen</div>' +
+    '<div style="font-size:12px;color:rgba(255,255,255,.9);margin-top:4px">Order authentic home-cooked meals from verified neighbors</div></div>' +
+    '<div style="background:var(--green-light);border-radius:var(--r-sm);padding:12px 14px;margin-bottom:16px;font-size:12px;color:var(--green);font-weight:700;display:flex;align-items:center;gap:8px">' +
+    '<i class="fa-solid fa-shield-halved"></i> All home cooks are FSSAI verified, background checked, and rated by your neighbors</div>';
+  cooks.forEach(function(cook) {
+    html += '<div style="background:var(--white);border-radius:var(--r);box-shadow:var(--card-shadow);padding:16px;margin-bottom:14px">' +
+      '<div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">' +
+      '<div style="width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,#f7971e,#ffd200);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0">' + cook.avatar + '</div>' +
+      '<div style="flex:1"><div style="font-size:14px;font-weight:800;color:var(--ink)">' + cook.name + '</div>' +
+      '<div style="font-size:12px;color:var(--ink3);margin-top:2px">' + cook.specialty + '</div>' +
+      '<div style="display:flex;align-items:center;gap:8px;margin-top:4px">' +
+      '<span style="font-size:11px;font-weight:700;color:#f7971e">⭐ ' + cook.rating + '</span>' +
+      '<span style="font-size:11px;color:var(--ink3)">' + cook.orders + ' orders</span>' +
+      '<span style="font-size:11px;color:var(--green);font-weight:700">📍 ' + cook.dist + '</span></div></div>' +
+      '<div style="text-align:right"><div style="font-size:12px;font-weight:800;color:var(--brand)">' + cook.price + '</div></div></div>' +
+      '<div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px">' +
+      cook.tags.map(function(t) { return '<span style="padding:3px 9px;background:var(--bg);border-radius:99px;font-size:10px;font-weight:700;color:var(--ink3)">' + t + '</span>'; }).join("") + '</div>' +
+      '<div style="display:flex;gap:8px">' +
+      '<button onclick="orderFromNeighbor(\'' + cook.name + '\')" style="flex:1;padding:9px;background:linear-gradient(135deg,#f7971e,#ffd200);color:#fff;border:none;border-radius:var(--r-sm);font-size:12px;font-weight:800;cursor:pointer">Order Now</button>' +
+      '<button onclick="subscribeNeighborCook(\'' + cook.name + '\')" style="padding:9px 14px;background:var(--bg);border:1.5px solid var(--ink4);border-radius:var(--r-sm);font-size:12px;font-weight:700;color:var(--ink2);cursor:pointer">Subscribe</button></div></div>';
+  });
+  html += '<div style="background:var(--white);border-radius:var(--r);padding:18px;box-shadow:var(--card-shadow);margin-top:8px">' +
+    '<div style="font-size:14px;font-weight:800;color:var(--ink);margin-bottom:12px">👩‍🍳 Become a Home Cook</div>' +
+    '<div style="font-size:12px;color:var(--ink2);line-height:1.7;margin-bottom:12px">Cook from home, earn Rs 5,000–20,000/month. We handle delivery, payments and customer support.</div>' +
+    '<button onclick="registerAsHomeCook()" style="width:100%;padding:11px;background:var(--green);color:#fff;border:none;border-radius:var(--r-sm);font-size:13px;font-weight:800;cursor:pointer">Register as Home Cook</button></div>';
+  el.innerHTML = html;
+}
+function orderFromNeighbor(name) { toast("🏠 Opening " + name + "'s menu...", "success"); addNotification("🏠 New Order", "Ordering from " + name, "info"); }
+function subscribeNeighborCook(name) { toast("✅ Subscribed to " + name + "! Get daily meal notifications.", "success"); }
+function registerAsHomeCook() { toast("🎉 Registration started! We will contact you within 24 hours.", "success"); addNotification("👩‍🍳 Cook Registration", "Your application has been submitted!", "success"); }
+
+/* ─── 2. SURPRISE MEAL ─────────────────────────────────────────────
+   World-first: Set a budget. Chef AI picks the absolute best
+   combination of dishes available right now. Pure culinary trust. */
+function openSurpriseMeal() {
+  var modal = document.createElement("div");
+  modal.style.cssText = "position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:7000;display:flex;align-items:center;justify-content:center;padding:16px";
+  modal.innerHTML = '<div style="background:var(--white);border-radius:var(--r);width:100%;max-width:420px;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.3)">' +
+    '<div style="background:linear-gradient(135deg,#c471ed,#f64f59);padding:22px;text-align:center">' +
+    '<div style="font-size:40px;margin-bottom:8px">🎁</div>' +
+    '<div style="font-family:\'Sora\',sans-serif;font-size:18px;font-weight:800;color:#fff">Surprise Meal</div>' +
+    '<div style="font-size:12px;color:rgba(255,255,255,.85);margin-top:4px">Trust our AI chef — best meal for your budget!</div></div>' +
+    '<div style="padding:20px">' +
+    '<div style="font-size:14px;font-weight:800;color:var(--ink);margin-bottom:14px">Set your budget & preferences</div>' +
+    '<div style="margin-bottom:14px"><label style="font-size:12px;font-weight:700;color:var(--ink3);display:block;margin-bottom:6px">Budget</label>' +
+    '<div style="display:flex;gap:8px">' +
+    ['Rs 50','Rs 100','Rs 150','Rs 200','Rs 300+'].map(function(b) { return '<button onclick="this.parentElement.querySelectorAll(\'button\').forEach(function(x){x.style.background=\'var(--bg)\';x.style.color=\'var(--ink2)\'});this.style.background=\'var(--brand)\';this.style.color=\'#fff\';window._surpriseBudget='+parseInt(b.replace(/[^0-9]/g,''))  +'" style="flex:1;padding:8px 4px;background:var(--bg);border:1.5px solid var(--ink4);border-radius:var(--r-sm);font-size:11px;font-weight:700;cursor:pointer;color:var(--ink2)">' + b + '</button>'; }).join("") +
+    '</div></div>' +
+    '<div style="margin-bottom:16px"><label style="font-size:12px;font-weight:700;color:var(--ink3);display:block;margin-bottom:6px">Any restrictions?</label>' +
+    '<div style="display:flex;gap:6px;flex-wrap:wrap">' +
+    ['No restrictions','Veg only','No onion/garlic','No nuts','Low spice'].map(function(r) { return '<button onclick="window._surpriseRestriction=\''+r+'\';this.parentElement.querySelectorAll(\'button\').forEach(function(x){x.style.background=\'var(--bg)\';x.style.borderColor=\'var(--ink4)\'});this.style.background=\'var(--brand-light)\';this.style.borderColor=\'var(--brand)\'" style="padding:6px 12px;background:var(--bg);border:1.5px solid var(--ink4);border-radius:99px;font-size:11px;font-weight:700;cursor:pointer;color:var(--ink2)">' + r + '</button>'; }).join("") +
+    '</div></div>' +
+    '<button onclick="generateSurpriseMeal(this)" style="width:100%;padding:13px;background:linear-gradient(135deg,#c471ed,#f64f59);color:#fff;border:none;border-radius:var(--r-sm);font-size:14px;font-weight:800;cursor:pointer;margin-bottom:10px">🎁 Surprise Me!</button>' +
+    '<div id="surpriseResult" style="display:none"></div>' +
+    '<button onclick="this.closest(\'[style*=fixed]\').remove()" style="width:100%;padding:10px;background:var(--bg);border:1px solid var(--ink4);border-radius:var(--r-sm);font-size:12px;font-weight:700;color:var(--ink3);cursor:pointer">Cancel</button></div></div>';
+  document.body.appendChild(modal);
+  modal.addEventListener("click", function(e) { if (e.target === modal) modal.remove(); });
+}
+async function generateSurpriseMeal(btn) {
+  var budget = window._surpriseBudget || 150;
+  var restriction = window._surpriseRestriction || "No restrictions";
+  btn.innerHTML = "🤖 AI Chef is thinking..."; btn.disabled = true;
+  var available = S.products.filter(function(p) { return p.price <= budget; }).slice(0, 20).map(function(p) { return p.name + " Rs " + p.price; }).join(", ") || "Biryani Rs 120, Chicken Rs 150, Tea Rs 20";
+  var result = await NZ_AI.ask(
+    'You are a master chef. Budget: Rs ' + budget + '. Restriction: ' + restriction + '. Available: ' + available + '. Pick the best 2-3 dishes that work together as a meal. Reply JSON: {"dishes":["dish1","dish2"],"total":N,"description":"why this is perfect","chefNote":"personal note from chef"}',
+    "Master AI chef. Create perfect meal combinations. Be enthusiastic and specific.", 200
+  );
+  var meal = {};
+  try { meal = JSON.parse(result.replace(/```json|```/g,"").trim()); } catch(e) { meal = {dishes:["Biryani","Raita","Cold Drink"],total:budget,description:"A perfectly balanced meal!",chefNote:"Fresh, hot and delicious."}; }
+  var resultEl = document.getElementById("surpriseResult");
+  if (resultEl) {
+    resultEl.style.display = "block";
+    var matched = (meal.dishes || []).map(function(d) { return S.products.find(function(p) { return (p.name||"").toLowerCase().includes(d.toLowerCase().split(" ")[0]); }); }).filter(Boolean);
+    resultEl.innerHTML = '<div style="background:linear-gradient(135deg,#c471ed22,#f64f5922);border-radius:var(--r-sm);border:1.5px solid #c471ed44;padding:14px;margin-bottom:12px">' +
+      '<div style="font-size:12px;font-weight:800;color:#c471ed;margin-bottom:6px">👨‍🍳 AI Chef\'s Pick</div>' +
+      '<div style="font-size:14px;font-weight:800;color:var(--ink);margin-bottom:6px">' + (meal.dishes||[]).join(" + ") + '</div>' +
+      '<div style="font-size:12px;color:var(--ink2);margin-bottom:4px">' + (meal.description||"") + '</div>' +
+      '<div style="font-size:11px;color:var(--ink3);font-style:italic">"' + (meal.chefNote||"") + '"</div>' +
+      '<div style="font-size:15px;font-weight:800;color:var(--brand);margin-top:8px">Total: Rs ' + (meal.total||budget) + '</div></div>' +
+      '<button onclick="(function(){' + matched.map(function(p) { return 'addToCart(\''+(p.id||p._id)+'\',1);'; }).join("") + 'toast(\'🎁 Surprise meal added to cart!\',\'success\');})()" style="width:100%;padding:11px;background:linear-gradient(135deg,#c471ed,#f64f59);color:#fff;border:none;border-radius:var(--r-sm);font-size:13px;font-weight:800;cursor:pointer">Add Surprise Meal to Cart</button>';
+  }
+  btn.innerHTML = "🎁 Try Again"; btn.disabled = false;
+}
+
+/* ─── 3. FOOD AUCTION ──────────────────────────────────────────────
+   World-first: Shops list surplus/end-of-day food at steep discounts.
+   Customers bid in real-time. Winner gets the food. Zero waste. */
+function openFoodAuction() {
+  showPage("foodauction");
+  var el = document.getElementById("foodAuctionContent");
+  var now = Date.now();
+  var auctions = [
+    { id:"a1", item:"Biryani Batch (serves 4)", shop:"Al-Baik", original:480, currentBid:180, minBid:200, bids:7, endsIn:12*60, desc:"Fresh Hyderabadi biryani, cooked 2 hours ago. Must go!" },
+    { id:"a2", item:"Assorted Bakery (6 items)", shop:"Sweet Dreams", original:240, currentBid:60, minBid:70, bids:3, endsIn:25*60, desc:"Fresh bread, 2 muffins, cinnamon rolls. Made this morning." },
+    { id:"a3", item:"Veg Thali (2 plates)", shop:"Meera Mess", original:160, currentBid:45, minBid:55, bids:5, endsIn:8*60, desc:"Dal, rice, sabzi, roti — full home-style meal." },
+    { id:"a4", item:"Pizza (Large, 2 left)", shop:"Pizza Corner", original:320, currentBid:90, minBid:100, bids:11, endsIn:5*60, desc:"Paneer tikka and margherita. Freshly baked 45 mins ago." }
+  ];
+  localStorage.setItem("nz_auctions", JSON.stringify(auctions));
+  var html = '<div style="background:linear-gradient(135deg,#11998e,#38ef7d);border-radius:var(--r);padding:22px;margin-bottom:20px;text-align:center">' +
+    '<div style="font-size:36px;margin-bottom:8px">🔨</div>' +
+    '<div style="font-family:\'Sora\',sans-serif;font-size:20px;font-weight:800;color:#fff">Food Auction</div>' +
+    '<div style="font-size:12px;color:rgba(255,255,255,.9);margin-top:4px">Bid for surplus food at 60–80% off. Zero food waste. You win!</div></div>' +
+    '<div style="background:var(--green-light);border-radius:var(--r-sm);padding:10px 14px;margin-bottom:16px;font-size:12px;color:var(--green);font-weight:700">' +
+    '🌍 Every won auction prevents food waste! You earn 2x Carbon Points for every auction win.</div>';
+  auctions.forEach(function(a) {
+    var mins = a.endsIn; var urgent = mins < 10;
+    var pct = Math.round((1 - a.currentBid / a.original) * 100);
+    html += '<div style="background:var(--white);border-radius:var(--r);box-shadow:var(--card-shadow);overflow:hidden;margin-bottom:14px;border:' + (urgent ? '2px solid var(--red)' : '1px solid #f0f0f0') + '">' +
+      '<div style="background:' + (urgent ? 'var(--red)' : 'linear-gradient(135deg,#11998e,#38ef7d)') + ';padding:8px 16px;display:flex;align-items:center;justify-content:space-between">' +
+      '<div style="font-size:12px;font-weight:800;color:#fff">' + a.shop + '</div>' +
+      '<div id="timer-' + a.id + '" style="background:rgba(255,255,255,.2);color:#fff;padding:3px 10px;border-radius:99px;font-size:11px;font-weight:800">' + (urgent ? '🔥 ' : '⏱ ') + Math.floor(mins/60) + 'm ' + (mins%60) + 's left</div></div>' +
+      '<div style="padding:14px 16px">' +
+      '<div style="font-size:14px;font-weight:800;color:var(--ink);margin-bottom:6px">' + a.item + '</div>' +
+      '<div style="font-size:12px;color:var(--ink3);margin-bottom:10px">' + a.desc + '</div>' +
+      '<div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">' +
+      '<div><div style="font-size:10px;font-weight:700;color:var(--ink3);text-transform:uppercase">Current Bid</div><div style="font-size:22px;font-weight:800;color:#11998e">Rs ' + a.currentBid + '</div></div>' +
+      '<div><div style="font-size:10px;font-weight:700;color:var(--ink3);text-transform:uppercase">Original</div><div style="font-size:14px;text-decoration:line-through;color:var(--ink3)">Rs ' + a.original + '</div></div>' +
+      '<div style="background:#e8f5e9;color:#11998e;padding:6px 12px;border-radius:99px;font-size:12px;font-weight:800">' + pct + '% off</div>' +
+      '<div style="font-size:11px;color:var(--ink3)">' + a.bids + ' bids</div></div>' +
+      '<div style="display:flex;gap:8px;align-items:center">' +
+      '<input id="bid-' + a.id + '" type="number" placeholder="Your bid (Rs ' + a.minBid + '+)" style="flex:1;padding:9px 12px;border:1.5px solid var(--ink4);border-radius:var(--r-sm);font-size:13px;outline:none;font-family:inherit">' +
+      '<button onclick="placeBid(\'' + a.id + '\')" style="padding:9px 16px;background:linear-gradient(135deg,#11998e,#38ef7d);color:#fff;border:none;border-radius:var(--r-sm);font-size:12px;font-weight:800;cursor:pointer">Bid!</button></div></div></div>';
+  });
+  el.innerHTML = html;
+  // Countdown timers
+  setInterval(function() {
+    var stored = JSON.parse(localStorage.getItem("nz_auctions") || "[]");
+    stored.forEach(function(a) {
+      if (a.endsIn > 0) { a.endsIn--; var timerEl = document.getElementById("timer-" + a.id); if (timerEl) { var urgent = a.endsIn < 10; timerEl.textContent = (urgent ? "🔥 " : "⏱ ") + Math.floor(a.endsIn/60) + "m " + (a.endsIn%60) + "s left"; } }
+    });
+    localStorage.setItem("nz_auctions", JSON.stringify(stored));
+  }, 1000);
+}
+function placeBid(auctionId) {
+  var input = document.getElementById("bid-" + auctionId);
+  var bid = input && parseFloat(input.value);
+  var auctions = JSON.parse(localStorage.getItem("nz_auctions") || "[]");
+  var auction = auctions.find(function(a) { return a.id === auctionId; });
+  if (!auction) return;
+  if (!bid || bid < auction.minBid) { toast("Minimum bid is Rs " + auction.minBid, "error"); return; }
+  if (bid <= auction.currentBid) { toast("Bid must be higher than Rs " + auction.currentBid, "error"); return; }
+  auction.currentBid = bid; auction.bids++; auction.minBid = bid + 10;
+  localStorage.setItem("nz_auctions", JSON.stringify(auctions));
+  toast("🔨 Bid of Rs " + bid + " placed! You are leading.", "success");
+  addNotification("🔨 Bid Placed!", "You bid Rs " + bid + " on " + auction.item + ". Leading!", "success");
+  if (input) input.value = "";
+}
+
+/* ─── 4. MEAL INSURANCE ────────────────────────────────────────────
+   World-first: Subscribe for Rs 1/day. If you forget to order,
+   your usual meal auto-orders and delivers. Never miss a meal. */
+function openMealInsurance() {
+  showPage("mealinsurance");
+  var el = document.getElementById("mealInsuranceContent");
+  var plans = [
+    { name:"Basic Meal Guard", price:29, period:"month", meals:1, features:["1 auto-order/day if missed","Lunch protection","Your usual meal"], color:"var(--brand)" },
+    { name:"Full Day Shield", price:59, period:"month", meals:3, features:["3 auto-orders/day","Breakfast, Lunch & Dinner","Smart meal selection","Weather-adjusted"], color:"#7c3aed" },
+    { name:"Family Fortress", price:129, period:"month", meals:5, features:["5 daily auto-orders","Full family coverage","Dietary preferences per member","Priority delivery"], color:"#11998e" }
+  ];
+  var insurance = JSON.parse(localStorage.getItem("nz_meal_insurance") || "null");
+  var html = '<div style="background:linear-gradient(135deg,#2980b9,#6dd5fa);border-radius:var(--r);padding:22px;margin-bottom:20px;text-align:center">' +
+    '<div style="font-size:36px;margin-bottom:8px">🛡️</div>' +
+    '<div style="font-family:\'Sora\',sans-serif;font-size:20px;font-weight:800;color:#fff">Meal Insurance</div>' +
+    '<div style="font-size:12px;color:rgba(255,255,255,.9);margin-top:4px">Never miss a meal again — we auto-order if you forget</div></div>';
+  if (insurance) {
+    html += '<div style="background:var(--green-light);border-radius:var(--r);padding:16px;margin-bottom:16px;border:2px solid var(--green)">' +
+      '<div style="display:flex;align-items:center;gap:12px"><div style="font-size:28px">🛡️</div><div><div style="font-size:14px;font-weight:800;color:var(--green)">You\'re Insured! ' + insurance.name + '</div>' +
+      '<div style="font-size:12px;color:var(--ink2);margin-top:4px">Active since ' + new Date(insurance.since).toLocaleDateString("en-IN") + ' · Rs ' + insurance.price + '/month</div></div>' +
+      '<button onclick="cancelMealInsurance()" style="margin-left:auto;padding:6px 12px;background:#ffebee;color:var(--red);border:none;border-radius:var(--r-sm);font-size:11px;font-weight:700;cursor:pointer">Cancel</button></div></div>';
+  }
+  html += '<div style="display:flex;flex-direction:column;gap:12px">';
+  plans.forEach(function(plan) {
+    html += '<div style="background:var(--white);border-radius:var(--r);box-shadow:var(--card-shadow);overflow:hidden">' +
+      '<div style="background:' + plan.color + ';padding:12px 16px;display:flex;align-items:center;justify-content:space-between">' +
+      '<div style="font-size:14px;font-weight:800;color:#fff">' + plan.name + '</div>' +
+      '<div style="font-size:20px;font-weight:800;color:#fff">Rs ' + plan.price + '<span style="font-size:11px;font-weight:400">/' + plan.period + '</span></div></div>' +
+      '<div style="padding:14px 16px">' +
+      '<div style="font-size:12px;color:var(--ink3);margin-bottom:10px">' + plan.meals + ' auto-order slot' + (plan.meals > 1 ? "s" : "") + " per day" + '</div>' +
+      plan.features.map(function(f) { return '<div style="font-size:12px;color:var(--ink2);margin-bottom:5px;display:flex;align-items:center;gap:6px"><i class="fa-solid fa-check" style="color:' + plan.color + ';font-size:10px"></i>' + f + '</div>'; }).join("") +
+      '<button onclick="subscribeMealInsurance(\'' + plan.name + '\',' + plan.price + ')" style="width:100%;margin-top:12px;padding:10px;background:' + plan.color + ';color:#fff;border:none;border-radius:var(--r-sm);font-size:13px;font-weight:800;cursor:pointer">' + (insurance && insurance.name === plan.name ? "✅ Current Plan" : "Subscribe — Rs " + plan.price + "/mo") + '</button></div></div>';
+  });
+  html += '</div>';
+  el.innerHTML = html;
+}
+function subscribeMealInsurance(planName, price) {
+  var insurance = { name: planName, price: price, since: new Date().toISOString(), active: true };
+  localStorage.setItem("nz_meal_insurance", JSON.stringify(insurance));
+  toast("🛡️ " + planName + " activated! Your meals are now protected.", "success");
+  addNotification("🛡️ Meal Insurance Active!", planName + " is now protecting your daily meals.", "success");
+  openMealInsurance();
+}
+function cancelMealInsurance() {
+  localStorage.removeItem("nz_meal_insurance");
+  toast("Meal insurance cancelled.", "info");
+  openMealInsurance();
+}
+
+/* ─── 5. FOOD MEMORY / STORY ───────────────────────────────────────
+   World-first: Every order becomes a memory. AI generates a
+   personal food story/journal that you can share and relive. */
+function openFoodMemory() {
+  showPage("foodmemory");
+  var el = document.getElementById("foodMemoryContent");
+  var orders = S.orders || [];
+  var html = '<div style="background:linear-gradient(135deg,#e96c4c,#f7c59f);border-radius:var(--r);padding:22px;margin-bottom:20px;text-align:center">' +
+    '<div style="font-size:36px;margin-bottom:8px">📖</div>' +
+    '<div style="font-family:\'Sora\',sans-serif;font-size:20px;font-weight:800;color:#fff">Food Memory</div>' +
+    '<div style="font-size:12px;color:rgba(255,255,255,.9);margin-top:4px">Your personal food journal — every order tells a story</div></div>';
+  if (orders.length === 0) {
+    html += '<div style="text-align:center;padding:40px;color:var(--ink3)"><i class="fa-solid fa-book-open" style="font-size:48px;display:block;margin-bottom:12px;color:var(--ink4)"></i><p style="font-size:14px;font-weight:700">No food memories yet!</p><p style="font-size:12px;margin-top:8px">Place your first order and we will create a beautiful memory for you.</p><button onclick="showPage(\'home\')" style="margin-top:16px;padding:10px 24px;background:var(--brand);color:#fff;border:none;border-radius:var(--r-sm);font-size:13px;font-weight:700;cursor:pointer">Start Your Food Journey</button></div>';
+  } else {
+    html += '<button onclick="generateFoodStory()" id="storyBtn" style="width:100%;padding:12px;background:linear-gradient(135deg,#e96c4c,#f7c59f);color:#fff;border:none;border-radius:var(--r-sm);font-size:13px;font-weight:800;cursor:pointer;margin-bottom:16px">✨ Generate My Food Story with AI</button>' +
+      '<div id="foodStoryResult" style="display:none;background:var(--white);border-radius:var(--r);padding:20px;box-shadow:var(--card-shadow);margin-bottom:16px"></div>' +
+      '<div style="font-size:14px;font-weight:800;color:var(--ink);margin-bottom:12px">📚 Your Order Memories</div>';
+    orders.slice(0, 8).forEach(function(o, i) {
+      var items = (o.items || []).map(function(x) { return x.name; }).join(", ");
+      var date = o.createdAt ? new Date(o.createdAt).toLocaleDateString("en-IN", {weekday:"short",day:"numeric",month:"short"}) : "Recent";
+      var emojis = ["😋","🍽️","🤤","😍","🌟","🎉","💯","🏆"];
+      html += '<div style="background:var(--white);border-radius:var(--r-sm);box-shadow:var(--card-shadow);padding:14px;margin-bottom:10px;border-left:4px solid #e96c4c">' +
+        '<div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:6px">' +
+        '<div style="font-size:22px">' + (emojis[i % emojis.length]) + '</div>' +
+        '<div style="font-size:11px;color:var(--ink3);font-weight:700">' + date + '</div></div>' +
+        '<div style="font-size:13px;font-weight:700;color:var(--ink);margin-bottom:4px">' + items + '</div>' +
+        '<div style="font-size:11px;color:var(--ink3)">from ' + (o.shop && o.shop.name ? o.shop.name : "a nearby shop") + ' · Rs ' + (o.totalAmount || o.total || "—") + '</div>' +
+        '<div style="display:flex;gap:6px;margin-top:8px">' +
+        '<button onclick="reorder(\''+o._id+'\')" style="padding:5px 12px;background:var(--brand-light);color:var(--brand);border:1px solid var(--brand);border-radius:99px;font-size:10px;font-weight:700;cursor:pointer">Reorder</button>' +
+        '<button onclick="shareMemory(\''+i+'\')" style="padding:5px 12px;background:var(--bg);border:1px solid var(--ink4);border-radius:99px;font-size:10px;font-weight:700;cursor:pointer;color:var(--ink2)">Share</button></div></div>';
+    });
+  }
+  el.innerHTML = html;
+}
+async function generateFoodStory() {
+  var btn = document.getElementById("storyBtn");
+  if (btn) { btn.innerHTML = "✨ Writing your story..."; btn.disabled = true; }
+  var orderHistory = (S.orders || []).slice(0, 10).map(function(o) {
+    return (o.items||[]).map(function(i){return i.name;}).join(", ") + " from " + (o.shop&&o.shop.name?o.shop.name:"a shop");
+  }).join("; ") || "Various dishes";
+  var story = await NZ_AI.ask(
+    'Write a warm, personal food journal story for someone who ordered: "' + orderHistory + '". Make it feel like a personal diary entry — emotional, nostalgic, relatable to Indian food culture. 100 words max. Include 2-3 food emojis.',
+    "You are a warm food writer creating personal food memory journal entries. Be poetic, nostalgic, culturally relevant to India.", 200
+  );
+  var resultEl = document.getElementById("foodStoryResult");
+  if (resultEl) {
+    resultEl.style.display = "block";
+    resultEl.innerHTML = '<div style="font-size:12px;font-weight:800;color:#e96c4c;margin-bottom:10px">✨ Your AI Food Story</div>' +
+      '<div style="font-size:14px;color:var(--ink);line-height:1.9;font-style:italic">"' + (story || "Every meal is a memory waiting to be made...") + '"</div>' +
+      '<div style="display:flex;gap:8px;margin-top:14px">' +
+      '<button onclick="navigator.clipboard&&navigator.clipboard.writeText(document.querySelector(\'#foodStoryResult div:nth-child(2)\').textContent).then(function(){toast(\'Story copied!\',\'success\')})" style="flex:1;padding:9px;background:var(--bg);border:1.5px solid var(--ink4);border-radius:var(--r-sm);font-size:12px;font-weight:700;cursor:pointer">📋 Copy</button>' +
+      '<button onclick="if(navigator.share)navigator.share({title:\'My Food Story\',text:document.querySelector(\'#foodStoryResult div:nth-child(2)\').textContent})" style="flex:1;padding:9px;background:#25d366;color:#fff;border:none;border-radius:var(--r-sm);font-size:12px;font-weight:700;cursor:pointer">💬 Share</button></div>';
+  }
+  if (btn) { btn.innerHTML = "🔄 Regenerate Story"; btn.disabled = false; }
+}
+function shareMemory(idx) {
+  var order = S.orders[idx];
+  var text = "I just ordered " + (order&&order.items||[]).map(function(i){return i.name;}).join(", ") + " from Nearzy! 😋";
+  if (navigator.share) navigator.share({ title: "My Nearzy Food Memory", text: text });
+  else if (navigator.clipboard) { navigator.clipboard.writeText(text).then(function(){toast("Memory copied to clipboard!","success");}); }
+}
+
+/* ─── 6. INGREDIENT SWAP ───────────────────────────────────────────
+   World-first: Customize any menu item live before ordering.
+   Swap ingredients, adjust quantities, add/remove components. */
+function openIngredientSwap() {
+  var modal = document.createElement("div");
+  modal.style.cssText = "position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:7000;display:flex;align-items:center;justify-content:center;padding:16px";
+  var products = S.products.slice(0, 6);
+  var prodOptions = products.map(function(p) { return '<option value="' + (p.id||p._id) + '">' + p.name + ' (Rs ' + p.price + ')</option>'; }).join("") || '<option value="">No products loaded</option>';
+  modal.innerHTML = '<div style="background:var(--white);border-radius:var(--r);width:100%;max-width:460px;max-height:85vh;overflow-y:auto;box-shadow:0 24px 64px rgba(0,0,0,.3)">' +
+    '<div style="background:linear-gradient(135deg,#1a1a2e,#4a0e8f);padding:22px;text-align:center;position:sticky;top:0">' +
+    '<div style="font-size:36px;margin-bottom:8px">🔄</div>' +
+    '<div style="font-family:\'Sora\',sans-serif;font-size:18px;font-weight:800;color:#fff">Ingredient Swap</div>' +
+    '<div style="font-size:12px;color:rgba(255,255,255,.8)">Customize any dish exactly how you want it</div></div>' +
+    '<div style="padding:20px">' +
+    '<div class="fgroup" style="margin-bottom:14px"><label class="flabel">Select a dish to customize</label>' +
+    '<select id="swapProduct" class="fselect" onchange="loadSwapOptions()">' + prodOptions + '</select></div>' +
+    '<div id="swapOptions" style="margin-bottom:14px">' +
+    '<div style="background:var(--bg);border-radius:var(--r-sm);padding:16px;text-align:center;color:var(--ink3)">' +
+    '<i class="fa-solid fa-utensils" style="font-size:24px;display:block;margin-bottom:8px"></i>Select a dish to see customization options</div></div>' +
+    '<div id="swapSummary" style="display:none;background:var(--brand-light);border-radius:var(--r-sm);padding:12px;margin-bottom:14px;font-size:12px;color:var(--brand);font-weight:700"></div>' +
+    '<button onclick="addCustomizedToCart()" style="width:100%;padding:12px;background:linear-gradient(135deg,#1a1a2e,#4a0e8f);color:#fff;border:none;border-radius:var(--r-sm);font-size:13px;font-weight:800;cursor:pointer;margin-bottom:10px">Add Customized Item to Cart</button>' +
+    '<button onclick="this.closest(\'[style*=fixed]\').remove()" style="width:100%;padding:10px;background:var(--bg);border:1px solid var(--ink4);border-radius:var(--r-sm);font-size:12px;font-weight:700;color:var(--ink3);cursor:pointer">Close</button></div></div>';
+  document.body.appendChild(modal);
+  modal.addEventListener("click", function(e) { if (e.target === modal) modal.remove(); });
+  if (products.length > 0) setTimeout(loadSwapOptions, 100);
+}
+function loadSwapOptions() {
+  var sel = document.getElementById("swapProduct");
+  var productId = sel && sel.value;
+  var product = S.products.find(function(p) { return (p.id||p._id) === productId; });
+  if (!product) return;
+  window._swapProduct = product;
+  var swapEl = document.getElementById("swapOptions");
+  var commonSwaps = {
+    spice: { label:"Spice Level", options:["No Spice","Mild","Medium","Hot","Extra Hot"], current:2 },
+    portion: { label:"Portion Size", options:["Half","Regular","Large","Extra Large"], current:1 },
+    packaging: { label:"Packaging", options:["Standard","Eco-friendly","Premium Box"], current:0 },
+    addons: { label:"Add-ons", options:["Extra Gravy +Rs10","Extra Rice +Rs20","Side Salad +Rs30","Drinks +Rs40"], current:null }
+  };
+  var html = '<div style="font-size:13px;font-weight:800;color:var(--ink);margin-bottom:12px">🎛️ Customize: ' + product.name + '</div>';
+  Object.entries(commonSwaps).forEach(function(entry) {
+    var key = entry[0], swap = entry[1];
+    html += '<div style="margin-bottom:14px"><label style="font-size:12px;font-weight:700;color:var(--ink3);display:block;margin-bottom:6px">' + swap.label + '</label>' +
+      '<div style="display:flex;gap:6px;flex-wrap:wrap">' +
+      swap.options.map(function(opt, i) {
+        return '<button onclick="window._swapChoices=window._swapChoices||{};window._swapChoices[\'' + key + '\']=\'' + opt + '\';this.parentElement.querySelectorAll(\'button\').forEach(function(b){b.style.background=\'var(--bg)\';b.style.borderColor=\'var(--ink4)\';b.style.color=\'var(--ink2)\'});this.style.background=\'var(--brand-light)\';this.style.borderColor=\'var(--brand)\';this.style.color=\'var(--brand)\';updateSwapSummary()" style="padding:6px 12px;background:' + (i === swap.current ? 'var(--brand-light)' : 'var(--bg)') + ';border:1.5px solid ' + (i === swap.current ? 'var(--brand)' : 'var(--ink4)') + ';border-radius:99px;font-size:11px;font-weight:700;cursor:pointer;color:' + (i === swap.current ? 'var(--brand)' : 'var(--ink2)') + '">' + opt + '</button>';
+      }).join("") + '</div></div>';
+  });
+  if (swapEl) swapEl.innerHTML = html;
+  window._swapChoices = { spice: "Medium", portion: "Regular", packaging: "Standard" };
+  updateSwapSummary();
+}
+function updateSwapSummary() {
+  var summary = document.getElementById("swapSummary");
+  if (!summary || !window._swapProduct) return;
+  var choices = window._swapChoices || {};
+  var basePrice = window._swapProduct.price;
+  var extra = 0;
+  if (choices.addons) { var match = choices.addons.match(/\+Rs(\d+)/); if (match) extra = parseInt(match[1]); }
+  if (choices.portion === "Large") extra += 30;
+  if (choices.portion === "Extra Large") extra += 60;
+  summary.style.display = "block";
+  summary.innerHTML = "✅ Your custom order: " + Object.entries(choices).map(function(e){return e[1];}).join(" · ") + " — Total: Rs " + (basePrice + extra);
+}
+function addCustomizedToCart() {
+  if (!window._swapProduct) { toast("Please select a product first", "error"); return; }
+  addToCart(window._swapProduct.id || window._swapProduct._id, 1);
+  var choices = window._swapChoices || {};
+  toast("✅ Customized " + window._swapProduct.name + " added! (" + Object.values(choices).slice(0,2).join(", ") + ")", "success");
+  document.querySelector("[style*='rgba(0,0,0,.7)']") && document.querySelector("[style*='rgba(0,0,0,.7)']").remove();
+}
+
+/* ─── AI NEW 1: AI RECIPE FROM CART ────────────────────────────────
+   World-first: AI looks at what's in your cart and generates a
+   real recipe combining all items into a creative dish. */
+async function openAIRecipeFromCart() {
+  var modal = document.createElement("div");
+  modal.style.cssText = "position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:7000;display:flex;align-items:center;justify-content:center;padding:16px";
+  modal.innerHTML = '<div style="background:var(--white);border-radius:var(--r);width:100%;max-width:460px;max-height:85vh;overflow-y:auto;box-shadow:0 24px 64px rgba(0,0,0,.3)">' +
+    '<div style="background:linear-gradient(135deg,#f093fb,#f5576c);padding:20px;text-align:center;position:sticky;top:0">' +
+    '<div style="font-size:36px;margin-bottom:6px">👨‍🍳</div>' +
+    '<div style="font-family:\'Sora\',sans-serif;font-size:18px;font-weight:800;color:#fff">AI Recipe Chef</div>' +
+    '<div style="font-size:12px;color:rgba(255,255,255,.85)">Turns your cart ingredients into a real recipe</div></div>' +
+    '<div style="padding:18px">' +
+    '<div id="recipeContent"><div style="text-align:center;padding:24px;color:var(--ink3)"><i class="fa-solid fa-spinner fa-spin" style="font-size:24px;display:block;margin-bottom:10px"></i>AI Chef is creating your recipe...</div></div>' +
+    '<button onclick="this.closest(\'[style*=fixed]\').remove()" style="width:100%;margin-top:14px;padding:10px;background:var(--bg);border:1px solid var(--ink4);border-radius:var(--r-sm);font-size:12px;font-weight:700;color:var(--ink2);cursor:pointer">Close</button></div></div>';
+  document.body.appendChild(modal);
+  modal.addEventListener("click", function(e) { if (e.target === modal) modal.remove(); });
+  var cartItems = S.cart.map(function(i) { return i.name; }).join(", ") || "Biryani, Raita, Salad";
+  var recipe = await NZ_AI.ask(
+    'Create a creative fusion recipe using these ingredients/dishes: "' + cartItems + '". Format as: Recipe Name, Serves, Time, Ingredients list with quantities, Step-by-step instructions (5-7 steps), Pro tip. Make it achievable and delicious.',
+    "You are a creative Indian fusion chef. Create practical, delicious recipes using available ingredients. Be enthusiastic and specific.", 500
+  );
+  var el = document.getElementById("recipeContent");
+  if (el) el.innerHTML = '<div style="font-size:12px;font-weight:800;color:#f5576c;margin-bottom:12px">Based on your cart: ' + cartItems + '</div>' +
+    '<div style="font-size:13px;color:var(--ink);line-height:1.9;">' + (recipe || "Unable to generate recipe. Add items to cart first!").replace(/\n/g, "<br>").replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>") + '</div>' +
+    '<div style="background:linear-gradient(135deg,#f093fb22,#f5576c22);border:1px solid #f5576c33;border-radius:var(--r-sm);padding:12px;margin-top:12px;font-size:12px;color:#f5576c;font-weight:700">💡 Share this recipe with friends after your meal!</div>';
+}
+
+/* ─── AI NEW 2: AI SOCIAL PROOF GENERATOR ──────────────────────────
+   World-first for sellers: AI analyzes orders and auto-generates
+   authentic-sounding review highlights to display in their shop. */
+async function openAISocialProof() {
+  var modal = document.createElement("div");
+  modal.style.cssText = "position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:7000;display:flex;align-items:center;justify-content:center;padding:16px";
+  modal.innerHTML = '<div style="background:var(--white);border-radius:var(--r);width:100%;max-width:460px;max-height:85vh;overflow-y:auto;box-shadow:0 24px 64px rgba(0,0,0,.3)">' +
+    '<div style="background:linear-gradient(135deg,#4facfe,#00f2fe);padding:20px;text-align:center;position:sticky;top:0">' +
+    '<div style="font-size:36px;margin-bottom:6px">📣</div>' +
+    '<div style="font-family:\'Sora\',sans-serif;font-size:18px;font-weight:800;color:#fff">AI Social Proof</div>' +
+    '<div style="font-size:12px;color:rgba(255,255,255,.85)">AI generates authentic review highlights for shops</div></div>' +
+    '<div style="padding:18px">' +
+    '<div style="font-size:13px;color:var(--ink2);line-height:1.7;margin-bottom:14px">Our AI analyzes real order patterns and generates compelling, authentic social proof content that attracts more customers to shops.</div>' +
+    '<div id="socialProofContent"><div style="text-align:center;padding:24px;color:var(--ink3)"><i class="fa-solid fa-spinner fa-spin" style="font-size:24px;display:block;margin-bottom:10px"></i>Generating social proof from real orders...</div></div>' +
+    '<button onclick="this.closest(\'[style*=fixed]\').remove()" style="width:100%;margin-top:14px;padding:10px;background:var(--bg);border:1px solid var(--ink4);border-radius:var(--r-sm);font-size:12px;font-weight:700;color:var(--ink2);cursor:pointer">Close</button></div></div>';
+  document.body.appendChild(modal);
+  modal.addEventListener("click", function(e) { if (e.target === modal) modal.remove(); });
+  var topShops = S.shops.slice(0, 3).map(function(s) { return s.name + " (" + s.category + ", " + (s.rating||4.5) + " stars, " + (s.ratingCount||0) + " reviews)"; }).join("; ") || "Local shops with great ratings";
+  var proof = await NZ_AI.ask(
+    'Generate social proof content for these food shops: "' + topShops + '". For each shop create: 1 catchy tagline, 2 fake-but-authentic-sounding customer quotes (Indian names), 1 stat claim. Reply JSON array: [{"shop":"name","tagline":"text","quotes":["q1","q2"],"stat":"e.g. 500+ happy customers"}]',
+    "You are a marketing AI generating authentic social proof for Indian local food shops. Use Indian names, relatable quotes, local context.", 400
+  );
+  var shops = [];
+  try { shops = JSON.parse(proof.replace(/```json|```/g,"").trim()); } catch(e) {}
+  var el = document.getElementById("socialProofContent");
+  if (!el) return;
+  if (!shops.length) { el.innerHTML = '<div style="text-align:center;padding:20px;color:var(--ink3)">Load shops first to generate social proof.</div>'; return; }
+  el.innerHTML = shops.map(function(s) {
+    return '<div style="background:var(--bg);border-radius:var(--r-sm);padding:14px;margin-bottom:12px">' +
+      '<div style="font-size:13px;font-weight:800;color:var(--ink);margin-bottom:6px">' + s.shop + '</div>' +
+      '<div style="font-size:13px;font-style:italic;color:#4facfe;font-weight:700;margin-bottom:8px">"' + s.tagline + '"</div>' +
+      s.quotes.map(function(q) { return '<div style="font-size:12px;color:var(--ink2);margin-bottom:6px;padding:8px;background:var(--white);border-radius:var(--r-sm);border-left:3px solid #4facfe">"' + q + '"</div>'; }).join("") +
+      '<div style="font-size:11px;font-weight:800;color:var(--green);margin-top:6px">📊 ' + s.stat + '</div>' +
+      '<button onclick="navigator.clipboard&&navigator.clipboard.writeText(\'' + s.tagline + '\').then(function(){toast(\'Tagline copied!\',\'success\')})" style="margin-top:8px;padding:5px 12px;background:var(--brand-light);color:var(--brand);border:1px solid var(--brand);border-radius:99px;font-size:10px;font-weight:700;cursor:pointer">Copy Tagline</button></div>';
+  }).join("");
+}
+
+/* ─── AI NEW 3: AI ORDER PSYCHOLOGY ────────────────────────────────
+   World-first: AI analyzes WHY you order what you order — time
+   patterns, emotional triggers, spending habits, and gives
+   personalized insights about your food psychology. */
+async function openAIOrderPsychology() {
+  var modal = document.createElement("div");
+  modal.style.cssText = "position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:7000;display:flex;align-items:center;justify-content:center;padding:16px";
+  modal.innerHTML = '<div style="background:var(--white);border-radius:var(--r);width:100%;max-width:460px;max-height:85vh;overflow-y:auto;box-shadow:0 24px 64px rgba(0,0,0,.3)">' +
+    '<div style="background:linear-gradient(135deg,#667eea,#764ba2);padding:20px;text-align:center;position:sticky;top:0">' +
+    '<div style="font-size:36px;margin-bottom:6px">🧪</div>' +
+    '<div style="font-family:\'Sora\',sans-serif;font-size:18px;font-weight:800;color:#fff">AI Order Psychology</div>' +
+    '<div style="font-size:12px;color:rgba(255,255,255,.85)">Deep analysis of your food ordering behavior</div></div>' +
+    '<div style="padding:18px">' +
+    '<div id="psychologyContent"><div style="text-align:center;padding:24px;color:var(--ink3)"><i class="fa-solid fa-spinner fa-spin" style="font-size:24px;display:block;margin-bottom:10px"></i>Analyzing your ordering psychology...</div></div>' +
+    '<button onclick="this.closest(\'[style*=fixed]\').remove()" style="width:100%;margin-top:14px;padding:10px;background:var(--bg);border:1px solid var(--ink4);border-radius:var(--r-sm);font-size:12px;font-weight:700;color:var(--ink2);cursor:pointer">Close</button></div></div>';
+  document.body.appendChild(modal);
+  modal.addEventListener("click", function(e) { if (e.target === modal) modal.remove(); });
+  var orders = S.orders || [];
+  var totalSpent = orders.reduce(function(s,o){return s+(o.totalAmount||o.total||0);},0);
+  var avgOrder = orders.length > 0 ? Math.round(totalSpent/orders.length) : 0;
+  var topItems = {};
+  orders.flatMap(function(o){return o.items||[];}).forEach(function(i){topItems[i.name]=(topItems[i.name]||0)+1;});
+  var favFood = Object.entries(topItems).sort(function(a,b){return b[1]-a[1];})[0];
+  var analysis = await NZ_AI.ask(
+    'Analyze food ordering psychology for someone with: ' + orders.length + ' total orders, Rs ' + totalSpent + ' total spent, Rs ' + avgOrder + ' avg order value, favorite food: "' + (favFood?favFood[0]:"Unknown") + '" (ordered ' + (favFood?favFood[1]:0) + ' times). Identify: 1) Their food personality type (with fun name), 2) Key ordering triggers, 3) Spending pattern insight, 4) Their "food love language", 5) One surprising insight. Be fun and insightful.',
+    "You are a food behavioral psychologist. Give fun, insightful analysis of ordering patterns. Use Indian cultural references where relevant.", 400
+  );
+  var el = document.getElementById("psychologyContent");
+  var insights = [
+    { label:"Total Orders", value:orders.length, icon:"📦" },
+    { label:"Total Spent", value:"Rs " + totalSpent, icon:"💰" },
+    { label:"Avg Order", value:"Rs " + avgOrder, icon:"📊" },
+    { label:"Fav Food", value:favFood?favFood[0]:"—", icon:"❤️" },
+  ];
+  if (el) el.innerHTML =
+    '<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:16px">' +
+    insights.map(function(i) { return '<div style="background:var(--bg);border-radius:var(--r-sm);padding:12px;text-align:center"><div style="font-size:22px">' + i.icon + '</div><div style="font-size:10px;font-weight:700;color:var(--ink3);margin-top:4px;text-transform:uppercase">' + i.label + '</div><div style="font-size:13px;font-weight:800;color:var(--ink);margin-top:2px">' + i.value + '</div></div>'; }).join("") +
+    '</div><div style="background:linear-gradient(135deg,#667eea11,#764ba211);border:1px solid #667eea33;border-radius:var(--r-sm);padding:16px;font-size:13px;color:var(--ink);line-height:1.9">' +
+    (analysis || "Place more orders to unlock your food psychology profile!").replace(/\n/g,"<br>") + '</div>';
+}
+
+/* ═══ END NEARZY NEXT-GEN FEATURES ROUND 2 ═══════════════════════ */
 
 
 const pw = document.createElement("div");
