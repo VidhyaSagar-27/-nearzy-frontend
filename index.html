@@ -4028,6 +4028,7 @@ function renderAccountPage() {
           })()}
         </div>
       </div>
+      <div class="acc-tab active" id="acc-orders">
         <div class="acc-box">
           <div class="acc-box-title" style="display:flex;align-items:center;justify-content:space-between">
             <span><i class="fa-solid fa-box"></i> My Orders</span>
@@ -4194,6 +4195,17 @@ function renderAccountPage() {
           </div>
         </div>
       </div>
+      <div class="acc-tab" id="acc-addresses">
+        <div class="acc-box">
+          <div class="acc-box-title" style="display:flex;align-items:center;justify-content:space-between">
+            <span><i class="fa-solid fa-location-dot"></i> Saved Addresses</span>
+            <button onclick="openAddressModal()" style="padding:5px 12px;background:var(--brand);color:#fff;border:none;border-radius:var(--r-sm);font-size:11px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:5px">
+              <i class="fa-solid fa-plus"></i> Add New
+            </button>
+          </div>
+          <div id="addressListEl"><div style="text-align:center;padding:24px;color:var(--ink3)"><i class="fa-solid fa-location-dot" style="font-size:32px;display:block;margin-bottom:10px;color:var(--ink4)"></i><p>No saved addresses yet</p><button class="btn-empty" style="margin-top:10px" onclick="openAddressModal()">Add Address</button></div></div>
+        </div>
+      </div>
       <div class="acc-tab" id="acc-wishlist">
         <div class="acc-box">
           <div class="acc-box-title" style="display:flex;align-items:center;justify-content:space-between">
@@ -4273,6 +4285,13 @@ function renderAccountPage() {
     </div>
   </div>`;
   loadOrders();
+  // Ensure the default orders tab is shown
+  setTimeout(function() {
+    var ordersTab = document.getElementById("acc-orders");
+    var ordersMenu = document.querySelector(".acc-mi[onclick*='orders']");
+    if (ordersTab) ordersTab.classList.add("active");
+    if (ordersMenu) ordersMenu.classList.add("active");
+  }, 50);
 }
 function fillAddressFromSaved(id) {
   const addr = (S.savedAddresses || []).find(a => (a._id || a.id) === id);
@@ -4295,11 +4314,13 @@ function switchAccTab(tab, el) {
   document.querySelectorAll(".acc-mi").forEach(i => i.classList.remove("active"));
   document.querySelectorAll(".acc-tab").forEach(t => t.classList.remove("active"));
   if (el) el.classList.add("active");
-  document.getElementById("acc-" + tab)?.classList.add("active");
+  const tabEl = document.getElementById("acc-" + tab);
+  if (tabEl) tabEl.classList.add("active");
+  if (tab === "orders")    loadOrders();
   if (tab === "addresses") renderAddressList();
-  if (tab === "points") addPointsPromoCode();
-  if (tab === "referral") checkReferral();
-  if (tab === "support") setTimeout(renderTicketList, 50);
+  if (tab === "points")    addPointsPromoCode();
+  if (tab === "referral")  checkReferral();
+  if (tab === "support")   setTimeout(renderTicketList, 50);
   if (tab === "spending") {} // rendered dynamically at build time
 }
 async function loadOrders() {
