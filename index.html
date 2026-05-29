@@ -716,7 +716,7 @@ a{text-decoration:none;color:inherit}
 .fgrid.full{grid-template-columns:1fr}
 .fgroup{display:flex;flex-direction:column;gap:5px}
 .flabel{font-size:11px;font-weight:700;color:var(--ink2);text-transform:uppercase;letter-spacing:.06em}
-.finput{padding:11px 14px;border:1.5px solid var(--ink4);border-radius:var(--r-sm);font-size:13px;color:var(--ink);transition:border-color .2s}
+.finput{padding:11px 14px;border:1.5px solid var(--ink4);border-radius:var(--r-sm);font-size:13px;color:var(--ink);transition:border-color .2s;width:100%;box-sizing:border-box}
 .finput:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(252,128,25,.12)}
 .fselect{padding:11px 14px;border:1.5px solid var(--ink4);border-radius:var(--r-sm);font-size:13px;background:var(--white);cursor:pointer}
 .pay-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
@@ -778,7 +778,7 @@ a{text-decoration:none;color:inherit}
 .btn-suc-sec{padding:11px 28px;border-radius:var(--r-sm);background:var(--bg);color:var(--ink);font-weight:700;font-size:13px;border:1px solid var(--ink4);cursor:pointer}
 
 /* ===== ACCOUNT PAGE ===== */
-.acc-layout{display:grid;grid-template-columns:240px 1fr;gap:16px;align-items:start}
+.acc-layout{display:grid;grid-template-columns:240px 1fr;gap:16px;align-items:start;isolation:isolate}
 .acc-sidebar{background:var(--white);border-radius:var(--r);box-shadow:var(--card-shadow);overflow:hidden;position:sticky;top:82px}
 .acc-hero{
   background:linear-gradient(135deg,#fc8019,#ff9f4a);
@@ -12986,5 +12986,6 @@ function renderEmptyState(container, icon, title, subtitle, actionLabel, actionF
 <script src="nearzy-features.js"></script>
 <script src="nearzy-advanced.js"></script>
 <script src="nearzy-complete.js"></script>
+<script src="nearzy-profile-fix.js"></script>
 </body>
 </html>
