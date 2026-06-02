@@ -3255,10 +3255,12 @@ function openAddAddressModal(addressId) {
     }
   }
   document.getElementById("addressModal").classList.add("open");
+  document.body.style.overflow = "hidden";
 }
 
 function closeAddressModal() {
   document.getElementById("addressModal").classList.remove("open");
+  document.body.style.overflow = "auto";
 }
 
 function selectAddressLabel(label) {
@@ -3999,8 +4001,8 @@ function renderWishlistPage() {
 }
 
 /* ===== AUTH ===== */
-function openAuthModal() { document.getElementById("authModal").classList.add("open"); }
-function closeAuthModal() { document.getElementById("authModal").classList.remove("open"); }
+function openAuthModal() { document.getElementById("authModal").classList.add("open"); document.body.style.overflow = "hidden"; }
+function closeAuthModal() { document.getElementById("authModal").classList.remove("open"); document.body.style.overflow = "auto"; }
 function switchAuthTab(tab) {
   document.querySelectorAll(".mtab").forEach(t => t.classList.remove("active"));
   document.querySelectorAll(".mform").forEach(f => f.classList.remove("active"));
@@ -5285,7 +5287,7 @@ function openAddProductModal() {
   uploadedImages = [];
   document.getElementById("productModal").classList.add("open");
 }
-function closeProductModal() { document.getElementById("productModal").classList.remove("open"); }
+function closeProductModal() { document.getElementById("productModal").classList.remove("open"); document.body.style.overflow = "auto"; }
 function handleImgSelect(input) {
   const files = Array.from(input.files);
   files.forEach(file => {
@@ -6783,6 +6785,7 @@ function t(key) {
 
 function openLangPicker() {
   document.getElementById("langModal").classList.add("open");
+  document.body.style.overflow = "hidden";
   // Highlight current
   ["en","te","hi"].forEach(code => {
     const card = document.getElementById("lang-" + code);
@@ -6794,6 +6797,7 @@ function openLangPicker() {
 
 function closeLangPicker() {
   document.getElementById("langModal").classList.remove("open");
+  document.body.style.overflow = "auto";
 }
 
 function _orig_setLanguage(code) {
@@ -7541,7 +7545,7 @@ function initKeyboardShortcuts() {
         document.querySelectorAll(".modal-overlay.open").forEach(m=>m.classList.remove("open"));
         document.getElementById("cartDrawer")?.style && (document.getElementById("cartDrawer").style.right = "-380px");
         document.getElementById("cartDrawerOverlay").style.display = "none";
-        document.body.style.overflow = "";
+        document.body.style.overflow = "auto";
         closeSearchDropdown();
       }
     }
@@ -8213,6 +8217,7 @@ function applyTheme(name) {
   localStorage.setItem("nz_theme", name);
   localStorage.setItem("nz_theme_data", JSON.stringify(t));
   document.querySelectorAll(".modal-overlay.open").forEach(m=>m.classList.remove("open"));
+  document.body.style.overflow = "auto";
   toast(`${name} theme applied! ✨`, "success");
   haptic("success");
 }
@@ -9964,9 +9969,13 @@ function nzModal(html) {
   overlay.style.cssText = "position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:7000;display:flex;align-items:center;justify-content:center;padding:16px;overflow-y:auto";
   overlay.innerHTML = `<div style="background:var(--white);border-radius:var(--r);width:100%;max-width:440px;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.3);max-height:90vh;overflow-y:auto;position:relative">${html}<button onclick="nzCloseModal()" style="position:absolute;top:12px;right:12px;background:rgba(0,0,0,.2);border:none;color:#fff;width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:16px;line-height:1;z-index:1">×</button></div>`;
   document.body.appendChild(overlay);
+  document.body.style.overflow = "hidden";
   overlay.addEventListener("click", e => { if (e.target === overlay) nzCloseModal(); });
 }
-function nzCloseModal() { document.getElementById("nzModalOverlay")?.remove(); }
+function nzCloseModal() { 
+  document.getElementById("nzModalOverlay")?.remove();
+  document.body.style.overflow = "auto";
+}
 
 
 

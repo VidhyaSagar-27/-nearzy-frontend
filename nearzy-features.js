@@ -933,10 +933,11 @@ function openDynamicModal(title, content, id="dynamicModal") {
   }
 }
 
-function closeModal(id) { document.getElementById(id)?.remove(); }
+function closeModal(id) { document.getElementById(id)?.remove(); document.body.style.overflow = "auto"; }
 
 function closeAllModals() {
   document.querySelectorAll("[id$='Modal'],[id$='-modal'],[id='dynamicModal'],[id='tracking-modal']").forEach(m=>m.remove());
+  document.body.style.overflow = "auto";
 }
 
 function showLoader(text="Loading...") {
@@ -946,10 +947,11 @@ function showLoader(text="Loading...") {
     el.style.cssText="position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9999;display:flex;align-items:center;justify-content:center";
     el.innerHTML=`<div style="background:var(--white);border-radius:14px;padding:22px 28px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.3)"><div style="width:36px;height:36px;border:4px solid var(--brand);border-top-color:transparent;border-radius:50%;animation:spin 0.7s linear infinite;margin:0 auto 10px"></div><div id="loaderText" style="font-size:13px;font-weight:600;color:var(--ink)">${text}</div></div>`;
     document.body.appendChild(el);
+    document.body.style.overflow = "hidden";
   } else document.getElementById("loaderText").textContent=text;
 }
 
-function hideLoader() { document.getElementById("globalLoader")?.remove(); }
+function hideLoader() { document.getElementById("globalLoader")?.remove(); document.body.style.overflow = "auto"; }
 
 function escapeHtml(str) {
   const d=document.createElement("div");
